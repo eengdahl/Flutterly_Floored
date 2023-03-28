@@ -576,6 +576,8 @@ GameObject:
   - component: {fileID: 2100560649}
   - component: {fileID: 2100560647}
   - component: {fileID: 2100560650}
+  - component: {fileID: 2100560652}
+  - component: {fileID: 2100560651}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -654,7 +656,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2100560642}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.63, z: 0}
+  m_LocalPosition: {x: 0, y: 2.63, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -687,10 +689,6 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c16cb91c-9785-44bf-ae14-56e3ed76a030
-    m_ActionName: Floor/Move[/Keyboard/w,/Keyboard/a,/Keyboard/s,/Keyboard/d]
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2100560650}
         m_TargetAssemblyTypeName: Jump, Assembly-CSharp
@@ -706,6 +704,26 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 720b61d9-b218-4661-980b-db0f7810f772
     m_ActionName: Floor/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2100560651}
+        m_TargetAssemblyTypeName: PlayerMove, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2b55fc88-74f1-49d8-bccc-0d12ec9e9aef
+    m_ActionName: Floor/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 73962346-644d-46a2-9fa6-7a2969e61539
+    m_ActionName: Floor/Look[/Mouse/delta]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Floor
@@ -748,3 +766,29 @@ MonoBehaviour:
   coyoteTime: 1
   coyoteTimeCounter: 0
   isGrounded: 0
+--- !u!114 &2100560651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100560642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77d02355b73013c4d97b68e580a8fbdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  airSpeed: 10
+--- !u!114 &2100560652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100560642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6898983c3b8db3f41bf57020a427b9aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

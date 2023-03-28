@@ -18,9 +18,8 @@ public class Jump : MonoBehaviour
 
 
     [SerializeField]
-    private bool isGrounded;
+    public bool isGrounded;
     private Rigidbody rb;
-
 
 
     // Start is called before the first frame update
@@ -66,6 +65,8 @@ public class Jump : MonoBehaviour
 
         if(input.canceled && isGrounded)
         {
+            rb.velocity = Vector3.zero;
+
             if(timePressed > timeForChargedJump)
             {
                 ChargedJump();
