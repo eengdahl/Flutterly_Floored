@@ -9,7 +9,7 @@ using UnityEngine;
 public class MaterialCheck : MonoBehaviour
 {
     //List of materials in the world, use NameConvention "Material_Counter"
-    List<string> Materials = new List<string> { "Material_Counter (Instance)", "Material_Floor (Instance)", "Material_Puzzle (Instance)","Material_Wall (Instance)" };
+    List<string> Materials = new List<string> { "Material_Counter (Instance)", "Material_Floor (Instance)", "Material_Puzzle (Instance)", "Material_Wall (Instance)" };
 
     private MaterialState ActiveState;
 
@@ -27,17 +27,32 @@ public class MaterialCheck : MonoBehaviour
     //Checking what material Class is colliding with, sending info to statemachine
     private void OnCollisionEnter(Collision other)
     {
-        var t = other.gameObject.GetComponent<BoxCollider>().material.name;
-        if (t == null)
-            StateMachine(5);
-
-        foreach (var item in Materials)
+        //Checking if collision is box
+        if (other.gameObject.GetComponent<BoxCollider>() != null)
         {
-            if (t == item)
+            var t = other.gameObject.GetComponent<BoxCollider>().material.name;
+            foreach (var item in Materials)
             {
-                int sendInt = Materials.FindIndex(x => x.Equals(item));
-                StateMachine(sendInt);
-                break;
+                if (t == item)
+                {
+                    int sendInt = Materials.FindIndex(x => x.Equals(item));
+                    StateMachine(sendInt);
+                    break;
+                }
+            }
+        }
+        //Checking if collision is Capsule
+        else if (other.gameObject.GetComponent<CapsuleCollider>() != null)
+        {
+            var t = other.gameObject.GetComponent<CapsuleCollider>().material.name;
+            foreach (var item in Materials)
+            {
+                if (t == item)
+                {
+                    int sendInt = Materials.FindIndex(x => x.Equals(item));
+                    StateMachine(sendInt);
+                    break;
+                }
             }
         }
     }
