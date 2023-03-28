@@ -592,7 +592,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2100560642}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: d5a08fac969c97843a961f18252840b9, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -656,7 +656,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2100560642}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.63, z: 0}
+  m_LocalPosition: {x: 0, y: 0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -743,7 +743,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &2100560650
 MonoBehaviour:
@@ -760,10 +760,8 @@ MonoBehaviour:
   jumpForce: 50
   jumpChargeMultiplier: 1.5
   timeForChargedJump: 0.5
-  isJumpPressed: 0
-  timePressed: 0
   isDoubleJumping: 0
-  coyoteTime: 1
+  coyoteTime: 0.1
   coyoteTimeCounter: 0
   isGrounded: 0
 --- !u!114 &2100560651
@@ -778,8 +776,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77d02355b73013c4d97b68e580a8fbdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  airSpeed: 10
+  speed: 100
+  airSpeed: 100
+  maxSpeed: 2
+  maxAirSpeed: 10
+  groundFriction: 100
+  airFriction: 5
 --- !u!114 &2100560652
 MonoBehaviour:
   m_ObjectHideFlags: 0

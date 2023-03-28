@@ -10,11 +10,14 @@ public class Jump : MonoBehaviour
     public float jumpForce;
     public float jumpChargeMultiplier;
     public float timeForChargedJump;
-    public bool isJumpPressed;
-    public float timePressed;
     public bool isDoubleJumping;
     public float coyoteTime;
     public float coyoteTimeCounter;
+
+    private bool isJumping;
+    private bool isJumpPressed;
+    private float timePressed;
+
 
 
     [SerializeField]
@@ -36,7 +39,7 @@ public class Jump : MonoBehaviour
             timePressed += Time.deltaTime;
         }
 
-        if(isGrounded)
+        if(isGrounded && !isJumping)
         {
             coyoteTimeCounter = coyoteTime;
         }
@@ -59,21 +62,22 @@ public class Jump : MonoBehaviour
             if(!isGrounded && !isDoubleJumping)
             {
                 SecondJump();
+
                 isDoubleJumping = true;
             }
         }
 
         if(input.canceled && isGrounded)
         {
-            rb.velocity = Vector3.zero;
-
             if(timePressed > timeForChargedJump)
             {
                 ChargedJump();
+                isJumping = true;
             }    
             else
             {
                 NormalJUmp();
+                isJumping = true;
             }
 
             isGrounded = false;
@@ -92,21 +96,21 @@ public class Jump : MonoBehaviour
         rb.AddForce(Vector3.up * jumpForce * jumpChargeMultiplier, ForceMode.Impulse);
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-            isDoubleJumping = false;
-        }
-    }
-
     public void SecondJump()
     {
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+            isJumping = false;
+            isDoubleJumping = false;
+        }
+    }
 
     private void OnCollisionExit(Collision collision)
     {
