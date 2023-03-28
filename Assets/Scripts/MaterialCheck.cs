@@ -9,10 +9,9 @@ using UnityEngine;
 public class MaterialCheck : MonoBehaviour
 {
     //List of materials in the world, use NameConvention "Material_Counter"
-    List<string> Materials = new List<string> { "Material_Counter (Instance)", "Material_Floor (Instance)", "Material_Puzzle (Instance)" };
+    List<string> Materials = new List<string> { "Material_Counter (Instance)", "Material_Floor (Instance)", "Material_Puzzle (Instance)","Material_Wall (Instance)" };
 
     private MaterialState ActiveState;
-    public bool collisionLock;
 
     //Enum of states for the diffrent materials, add in statemachine and List of materials if modified 
     public enum MaterialState
@@ -21,14 +20,13 @@ public class MaterialCheck : MonoBehaviour
         Floor = 1,
         Puzzle = 2,
         Book = 3,
-        Cat = 4,
+        Wall = 4,
         None = 5
     }
 
-
+    //Checking what material Class is colliding with, sending info to statemachine
     private void OnCollisionEnter(Collision other)
     {
-        collisionLock = true;
         var t = other.gameObject.GetComponent<BoxCollider>().material.name;
         if (t == null)
             StateMachine(5);
@@ -43,6 +41,9 @@ public class MaterialCheck : MonoBehaviour
             }
         }
     }
+
+    //Might need to insert a "not tuching material.
+    //But this might be handled by grounded in player instead       
 
 
     public void StateMachine(int NewState = 5)
@@ -63,7 +64,7 @@ public class MaterialCheck : MonoBehaviour
             case MaterialState.Book:
                 Debug.Log("Book");
                 break;
-            case MaterialState.Cat:
+            case MaterialState.Wall:
                 Debug.Log("Cat");
                 break;
             case MaterialState.None:
@@ -74,6 +75,7 @@ public class MaterialCheck : MonoBehaviour
         }
     }
 
+    //Collect wich material class is colliding with at this moment. 
     public MaterialState CheckMaterialState()
     {
         return ActiveState;
