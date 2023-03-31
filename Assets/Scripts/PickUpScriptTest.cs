@@ -51,7 +51,7 @@ public class PickUpScriptTest : MonoBehaviour
             Vector3 Distance = transform.position - thingToPull.transform.position; // line from pickup to player
             float dist = Distance.magnitude;
             Vector3 pullDir = Distance.normalized; // short blue arrow from crate to player
-            if (dist > 2)
+            if (dist > 100)
             {
                 //RemoveTarget if to far away
 
