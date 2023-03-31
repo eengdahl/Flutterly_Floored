@@ -5,7 +5,7 @@ using UnityEngine;
 public class Cable : MonoBehaviour
 {
     public bool canConnect;
-
+    public Lamp lamp;
     private void Start()
     {
         canConnect = true;
