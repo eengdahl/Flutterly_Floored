@@ -14,6 +14,10 @@ public class Lamp : MonoBehaviour
     {
         lamplight.enabled = true;
     }
+    public void TurnOffLight()
+    {
+        lamplight.enabled = false;
+    }
 
 
 

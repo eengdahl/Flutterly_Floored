@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PickUpScriptTest : MonoBehaviour
 {
+
+    //Materials
+    [SerializeField] Material TargetMaterial;
+    private Material normalMaterial;
+
+
     List<GameObject> items;
     [SerializeField] GameObject thingToPull;
     private Dictionary<GameObject, float> distances = new Dictionary<GameObject, float>();
@@ -27,8 +33,8 @@ public class PickUpScriptTest : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name == "PickUpBox")
-        {
+        if (other.gameObject.name == "PickUpBox"|| other.gameObject.tag == "Rope")
+        { 
             items.Remove(other.gameObject);
         }
     }
@@ -36,7 +42,7 @@ public class PickUpScriptTest : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             if (items.Count > 0)
             {
@@ -47,7 +53,7 @@ public class PickUpScriptTest : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.E))
         {
-            thingToPull = null;
+            RemoveTarget();
         }
 
         if (thingToPull != null)
@@ -57,7 +63,9 @@ public class PickUpScriptTest : MonoBehaviour
             Vector3 pullDir = Distance.normalized; // short blue arrow from crate to player
             if (dist > 2)
             {
-                thingToPull = null; // lose tracking if too far 
+                //RemoveTarget if to far away
+                
+                RemoveTarget();
             }
             else if (dist > 1f) //If to close
             {
@@ -92,13 +100,34 @@ public class PickUpScriptTest : MonoBehaviour
                 closestItem = item;
             }
         }
-        //Set thing to pull to closest  item
+        //Set thing to pull to closest  item and change colour
         thingToPull = closestItem;
+        SetMaterialTarget();
+
         //If rope change force
         if (thingToPull.tag == "Rope")
         {
             force = 1000;
         }
+    }
+
+    void SetMaterialTarget()
+    {
+        normalMaterial = thingToPull.GetComponent<MeshRenderer>().material;
+        thingToPull.GetComponent<MeshRenderer>().material = TargetMaterial;
+    }
+    void ReturnMaterial()
+    {
+        if(thingToPull != null)
+        {
+
+        thingToPull.GetComponent<MeshRenderer>().material = normalMaterial;
+        }
+    }
+    public void RemoveTarget()
+    {
+        ReturnMaterial();
+        thingToPull = null;
     }
 
 }
