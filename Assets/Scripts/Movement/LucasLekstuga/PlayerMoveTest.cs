@@ -59,11 +59,18 @@ public class PlayerMoveTest : MonoBehaviour
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-        //limits speed
-        if (flatVel.magnitude > maxSpeed)
+        //limits speed on ground
+        if (jump.isGrounded && flatVel.magnitude > maxSpeed)
         {
             Vector3 limitedVel = flatVel.normalized * maxSpeed;
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
+        //limits speed in air
+        else if (!jump.isGrounded && flatVel.magnitude > (maxSpeed * airControl))
+        {
+            Vector3 limitedVel = flatVel.normalized * maxSpeed;
+            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+        }
+
     }
 }

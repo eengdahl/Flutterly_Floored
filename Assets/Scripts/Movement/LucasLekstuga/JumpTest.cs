@@ -10,11 +10,12 @@ public class JumpTest : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float jumpCooldown;
     [SerializeField] private float glideForce;
+    [SerializeField] private float glideTime;
     [SerializeField] private bool readyToJump;
-    [SerializeField] private bool isDoubleJumping;
+    [SerializeField] private bool Gliding;
     [SerializeField] private bool hasDoubleJumped;
 
-    public bool canDoubleJump;
+    public bool canGlide;
     public float doubleJumpMultiplier;
     public float coyoteTime;
     public float coyoteTimeCounter;
@@ -25,15 +26,14 @@ public class JumpTest : MonoBehaviour
     private Rigidbody rb;
 
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //Resets coyoteTime when on ground and when off ground start counting down
         if (isGrounded)
         {
             coyoteTimeCounter = coyoteTime;
@@ -42,47 +42,53 @@ public class JumpTest : MonoBehaviour
         {
             coyoteTimeCounter -= Time.deltaTime;
         }
-        if (isDoubleJumping)
+
+        //If gliding is true glide
+        if (Gliding)
             Glide();
     }
 
+    //Input events for Spacebar (Jump key)
     public void ButtonInput(InputAction.CallbackContext input)
     {
-
-        if (input.started)
+        //Jump if you're on ground or during coyoteTime
+        if (input.started && isGrounded && coyoteTimeCounter > 0 && readyToJump)
         {
-            if (isGrounded && coyoteTimeCounter > 0 && readyToJump)
-            {
-                coyoteTimeCounter = 0;
-                Jump();
+            coyoteTimeCounter = 0;
+            Jump();
 
-                isGrounded = false;
-                readyToJump = false;
+            isGrounded = false;
+            readyToJump = false;
 
-                //Invoke(nameof(ResetJump), jumpCooldown);
-            }
         }
-
-
+        if (input.performed && !readyToJump)
+        {
+            Invoke(nameof(ResetJump), jumpCooldown);
+        }
 
         if (input.canceled && !isGrounded && !hasDoubleJumped)
         {
-            canDoubleJump = true;
+            canGlide = true;
         }
+        
+        //Gliding input events
 
-        if (input.started && !isGrounded && !hasDoubleJumped && canDoubleJump)
+        //Gliding starts if pressing space in air
+        if (input.started && !isGrounded && canGlide)
         {
-            DoubleJump();
+            Gliding = true;
+            Invoke(nameof(CancelGlide), glideTime);
         }
-
-        if (input.canceled && !isGrounded && isDoubleJumping)
-            isDoubleJumping = false;
+        //Cancels when you stop pressing space
+        if (input.canceled && !isGrounded && Gliding)
+            Gliding = false;
 
     }
 
+    //Function for jumping, adds force in upwards direction and boosts player in moving direction
     private void Jump()
     {
-        //rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
@@ -98,24 +104,28 @@ public class JumpTest : MonoBehaviour
         {
             isGrounded = true;
             readyToJump = true;
-            canDoubleJump = false;
-            isDoubleJumping = false;
+            canGlide = false;
+            Gliding = false;
             hasDoubleJumped = false;
         }
     }
 
     public void DoubleJump()
     {
-        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        //rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         rb.AddForce(transform.up * (jumpForce * doubleJumpMultiplier), ForceMode.Impulse);
-        canDoubleJump = false;
+        canGlide = false;
         hasDoubleJumped = true;
-        isDoubleJumping = true;
     }
 
     public void Glide()
     {
-        rb.AddForce(transform.up * glideForce, ForceMode.Force);
+        rb.AddForce(transform.up * glideForce, ForceMode.Acceleration);
+    }
+
+    public void CancelGlide()
+    {
+        Gliding = false;
     }
 
 

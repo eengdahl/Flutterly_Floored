@@ -116,8 +116,12 @@ public class PickUpScriptTest : MonoBehaviour
     }
     public void RemoveTarget()
     {
+        if(thingToPull != null)
+        {
         ReturnMaterial();
         thingToPull = null;
+
+        }
     }
 
     public void DragObject(InputAction.CallbackContext Drag)
