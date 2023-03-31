@@ -4,24 +4,38 @@ using UnityEngine;
 
 public class MovingLeaves : MonoBehaviour
 {
-    public Animation moveLeaves;
+    public Animator anim;
+
+    private bool canPlayiAnimation;
 
     // Start is called before the first frame update
     void Start()
     {
-        moveLeaves = GetComponent<Animation>();
+        anim = GetComponent<Animator>();
+        canPlayiAnimation = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    public void MoveLeaf()
-    {
+        if (other.gameObject.CompareTag("Player") && canPlayiAnimation)
         {
-            moveLeaves.Play();
+            anim.SetTrigger("Flutter");
+            canPlayiAnimation = false;
+            StartCoroutine(CooldownTimer());
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.CompareTag("Player") && canPlayiAnimation)
+        {
+            anim.SetTrigger("Flutter");
+        }
+    }
+
+    private IEnumerator CooldownTimer()
+    {
+        yield return new WaitForSeconds(2f);
+        canPlayiAnimation = true;
     }
 }

@@ -52,33 +52,36 @@ public class ForceMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 movementVector = new Vector3(moveInput.x, 0, moveInput.y);
+        
 
         if (jump.isGrounded)
         {
             if (rb.velocity.magnitude < maxSpeed)
             {
                 decelerationVector = new Vector3(rb.velocity.x * groundFriction, 0, rb.velocity.z * groundFriction);
-                rb.AddForce(movementVector.normalized * acceleration - decelerationVector, ForceMode.Acceleration);
+                decelerationVector = transform.InverseTransformDirection(decelerationVector);
+                rb.AddRelativeForce(movementVector.normalized * acceleration - decelerationVector, ForceMode.Acceleration);
             }
             else
             {
                 rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
                 decelerationVector = new Vector3(rb.velocity.x * groundFriction, 0, rb.velocity.z * groundFriction);
-                rb.AddForce(movementVector.normalized * maxSpeed - decelerationVector, ForceMode.Acceleration);
+                rb.AddRelativeForce(movementVector.normalized * maxSpeed - decelerationVector, ForceMode.Acceleration);
             }
         }
         else
         {
             decelerationVector = new Vector3(rb.velocity.x * airFriction, 0, rb.velocity.z * airFriction);
+            decelerationVector = transform.InverseTransformDirection(decelerationVector);
 
             if (rb.velocity.magnitude < maxAirSpeed)
             {
-                rb.AddForce(movementVector.normalized * airSpeed - decelerationVector, ForceMode.Acceleration);
+                rb.AddRelativeForce(movementVector.normalized * airSpeed - decelerationVector, ForceMode.Acceleration);
             }
             else
             {
                 rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxAirSpeed);
-                rb.AddForce(movementVector.normalized * maxAirSpeed - decelerationVector, ForceMode.Acceleration);
+                rb.AddRelativeForce(movementVector.normalized * maxAirSpeed - decelerationVector, ForceMode.Acceleration);
             }
         }
     }
