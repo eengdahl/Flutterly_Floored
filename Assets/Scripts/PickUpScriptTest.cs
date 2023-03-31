@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PickUpScriptTest : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class PickUpScriptTest : MonoBehaviour
     //Materials
     [SerializeField] Material TargetMaterial;
     private Material normalMaterial;
+
+
 
 
     List<GameObject> items;
@@ -33,8 +36,8 @@ public class PickUpScriptTest : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name == "PickUpBox"|| other.gameObject.tag == "Rope")
-        { 
+        if (other.gameObject.name == "PickUpBox" || other.gameObject.tag == "Rope")
+        {
             items.Remove(other.gameObject);
         }
     }
@@ -42,19 +45,6 @@ public class PickUpScriptTest : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            if (items.Count > 0)
-            {
-                CalculateDistances();
-                FindShortestDistance();
-            }
-        }
-
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            RemoveTarget();
-        }
 
         if (thingToPull != null)
         {
@@ -64,7 +54,7 @@ public class PickUpScriptTest : MonoBehaviour
             if (dist > 2)
             {
                 //RemoveTarget if to far away
-                
+
                 RemoveTarget();
             }
             else if (dist > 1f) //If to close
@@ -118,16 +108,32 @@ public class PickUpScriptTest : MonoBehaviour
     }
     void ReturnMaterial()
     {
-        if(thingToPull != null)
+        if (thingToPull != null)
         {
 
-        thingToPull.GetComponent<MeshRenderer>().material = normalMaterial;
+            thingToPull.GetComponent<MeshRenderer>().material = normalMaterial;
         }
     }
     public void RemoveTarget()
     {
         ReturnMaterial();
         thingToPull = null;
+    }
+
+    public void DragObject(InputAction.CallbackContext Drag)
+    {
+        if (Drag.started)
+        {
+            if (items.Count > 0)
+            {
+                CalculateDistances();
+                FindShortestDistance();
+            }
+        }
+        if (Drag.canceled)
+        {
+            RemoveTarget();
+        }
     }
 
 }
