@@ -12,6 +12,7 @@ public class JumpTest : MonoBehaviour
     [SerializeField] private float glideForce;
     [SerializeField] private bool readyToJump;
     [SerializeField] private bool isDoubleJumping;
+    [SerializeField] private bool hasDoubleJumped;
 
     public bool canDoubleJump;
     public float doubleJumpMultiplier;
@@ -64,12 +65,12 @@ public class JumpTest : MonoBehaviour
 
 
 
-        if (input.canceled && !isGrounded && !isDoubleJumping)
+        if (input.canceled && !isGrounded && !hasDoubleJumped)
         {
             canDoubleJump = true;
         }
 
-        if (input.started && !isGrounded && canDoubleJump)
+        if (input.started && !isGrounded && !hasDoubleJumped && canDoubleJump)
         {
             DoubleJump();
         }
@@ -99,6 +100,7 @@ public class JumpTest : MonoBehaviour
             readyToJump = true;
             canDoubleJump = false;
             isDoubleJumping = false;
+            hasDoubleJumped = false;
         }
     }
 
@@ -107,6 +109,7 @@ public class JumpTest : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         rb.AddForce(transform.up * (jumpForce * doubleJumpMultiplier), ForceMode.Impulse);
         canDoubleJump = false;
+        hasDoubleJumped = true;
         isDoubleJumping = true;
     }
 
