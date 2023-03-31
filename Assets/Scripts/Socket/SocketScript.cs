@@ -57,12 +57,7 @@ public class SocketScript : MonoBehaviour
             
         }
     }
-    private void Update()
-    {
 
-        //Debug.Log(cableJoint.currentForce.magnitude);
-        //if (cable.canConnect == false && cableJoint.currentForce.magnitude >)
-    }
     void TurnOnBreakForce()
     {
         gameObject.GetComponent<CharacterJoint>().breakForce = breakForce;
