@@ -38,7 +38,7 @@ public class PlayerWind : MonoBehaviour
         if (inWindZone)
         {
             jumpScript.glideTime = 10; 
-            rb.AddForce(windZone.GetComponent<WindArea>().fan.transform.forward * windZone.GetComponent<WindArea>().windStrength);
+            rb.AddForce(windZone.GetComponent<WindArea>().windDirection.transform.forward * windZone.GetComponent<WindArea>().windStrength);
         }
     }
 }
