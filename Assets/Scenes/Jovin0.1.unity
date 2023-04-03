@@ -1056,6 +1056,7 @@ GameObject:
   - component: {fileID: 247794038}
   - component: {fileID: 247794037}
   - component: {fileID: 247794039}
+  - component: {fileID: 247794040}
   m_Layer: 7
   m_Name: PlayerCube
   m_TagString: Player
@@ -1140,9 +1141,29 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: d8953f90-e134-4e82-a1a0-77392084c3ea
     m_ActionName: Floor/Drag[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 247794022}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5bcd6c0e-2e47-42e7-b41f-b7806ae9c6d8
+    m_ActionName: WindZone/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0244df09-d28c-435d-aeb2-517bd0bd0c64
+    m_ActionName: WindZone/Jump[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Floor
+  m_DefaultActionMap: WindZone
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!54 &247794027
@@ -1308,7 +1329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 067b98781fd3fe947b83f49f50dfdfa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 50
+  jumpForce: 1000
   jumpCooldown: 1
   glideForce: 15
   windTunnelAscend: 0
@@ -1342,9 +1363,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 247794022}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 415f14f0181a66a43976244312509383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &247794040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247794022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f2481708aa64914aa1bfcc8e420f065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &293595249
