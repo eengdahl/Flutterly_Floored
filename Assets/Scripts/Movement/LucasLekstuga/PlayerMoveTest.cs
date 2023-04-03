@@ -12,13 +12,18 @@ public class PlayerMoveTest : MonoBehaviour
     private Rigidbody rb;
     private PlayerControls playerControls;
     private Vector2 moveInput;
+    private Vector2 mouseDelta;
     private Vector3 inputsXZ;
 
+    PlayerWind playerWindScrips;
+
+    //public Transform MainCamera;
 
     private JumpTest jump;
 
     private void Awake()
     {
+        playerWindScrips = GetComponent<PlayerWind>();
         playerControls = new PlayerControls();
         rb = GetComponent<Rigidbody>();
         jump = GetComponent<JumpTest>();
@@ -37,23 +42,47 @@ public class PlayerMoveTest : MonoBehaviour
     {
         moveInput = context.ReadValue<Vector2>();
     }
+    public void OnLook(InputAction.CallbackContext context)
+    {
+        mouseDelta = context.ReadValue<Vector2>();
+    }
+
 
     private void FixedUpdate()
     {
+
         SpeedControl();
 
-        inputsXZ = new Vector3(moveInput.x, 0, moveInput.y);
+
+        Vector3 moveDirection = (transform.forward.normalized * moveInput.y) + (Camera.main.transform.right.normalized * moveInput.x);
+        inputsXZ = moveDirection.normalized;
+
 
         //on ground
         if (jump.isGrounded)
         {
+
             rb.AddForce(inputsXZ.normalized * speed * 10f, ForceMode.Force);
         }
         //in air
         else if (!jump.isGrounded)
         {
-            rb.AddForce(inputsXZ.normalized * speed * 10f * airControl, ForceMode.Force);
+            if (!playerWindScrips.inWindZone)
+            {
+               rb.AddForce(inputsXZ.normalized * speed * 10f * airControl, ForceMode.Force);
+            }
+            else
+            {
+                rb.AddForce(new Vector3 (inputsXZ.x,0f,0f) * speed * 10f * airControl, ForceMode.Force);
+            }
         }
+    }
+
+    private void LateUpdate()
+    {
+        var forward = Camera.main.transform.forward;
+        forward.y = 0;
+        transform.forward = forward;
     }
     private void SpeedControl()
     {

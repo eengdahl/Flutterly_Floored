@@ -9,6 +9,7 @@ public class SocketScript : MonoBehaviour
     Lamp lamp;
     Cable cable;
     RadioButton radio;
+    Fan fan;
     [SerializeField] CharacterJoint cableJoint;
     [SerializeField] PickUpScriptTest pickUpScript;
     [Header("Variables")]
@@ -34,6 +35,11 @@ public class SocketScript : MonoBehaviour
             if (other.gameObject.GetComponent<Cable>().radio != null)
             {
                 radio = other.gameObject.GetComponent<Cable>().radio;
+            }
+
+            if(other.gameObject.GetComponent<Cable>().fan != null)
+            {
+                fan = other.gameObject.GetComponent<Cable>().fan;
             }
 
             cable = other.gameObject.GetComponent<Cable>();
@@ -64,6 +70,12 @@ public class SocketScript : MonoBehaviour
                 if(radio != null)
                 {
                     radio.gotElectricity = true;
+                }
+                //Turn on fan
+                if(fan != null)
+                {
+                    Debug.Log("Fan connected");
+                    fan.TurnOn();
                 }
 
                 //Turn on break force so it can be removed from socket 3seconds after it has been set in
@@ -102,6 +114,11 @@ public class SocketScript : MonoBehaviour
             radio.isPlaying = false;
             radio.gotElectricity = false;
             radio = null;
+        }
+        if(fan != null)
+        {
+            fan.TurnOff();
+            fan = null;
         }
 
     }
