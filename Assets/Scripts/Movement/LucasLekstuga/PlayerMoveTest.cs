@@ -15,12 +15,15 @@ public class PlayerMoveTest : MonoBehaviour
     private Vector2 mouseDelta;
     private Vector3 inputsXZ;
 
+    PlayerWind playerWindScrips;
+
     //public Transform MainCamera;
 
     private JumpTest jump;
 
     private void Awake()
     {
+        playerWindScrips = GetComponent<PlayerWind>();
         playerControls = new PlayerControls();
         rb = GetComponent<Rigidbody>();
         jump = GetComponent<JumpTest>();
@@ -64,7 +67,14 @@ public class PlayerMoveTest : MonoBehaviour
         //in air
         else if (!jump.isGrounded)
         {
-            rb.AddForce(inputsXZ.normalized * speed * 10f * airControl, ForceMode.Force);
+            if (!playerWindScrips.inWindZone)
+            {
+               rb.AddForce(inputsXZ.normalized * speed * 10f * airControl, ForceMode.Force);
+            }
+            else
+            {
+                rb.AddForce(new Vector3 (inputsXZ.x,0f,0f) * speed * 10f * airControl, ForceMode.Force);
+            }
         }
     }
 

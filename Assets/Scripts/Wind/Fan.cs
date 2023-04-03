@@ -32,17 +32,17 @@ public class Fan : MonoBehaviour
         {
             // Rotate the fan blade around its local z-axis
             transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
-            //Rotate whole fan base
+            ////Rotate whole fan base
             
-            float deltaAngle = rotationSpeedBase * Time.deltaTime;
-            currentAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, deltaAngle);
-            wholeFanPart.transform.localRotation = Quaternion.Euler(0f, currentAngle, 0f);
+            //float deltaAngle = rotationSpeedBase * Time.deltaTime;
+            //currentAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, deltaAngle);
+            //wholeFanPart.transform.localRotation = Quaternion.Euler(0f, currentAngle, 0f);
 
-            // If the fan base has reached the target angle, switch to the other angle
-            if (Mathf.Approximately(currentAngle, targetAngle))
-            {
-                targetAngle = (targetAngle == maxAngle) ? minAngle : maxAngle;
-            }
+            //// If the fan base has reached the target angle, switch to the other angle
+            //if (Mathf.Approximately(currentAngle, targetAngle))
+            //{
+            //    targetAngle = (targetAngle == maxAngle) ? minAngle : maxAngle;
+            //}
         }
     }
     public void TurnOn()

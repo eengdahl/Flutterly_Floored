@@ -6,6 +6,8 @@ public class WindArea : MonoBehaviour
 {
 
     public float windStrength;
+    public float windStrengthUp;
     public GameObject windDirection;
     public Vector3 dir;
+
 }

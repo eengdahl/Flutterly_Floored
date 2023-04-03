@@ -10,6 +10,7 @@ public class JumpTest : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float jumpCooldown;
     [SerializeField] private float glideForce;
+    [SerializeField] private float windTunnelAscend;
 
     [SerializeField] private bool readyToJump;
     [SerializeField] private bool Gliding;
@@ -121,8 +122,16 @@ public class JumpTest : MonoBehaviour
 
     public void Glide()
     {
-        glideTime += Time.deltaTime;
+        if (!playerWindsScript.inWindZone)
+        {
+            glideTime += Time.deltaTime;
         rb.AddForce(transform.up * (glideForce * glideTime), ForceMode.Acceleration);
+
+        }
+        else if (playerWindsScript.inWindZone)
+        {
+            rb.AddForce(transform.up * windTunnelAscend, ForceMode.Force);
+        }
     }
 
     public void CancelGlide()
