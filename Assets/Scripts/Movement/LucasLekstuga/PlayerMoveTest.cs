@@ -12,8 +12,10 @@ public class PlayerMoveTest : MonoBehaviour
     private Rigidbody rb;
     private PlayerControls playerControls;
     private Vector2 moveInput;
+    private Vector2 mouseDelta;
     private Vector3 inputsXZ;
 
+    //public Transform MainCamera;
 
     private JumpTest jump;
 
@@ -37,16 +39,26 @@ public class PlayerMoveTest : MonoBehaviour
     {
         moveInput = context.ReadValue<Vector2>();
     }
+    public void OnLook(InputAction.CallbackContext context)
+    {
+        mouseDelta = context.ReadValue<Vector2>();
+    }
+
 
     private void FixedUpdate()
     {
+
         SpeedControl();
 
-        inputsXZ = new Vector3(moveInput.x, 0, moveInput.y);
+
+        Vector3 moveDirection = (transform.forward.normalized * moveInput.y) + (Camera.main.transform.right.normalized * moveInput.x);
+        inputsXZ = moveDirection.normalized;
+
 
         //on ground
         if (jump.isGrounded)
         {
+
             rb.AddForce(inputsXZ.normalized * speed * 10f, ForceMode.Force);
         }
         //in air
@@ -54,6 +66,13 @@ public class PlayerMoveTest : MonoBehaviour
         {
             rb.AddForce(inputsXZ.normalized * speed * 10f * airControl, ForceMode.Force);
         }
+    }
+
+    private void LateUpdate()
+    {
+        var forward = Camera.main.transform.forward;
+        forward.y = 0;
+        transform.forward = forward;
     }
     private void SpeedControl()
     {
