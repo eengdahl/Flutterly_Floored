@@ -13,12 +13,12 @@ public class Cable : MonoBehaviour
         canConnect = true;
     }
 
-    //public void ChangeLayer()
-    //{
-    //    foreach (Transform child in transform)
-    //    {
-    //        child.gameObject.layer = 6;
-    //    }
-    //}
-    
+    public void ChangeLayer()
+    {
+        foreach (Transform child in transform)
+        {
+            child.gameObject.layer = 6;
+        }
+    }
+
 }
