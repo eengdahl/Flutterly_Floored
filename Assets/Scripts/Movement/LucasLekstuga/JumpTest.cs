@@ -22,6 +22,8 @@ public class JumpTest : MonoBehaviour
     private float groundCheckDistance = 1;
 
 
+    PlayerWind playerWindsScript;
+
     [SerializeField]
     public bool isGrounded;
     private Rigidbody rb;
@@ -29,6 +31,7 @@ public class JumpTest : MonoBehaviour
 
     void Awake()
     {
+        playerWindsScript = GetComponent<PlayerWind>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -60,6 +63,7 @@ public class JumpTest : MonoBehaviour
 
     void FixedUpdate()
     {
+
         if (Gliding)
             Glide();
     }
@@ -89,7 +93,7 @@ public class JumpTest : MonoBehaviour
         {
             canGlide = true;
         }
-        
+
         //Gliding input events
 
         //Gliding starts if pressing space in air
@@ -123,8 +127,11 @@ public class JumpTest : MonoBehaviour
 
     public void CancelGlide()
     {
-        Gliding = false;
-        glideTime = 0;
+        if (!playerWindsScript.inWindZone)
+        {
+            Gliding = false;
+            glideTime = 0;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
