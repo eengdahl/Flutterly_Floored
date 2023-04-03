@@ -16,7 +16,7 @@ public class Jump : MonoBehaviour
 
     private bool isJumping;
     private bool isJumpPressed;
-    private float timePressed;
+    public float timePressed;
 
 
 
@@ -34,12 +34,25 @@ public class Jump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(rb.velocity.y);
+
         if (isJumpPressed)
         {
             timePressed += Time.deltaTime;
         }
 
-        if(isGrounded && !isJumping)
+        if (isJumping && timePressed > timeForChargedJump)
+        {
+            ChargedJump();
+            isJumpPressed = false;
+            timePressed = 0;
+        }
+        else if(timeForChargedJump > timeForChargedJump)
+        {
+            
+        }
+
+        if (isGrounded && !isJumping)
         {
             coyoteTimeCounter = coyoteTime;
         }
@@ -54,6 +67,7 @@ public class Jump : MonoBehaviour
 
         if(input.performed)
         {
+      
             if (isGrounded || coyoteTimeCounter > 0)
             {
                 isJumpPressed = true;
@@ -65,28 +79,35 @@ public class Jump : MonoBehaviour
 
                 isDoubleJumping = true;
             }
+
+            if(isGrounded)
+            {
+                NormalJump();
+                isJumping = true;
+                isJumpPressed= true;
+            }
         }
 
         if(input.canceled && isGrounded)
         {
-            if(timePressed > timeForChargedJump)
-            {
-                ChargedJump();
-                isJumping = true;
-            }    
-            else
-            {
-                NormalJUmp();
-                isJumping = true;
-            }
+            //if(timePressed > timeForChargedJump)
+            //{
+            //    ChargedJump();
+            //    isJumping = true;
+            //}    
+            //else
+            //{
+            //    NormalJump();
+            //    isJumping = true;
+            //}
 
-            isGrounded = false;
+            //isGrounded = false;
             isJumpPressed = false;
             timePressed = 0;
         }
     }
 
-    private void NormalJUmp()
+    private void NormalJump()
     {
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
@@ -99,10 +120,15 @@ public class Jump : MonoBehaviour
     public void SecondJump()
     {
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * jumpForce + new Vector3(0, rb.velocity.y,0), ForceMode.Impulse);
     }
 
     private void OnCollisionEnter(Collision collision)
+    {
+        //timePressed = 0;
+    }
+
+    private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
