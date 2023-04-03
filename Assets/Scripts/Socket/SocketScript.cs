@@ -6,8 +6,9 @@ public class SocketScript : MonoBehaviour
 {
     [SerializeField] Transform socketSpot;
     Rigidbody otherRb;
-    Lamp lamp; 
+    Lamp lamp;
     Cable cable;
+    RadioButton radio;
     [SerializeField] CharacterJoint cableJoint;
     [SerializeField] PickUpScriptTest pickUpScript;
     [Header("Variables")]
@@ -21,40 +22,60 @@ public class SocketScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Cable" && socketOccupied == false)
+        if (other.gameObject.tag == "Cable" && socketOccupied == false)
         {
-           
+
             //Get the lamp that that cable is connected to
-            lamp = other.gameObject.GetComponent<Cable>().lamp;
+            if (other.gameObject.GetComponent<Cable>().lamp != null)
+            {
+                lamp = other.gameObject.GetComponent<Cable>().lamp;
+            }
+            //Get the radio that cable is connected to
+            if (other.gameObject.GetComponent<Cable>().radio != null)
+            {
+                radio = other.gameObject.GetComponent<Cable>().radio;
+            }
+
             cable = other.gameObject.GetComponent<Cable>();
+
             if (cable.canConnect)
             {
-            //Push the socket into the walloposition
-            other.gameObject.transform.position = socketSpot.position;          
-            other.gameObject.transform.eulerAngles = socketSpot.transform.eulerAngles;//new Vector3(0, 0, -90);
-            gameObject.GetComponent<CharacterJoint>().connectedBody = other.gameObject.GetComponent<Rigidbody>();
-           
+                //Remove the players target
+                pickUpScript.RemoveTarget();
 
-            //Freeze its position
-            otherRb = other.gameObject.GetComponent<Rigidbody>();
-            otherRb.constraints = RigidbodyConstraints.FreezeAll;
+                //Push the socket into the walloposition
+                other.gameObject.transform.position = socketSpot.position;
+                other.gameObject.transform.eulerAngles = socketSpot.transform.eulerAngles;//new Vector3(0, 0, -90);
+                gameObject.GetComponent<CharacterJoint>().connectedBody = other.gameObject.GetComponent<Rigidbody>();
 
-            //Turn on the light
-            lamp.TurnOnLight();
-            cable.ChangeLayer();
-            cable.canConnect = false;
 
-            //Turn on break force so it can be removed from socket 3seconds after it has been set in
-            Invoke("TurnOnBreakForce",3f);
+                //Freeze its position
+                otherRb = other.gameObject.GetComponent<Rigidbody>();
+                otherRb.constraints = RigidbodyConstraints.FreezeAll;
 
-            //Remove the players target
-            pickUpScript.RemoveTarget();
+                //Turn on the light
+                if (lamp != null)
+                {
+                    lamp.TurnOnLight();
+                    cable.ChangeLayer();
+                    cable.canConnect = false;
+                }
+                //Turn on radio
+                if(radio != null)
+                {
+                    radio.gotElectricity = true;
+                }
 
-             //Set socket occupied
-             socketOccupied = true;
+                //Turn on break force so it can be removed from socket 3seconds after it has been set in
+                Invoke("TurnOnBreakForce", 3f);
+
+                
+
+                //Set socket occupied
+                socketOccupied = true;
 
             }
-            
+
         }
     }
 
@@ -66,9 +87,22 @@ public class SocketScript : MonoBehaviour
     {
         socketOccupied = false;
         cable.canConnect = true;
-        lamp.TurnOffLight();
         CreateNewJoint();
         otherRb.constraints = RigidbodyConstraints.None;
+
+        //Get the lamp that that cable is connected to
+        if (lamp != null)
+        {
+            lamp.TurnOffLight();
+            lamp = null;
+        }
+        //Get the radio that cable is connected to
+        if (radio != null)
+        {
+            radio.isPlaying = false;
+            radio.gotElectricity = false;
+            radio = null;
+        }
 
     }
 

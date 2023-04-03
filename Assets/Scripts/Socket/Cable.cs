@@ -6,6 +6,7 @@ public class Cable : MonoBehaviour
 {
     public bool canConnect;
     public Lamp lamp;
+    public RadioButton radio;
     private void Start()
     {
         canConnect = true;
