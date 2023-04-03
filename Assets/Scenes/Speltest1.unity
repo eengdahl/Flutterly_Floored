@@ -520,27 +520,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3783173436131529483, guid: c922829ca348fc647ac05df1aba896c7, type: 3}
       propertyPath: m_Size.x
-      value: 0.12358093
+      value: 0.5978336
       objectReference: {fileID: 0}
     - target: {fileID: 3783173436131529483, guid: c922829ca348fc647ac05df1aba896c7, type: 3}
       propertyPath: m_Size.y
-      value: 0.18359149
+      value: 0.9966527
       objectReference: {fileID: 0}
     - target: {fileID: 3783173436131529483, guid: c922829ca348fc647ac05df1aba896c7, type: 3}
       propertyPath: m_Size.z
-      value: 0.1524353
+      value: 0.6321354
       objectReference: {fileID: 0}
     - target: {fileID: 3783173436131529483, guid: c922829ca348fc647ac05df1aba896c7, type: 3}
       propertyPath: m_Center.x
-      value: 0.006385803
+      value: -0.08058071
       objectReference: {fileID: 0}
     - target: {fileID: 3783173436131529483, guid: c922829ca348fc647ac05df1aba896c7, type: 3}
       propertyPath: m_Center.y
-      value: 0.03002435
+      value: -0.8190134
       objectReference: {fileID: 0}
     - target: {fileID: 3783173436131529483, guid: c922829ca348fc647ac05df1aba896c7, type: 3}
       propertyPath: m_Center.z
-      value: 0.75205994
+      value: 1.3216155
       objectReference: {fileID: 0}
     - target: {fileID: 3783173436131529484, guid: c922829ca348fc647ac05df1aba896c7, type: 3}
       propertyPath: m_Name
@@ -6876,13 +6876,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 50
   jumpCooldown: 0.25
-  glideForce: 25
-  glideTime: 1
+  glideForce: 10
   readyToJump: 0
   Gliding: 0
   hasDoubleJumped: 0
   canGlide: 0
-  doubleJumpMultiplier: 0
+  glideTime: 0
   coyoteTime: 0.3
   coyoteTimeCounter: 1
   isGrounded: 0
@@ -7007,8 +7006,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1351533, y: 0.19404984, z: 0.13580203}
-  m_Center: {x: -0.002606172, y: 0.014976144, z: 0.021669507}
+  m_Size: {x: 0.35048392, y: 0.86131036, z: 0.48397171}
+  m_Center: {x: -0.009395376, y: -0.8447179, z: 0.099072635}
 --- !u!23 &1722545032
 MeshRenderer:
   m_ObjectHideFlags: 0
