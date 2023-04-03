@@ -10,6 +10,7 @@ public class JumpTest : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float jumpCooldown;
     [SerializeField] private float glideForce;
+
     [SerializeField] private bool readyToJump;
     [SerializeField] private bool Gliding;
     [SerializeField] private bool hasDoubleJumped;

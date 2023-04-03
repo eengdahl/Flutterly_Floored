@@ -7,7 +7,7 @@ public class LadderScript2 : MonoBehaviour
     bool inside = false;
     public Transform player;
     public float speedUpDown = 3.2f;
-    public ForceMovement movementScript; //change depending on the type of movement script
+    public TestMovement movementScript; //change depending on the type of movement script
     Rigidbody playerRigidbody;
     Jump jumpScript;
     GameObject teleportPoint;
@@ -18,7 +18,7 @@ public class LadderScript2 : MonoBehaviour
         materialCheckScript = GetComponent<MaterialCheck>();
         jumpScript = GetComponent<Jump>();
         playerRigidbody = GetComponent<Rigidbody>();
-        movementScript = GetComponent<ForceMovement>();
+        movementScript = GetComponent<TestMovement>();
         inside = false;
     }
     private void OnTriggerEnter(Collider other)
