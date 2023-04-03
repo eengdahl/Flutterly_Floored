@@ -63,7 +63,7 @@ public class SocketScript : MonoBehaviour
                 if (lamp != null)
                 {
                     lamp.TurnOnLight();
-                    //cable.ChangeLayer();
+                    cable.ChangeLayer();
                     cable.canConnect = false;
                 }
                 //Turn on radio
@@ -118,6 +118,7 @@ public class SocketScript : MonoBehaviour
         if(fan != null)
         {
             fan.TurnOff();
+            fan = null;
         }
 
     }
