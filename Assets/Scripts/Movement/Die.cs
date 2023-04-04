@@ -6,10 +6,12 @@ using UnityEngine.Tilemaps;
 public class Die : MonoBehaviour
 {
     public Rigidbody rb;
-    public ForceMovement movement;
-    public Jump jump;
+    public PlayerMoveTest movement;
+    public JumpTest jump;
+    public DeathScriptAndCheckPoint revive;
     public float maxFallheight;
 
+    private float torque;
 
     public bool isFalling;
     private float startFall;
@@ -20,8 +22,10 @@ public class Die : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        movement = GetComponent<ForceMovement>();
-        jump = GetComponent<Jump>();
+        movement = GetComponent<PlayerMoveTest>();
+        jump = GetComponent<JumpTest>();
+        revive = GetComponent<DeathScriptAndCheckPoint>();
+        torque = 50;
     }
 
     // Update is called once per frame
@@ -42,7 +46,6 @@ public class Die : MonoBehaviour
             }
         }
 
-        Debug.Log(fallheight);
 
         if(isFalling && rb.velocity.y >= 0)
         {
@@ -72,5 +75,16 @@ public class Die : MonoBehaviour
         jump.enabled = false;
         movement.enabled = false;
         rb.constraints = RigidbodyConstraints.None;
+        rb.AddRelativeTorque(new Vector3(Random.Range(0, 2), Random.Range(0, 2), Random.Range(0, 2)) * torque);
+
+        Invoke("RevivePlayer", 5);
+    }
+
+    private void RevivePlayer()
+    {
+        jump.enabled = true;
+        movement.enabled = true;
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        revive.Die();
     }
 }
