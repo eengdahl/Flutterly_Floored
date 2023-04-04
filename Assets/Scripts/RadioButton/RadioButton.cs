@@ -35,7 +35,7 @@ public class RadioButton : MonoBehaviour
             //Change angle to zero
             transform.eulerAngles = Vector3.zero;
             //calculate angle diff
-            upperLowerDiff = buttonLowerLimit.position.y - buttonLowerLimit.position.y;
+            upperLowerDiff = buttonUpperLimit.position.y - buttonLowerLimit.position.y;
             //Set it back
             transform.eulerAngles = savedAngle;
         }
@@ -75,6 +75,7 @@ public class RadioButton : MonoBehaviour
         //threshold check for turning on and off
         if (Vector3.Distance(buttonPart.position, buttonLowerLimit.position) < upperLowerDiff * threshHold)
         {
+            Debug.Log("Should be pressed");
             isPressed = true;
         }
         else
@@ -102,6 +103,7 @@ public class RadioButton : MonoBehaviour
         //TurnMusic on or off
         if (!isPlaying)
         {
+            Debug.Log("IS PLAYING MUSIC");
             aS.Play();
             isPlaying = true;
         }

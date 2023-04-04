@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Jump : MonoBehaviour
+public class Jump : MonoBehaviour, IMoveSpeedListener
 {
     public float jumpForce;
     public float jumpChargeMultiplier;
@@ -14,15 +14,16 @@ public class Jump : MonoBehaviour
     public float coyoteTime;
     public float coyoteTimeCounter;
 
-    private bool isJumping;
+    public bool isJumping;
     private bool isJumpPressed;
     public float timePressed;
 
 
 
     [SerializeField]
-    public bool isGrounded;
+    private bool isGrounded;
     private Rigidbody rb;
+    private float speed;
 
 
     // Start is called before the first frame update
@@ -31,11 +32,25 @@ public class Jump : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+    private void OnEnable()
+    {
+        MovementCommunicator.instance.AddMoveListener(this);
+    }
+
+    private void OnDisable()
+    {
+        MovementCommunicator.instance.RemoveMoveListener(this);
+
+    }
+
+    public void OnValueChanged(float speed)
+    {
+        //Debug.Log(speed);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(rb.velocity.y);
-
         if (isJumpPressed)
         {
             timePressed += Time.deltaTime;
@@ -135,6 +150,7 @@ public class Jump : MonoBehaviour
             isGrounded = true;
             isJumping = false;
             isDoubleJumping = false;
+            MovementCommunicator.instance.NotifyGroundedListeners(isGrounded);
         }
     }
 
@@ -143,6 +159,7 @@ public class Jump : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = false;
+            MovementCommunicator.instance.NotifyGroundedListeners(isGrounded);
         }
     }
 }
