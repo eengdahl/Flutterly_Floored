@@ -46,7 +46,6 @@ public class Die : MonoBehaviour
             }
         }
 
-        Debug.Log(fallheight);
 
         if(isFalling && rb.velocity.y >= 0)
         {

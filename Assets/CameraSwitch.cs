@@ -14,11 +14,8 @@ public class CameraSwitch : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
-        Debug.Log("ping");
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("ping");
             MainCamera.SetActive(false);
             secondCamera.SetActive(true);
         }
@@ -27,14 +24,10 @@ public class CameraSwitch : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-
-        Debug.Log("ping");
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("ping");
             MainCamera.SetActive(true);
             secondCamera.SetActive(false);
-
         }
     }
 }
