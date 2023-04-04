@@ -1,47 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class Die : MonoBehaviour
 {
     public Rigidbody rb;
-    public PlayerMoveTest movement;
-    public JumpTest jump;
+    public ForceMovement movement;
+    public Jump jump;
     public float maxFallheight;
-    public DeathScriptAndCheckPoint respawnScript;
-    public float torque;
 
 
     public bool isFalling;
     private float startFall;
     private float fallheight;
-
+    
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        movement = GetComponent<PlayerMoveTest>();
-        jump = GetComponent<JumpTest>();
-        respawnScript = GetComponent<DeathScriptAndCheckPoint>();
-        torque = 50;
+        movement = GetComponent<ForceMovement>();
+        jump = GetComponent<Jump>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (rb.velocity.y < 0 && !isFalling)
+        if(rb.velocity.y < 0 && !isFalling)
         {
             StartFall();
         }
 
-        if (isFalling)
+        if(isFalling)
         {
             CalculateFallHeight();
 
-            if (fallheight >= maxFallheight)
+            if(fallheight >= maxFallheight)
             {
                 KillPlayer();
             }
@@ -49,7 +44,7 @@ public class Die : MonoBehaviour
 
         Debug.Log(fallheight);
 
-        if (isFalling && rb.velocity.y >= 0)
+        if(isFalling && rb.velocity.y >= 0)
         {
             ResetFall();
         }
@@ -77,16 +72,5 @@ public class Die : MonoBehaviour
         jump.enabled = false;
         movement.enabled = false;
         rb.constraints = RigidbodyConstraints.None;
-        Invoke("RevivePlayer", 4);
-    }
-
-    private void RevivePlayer()
-    {
-        rb.constraints = RigidbodyConstraints.FreezeRotation;
-        jump.enabled = true;
-        movement.enabled = true;
-        rb.AddRelativeTorque(new Vector3(Random.Range(0, 2), Random.Range(0, 2), Random.Range(0, 2)) * torque);
-        respawnScript.Die();
-
     }
 }

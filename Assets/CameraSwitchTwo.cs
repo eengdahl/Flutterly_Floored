@@ -25,7 +25,7 @@ public class CameraSwitchTwo : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-    
+
         if (other.gameObject.tag == "Player")
         {
             Debug.Log("ping");
