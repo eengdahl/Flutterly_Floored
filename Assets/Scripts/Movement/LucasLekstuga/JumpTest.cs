@@ -125,7 +125,7 @@ public class JumpTest : MonoBehaviour
         if (!playerWindsScript.inWindZone)
         {
             glideTime += Time.deltaTime;
-        rb.AddForce(transform.up * (glideForce * glideTime), ForceMode.Acceleration);
+            rb.AddForce(transform.up * (glideForce * glideTime), ForceMode.Acceleration);
 
         }
         else if (playerWindsScript.inWindZone)
