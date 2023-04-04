@@ -40,17 +40,17 @@ public class Fan : MonoBehaviour
 
             // Make fan base switch between the different angles when it reaches one of them
             //Mathf.Approximately is apparently a great tool to get if the two values are about the same, exactly the same can be hard sometimes
-            if (Mathf.Approximately(currentAngle, targetAngle))
-            {
-                if (targetAngle == maxAngle)
-                {
-                    targetAngle = minAngle;
-                }
-                else
-                {
-                    targetAngle = maxAngle;
-                }               
-            }
+            //if (Mathf.Approximately(currentAngle, targetAngle))
+            //{
+            //    if (targetAngle == maxAngle)
+            //    {
+            //        targetAngle = minAngle;
+            //    }
+            //    else
+            //    {
+            //        targetAngle = maxAngle;
+            //    }               
+            //}
         }
     }
     public void TurnOn()
