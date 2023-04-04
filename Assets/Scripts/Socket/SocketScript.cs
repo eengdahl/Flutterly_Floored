@@ -117,6 +117,8 @@ public class SocketScript : MonoBehaviour
         }
         if(fan != null)
         {
+            PlayerWind playerWind = FindObjectOfType<PlayerWind>();
+            playerWind.LeaveWindArea();
             fan.TurnOff();
             fan = null;
         }

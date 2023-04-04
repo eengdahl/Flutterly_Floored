@@ -189,7 +189,7 @@
             ]
         },
         {
-            "name": "WindZone",
+            "name": "WindZoneMovement",
             "id": "3a56c7e2-9a29-448c-89c7-c9d5441ee170",
             "actions": [
                 {
@@ -205,6 +205,24 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "0244df09-d28c-435d-aeb2-517bd0bd0c64",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Glide",
+                    "type": "Button",
+                    "id": "e0d2681c-c930-4b3d-9e86-9522913ba19e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dive",
+                    "type": "Button",
+                    "id": "0ef3271a-4484-4eaa-a5a3-b7995db5f194",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -330,6 +348,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7246bfb2-6c70-4dbf-a665-81fee3f5c1b6",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Glide",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d89fe62f-24c9-4d30-92a1-5a08859f98ec",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dive",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

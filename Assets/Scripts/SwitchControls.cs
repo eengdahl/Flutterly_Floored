@@ -18,11 +18,11 @@ public class SwitchControls : MonoBehaviour
     public void SwitchToAir()
     {
         playerInput.actions.FindActionMap("Floor").Disable();
-        playerInput.actions.FindActionMap("WindZone").Enable();
+        playerInput.actions.FindActionMap("WindZoneMovement").Enable();
     }
     public void SwitchToFloor()
     {
         playerInput.actions.FindActionMap("Floor").Enable();
-        playerInput.actions.FindActionMap("WindZone").Disable();
+        playerInput.actions.FindActionMap("WindZoneMovement").Disable();
     }
 }
