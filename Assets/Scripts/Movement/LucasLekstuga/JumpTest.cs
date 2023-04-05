@@ -14,7 +14,7 @@ public class JumpTest : MonoBehaviour
 
     [SerializeField] private bool readyToJump;
     [SerializeField] private bool Gliding;
-    [SerializeField] private bool hasDoubleJumped;
+    [SerializeField] private bool hasCanceledGlide;
 
     public bool canGlide;
     public float glideTime;
@@ -85,12 +85,14 @@ public class JumpTest : MonoBehaviour
             }
 
         }
+        //Reset jump to keep jumping while space is pressed
         if (input.performed && !readyToJump)
         {
             Invoke(nameof(ResetJump), jumpCooldown);
         }
 
-        if (input.canceled && !isGrounded && !hasDoubleJumped)
+        //Enables glide after jumping
+        if (input.canceled && !isGrounded && !hasCanceledGlide)
         {
             canGlide = true;
         }
@@ -104,7 +106,11 @@ public class JumpTest : MonoBehaviour
         }
         //Cancels when you stop pressing space
         if (input.canceled && !isGrounded && Gliding)
+        {
+            hasCanceledGlide = true;
+            canGlide = false;
             Gliding = false;
+        }
     }
 
     //Function for jumping, adds force in upwards direction and boosts player in moving direction
@@ -151,8 +157,8 @@ public class JumpTest : MonoBehaviour
             readyToJump = true;
             canGlide = false;
             Gliding = false;
-            hasDoubleJumped = false;
-            glideTime = 0;
+            hasCanceledGlide = false;
+            glideTime = 0.1f;
         }
     }
 
