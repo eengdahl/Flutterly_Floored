@@ -52,6 +52,7 @@ public class PlayerMoveTest : MonoBehaviour
     public void OnLook(InputAction.CallbackContext context)
     {
         mouseDelta = context.ReadValue<Vector2>();
+        MovementCommunicator.instance.NotifyLookListeners(mouseDelta.x);
     }
 
 
