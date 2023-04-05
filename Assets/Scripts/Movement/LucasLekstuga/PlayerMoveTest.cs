@@ -9,7 +9,7 @@ public class PlayerMoveTest : MonoBehaviour
     [SerializeField] private float maxSpeed;
     [SerializeField] private float airControl;
     [SerializeField] float turnSpeed = 10f;
-    
+
     private float turnSpeedMultiplier;
     private Rigidbody rb;
     private PlayerControls playerControls;
@@ -52,12 +52,17 @@ public class PlayerMoveTest : MonoBehaviour
     public void OnLook(InputAction.CallbackContext context)
     {
         mouseDelta = context.ReadValue<Vector2>();
-        MovementCommunicator.instance.NotifyLookListeners(mouseDelta.x);
+   
     }
 
 
     private void FixedUpdate()
     {
+        //Checking is the mouse has moved significally and if true notefiying listeners 
+        if (Mathf.Abs(mouseDelta.x) > 8)
+        {
+            MovementCommunicator.instance.NotifyLookListeners(mouseDelta.x);
+        }
 
         SpeedControl();
         normalizedVel = rb.velocity;
@@ -101,7 +106,7 @@ public class PlayerMoveTest : MonoBehaviour
 
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(euler), turnSpeed * turnSpeedMultiplier * Time.deltaTime);
         }
-        
+
         //on ground
     }
     private void SpeedControl()

@@ -5,22 +5,24 @@ using UnityEngine;
 public class CameraSwitchTwo : MonoBehaviour
 {
     public GameObject MainCamera;
-    public GameObject secondCamera;
+    // public GameObject secondCamera;
+    public Cinemachine.CinemachineFreeLook c_VirtualCamera;
+    public Transform branch;
+
 
     private void OnTriggerEnter(Collider other)
     {
 
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("ping");
-            secondCamera.SetActive(true);
-            MainCamera.SetActive(false);
+            c_VirtualCamera.m_LookAt = branch.transform;
+            // c_VirtualCamera.m_Follow = other.transform;
 
-
-            secondCamera.transform.RotateAround(transform.position, transform.up, 180f);
+            //  secondCamera.transform.RotateAround(transform.position, transform.up, 180f);
 
         }
     }
+
 
 
     private void OnTriggerExit(Collider other)
@@ -28,9 +30,7 @@ public class CameraSwitchTwo : MonoBehaviour
 
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("ping");
-            MainCamera.SetActive(true);
-            secondCamera.SetActive(false);
+            c_VirtualCamera.m_LookAt = other.transform;
 
         }
     }

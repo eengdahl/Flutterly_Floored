@@ -30,6 +30,7 @@ public class CameraSwitch : MonoBehaviour, ILookChangeListener
             MainCamera.SetActive(false);
             secondCamera.SetActive(true);
             thirdCamera.SetActive(false);
+
         }
     }
 
@@ -42,6 +43,7 @@ public class CameraSwitch : MonoBehaviour, ILookChangeListener
             MainCamera.SetActive(true);
             secondCamera.SetActive(false);
             thirdCamera.SetActive(false);
+
         }
     }
 
@@ -51,7 +53,6 @@ public class CameraSwitch : MonoBehaviour, ILookChangeListener
         {
             return;
         }
-        Debug.Log(speed);
 
         if (speed > 15)
         {
