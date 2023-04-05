@@ -12,18 +12,17 @@ public class PlayerWind : MonoBehaviour
     [SerializeField] float mass;
     float oldMass;
     PlayerMoveTest playerMoveScript;
-    WindMovementScript windMovement;
 
     SwitchControls switchControls;
-    
+    TestFly flyScript;
+
     private void Start()
     {
-        windMovement = GetComponent<WindMovementScript>();
         playerMoveScript = GetComponent<PlayerMoveTest>();
         jumpScript = GetComponent<JumpTest>();
         rb = GetComponent<Rigidbody>();
         oldMass = rb.mass;
-
+        flyScript = GetComponent<TestFly>();
         switchControls = GetComponent<SwitchControls>();
 
     }
@@ -32,11 +31,8 @@ public class PlayerWind : MonoBehaviour
     {
         if (other.gameObject.tag == "windArea")
         {
-            switchControls.SwitchToAir();
-            playerMoveScript.enabled = false;
-            rb.mass = mass;
             windZone = other.gameObject;
-            inWindZone = true;
+            EnterWindArea();
         }
     }
     private void OnTriggerExit(Collider other)
@@ -44,12 +40,8 @@ public class PlayerWind : MonoBehaviour
 
         if (other.gameObject.tag == "windArea")
         {
-            switchControls.SwitchToFloor();
-            windMovement.enabled = false;
-            jumpScript.enabled = true;
-            playerMoveScript.enabled = true;
-            inWindZone = false;
-            rb.mass = oldMass;
+            LeaveWindArea();
+
         }
 
     }
@@ -58,9 +50,26 @@ public class PlayerWind : MonoBehaviour
     {
         if (inWindZone)
         {
-            //jumpScript.glideTime = 10; 
-            //rb.AddForce(windZone.GetComponent<WindArea>().windDirection.transform.forward * windZone.GetComponent<WindArea>().windStrength);
-            //rb.AddForce(windZone.GetComponent<WindArea>().windDirection.transform.up * windZone.GetComponent<WindArea>().windStrengthUp);
         }
+    }
+
+    void EnterWindArea()
+    {
+        switchControls.SwitchToAir();
+        flyScript.enabled = true;
+        playerMoveScript.enabled = false; 
+        inWindZone = true;
+        rb.mass = mass;
+        jumpScript.enabled = false;
+    }
+    public void LeaveWindArea()
+    {
+        switchControls.SwitchToFloor();
+        flyScript.enabled = false;
+        playerMoveScript.enabled = true;
+        windZone = null;
+        inWindZone = false;
+        rb.mass = oldMass;
+        jumpScript.enabled = true;
     }
 }

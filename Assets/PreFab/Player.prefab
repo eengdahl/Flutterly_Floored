@@ -17,6 +17,10 @@ GameObject:
   - component: {fileID: 2793752973741495335}
   - component: {fileID: 2793752973741495328}
   - component: {fileID: 2793752973741495336}
+  - component: {fileID: 4487452626990692814}
+  - component: {fileID: 1018667373}
+  - component: {fileID: 1018667374}
+  - component: {fileID: 1018667384}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -209,6 +213,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d8953f90-e134-4e82-a1a0-77392084c3ea
     m_ActionName: Floor/Drag[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5bcd6c0e-2e47-42e7-b41f-b7806ae9c6d8
+    m_ActionName: WindZoneMovement/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0244df09-d28c-435d-aeb2-517bd0bd0c64
+    m_ActionName: WindZoneMovement/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e0d2681c-c930-4b3d-9e86-9522913ba19e
+    m_ActionName: WindZoneMovement/Glide[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0ef3271a-4484-4eaa-a5a3-b7995db5f194
+    m_ActionName: WindZoneMovement/Dive[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Floor
@@ -229,6 +249,7 @@ MonoBehaviour:
   jumpForce: 50
   jumpCooldown: 0.25
   glideForce: 10
+  windTunnelAscend: 0
   readyToJump: 0
   Gliding: 0
   hasDoubleJumped: 0
@@ -252,6 +273,7 @@ MonoBehaviour:
   speed: 40
   maxSpeed: 3
   airControl: 1.2
+  turnSpeed: 10
 --- !u!114 &2793752973741495336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,6 +288,68 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   respawnPoint: {x: 0, y: 0, z: 0}
   startRespawnPoint: {fileID: 0}
+--- !u!114 &4487452626990692814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793752973741495329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f66ad0f11beb174d8fcf9f5fad6bbb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inWindZone: 0
+  windZone: {fileID: 0}
+  mass: 0
+--- !u!114 &1018667373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793752973741495329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f2481708aa64914aa1bfcc8e420f065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1018667374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793752973741495329}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c52e89f8e961f01449023f8f6609075a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 10
+  acceleration: 5
+  glideDrag: 0.5
+  diveDrag: 0.2
+  rotationSpeed: 0.2
+--- !u!114 &1018667384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793752973741495329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08c985a730071034a93764ffebc9868d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  movement: {fileID: 0}
+  jump: {fileID: 0}
+  revive: {fileID: 0}
+  maxFallheight: 10
+  isFalling: 0
 --- !u!1001 &2793752974305870418
 PrefabInstance:
   m_ObjectHideFlags: 0

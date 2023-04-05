@@ -1,10 +1,11 @@
 using Cinemachine.Utility;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ForceMovement : MonoBehaviour
+public class ForceMovement : MonoBehaviour, IGroundedListener
 {
     [SerializeField]
     private float acceleration = 10f;
@@ -23,24 +24,31 @@ public class ForceMovement : MonoBehaviour
     private PlayerControls playerControls;
     private Vector2 moveInput;
     private Vector3 decelerationVector;
+    private bool isGrounded;
 
-    private Jump jump;
+    public MovementCommunicator communicator;
 
     private void Awake()
     {
         playerControls = new PlayerControls();
-        rb = GetComponent<Rigidbody>();
-        jump = GetComponent<Jump>();
+        rb = GetComponent<Rigidbody>();;
     }
 
     private void OnEnable()
     {
+        MovementCommunicator.instance.AddGroundedListener(this);
         playerControls.Enable();
     }
 
     private void OnDisable()
     {
+        MovementCommunicator.instance.RemoveJumpListener(this);
         playerControls.Disable();
+    }   
+    
+    public void OnValueChanged(bool grounded)
+    {
+        isGrounded = grounded;
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -54,7 +62,7 @@ public class ForceMovement : MonoBehaviour
         Vector3 movementVector = new Vector3(moveInput.x, 0, moveInput.y);
         
 
-        if (jump.isGrounded)
+        if (isGrounded)
         {
             if (rb.velocity.magnitude < maxSpeed)
             {
@@ -84,5 +92,7 @@ public class ForceMovement : MonoBehaviour
                 rb.AddRelativeForce(movementVector.normalized * maxAirSpeed - decelerationVector, ForceMode.Acceleration);
             }
         }
+
+        MovementCommunicator.instance.NotifyMoveSpeedListeners(rb.velocity.magnitude);
     }
 }
