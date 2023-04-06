@@ -20,7 +20,7 @@ public class JumpTest : MonoBehaviour
     public float glideTime;
     public float coyoteTime;
     public float coyoteTimeCounter;
-    private float groundCheckDistance = 1;
+    private float groundCheckDistance = 0.5f;
 
 
     PlayerWind playerWindsScript;
@@ -28,10 +28,12 @@ public class JumpTest : MonoBehaviour
     [SerializeField]
     public bool isGrounded;
     private Rigidbody rb;
+    private int layerMask;
 
 
     void Awake()
     {
+        layerMask = 3;
         playerWindsScript = GetComponent<PlayerWind>();
         rb = GetComponent<Rigidbody>();
     }
@@ -40,12 +42,12 @@ public class JumpTest : MonoBehaviour
     {
         //RayCasts grounded
         RaycastHit leftFoot;
-        if (Physics.Raycast(transform.position, -transform.up, out leftFoot, groundCheckDistance) && !isGrounded)
+        if (Physics.Raycast(transform.position, -transform.up, out leftFoot, groundCheckDistance, layerMask))
         {
-            if (leftFoot.collider.tag == "Ground")
-                isGrounded = true;
-            else
-                isGrounded = false;
+            //if (leftFoot.collider.tag == "Ground")
+            isGrounded = true;
+            //else
+            //    isGrounded = false;
         }
 
         //Resets coyoteTime when on ground and when off ground start counting down
