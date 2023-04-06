@@ -14,13 +14,13 @@ public class JumpTest : MonoBehaviour
 
     [SerializeField] private bool readyToJump;
     [SerializeField] private bool Gliding;
-    [SerializeField] private bool hasDoubleJumped;
+    [SerializeField] private bool hasCanceledGlide;
 
     public bool canGlide;
     public float glideTime;
     public float coyoteTime;
     public float coyoteTimeCounter;
-    private float groundCheckDistance = 1;
+    private float groundCheckDistance = 0.387f;
 
 
     PlayerWind playerWindsScript;
@@ -38,9 +38,10 @@ public class JumpTest : MonoBehaviour
 
     void Update()
     {
+        Debug.DrawRay(transform.position, -transform.up * groundCheckDistance);
         //RayCasts grounded
         RaycastHit leftFoot;
-        if (Physics.Raycast(transform.position, -transform.up, out leftFoot, groundCheckDistance) && !isGrounded)
+        if (Physics.Raycast(transform.position, -transform.up, out leftFoot, groundCheckDistance) &&!isGrounded)
         {
             if (leftFoot.collider.tag == "Ground")
                 isGrounded = true;
@@ -64,7 +65,6 @@ public class JumpTest : MonoBehaviour
 
     void FixedUpdate()
     {
-
         if (Gliding)
             Glide();
     }
@@ -72,39 +72,8 @@ public class JumpTest : MonoBehaviour
     //Input events for Spacebar (Jump key)
     public void ButtonInput(InputAction.CallbackContext input)
     {
-        //Jump if you're on ground or during coyoteTime
-        if (input.started && isGrounded || coyoteTimeCounter > 0)
-        {
-            if (input.action.IsInProgress())
-            {
-                coyoteTimeCounter = 0;
-                Jump();
 
-                isGrounded = false;
-                readyToJump = false;
-            }
-
-        }
-        if (input.performed && !readyToJump)
-        {
-            Invoke(nameof(ResetJump), jumpCooldown);
-        }
-
-        if (input.canceled && !isGrounded && !hasDoubleJumped)
-        {
-            canGlide = true;
-        }
-
-        //Gliding input events
-
-        //Gliding starts if pressing space in air
-        if (input.started && !isGrounded && canGlide)
-        {
-            Gliding = true;
-        }
-        //Cancels when you stop pressing space
-        if (input.canceled && !isGrounded && Gliding)
-            Gliding = false;
+        CompleteJump(input);
     }
 
     //Function for jumping, adds force in upwards direction and boosts player in moving direction
@@ -151,8 +120,8 @@ public class JumpTest : MonoBehaviour
             readyToJump = true;
             canGlide = false;
             Gliding = false;
-            hasDoubleJumped = false;
-            glideTime = 0;
+            hasCanceledGlide = false;
+            glideTime = 0.1f;
         }
     }
 
@@ -162,6 +131,47 @@ public class JumpTest : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = false;
+        }
+    }
+    public void CompleteJump(InputAction.CallbackContext input)
+    {
+        //Jump if you're on ground or during coyoteTime
+        if (input.started && isGrounded || coyoteTimeCounter > 0)
+        {
+            if (input.action.IsInProgress())
+            {
+                coyoteTimeCounter = 0;
+                Jump();
+                isGrounded = false;
+                readyToJump = false;
+            }
+
+        }
+        //Reset jump to keep jumping while space is pressed
+        if (input.performed && !readyToJump)
+        {
+            Invoke(nameof(ResetJump), jumpCooldown);
+        }
+
+        //Enables glide after jumping
+        if (input.canceled && !isGrounded && !hasCanceledGlide)
+        {
+            canGlide = true;
+        }
+
+        //Gliding input events
+
+        //Gliding starts if pressing space in air
+        if (input.started && !isGrounded && canGlide)
+        {
+            Gliding = true;
+        }
+        //Cancels when you stop pressing space
+        if (input.canceled && !isGrounded && Gliding)
+        {
+            hasCanceledGlide = true;
+            canGlide = false;
+            Gliding = false;
         }
     }
 }
