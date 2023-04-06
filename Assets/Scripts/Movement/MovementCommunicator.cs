@@ -23,6 +23,12 @@ public interface ILookChangeListener : ICommunicatorListener<float>
 {
 
 }
+
+public interface IStoveOnListener : ICommunicatorListener<bool>
+{
+
+}
+
 #endregion
 
 
@@ -33,6 +39,7 @@ public class MovementCommunicator : MonoBehaviour
     private List<IGroundedListener> groundedListeners;
     private List<IMoveSpeedListener> moveSpeedListeners;
     private List<ILookChangeListener> lookListeners;
+    private List<IStoveOnListener> stoveListener;
 
 
 
@@ -42,6 +49,7 @@ public class MovementCommunicator : MonoBehaviour
         groundedListeners = new List<IGroundedListener>();
         moveSpeedListeners = new List<IMoveSpeedListener>();
         lookListeners = new List<ILookChangeListener>();
+        stoveListener = new List<IStoveOnListener>();
     }
 
     //Adding and removing listeners
@@ -76,10 +84,20 @@ public class MovementCommunicator : MonoBehaviour
     {
         lookListeners.Remove(listener);
     }
+
+    public void AddStoveListener(IStoveOnListener listener)
+    {
+        stoveListener.Add(listener);
+    }
+
+    public void RemoveStoveListener(IStoveOnListener listener)
+    {
+        stoveListener.Remove(listener);
+    }
     #endregion
 
 
-  
+
 
     //Notify listeners
     public void NotifyGroundedListeners(bool isGrounded)
@@ -103,6 +121,14 @@ public class MovementCommunicator : MonoBehaviour
         foreach (var listener in lookListeners)
         {
             listener.OnValueChanged(look);
+        }
+    }
+
+    public void NotifyStoveListeners(bool isOn)
+    {
+        foreach (var listener in stoveListener)
+        {
+            listener.OnValueChanged(isOn);
         }
     }
 }
