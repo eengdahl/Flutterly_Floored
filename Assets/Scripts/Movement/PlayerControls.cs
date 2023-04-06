@@ -396,6 +396,98 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Climbing"",
+            ""id"": ""38da0dff-9520-4980-b0e2-7cb07dcc1358"",
+            ""actions"": [
+                {
+                    ""name"": ""verticalInput"",
+                    ""type"": ""Value"",
+                    ""id"": ""596ae73c-2b76-463b-8d67-db515690013a"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""00de5073-1b8b-4823-9b8c-a0b8fc942ccb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""fe2f069d-60bc-4302-bb20-3e9d19758df4"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""verticalInput"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""e3b4f186-91e7-49f9-9eca-ab0df03fa09a"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""verticalInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""b7bfc429-6b9d-42c5-bfb7-b886c4b26ed0"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""verticalInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""30543a8c-789e-4099-b083-4e23f479b0be"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""verticalInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""a62bc965-9b1d-4123-b392-930126a87c6c"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""verticalInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7c3b863c-7517-4b0c-ac76-153140a6a46f"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -412,6 +504,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_WindZoneMovement_Jump = m_WindZoneMovement.FindAction("Jump", throwIfNotFound: true);
         m_WindZoneMovement_Glide = m_WindZoneMovement.FindAction("Glide", throwIfNotFound: true);
         m_WindZoneMovement_Dive = m_WindZoneMovement.FindAction("Dive", throwIfNotFound: true);
+        // Climbing
+        m_Climbing = asset.FindActionMap("Climbing", throwIfNotFound: true);
+        m_Climbing_verticalInput = m_Climbing.FindAction("verticalInput", throwIfNotFound: true);
+        m_Climbing_Jump = m_Climbing.FindAction("Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -609,6 +705,60 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public WindZoneMovementActions @WindZoneMovement => new WindZoneMovementActions(this);
+
+    // Climbing
+    private readonly InputActionMap m_Climbing;
+    private List<IClimbingActions> m_ClimbingActionsCallbackInterfaces = new List<IClimbingActions>();
+    private readonly InputAction m_Climbing_verticalInput;
+    private readonly InputAction m_Climbing_Jump;
+    public struct ClimbingActions
+    {
+        private @PlayerControls m_Wrapper;
+        public ClimbingActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @verticalInput => m_Wrapper.m_Climbing_verticalInput;
+        public InputAction @Jump => m_Wrapper.m_Climbing_Jump;
+        public InputActionMap Get() { return m_Wrapper.m_Climbing; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ClimbingActions set) { return set.Get(); }
+        public void AddCallbacks(IClimbingActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ClimbingActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ClimbingActionsCallbackInterfaces.Add(instance);
+            @verticalInput.started += instance.OnVerticalInput;
+            @verticalInput.performed += instance.OnVerticalInput;
+            @verticalInput.canceled += instance.OnVerticalInput;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
+        }
+
+        private void UnregisterCallbacks(IClimbingActions instance)
+        {
+            @verticalInput.started -= instance.OnVerticalInput;
+            @verticalInput.performed -= instance.OnVerticalInput;
+            @verticalInput.canceled -= instance.OnVerticalInput;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
+        }
+
+        public void RemoveCallbacks(IClimbingActions instance)
+        {
+            if (m_Wrapper.m_ClimbingActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IClimbingActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ClimbingActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ClimbingActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public ClimbingActions @Climbing => new ClimbingActions(this);
     public interface IFloorActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -622,5 +772,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnGlide(InputAction.CallbackContext context);
         void OnDive(InputAction.CallbackContext context);
+    }
+    public interface IClimbingActions
+    {
+        void OnVerticalInput(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
 }
