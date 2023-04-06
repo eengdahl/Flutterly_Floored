@@ -4246,7 +4246,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1083726892534208471, guid: 491dcc3fd9885004eb874d4b97761fcb, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.118982114
+      value: 0.11898212
       objectReference: {fileID: 0}
     - target: {fileID: 1083726892534208471, guid: 491dcc3fd9885004eb874d4b97761fcb, type: 3}
       propertyPath: m_LocalRotation.y
@@ -4254,7 +4254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1083726892534208471, guid: 491dcc3fd9885004eb874d4b97761fcb, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.107245535
+      value: -0.10724554
       objectReference: {fileID: 0}
     - target: {fileID: 1083726892738378483, guid: 491dcc3fd9885004eb874d4b97761fcb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4440,25 +4440,12 @@ MonoBehaviour:
   cameraa: {fileID: 1442956644}
   birdBody: {fileID: 98503482}
   jumpScript: {fileID: 1319664399}
-  forcePower: 2000
+  forcePower: 1000000
   speed: 2
   rotationSpeed: 2
   currentCableSegment: 0
   isClimbing: 0
   readyToClimb: 0
---- !u!65 &1319664392
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1319664378}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1319664399 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2793752973741495335, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
@@ -8356,7 +8343,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2793752973741495334, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
       propertyPath: m_ActionEvents.Array.data[9].m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2793752973741495334, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Mode

@@ -14,6 +14,7 @@ public class BirdCableMovement : MonoBehaviour
     [SerializeField] JumpTest jumpScript;
     private InputAction.CallbackContext initialInput;
 
+
     public float forcePower = 20f;
     public float speed = 5f;
     public float rotationSpeed = 10f;
@@ -83,6 +84,7 @@ public class BirdCableMovement : MonoBehaviour
                 else
                 {
                     DisableClimbing();
+                    ApplyFirstJumpForce();
                 }
             }
             //Set the birds rotation to match cable segments rotation euler
@@ -111,6 +113,7 @@ public class BirdCableMovement : MonoBehaviour
                     else
                     {
                         DisableClimbing();
+                        ApplyFirstJumpForce();
                     }
                 }
             }
@@ -140,11 +143,12 @@ public class BirdCableMovement : MonoBehaviour
     public void DisableClimbing()
     {
         // Enable regular movement controls
+        
         controllsSwitch.SwitchToFloor();
         rb.isKinematic = false;
         isClimbing = false;
         rb.useGravity = true;
-        boxCollider.enabled = true;
+        Invoke("ActivateCollider", 0.2f);
         currentCableSegment = 0;
         atEnd = false;
         birdBody.transform.localPosition = Vector3.zero;
@@ -152,26 +156,21 @@ public class BirdCableMovement : MonoBehaviour
         //animator.SetBool("IsClimbing", false);
         Invoke("SetReadyToClimb", 2);
     }
-    void AtEnd()
-    {
 
-        DisableClimbing();
-        atEnd = true;
-    }
 
     public void JumpOff(InputAction.CallbackContext input)
     {
         if (isClimbing && input.started)
         {
             DisableClimbing();
+            ApplyFirstJumpForce();
             //Invoke("ApplyFirstJumpForce",0.2f);
             //save the input value
-            ApplyFirstJumpForce();
-            initialInput = input;
-            if (input.performed)
-            {
-                jumpScript.CompleteJump(initialInput);
-            }
+            //initialInput = input;
+            //if (input.performed)
+            //{
+            //    jumpScript.CompleteJump(initialInput);
+            //}
         }
     }
 
@@ -185,7 +184,10 @@ public class BirdCableMovement : MonoBehaviour
         Debug.Log("JumpForce");
     }
 
-
+    void ActivateCollider()
+    {
+        boxCollider.enabled = true;
+    }
     void SetReadyToClimb()
     {
         readyToClimb = true;

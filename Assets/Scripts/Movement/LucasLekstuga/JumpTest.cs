@@ -20,7 +20,7 @@ public class JumpTest : MonoBehaviour
     public float glideTime;
     public float coyoteTime;
     public float coyoteTimeCounter;
-    private float groundCheckDistance = 1;
+    private float groundCheckDistance = 0.387f;
 
 
     PlayerWind playerWindsScript;
@@ -38,9 +38,10 @@ public class JumpTest : MonoBehaviour
 
     void Update()
     {
+        Debug.DrawRay(transform.position, -transform.up * groundCheckDistance);
         //RayCasts grounded
         RaycastHit leftFoot;
-        if (Physics.Raycast(transform.position, -transform.up, out leftFoot, groundCheckDistance) && !isGrounded)
+        if (Physics.Raycast(transform.position, -transform.up, out leftFoot, groundCheckDistance) &&!isGrounded)
         {
             if (leftFoot.collider.tag == "Ground")
                 isGrounded = true;
