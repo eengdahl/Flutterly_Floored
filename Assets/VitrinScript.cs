@@ -1,10 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq.Expressions;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class VitrinScript : MonoBehaviour
 {
@@ -33,34 +30,56 @@ public class VitrinScript : MonoBehaviour
         StateMachine();
     }
 
-    private void StateMachine(CatPattern newState = CatPattern.patrol)
+    public IEnumerator StateMachine(CatPattern newState = CatPattern.patrol)
     {
         CatPattern currentState = newState;
-        switch (currentState)
-        {
-            case CatPattern.patrol:
-                currentTarget = walkPath[Random.Range(0, walkPath.Count - 1)];
-                transform.position = currentTarget.position;
-                Debug.Log("patrol");
-                StateMachine(CatPattern.stop);
 
-                break;
-            case CatPattern.stop:
-                Debug.Log("stop");
-                System.Threading.Thread.Sleep(3000);
-
-                StateMachine(CatPattern.attack);
-
-                break;
-            case CatPattern.attack:
-                Debug.Log("Attack");
-                System.Threading.Thread.Sleep(3000);
-                StateMachine();
-                break;
-            default:
-                break;
-        }
+            
+       yield return currentState;
     }
+    //void Update()
+    //{
+    //    //Run only if not running
+    //    if (!speaking)
+    //        StartCoroutine(IsSpeaking());
+    //}
+
+    //Then set the boolean variable to false before breaking out of the switch statement in the coroutine.
+
+    //IEnumerator IsSpeaking()
+    //{
+    //    speaking = true;
+
+    //    switch (dialogueNumber)
+    //    {
+    //        case 0:
+
+    //            yield return null;
+
+    //            speaking = false;
+    //            break;
+
+    //        case 1:
+
+    //            functionsScript.IsSpeaking();
+    //            yield return new WaitForSeconds(3);
+    //            functionsScript.Silence();
+
+    //            speaking = false;
+    //            yield break;
+
+    //        case 2:
+
+    //            functionsScript.IsSpeaking();
+    //            yield return new WaitForSeconds(6);
+    //            functionsScript.Silence();
+
+    //            speaking = false;
+    //            yield break;
+    //    }
+    //    yield break;
+    //}
+
 
 
 
