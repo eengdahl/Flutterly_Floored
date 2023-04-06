@@ -25,6 +25,7 @@ public class StartClimbing : MonoBehaviour
         {
             if (!CableMovement.isClimbing)
             {
+                other.GetComponent<BirdCableMovement>().cableplant = climbAlongScript;
                 CableMovement.currentCableSegment = index;
                 CableMovement.EnableClimbing();
                 other.GetComponent<SwitchControls>().SwitchToClimbing();
