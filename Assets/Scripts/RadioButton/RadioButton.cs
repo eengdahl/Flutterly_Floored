@@ -48,6 +48,19 @@ public class RadioButton : MonoBehaviour
 
     void Update()
     {
+
+
+        // Check if the AudioSource is playing the AudioClip
+        if (aS.isPlaying)
+        {
+            // The AudioClip is currently playing
+            Debug.Log("The AudioClip is playing");
+        }
+        else
+        {
+            // The AudioClip is not currently playing
+            Debug.Log("The AudioClip is not playing");
+        }
         if (!gotElectricity)
         {
             aS.Stop();
@@ -109,6 +122,7 @@ public class RadioButton : MonoBehaviour
         }
         else if (isPlaying)
         {
+            Debug.Log("IS NOT PLAYING MUSIC");
             aS.Stop();
             isPlaying = false;
         }
