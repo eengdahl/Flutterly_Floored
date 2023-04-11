@@ -1,85 +1,102 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using Unity.VisualScripting;
 using UnityEngine;
+public enum VitrinState
+{
+    Idle,
+    Patrol,
+    Stop,
+    Attack,
+    HitAttack
+
+}
 
 public class VitrinScript : MonoBehaviour
 {
-    public enum CatPattern
-    {
-        patrol = 0,
-        stop = 1,
-        attack = 2,
-    }
+    public VitrinState activeVitrinState;
     public List<Transform> walkPath;
     public Transform currentTarget;
     [SerializeField] private Light eyes;
 
 
-    private void Awake()
+    private void Start()
     {
 
         eyes = GetComponent<Light>();
         walkPath = new List<Transform>();
         var temp = GameObject.FindGameObjectsWithTag("WalkPath");
+        NextState();
 
         foreach (var item in temp)
         {
             walkPath.Add(item.transform);
         }
-        StateMachine();
     }
 
-    public IEnumerator StateMachine(CatPattern newState = CatPattern.patrol)
+
+    IEnumerator IdleState()
     {
-        CatPattern currentState = newState;
-
-            
-       yield return currentState;
+        Debug.Log("Idle: Enter");
+        while (activeVitrinState == VitrinState.Idle)
+        {
+            yield return 0;
+        }
+        Debug.Log("Idle: Exit");
+        NextState();
     }
-    //void Update()
-    //{
-    //    //Run only if not running
-    //    if (!speaking)
-    //        StartCoroutine(IsSpeaking());
-    //}
+    IEnumerator PatrolState()
+    {
+        Debug.Log("Patrol: Enter");
+        while (activeVitrinState == VitrinState.Patrol)
+        {
+            yield return 0;
+        }
+        Debug.Log("Patrol: Exit");
+        NextState();
+    }
+    IEnumerator StopState()
+    {
+        Debug.Log("Stop: Enter");
+        while (activeVitrinState == VitrinState.Stop)
+        {
+            yield return 0;
+        }
+        Debug.Log("Stop: Exit");
+        NextState();
+    }
+    IEnumerator AttackState()
+    {
+        Debug.Log("Attack: Enter");
+        while (activeVitrinState == VitrinState.Attack)
+        {
+            yield return 0;
+        }
+        Debug.Log("Attack: Exit");
+        NextState();
+    }
+    IEnumerator HitAttackState()
+    {
+        Debug.Log("HitAttack: Enter");
+        while (activeVitrinState == VitrinState.HitAttack)
+        {
+            yield return 0;
+        }
+        Debug.Log("HitAttack: Exit");
+        NextState();
+    }
 
-    //Then set the boolean variable to false before breaking out of the switch statement in the coroutine.
-
-    //IEnumerator IsSpeaking()
-    //{
-    //    speaking = true;
-
-    //    switch (dialogueNumber)
-    //    {
-    //        case 0:
-
-    //            yield return null;
-
-    //            speaking = false;
-    //            break;
-
-    //        case 1:
-
-    //            functionsScript.IsSpeaking();
-    //            yield return new WaitForSeconds(3);
-    //            functionsScript.Silence();
-
-    //            speaking = false;
-    //            yield break;
-
-    //        case 2:
-
-    //            functionsScript.IsSpeaking();
-    //            yield return new WaitForSeconds(6);
-    //            functionsScript.Silence();
-
-    //            speaking = false;
-    //            yield break;
-    //    }
-    //    yield break;
-    //}
-
+    public void NextState()
+    {
+        //Stolen and works like a charm 
+        string methodName = activeVitrinState.ToString() + "State";
+        System.Reflection.MethodInfo info =
+            GetType().GetMethod(methodName,
+                                System.Reflection.BindingFlags.NonPublic |
+                                System.Reflection.BindingFlags.Instance);
+        StartCoroutine((IEnumerator)info.Invoke(this, null));
+    }
 
 
 
