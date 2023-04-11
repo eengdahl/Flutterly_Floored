@@ -60,7 +60,7 @@ public class CatAMoleBrain : MonoBehaviour
         while (currentMoleState == MoleStates.Attack)
         {
             if (!hitting) hitting = true;
-
+            //make hit animation 
             yield return new WaitForSeconds(3);
             hitting = false;
             currentMoleState = MoleStates.Charge;
@@ -75,6 +75,9 @@ public class CatAMoleBrain : MonoBehaviour
         Debug.Log("HitBird: Enter");
         while (currentMoleState == MoleStates.HitBird)
         {
+
+            //Kill bird
+            currentMoleState=MoleStates.Idle;
             yield return 0;
         }
         Debug.Log("HitBird: Exit");
@@ -86,6 +89,8 @@ public class CatAMoleBrain : MonoBehaviour
         Debug.Log("WaterHit: Enter");
         while (currentMoleState == MoleStates.WaterHit)
         {
+            //remove health from cat
+            currentMoleState = MoleStates.Charge;
             yield return 0;
         }
         Debug.Log("WaterHit: Exit");
