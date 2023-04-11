@@ -3,17 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MoleStates
+{
+    Idle,
+    Charge,
+    Attack,
+    HitBird,
+    WaterHit
+}
 
 public class CatAMoleBrain : MonoBehaviour
 {
-    public enum MoleStates
-    {
-        Idle,
-        Charge,
-        Attack,
-        HitBird,
-        WaterHit
-    }
 
     public MoleStates currentMoleState;
     public GameObject Cat;
@@ -26,7 +26,7 @@ public class CatAMoleBrain : MonoBehaviour
         NextState();
     }
 
-    //Ändra moleState = MolStates.x så byts State automatiskt 
+    //Ändra currentMoleState = MolStates.x så byts State automatiskt 
     IEnumerator IdleState()
     {
         Debug.Log("Idle: Enter");
@@ -60,7 +60,7 @@ public class CatAMoleBrain : MonoBehaviour
         while (currentMoleState == MoleStates.Attack)
         {
             if (!hitting) hitting = true;
-          
+
             yield return new WaitForSeconds(3);
             hitting = false;
             currentMoleState = MoleStates.Charge;
