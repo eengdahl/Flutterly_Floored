@@ -100,8 +100,8 @@ public class BirdCableMovement : MonoBehaviour
                 }
                 else
                 {
-                    DisableClimbing();
-                    ApplyFirstJumpForce();
+                    //DisableClimbing();
+                    //ApplyFirstJumpForce();
                 }
             }
             //Set the birds rotation to match cable segments rotation euler
@@ -134,8 +134,8 @@ public class BirdCableMovement : MonoBehaviour
                     }
                     else
                     {
-                        DisableClimbing();
-                        ApplyFirstJumpForce();
+                        //DisableClimbing();
+                        //ApplyFirstJumpForce();
                     }
                 }
             }

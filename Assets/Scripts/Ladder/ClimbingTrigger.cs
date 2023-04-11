@@ -1,12 +1,31 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ClimbingTrigger : MonoBehaviour
 {
-    
-    private void OnTriggerEnter(Collider other)
+    PlayerControls input = null;
+    private void OnEnable()
+    {
+        input.Enable();
+    }
+
+    private void OnDisable()
+    {
+        input.Disable();
+    }
+    private void Awake()
+    {
+        input = new PlayerControls();
+
+        
+
+    }
+
+
+    private void OnTriggerStay(Collider other)
     {
         // Check if the colliding object is the player character
-        if (other.CompareTag("Player") )
+        if (other.CompareTag("Player") && input.Floor.Drag.IsInProgress())
         {
 
             BirdCableMovement bird = other.GetComponent<BirdCableMovement>();
