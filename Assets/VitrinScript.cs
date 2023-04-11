@@ -16,9 +16,9 @@ public enum VitrinState
 public class VitrinScript : MonoBehaviour
 {
     public VitrinState activeVitrinState;
-    public List<Transform> walkPath;
-    public Transform currentTarget;
-    [SerializeField] private Light eyes;
+    private List<Transform> walkPath;
+    private Transform currentTarget;
+    private Light eyes;
 
 
     private void Start()
@@ -26,18 +26,19 @@ public class VitrinScript : MonoBehaviour
 
         eyes = GetComponent<Light>();
         walkPath = new List<Transform>();
-        var temp = GameObject.FindGameObjectsWithTag("WalkPath");
-        NextState();
+        var tempPath = GameObject.FindGameObjectsWithTag("WalkPath");
 
-        foreach (var item in temp)
+        foreach (var item in tempPath)
         {
             walkPath.Add(item.transform);
         }
+        NextState();
     }
 
-
+    //Set activeVitrinState = VitrinState.X to change state. Use WaitForSeconds(x); for timers
     IEnumerator IdleState()
     {
+        
         Debug.Log("Idle: Enter");
         while (activeVitrinState == VitrinState.Idle)
         {
