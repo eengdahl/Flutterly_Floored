@@ -11,7 +11,7 @@ public class BirdCableMovement : MonoBehaviour
     [SerializeField] GameObject birdBody;
     Rigidbody rb;
     Collider boxCollider;
-    [SerializeField] JumpTest jumpScript;
+    [SerializeField] PlayerJump jumpScript;
     private InputAction.CallbackContext initialInput;
 
 

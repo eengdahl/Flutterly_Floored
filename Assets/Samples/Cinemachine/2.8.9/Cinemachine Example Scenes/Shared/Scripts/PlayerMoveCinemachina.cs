@@ -2,7 +2,7 @@
 using Cinemachine.Utility;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMoveCinemachine : MonoBehaviour
 {
     public float Speed;
     public float VelocityDamping;
