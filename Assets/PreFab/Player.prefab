@@ -18,6 +18,10 @@ GameObject:
   - component: {fileID: 2793752973741495328}
   - component: {fileID: 2793752973741495336}
   - component: {fileID: 4487452626990692814}
+  - component: {fileID: 1018667373}
+  - component: {fileID: 1018667374}
+  - component: {fileID: 1018667384}
+  - component: {fileID: 8502663467853572682}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -103,8 +107,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.35048392, y: 0.86131036, z: 0.48397171}
-  m_Center: {x: -0.009395376, y: -0.8447179, z: 0.099072635}
+  m_Size: {x: 0.35048392, y: 0.9917507, z: 0.4959259}
+  m_Center: {x: -0.009395376, y: 0.07692623, z: 0.13493156}
 --- !u!54 &2793752973741495333
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -163,19 +167,7 @@ MonoBehaviour:
     m_ActionId: 2b55fc88-74f1-49d8-bccc-0d12ec9e9aef
     m_ActionName: Floor/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2793752973741495328}
-        m_TargetAssemblyTypeName: PlayerMoveTest, Assembly-CSharp
-        m_MethodName: OnLook
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 73962346-644d-46a2-9fa6-7a2969e61539
     m_ActionName: Floor/Look[/Mouse/delta]
   - m_PersistentCalls:
@@ -210,6 +202,30 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d8953f90-e134-4e82-a1a0-77392084c3ea
     m_ActionName: Floor/Drag[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5bcd6c0e-2e47-42e7-b41f-b7806ae9c6d8
+    m_ActionName: WindZoneMovement/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0244df09-d28c-435d-aeb2-517bd0bd0c64
+    m_ActionName: WindZoneMovement/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e0d2681c-c930-4b3d-9e86-9522913ba19e
+    m_ActionName: WindZoneMovement/Glide[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0ef3271a-4484-4eaa-a5a3-b7995db5f194
+    m_ActionName: WindZoneMovement/Dive[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 596ae73c-2b76-463b-8d67-db515690013a
+    m_ActionName: Climbing/verticalInput[/Keyboard/w,/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 00de5073-1b8b-4823-9b8c-a0b8fc942ccb
+    m_ActionName: Climbing/Jump[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Floor
@@ -229,10 +245,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 50
   jumpCooldown: 0.25
-  glideForce: 10
+  glideForce: 15
+  windTunnelAscend: 0
   readyToJump: 0
   Gliding: 0
-  hasDoubleJumped: 0
+  hasCanceledGlide: 0
   canGlide: 0
   glideTime: 0
   coyoteTime: 0.3
@@ -253,6 +270,7 @@ MonoBehaviour:
   speed: 40
   maxSpeed: 3
   airControl: 1.2
+  turnSpeed: 10
 --- !u!114 &2793752973741495336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,6 +299,66 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inWindZone: 0
   windZone: {fileID: 0}
+  mass: 0
+--- !u!114 &1018667373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793752973741495329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f2481708aa64914aa1bfcc8e420f065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1018667374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793752973741495329}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c52e89f8e961f01449023f8f6609075a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 10
+  acceleration: 5
+  glideDrag: 0.5
+  diveDrag: 0.2
+  rotationSpeed: 0.2
+--- !u!114 &1018667384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793752973741495329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08c985a730071034a93764ffebc9868d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  movement: {fileID: 0}
+  jump: {fileID: 0}
+  revive: {fileID: 0}
+  maxFallheight: 10
+  isFalling: 0
+--- !u!114 &8502663467853572682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793752973741495329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebd35010ad4fa6a4a94567722624a3f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2793752974305870418
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -310,11 +388,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6dd09f0e52dba364ebe398bed112d48b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.874
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6dd09f0e52dba364ebe398bed112d48b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.088
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6dd09f0e52dba364ebe398bed112d48b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -428,7 +506,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3783173436131529485, guid: c922829ca348fc647ac05df1aba896c7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.634
       objectReference: {fileID: 0}
     - target: {fileID: 3783173436131529485, guid: c922829ca348fc647ac05df1aba896c7, type: 3}
       propertyPath: m_LocalPosition.z

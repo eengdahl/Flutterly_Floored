@@ -33,6 +33,9 @@ public class PlayerWind : MonoBehaviour
         {
             windZone = other.gameObject;
             EnterWindArea();
+
+            //Set rotation
+            transform.rotation = other.transform.rotation;
         }
     }
     private void OnTriggerExit(Collider other)
@@ -41,17 +44,10 @@ public class PlayerWind : MonoBehaviour
         if (other.gameObject.tag == "windArea")
         {
             LeaveWindArea();
-
         }
 
     }
 
-    private void FixedUpdate()
-    {
-        if (inWindZone)
-        {
-        }
-    }
 
     void EnterWindArea()
     {
@@ -61,6 +57,8 @@ public class PlayerWind : MonoBehaviour
         inWindZone = true;
         rb.mass = mass;
         jumpScript.enabled = false;
+
+        
     }
     public void LeaveWindArea()
     {

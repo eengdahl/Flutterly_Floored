@@ -38,6 +38,8 @@ public class TestFly : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+
         // Apply drag based on current gliding angle
         float glideAngle = Vector3.Angle(rb.velocity, transform.forward);
         float glideDragMultiplier = Mathf.Lerp(1f, glideDrag, glideAngle / 180f);

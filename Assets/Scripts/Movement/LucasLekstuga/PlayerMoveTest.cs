@@ -52,6 +52,7 @@ public class PlayerMoveTest : MonoBehaviour
     public void OnLook(InputAction.CallbackContext context)
     {
         mouseDelta = context.ReadValue<Vector2>();
+        MovementCommunicator.instance.NotifyLookListeners(mouseDelta.x);
     }
 
 
@@ -89,7 +90,6 @@ public class PlayerMoveTest : MonoBehaviour
 
         if (inputsXZ != Vector3.zero && targetDirection.magnitude > 0.1f)
         {
-            transform.LookAt(transform.position + normalizedVel, Vector3.up);
             Vector3 lookDirection = targetDirection.normalized;
             freeRotation = Quaternion.LookRotation(lookDirection, transform.up);
             var diferenceRotation = freeRotation.eulerAngles.y - transform.eulerAngles.y;
