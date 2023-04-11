@@ -17,7 +17,6 @@ public class BirdCableMovement : MonoBehaviour
 
     public float forcePower = 20f;
     public float speed = 5f;
-    public float rotationSpeedAuto = 10f;
     public float rotationSpeed = 10f;
 
     Vector3 bodyAngle = new Vector3(90, 90, 0);
@@ -55,20 +54,7 @@ public class BirdCableMovement : MonoBehaviour
         readyToClimb = true;
 
     }
-    private void Update()
-    {
-        //For rotation
-        if (!isClimbing) return;
 
-        float horizontalInput = input.Climbing.verticalInput.ReadValue<Vector2>().x;
-        //Dont do if input is zero, Approximately i think is good when using gamepad
-        if (Mathf.Approximately(horizontalInput, 0f))
-        {
-            return;
-        }
-        float targetRotation = horizontalInput * rotationSpeed * Time.deltaTime;
-        transform.Rotate(0f, targetRotation, 0f);
-    }
 
 
     private void FixedUpdate()
@@ -94,21 +80,15 @@ public class BirdCableMovement : MonoBehaviour
                 {
                     // Move to the next segment of the cable
                     currentCableSegment = currentCableSegment + 1;
-
-                    //Rotate
-                    transform.eulerAngles = new Vector3(cableplant.points[currentCableSegment].eulerAngles.x, cableplant.points[currentCableSegment].eulerAngles.y + transform.eulerAngles.y, cableplant.points[currentCableSegment].eulerAngles.z);
                 }
                 else
                 {
-                    //DisableClimbing();
-                    //ApplyFirstJumpForce();
+                    DisableClimbing();
+                    ApplyFirstJumpForce();
                 }
             }
             //Set the birds rotation to match cable segments rotation euler
-            //transform.eulerAngles = cableplant.points[currentCableSegment].eulerAngles;
-            //Dont change rotation in y:
-            
-
+            transform.eulerAngles = cableplant.points[currentCableSegment].eulerAngles;
         }
         //S Down
         if (input.Climbing.verticalInput.ReadValue<Vector2>().y < 0)
@@ -129,23 +109,20 @@ public class BirdCableMovement : MonoBehaviour
                     {
                         // Move to the next segment of the cable
                         currentCableSegment = currentCableSegment - 1;
-                        //Rotate
-                        transform.eulerAngles = new Vector3(cableplant.points[currentCableSegment].eulerAngles.x, cableplant.points[currentCableSegment].eulerAngles.y + transform.eulerAngles.y, cableplant.points[currentCableSegment].eulerAngles.z);
                     }
                     else
                     {
-                        //DisableClimbing();
-                        //ApplyFirstJumpForce();
+                        DisableClimbing();
+                        ApplyFirstJumpForce();
                     }
                 }
             }
-            //Set the birds rotation to match cable segments rotation euler
-            //transform.eulerAngles = cableplant.points[currentCableSegment].eulerAngles;
-            //Without changing y:
-            
-            
 
+
+            //Set the birds rotation to match cable segments rotation euler
+            transform.eulerAngles = cableplant.points[currentCableSegment].eulerAngles;
         }
+
 
     }
     public void EnableClimbing()
@@ -156,7 +133,7 @@ public class BirdCableMovement : MonoBehaviour
         rb.useGravity = false;
         boxCollider.enabled = false;
         birdBody.transform.localPosition += new Vector3(-0.453f, 0, 0);//Neeeds to be different value or each climbing place make it a 
-        birdBody.transform.localEulerAngles += new Vector3(0, 0, 90);
+        birdBody.transform.localEulerAngles = new Vector3(0, 0, 90);
         //animator.SetBool("IsClimbing", true);
         readyToClimb = false;
 
@@ -166,7 +143,7 @@ public class BirdCableMovement : MonoBehaviour
     public void DisableClimbing()
     {
         // Enable regular movement controls
-
+        
         controllsSwitch.SwitchToFloor();
         rb.isKinematic = false;
         isClimbing = false;

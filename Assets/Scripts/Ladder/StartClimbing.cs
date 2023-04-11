@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class StartClimbing : MonoBehaviour
 {
@@ -10,20 +9,7 @@ public class StartClimbing : MonoBehaviour
     BirdCableMovement CableMovement;
 
     int index;
-    PlayerControls input = null;
-    private void OnEnable()
-    {
-        input.Enable();
-    }
 
-    private void OnDisable()
-    {
-        input.Disable();
-    }
-    private void Awake()
-    {
-        input = new PlayerControls();
-    }
     void Start()
     {
         CableMovement = FindAnyObjectByType<BirdCableMovement>();
@@ -33,9 +19,9 @@ public class StartClimbing : MonoBehaviour
     }
 
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && CableMovement.readyToClimb && input.Floor.Drag.IsPressed())
+        if (other.CompareTag("Player") && CableMovement.readyToClimb)
         {
             if (!CableMovement.isClimbing)
             {
@@ -46,6 +32,8 @@ public class StartClimbing : MonoBehaviour
                 other.gameObject.transform.position = transform.position;
 
             }
+
+
 
         }
     }
