@@ -15,22 +15,13 @@ public class CatAMoleBrain : MonoBehaviour
         WaterHit
     }
 
-    public MoleStates currentMoleState;
-    public GameObject Cat;
-    private float catTimerDone;
-    public bool hitting = false;
 
-    void Awake()
-    {
-        catTimerDone = 3.0f;
-        NextState();
-    }
+    MoleStates moleStates;
 
-    //Ändra moleState = MolStates.x så byts State automatiskt 
     IEnumerator IdleState()
     {
         Debug.Log("Idle: Enter");
-        while (currentMoleState == MoleStates.Idle)
+        while (moleStates == MoleStates.Idle)
         {
             yield return 0;
         }
@@ -41,50 +32,38 @@ public class CatAMoleBrain : MonoBehaviour
     IEnumerator ChargeState()
     {
         Debug.Log("Charge: Enter");
-        while (currentMoleState == MoleStates.Charge)
+        while (moleStates == MoleStates.Charge)
         {
-            //Timer innan scriptet fortsätter nedanför 
-            yield return new WaitForSeconds(catTimerDone);
-
-            currentMoleState = MoleStates.Attack;
-
             yield return 0;
         }
         Debug.Log("Charge: Exit");
         NextState();
     }
 
+
     IEnumerator AttackState()
     {
         Debug.Log("Attack: Enter");
-        while (currentMoleState == MoleStates.Attack)
+        while (moleStates == MoleStates.Attack)
         {
-            if (!hitting) hitting = true;
-          
-            yield return new WaitForSeconds(3);
-            hitting = false;
-            currentMoleState = MoleStates.Charge;
-            NextState();
             yield return 0;
         }
         Debug.Log("Attack: Exit");
     }
-
     IEnumerator HitBirdState()
     {
         Debug.Log("HitBird: Enter");
-        while (currentMoleState == MoleStates.HitBird)
+        while (moleStates == MoleStates.HitBird)
         {
             yield return 0;
         }
         Debug.Log("HitBird: Exit");
         NextState();
     }
-
     IEnumerator WaterHitState()
     {
         Debug.Log("WaterHit: Enter");
-        while (currentMoleState == MoleStates.WaterHit)
+        while (moleStates == MoleStates.WaterHit)
         {
             yield return 0;
         }
@@ -92,14 +71,22 @@ public class CatAMoleBrain : MonoBehaviour
         NextState();
     }
 
+    void Start()
+    {
+        NextState();
+    }
+
+  
 
     void NextState()
     {
-        string methodName = currentMoleState.ToString() + "State";
+        string methodName = moleStates.ToString() + "State";
         System.Reflection.MethodInfo info =
             GetType().GetMethod(methodName,
                                 System.Reflection.BindingFlags.NonPublic |
                                 System.Reflection.BindingFlags.Instance);
         StartCoroutine((IEnumerator)info.Invoke(this, null));
     }
+
+
 }
