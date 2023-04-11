@@ -227,8 +227,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.32339, y: 1.3448633, z: 1}
-  m_Center: {x: 0.019634152, y: 0.17243128, z: 0}
+  m_Size: {x: 0.25212154, y: 1.3448633, z: 3.6419888}
+  m_Center: {x: 0.0257504, y: 0.17243128, z: 1.3209931}
 --- !u!114 &120299520183013717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,8 +241,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09936db1d1fad474fa07469dcd8f21b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windStrength: 50
-  fan: {fileID: 120299519677370305}
+  windStrength: 25
+  windStrengthUp: 2
+  windDirection: {fileID: 5460049522044065426}
   dir: {x: 0, y: 0, z: -1}
 --- !u!1 &120299520856414449
 GameObject:
@@ -4947,8 +4948,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5460049523224143366}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.92, y: 0.99840003, z: -22.72}
+  m_LocalRotation: {x: -0, y: -0.7373876, z: -0, w: 0.6754699}
+  m_LocalPosition: {x: 26.24, y: 0.30999947, z: -29.33}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4960,7 +4961,7 @@ Transform:
   - {fileID: 5460049522737389143}
   m_Father: {fileID: 3098753342750055550}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -95.019, z: 0}
 --- !u!65 &5460049523224143369
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4989,7 +4990,7 @@ MonoBehaviour:
   socketSpot: {fileID: 5460049522737389143}
   cableJoint: {fileID: 0}
   pickUpScript: {fileID: 0}
-  breakForce: 500
+  breakForce: 5000
 --- !u!54 &5460049523224143371
 Rigidbody:
   m_ObjectHideFlags: 0
