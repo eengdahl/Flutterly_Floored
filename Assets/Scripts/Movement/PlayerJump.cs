@@ -13,15 +13,15 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] private float windTunnelAscend;
 
     [SerializeField] private bool readyToJump;
-    [SerializeField] private bool Gliding;
+    [SerializeField] private bool gliding;
     [SerializeField] private bool hasCanceledGlide;
 
     public bool canGlide;
     public float glideTime;
     public float coyoteTime;
     public float coyoteTimeCounter;
-    private float groundCheckDistance = 0.387f;
-
+    private float groundCheckDistance = 0.1f;
+    //0.387
 
     PlayerWind playerWindsScript;
 
@@ -38,16 +38,21 @@ public class PlayerJump : MonoBehaviour
 
     void Update()
     {
-        Debug.DrawRay(transform.position, -transform.up * groundCheckDistance);
-        //RayCasts grounded
-        RaycastHit leftFoot;
-        if (Physics.Raycast(transform.position, -transform.up, out leftFoot, groundCheckDistance) &&!isGrounded)
-        {
-            if (leftFoot.collider.tag == "Ground")
-                isGrounded = true;
-            else
-                isGrounded = false;
-        }
+        //groundCheckDistance = gameObject.GetComponent<BoxCollider>().size.y / 2 + 0.1f;
+        ////Debug.DrawLine(transform.GetChild(0).position, Vector3.down, Color.red);
+        //Debug.DrawLine(transform.position + gameObject.GetComponent<BoxCollider>().center, transform.position + gameObject.GetComponent<BoxCollider>().center + new Vector3(0, -groundCheckDistance, 0) , Color.red);
+        ////Debug.DrawRay(transform.position, -transform.up * groundCheckDistance);
+        ////RayCasts grounded
+        //RaycastHit leftFoot;
+        //if (Physics.Raycast(transform.position + gameObject.GetComponent<BoxCollider>().center, -transform.up, out leftFoot, groundCheckDistance))
+        //{
+        //    if (leftFoot.collider.tag == "Ground")
+        //        isGrounded = true;
+        //}
+        //else
+        //{
+        //    isGrounded = false;
+        //}
 
         //Resets coyoteTime when on ground and when off ground start counting down
         if (isGrounded)
@@ -59,20 +64,20 @@ public class PlayerJump : MonoBehaviour
             coyoteTimeCounter -= Time.deltaTime;
         }
         if (glideTime >= 1)
+        {
             CancelGlide();
-
+        }
     }
 
     void FixedUpdate()
     {
-        if (Gliding)
+        if (gliding)
             Glide();
     }
 
     //Input events for Spacebar (Jump key)
     public void ButtonInput(InputAction.CallbackContext input)
     {
-
         CompleteJump(input);
     }
 
@@ -94,12 +99,12 @@ public class PlayerJump : MonoBehaviour
         if (!playerWindsScript.inWindZone)
         {
             glideTime += Time.deltaTime;
-            rb.AddForce(transform.up * (glideForce * glideTime), ForceMode.Acceleration);
-
+            rb.AddForce(transform.up * (glideTime * glideForce), ForceMode.Acceleration);
+            //rb.useGravity = false;
         }
         else if (playerWindsScript.inWindZone)
         {
-            rb.AddForce(transform.up * windTunnelAscend, ForceMode.Force);
+            //rb.AddForce(transform.up * windTunnelAscend, ForceMode.Force);
         }
     }
 
@@ -107,8 +112,11 @@ public class PlayerJump : MonoBehaviour
     {
         if (!playerWindsScript.inWindZone)
         {
-            Gliding = false;
-            glideTime = 0;
+            gliding = false;
+            //rb.useGravity = true;
+            glideTime = 0.1f;
+            hasCanceledGlide = true;
+            canGlide = false;
         }
     }
 
@@ -119,9 +127,8 @@ public class PlayerJump : MonoBehaviour
             isGrounded = true;
             readyToJump = true;
             canGlide = false;
-            Gliding = false;
+            CancelGlide();
             hasCanceledGlide = false;
-            glideTime = 0.1f;
         }
     }
 
@@ -164,14 +171,13 @@ public class PlayerJump : MonoBehaviour
         //Gliding starts if pressing space in air
         if (input.started && !isGrounded && canGlide)
         {
-            Gliding = true;
+            //rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+            gliding = true;
         }
         //Cancels when you stop pressing space
-        if (input.canceled && !isGrounded && Gliding)
+        if (input.canceled && !isGrounded && gliding)
         {
-            hasCanceledGlide = true;
-            canGlide = false;
-            Gliding = false;
+            CancelGlide();
         }
     }
 }
