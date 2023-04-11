@@ -26,8 +26,6 @@ public class ForceMovement : MonoBehaviour, IGroundedListener
     private Vector3 decelerationVector;
     private bool isGrounded;
 
-    public MovementCommunicator communicator;
-
     private void Awake()
     {
         playerControls = new PlayerControls();
