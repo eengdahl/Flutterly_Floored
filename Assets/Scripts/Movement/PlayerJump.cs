@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class JumpTest : MonoBehaviour
+public class PlayerJump : MonoBehaviour
 {
     [SerializeField] private float jumpForce;
     [SerializeField] private float jumpCooldown;

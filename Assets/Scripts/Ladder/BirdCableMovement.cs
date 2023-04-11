@@ -11,7 +11,7 @@ public class BirdCableMovement : MonoBehaviour
     [SerializeField] GameObject birdBody;
     Rigidbody rb;
     Collider boxCollider;
-    [SerializeField] JumpTest jumpScript;
+    [SerializeField] PlayerJump jumpScript;
     private InputAction.CallbackContext initialInput;
 
 
@@ -107,7 +107,7 @@ public class BirdCableMovement : MonoBehaviour
             //Set the birds rotation to match cable segments rotation euler
             //transform.eulerAngles = cableplant.points[currentCableSegment].eulerAngles;
             //Dont change rotation in y:
-            
+
 
         }
         //S Down
@@ -142,8 +142,8 @@ public class BirdCableMovement : MonoBehaviour
             //Set the birds rotation to match cable segments rotation euler
             //transform.eulerAngles = cableplant.points[currentCableSegment].eulerAngles;
             //Without changing y:
-            
-            
+
+
 
         }
 
