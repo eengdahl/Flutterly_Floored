@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class BirdCableMovement : MonoBehaviour
 {
@@ -15,10 +16,14 @@ public class BirdCableMovement : MonoBehaviour
     private InputAction.CallbackContext initialInput;
 
 
+    Transform localTrans;
+
     public float forcePower = 20f;
     public float speed = 5f;
     public float rotationSpeedAuto = 10f;
     public float rotationSpeed = 10f;
+    public float maxYRot = 90;
+    public float minYRot = -90;
 
     Vector3 bodyAngle = new Vector3(90, 90, 0);
     //Vector3 offSet = new Vector3(0,-1.24f,0);
@@ -28,6 +33,8 @@ public class BirdCableMovement : MonoBehaviour
     public bool isClimbing;
     bool atEnd;
     public bool readyToClimb;
+
+    float maxAngleDiff = 10;
 
 
 
@@ -45,6 +52,7 @@ public class BirdCableMovement : MonoBehaviour
         input = new PlayerControls();
 
         atEnd = false;
+        localTrans = GetComponent<Transform>();
 
     }
     private void Start()
@@ -67,7 +75,22 @@ public class BirdCableMovement : MonoBehaviour
             return;
         }
         float targetRotation = horizontalInput * rotationSpeed * Time.deltaTime;
+
+     
         transform.Rotate(0f, targetRotation, 0f);
+        LimitRotation();
+
+
+    }
+    void LimitRotation()
+    {
+        Vector3 playerEulerAngles = localTrans.rotation.eulerAngles;
+        if (playerEulerAngles.y > 180)//playerEulerAngles.y = (playerEulerAngles.y > 180) ? playerEulerAngles.y - 360 : playerEulerAngles.y;
+        {
+            playerEulerAngles.y -= 360;
+        }       
+        playerEulerAngles.y = Mathf.Clamp(playerEulerAngles.y, minYRot, maxYRot);
+        localTrans.rotation = Quaternion.Euler(playerEulerAngles);
     }
 
 
@@ -104,11 +127,6 @@ public class BirdCableMovement : MonoBehaviour
                     //ApplyFirstJumpForce();
                 }
             }
-            //Set the birds rotation to match cable segments rotation euler
-            //transform.eulerAngles = cableplant.points[currentCableSegment].eulerAngles;
-            //Dont change rotation in y:
-
-
         }
         //S Down
         if (input.Climbing.verticalInput.ReadValue<Vector2>().y < 0)
@@ -139,12 +157,6 @@ public class BirdCableMovement : MonoBehaviour
                     }
                 }
             }
-            //Set the birds rotation to match cable segments rotation euler
-            //transform.eulerAngles = cableplant.points[currentCableSegment].eulerAngles;
-            //Without changing y:
-
-
-
         }
 
     }
@@ -187,13 +199,6 @@ public class BirdCableMovement : MonoBehaviour
         {
             DisableClimbing();
             ApplyFirstJumpForce();
-            //Invoke("ApplyFirstJumpForce",0.2f);
-            //save the input value
-            //initialInput = input;
-            //if (input.performed)
-            //{
-            //    jumpScript.CompleteJump(initialInput);
-            //}
         }
     }
 

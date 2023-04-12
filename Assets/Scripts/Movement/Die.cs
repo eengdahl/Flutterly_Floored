@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class Die : MonoBehaviour
 {
     public Rigidbody rb;
-    public PlayerMoveCinemachine movement;
+    public PlayerMove movement;
     public PlayerJump jump;
     public DeathScriptAndCheckPoint revive;
     public float maxFallheight;
@@ -22,7 +22,7 @@ public class Die : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        movement = GetComponent<PlayerMoveCinemachine>();
+        movement = GetComponent<PlayerMove>();
         jump = GetComponent<PlayerJump>();
         revive = GetComponent<DeathScriptAndCheckPoint>();
         torque = 50;
