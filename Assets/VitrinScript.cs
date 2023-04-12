@@ -38,7 +38,7 @@ public class VitrinScript : MonoBehaviour
     //Set activeVitrinState = VitrinState.X to change state. Use WaitForSeconds(x); for timers
     IEnumerator IdleState()
     {
-        
+        //Starts in this state, should maybe be asleep
         Debug.Log("Idle: Enter");
         while (activeVitrinState == VitrinState.Idle)
         {
@@ -52,6 +52,7 @@ public class VitrinScript : MonoBehaviour
         Debug.Log("Patrol: Enter");
         while (activeVitrinState == VitrinState.Patrol)
         {
+            //Choose random position to stop cat along the shelf
             yield return 0;
         }
         Debug.Log("Patrol: Exit");
@@ -62,6 +63,7 @@ public class VitrinScript : MonoBehaviour
         Debug.Log("Stop: Enter");
         while (activeVitrinState == VitrinState.Stop)
         {
+            //Stay and cast shadow. Start timer before attack
             yield return 0;
         }
         Debug.Log("Stop: Exit");
@@ -72,19 +74,22 @@ public class VitrinScript : MonoBehaviour
         Debug.Log("Attack: Enter");
         while (activeVitrinState == VitrinState.Attack)
         {
+            //Hit this mother_f bird
+            //Check if bird is hit, otherwise return to patrole
             yield return 0;
         }
         Debug.Log("Attack: Exit");
         NextState();
     }
-    IEnumerator HitAttackState()
+    IEnumerator HitState()
     {
-        Debug.Log("HitAttack: Enter");
+        Debug.Log("Hit: Enter");
         while (activeVitrinState == VitrinState.HitAttack)
         {
+            //Kill bird
             yield return 0;
         }
-        Debug.Log("HitAttack: Exit");
+        Debug.Log("Hit: Exit");
         NextState();
     }
 
