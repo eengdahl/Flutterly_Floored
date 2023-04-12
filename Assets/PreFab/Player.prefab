@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 1018667384}
   - component: {fileID: 8502663467853572682}
   - component: {fileID: 1323621769}
+  - component: {fileID: 5716945778697264516}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -137,12 +138,12 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2793752973741495329}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: d5a08fac969c97843a961f18252840b9, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.35048392, y: 0.99671173, z: 0.5681534}
-  m_Center: {x: -0.009395376, y: 0.08261299, z: 0.18826866}
+  m_Size: {x: 0.28496552, y: 0.121792674, z: 0.25471306}
+  m_Center: {x: -0.015304565, y: -0.326909, z: 0.20217037}
 --- !u!54 &2793752973741495333
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -282,7 +283,7 @@ MonoBehaviour:
   glideForce: 15
   windTunnelAscend: 0
   readyToJump: 0
-  Gliding: 0
+  gliding: 0
   hasCanceledGlide: 0
   canGlide: 0
   glideTime: 0
@@ -405,6 +406,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd35010ad4fa6a4a94567722624a3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &5716945778697264516
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793752973741495329}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.35048392, y: 0.9356599, z: 0.5681534}
+  m_Center: {x: -0.009395376, y: 0.113138914, z: 0.18826866}
 --- !u!1 &8659414803775842904
 GameObject:
   m_ObjectHideFlags: 0
