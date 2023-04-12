@@ -8,7 +8,7 @@ public class StartClimbing : MonoBehaviour
 
     ClimbAlongScript climbAlongScript;
     BirdCableMovement CableMovement;
-
+    public bool isVertical;
     int index;
     PlayerControls input = null;
     private void OnEnable()
@@ -44,6 +44,14 @@ public class StartClimbing : MonoBehaviour
                 CableMovement.EnableClimbing();
                 other.GetComponent<SwitchControls>().SwitchToClimbing();
                 other.gameObject.transform.position = transform.position;
+                if (isVertical)
+                {
+                    other.GetComponent<BirdCableMovement>().isVertical = true;
+                }
+                else
+                {
+                    other.GetComponent<BirdCableMovement>().isVertical = false;
+                }
 
             }
 

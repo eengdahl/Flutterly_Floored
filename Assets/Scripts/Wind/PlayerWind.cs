@@ -11,14 +11,14 @@ public class PlayerWind : MonoBehaviour
     PlayerJump jumpScript;
     [SerializeField] float mass;
     float oldMass;
-    PlayerMoveCinemachine playerMoveScript;
+    PlayerMove playerMoveScript;
 
     SwitchControls switchControls;
     TestFly flyScript;
 
     private void Start()
     {
-        playerMoveScript = GetComponent<PlayerMoveCinemachine>();
+        playerMoveScript = GetComponent<PlayerMove>();
         jumpScript = GetComponent<PlayerJump>();
         rb = GetComponent<Rigidbody>();
         oldMass = rb.mass;

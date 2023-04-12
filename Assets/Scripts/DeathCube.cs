@@ -10,6 +10,7 @@ public class DeathCube : MonoBehaviour
         if (other.tag == "Player")
         {
             playerDeath = other.GetComponent<DeathScriptAndCheckPoint>();
+            other.GetComponent<Rigidbody>().isKinematic = false;
             playerDeath.Die();
         }
     }
