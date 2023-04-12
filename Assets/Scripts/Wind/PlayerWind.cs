@@ -8,18 +8,18 @@ public class PlayerWind : MonoBehaviour
     public bool inWindZone;
     public GameObject windZone;
     Rigidbody rb;
-    JumpTest jumpScript;
+    PlayerJump jumpScript;
     [SerializeField] float mass;
     float oldMass;
-    PlayerMoveTest playerMoveScript;
+    PlayerMove playerMoveScript;
 
     SwitchControls switchControls;
     TestFly flyScript;
 
     private void Start()
     {
-        playerMoveScript = GetComponent<PlayerMoveTest>();
-        jumpScript = GetComponent<JumpTest>();
+        playerMoveScript = GetComponent<PlayerMove>();
+        jumpScript = GetComponent<PlayerJump>();
         rb = GetComponent<Rigidbody>();
         oldMass = rb.mass;
         flyScript = GetComponent<TestFly>();

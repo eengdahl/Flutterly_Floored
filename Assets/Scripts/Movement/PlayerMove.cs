@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMoveTest : MonoBehaviour
+public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float maxSpeed;
@@ -25,7 +25,7 @@ public class PlayerMoveTest : MonoBehaviour
 
     //public Transform MainCamera;
 
-    private JumpTest jump;
+    private PlayerJump jump;
 
     private void Awake()
     {
@@ -33,7 +33,7 @@ public class PlayerMoveTest : MonoBehaviour
         playerWindScrips = GetComponent<PlayerWind>();
         playerControls = new PlayerControls();
         rb = GetComponent<Rigidbody>();
-        jump = GetComponent<JumpTest>();
+        jump = GetComponent<PlayerJump>();
     }
 
     private void OnEnable()
