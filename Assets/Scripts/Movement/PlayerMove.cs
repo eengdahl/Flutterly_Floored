@@ -36,15 +36,15 @@ public class PlayerMove : MonoBehaviour
         jump = GetComponent<PlayerJump>();
     }
 
-    //private void OnEnable()
-    //{
-    //    playerControls.Enable();
-    //}
+    private void OnEnable()
+    {
+        playerControls.Enable();
+    }
 
-    //private void OnDisable()
-    //{
-    //    playerControls.Disable();
-    //}
+    private void OnDisable()
+    {
+        playerControls.Disable();
+    }
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
