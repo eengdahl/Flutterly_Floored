@@ -12,7 +12,7 @@ public class PlayerWind : MonoBehaviour
     [SerializeField] float mass;
     float oldMass;
     PlayerMove playerMoveScript;
-
+    GameObject Player;
     SwitchControls switchControls;
     TestFly flyScript;
 
@@ -31,11 +31,9 @@ public class PlayerWind : MonoBehaviour
     {
         if (other.gameObject.tag == "windArea")
         {
-            windZone = other.gameObject;
-            EnterWindArea();
-
-            //Set rotation
             transform.rotation = other.transform.rotation;
+            windZone = other.gameObject;
+            Invoke("Fly",0.1f);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -43,7 +41,8 @@ public class PlayerWind : MonoBehaviour
 
         if (other.gameObject.tag == "windArea")
         {
-            LeaveWindArea();
+            Invoke("LeaveWindArea", 0.12f);
+            //LeaveWindArea();
         }
 
     }
@@ -69,5 +68,13 @@ public class PlayerWind : MonoBehaviour
         inWindZone = false;
         rb.mass = oldMass;
         jumpScript.enabled = true;
+    }
+    public void Fly()
+    {
+        
+        EnterWindArea();
+
+        //Set rotation
+        
     }
 }

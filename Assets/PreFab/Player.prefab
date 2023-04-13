@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1787557483
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1787557484}
+  m_Layer: 7
+  m_Name: PickUpTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1787557484
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787557483}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0.63}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2793752973741495337}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2358337041292280558
 GameObject:
   m_ObjectHideFlags: 0
@@ -54,6 +85,7 @@ GameObject:
   - component: {fileID: 1018667384}
   - component: {fileID: 1323621769}
   - component: {fileID: 5716945778697264516}
+  - component: {fileID: 753855069}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -77,6 +109,7 @@ Transform:
   - {fileID: 3398513044120441142}
   - {fileID: 1316722027891795972}
   - {fileID: 2400382292960486841}
+  - {fileID: 1787557484}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -137,7 +170,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2793752973741495329}
-  m_Material: {fileID: 13400000, guid: d5a08fac969c97843a961f18252840b9, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -257,7 +290,19 @@ MonoBehaviour:
     m_ActionId: 596ae73c-2b76-463b-8d67-db515690013a
     m_ActionName: Climbing/verticalInput[/Keyboard/w,/Keyboard/s]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 753855069}
+        m_TargetAssemblyTypeName: BirdCableMovement, Assembly-CSharp
+        m_MethodName: JumpOff
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 00de5073-1b8b-4823-9b8c-a0b8fc942ccb
     m_ActionName: Climbing/Jump[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
@@ -401,12 +446,38 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2793752973741495329}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: d5a08fac969c97843a961f18252840b9, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.35048392, y: 0.9356599, z: 0.5681534}
   m_Center: {x: -0.009395376, y: 0.113138914, z: 0.18826866}
+--- !u!114 &753855069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793752973741495329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55860b969ecb1394ea5bde85d4646288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cableplant: {fileID: 0}
+  cameraa: {fileID: 0}
+  birdBody: {fileID: 3027560615582138115}
+  jumpScript: {fileID: 2793752973741495335}
+  forcePower: 500000
+  speed: 2
+  rotationSpeedAuto: 10
+  rotationSpeed: 500
+  maxYRot: 90
+  minYRot: -90
+  isVertical: 0
+  currentCableSegment: 0
+  readyToClimb: 0
+  isClimbing: 0
 --- !u!1 &8659414803775842904
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,6 +611,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6dd09f0e52dba364ebe398bed112d48b, type: 3}
   m_PrefabInstance: {fileID: 2793752974305870418}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3027560615582138115 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6dd09f0e52dba364ebe398bed112d48b, type: 3}
+  m_PrefabInstance: {fileID: 2793752974305870418}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2793752975321627401
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -547,6 +623,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2793752973741495337}
     m_Modifications:
+    - target: {fileID: 3783173436131529482, guid: c922829ca348fc647ac05df1aba896c7, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 1787557483}
     - target: {fileID: 3783173436131529483, guid: c922829ca348fc647ac05df1aba896c7, type: 3}
       propertyPath: m_Size.x
       value: 0.5978336
@@ -585,11 +665,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3783173436131529485, guid: c922829ca348fc647ac05df1aba896c7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.634
+      value: 0.139
       objectReference: {fileID: 0}
     - target: {fileID: 3783173436131529485, guid: c922829ca348fc647ac05df1aba896c7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.593
+      value: -0.665
       objectReference: {fileID: 0}
     - target: {fileID: 3783173436131529485, guid: c922829ca348fc647ac05df1aba896c7, type: 3}
       propertyPath: m_LocalRotation.w
