@@ -48,7 +48,7 @@ public class Die : MonoBehaviour
         }
 
 
-        if (isFalling && rb.velocity.y >= 0)
+        if(isFalling && rb.velocity.y >= -0.5f)
         {
             ResetFall();
         }
