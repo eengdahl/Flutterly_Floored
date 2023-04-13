@@ -60,7 +60,6 @@ public class HitZones : MonoBehaviour
             isCharging = true;
             if (closestHitzone.name == "Hitzone1")
             {
-                Debug.Log("Gets here");
                 animationTrigger = "ShortRight";
                 //pawAnimator.SetBool(animationTrigger, true);
                 //leftPaw.GetComponent<Rigidbody>().AddForce(transform.up * 2, ForceMode.Impulse);
