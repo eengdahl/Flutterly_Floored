@@ -15,6 +15,7 @@ public class SocketScript : MonoBehaviour
     [Header("Variables")]
     [SerializeField] float breakForce;
     bool socketOccupied;
+    public AudioManager audioManager;
     private void Start()
     {
         socketOccupied = false;
@@ -114,6 +115,7 @@ public class SocketScript : MonoBehaviour
             radio.isPlaying = false;
             radio.gotElectricity = false;
             radio = null;
+            audioManager.ResumeMainMusic();
         }
         if(fan != null)
         {
