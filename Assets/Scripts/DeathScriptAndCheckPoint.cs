@@ -13,13 +13,13 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
         respawnPoint = startRespawnPoint.position;
     }
 
-    public void NewCheckpoint( Vector3 newRespawnPoint) // Vector3 newCheckpoint,
+    public void NewCheckpoint(Vector3 newRespawnPoint) // Vector3 newCheckpoint,
     {
         //checkPoint = newCheckpoint;
         respawnPoint = newRespawnPoint;
     }
 
-     public void Die()
+    public void Die()
     {
         transform.position = respawnPoint;
     }
