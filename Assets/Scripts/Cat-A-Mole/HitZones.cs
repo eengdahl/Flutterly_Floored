@@ -10,8 +10,8 @@ public class HitZones : MonoBehaviour
     public Animator pawAnimator;
     public CatAMoleBrain gamestate;
     public GameObject player;
-    public GameObject leftPaw;
-    public GameObject rightPaw;
+    //public GameObject leftPaw;
+    //public GameObject rightPaw;
     public float attackSpeed;
     public float lazySpeed;
     public float notAttackingTimer;
@@ -23,15 +23,15 @@ public class HitZones : MonoBehaviour
     public bool isCharging;
     public bool isPlayerInZone;
     private bool isAnimTriggered;
-    private Vector3 leftPawStartPosition;
-    private Vector3 rightPawStartPosition;
+    //private Vector3 leftPawStartPosition;
+    //private Vector3 rightPawStartPosition;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        leftPawStartPosition = leftPaw.transform.position;
-        rightPawStartPosition = rightPaw.transform.position;
+        //leftPawStartPosition = leftPaw.transform.position;
+        //rightPawStartPosition = rightPaw.transform.position;
         CheckClosestZone();     //Check closest hitzone to player
         gamestate.moleState = MoleStates.Charge;
     }
