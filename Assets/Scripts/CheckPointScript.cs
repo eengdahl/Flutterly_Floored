@@ -5,13 +5,24 @@ using UnityEngine;
 public class CheckPointScript : MonoBehaviour
 {
     [SerializeField] Transform RespawnPoint;
-    
+
+    public Die dieOfFalling;
+
+    private void Start()
+    {
+        dieOfFalling = FindObjectOfType<Die>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            other.GetComponent<DeathScriptAndCheckPoint>().NewCheckpoint(RespawnPoint.transform.position);
+            if (!dieOfFalling.isDead)
+            {
+                other.GetComponent<DeathScriptAndCheckPoint>().NewCheckpoint(RespawnPoint.transform.position);
+
+            }
         }
-       
+
     }
 }

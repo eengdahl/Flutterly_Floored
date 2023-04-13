@@ -6,10 +6,6 @@ public class StoveButton : MonoBehaviour
 {
     [SerializeField] private List<GameObject> connectedNodes;
 
-    private void Start()
-    {
-    }
-
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

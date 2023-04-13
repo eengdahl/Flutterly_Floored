@@ -29,7 +29,6 @@ public class CameraSwitch : MonoBehaviour, ILookChangeListener
             playerInside = true;
             MainCamera.SetActive(false);
             secondCamera.SetActive(true);
-            thirdCamera.SetActive(false);
         }
     }
 

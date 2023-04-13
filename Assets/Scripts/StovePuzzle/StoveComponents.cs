@@ -8,8 +8,14 @@ public class StoveComponents : MonoBehaviour
 {
     public Material nodeOn;
     public Material nodeOff;
-    [SerializeField] private float delayT = 0.1f;
+    //[SerializeField] private float delayT = 0.1f;
+    [SerializeField] private List<GameObject> allNodes;
 
+    private void Start()
+    {
+        foreach (GameObject node in allNodes)
+            StartCoroutine(ToggleOn(node.GetComponent<StoveNode>(), 0));
+    }
     private void ChangeMaterial(MeshRenderer nodeMeshRenderer, Material newMaterial)
     {
         nodeMeshRenderer.material = newMaterial;
@@ -34,6 +40,14 @@ public class StoveComponents : MonoBehaviour
             ChangeMaterial(node.GetComponent<MeshRenderer>(), nodeOn);
         else
             ChangeMaterial(node.GetComponent<MeshRenderer>(), nodeOff);
+    }
+
+    public void ToggleAllNodes(List<GameObject> nodes)
+    {
+        foreach (GameObject node in nodes)
+            StartCoroutine(ToggleOn(node.GetComponent<StoveNode>(), 0));
+
+        //GetComponent<StoveNode>().SetAllActive();
     }
 
     //public IEnumerator checkWin(float delayTime)

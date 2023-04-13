@@ -10,5 +10,10 @@ public class StoveNode : MonoBehaviour
     {
         litNode = !litNode;
     }
+
+    public void SetAllActive()
+    {
+        litNode = true;
+    }
   
 }

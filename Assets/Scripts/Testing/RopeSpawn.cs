@@ -5,7 +5,7 @@ using UnityEngine;
 public class RopeSpawn : MonoBehaviour
 {
     [SerializeField]
-    RopeClimbStart ropeStartScript;
+    //RopeClimbStart ropeStartScript;
     public List<GameObject> listOfTransforms;
 
     [SerializeField]
@@ -51,7 +51,7 @@ public class RopeSpawn : MonoBehaviour
 
             if (i == count-1)
             {
-                ropeStartScript.transformSpots = listOfTransforms;
+                //ropeStartScript.transformSpots = listOfTransforms;
             }
 
 

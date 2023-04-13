@@ -21,7 +21,7 @@ public class Water : MonoBehaviour
 
     void Start()
     {
-        SetOcean();
+        //SetOcean();
     }
 
     private void SetOcean()
@@ -35,15 +35,20 @@ public class Water : MonoBehaviour
         return transform.position.y + oceanTexture.GetPixelBilinear(position.x * waveDistance, position.z * waveDistance + Time.time * rippleSpeed).g * waveHeight * transform.localScale.x;
     }
 
-    private void OnValidate()
+    public float GetSimpleWaterHeight()
     {
-        if (!oceanMaterial)
-        {
-            SetOcean();
-        }
-
-        UpdateOceanMaterial();
+        return transform.position.y;
     }
+
+    //private void OnValidate()
+    //{
+    //    if (!oceanMaterial)
+    //    {
+    //        SetOcean();
+    //    }
+
+    //    UpdateOceanMaterial();
+    //}
 
     private void UpdateOceanMaterial()
     {
