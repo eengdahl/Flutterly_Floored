@@ -56,7 +56,8 @@ public class RadioButton : MonoBehaviour
          
             aS.Stop();
 
-           
+
+
         }
 
         buttonPart.transform.localPosition = new Vector3(0, buttonPart.transform.localPosition.y, 0); //do this in unityeditor instead?
@@ -109,10 +110,12 @@ public class RadioButton : MonoBehaviour
         //TurnMusic on or off
         if (!isPlaying)
         {
-            Debug.Log("IS PLAYING MUSIC");
+            if (gotElectricity)
+            {
             aS.Play();
             audioManager.TurnOfMainMusic();
             isPlaying = true;
+            }
         }
         else if (isPlaying)
         {
