@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class RadioButton : MonoBehaviour
 {
-    [SerializeField]public Transform buttonPart;
+    [SerializeField] public Transform buttonPart;
     [SerializeField] Transform buttonLowerLimit;
     [SerializeField] Transform buttonUpperLimit;
     public float threshHold;
@@ -13,12 +13,14 @@ public class RadioButton : MonoBehaviour
     private float upperLowerDiff;
     public bool isPressed;
     private bool prevPressedState;
-    [SerializeField]public AudioSource pressedSound;
+    [SerializeField] public AudioSource pressedSound;
     [SerializeField] AudioSource releasedSound;
     AudioSource aS;
     //bool is playing
     public bool isPlaying;
     public bool gotElectricity;
+
+    public AudioManager audioManager;
 
 
 
@@ -27,6 +29,7 @@ public class RadioButton : MonoBehaviour
         gotElectricity = false;
         aS = GetComponent<AudioSource>();
         isPlaying = false;
+        audioManager = FindObjectOfType<AudioManager>();
         Physics.IgnoreCollision(GetComponent<Collider>(), buttonPart.GetComponent<Collider>());
         if (transform.eulerAngles != Vector3.zero)
         {
@@ -50,7 +53,10 @@ public class RadioButton : MonoBehaviour
     {
         if (!gotElectricity)
         {
+         
             aS.Stop();
+
+           
         }
 
         buttonPart.transform.localPosition = new Vector3(0, buttonPart.transform.localPosition.y, 0); //do this in unityeditor instead?
@@ -99,17 +105,19 @@ public class RadioButton : MonoBehaviour
         prevPressedState = isPressed;
         //pressedSound.pitch = 1;
         //presseddSound.Play();
- 
+
         //TurnMusic on or off
         if (!isPlaying)
         {
             Debug.Log("IS PLAYING MUSIC");
             aS.Play();
+            audioManager.TurnOfMainMusic();
             isPlaying = true;
         }
         else if (isPlaying)
         {
             aS.Stop();
+            audioManager.ResumeMainMusic();
             isPlaying = false;
         }
     }

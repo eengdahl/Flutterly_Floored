@@ -14,9 +14,10 @@ public class Die : MonoBehaviour
     private float torque;
 
     public bool isFalling;
+    public bool isDead;
     private float startFall;
     private float fallheight;
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,23 +32,23 @@ public class Die : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(rb.velocity.y < -0.1f && !isFalling)
+        if (rb.velocity.y < -0.1f && !isFalling)
         {
             StartFall();
         }
 
-        if(isFalling)
+        if (isFalling)
         {
             CalculateFallHeight();
 
-            if(fallheight >= maxFallheight)
+            if (fallheight >= maxFallheight)
             {
                 KillPlayer();
             }
         }
 
 
-        if(isFalling && rb.velocity.y >= 0)
+        if(isFalling && rb.velocity.y >= -0.5f)
         {
             ResetFall();
         }
@@ -72,6 +73,7 @@ public class Die : MonoBehaviour
 
     private void KillPlayer()
     {
+        isDead = true;
         jump.enabled = false;
         movement.enabled = false;
         rb.constraints = RigidbodyConstraints.None;

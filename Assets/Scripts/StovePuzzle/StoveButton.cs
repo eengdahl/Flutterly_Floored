@@ -8,6 +8,7 @@ public class StoveButton : MonoBehaviour
 
     private void Start()
     {
+        gameObject.transform.parent.GetComponent<StoveComponents>().ActivateNode(connectedNodes);
     }
 
     public void OnTriggerEnter(Collider other)
