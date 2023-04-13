@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
+
 
 public class MenuHandler : MonoBehaviour
 {
-    [SerializeField] private GameObject tutorial;
     [SerializeField] private GameObject controlsPanel;
     [SerializeField] private GameObject creditsPanel;
-    [SerializeField] private GameObject mainMenu;
+    //[SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject exitGamePanel;
@@ -17,14 +18,15 @@ public class MenuHandler : MonoBehaviour
     bool checkmenu;
 
 
-    private void Update()
+    public void ButtonInput(InputAction.CallbackContext input)
+
     {
-        if (Input.GetKeyDown("escape"))
+        if (input.started)
         {
-            if (mainMenu.activeSelf == false && settingsPanel.activeSelf == false && controlsPanel.activeSelf == false && creditsPanel.activeSelf == false && exitGamePanel.activeSelf == false)
+            if (settingsPanel.activeSelf == false && controlsPanel.activeSelf == false && creditsPanel.activeSelf == false && exitGamePanel.activeSelf == false)
             {
+                Time.timeScale = 0;
                 pauseMenuIsShowing = !pauseMenuIsShowing;
-                tutorial.SetActive(false);
                 checkmenu = true;
             }
             else if (controlsPanel.activeSelf == true || settingsPanel.activeSelf == true || creditsPanel.activeSelf == true || exitGamePanel.activeSelf == true)
@@ -39,6 +41,7 @@ public class MenuHandler : MonoBehaviour
                     exitGamePanel.SetActive(false);
                 if (pauseMenuIsShowing == false)
                     pauseMenuIsShowing = !pauseMenuIsShowing;
+                    
             }
         }
 
@@ -48,6 +51,9 @@ public class MenuHandler : MonoBehaviour
             checkmenu = false;
         }
         pausePanel.SetActive(pauseMenuIsShowing);
+        if (Time.timeScale == 0)
+            Time.timeScale = 1;
+
     }
 
     public void ExitGame()
@@ -66,7 +72,7 @@ public class MenuHandler : MonoBehaviour
     public void StartGame()
     {
         //startgame function
-        mainMenu.SetActive(false);
+        //mainMenu.SetActive(false);
         //musicSource.SetActive(true);
 
     }
