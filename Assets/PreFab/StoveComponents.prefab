@@ -798,10 +798,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connectedNodes:
-  - {fileID: 5010047838878956787}
-  - {fileID: 5010047840593241146}
-  - {fileID: 5010047838775275580}
+  - {fileID: 5010047839673880634}
   - {fileID: 5010047838720199690}
+  - {fileID: 5010047839651903742}
+  - {fileID: 5010047840432083206}
+  - {fileID: 5010047839749266397}
+  - {fileID: 5010047838777499643}
 --- !u!1 &5010047838720199690
 GameObject:
   m_ObjectHideFlags: 0
@@ -895,7 +897,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5010047838720199690}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
@@ -913,7 +915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36507ba59cf1f46499906a18f89eb31c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  litNode: 0
+  litNode: 1
 --- !u!1 &5010047838769993121
 GameObject:
   m_ObjectHideFlags: 0
@@ -986,7 +988,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeOn: {fileID: 2100000, guid: c15e1ee4fd5be0d489f6f47847bc5828, type: 2}
   nodeOff: {fileID: 2100000, guid: 9fe6ecd194de7c34e97d7c03f992ae73, type: 2}
-  delayT: 0.1
+  allNodes:
+  - {fileID: 5010047838878956787}
+  - {fileID: 5010047839749266397}
+  - {fileID: 5010047838777499643}
+  - {fileID: 5010047838775275580}
+  - {fileID: 5010047838918309035}
+  - {fileID: 5010047839679971504}
+  - {fileID: 5010047838860214210}
+  - {fileID: 5010047840593241146}
+  - {fileID: 5010047839651903742}
+  - {fileID: 5010047839673880634}
+  - {fileID: 5010047840432083206}
+  - {fileID: 5010047838720199690}
 --- !u!1 &5010047838775275580
 GameObject:
   m_ObjectHideFlags: 0
@@ -1098,7 +1112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36507ba59cf1f46499906a18f89eb31c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  litNode: 0
+  litNode: 1
 --- !u!1 &5010047838777499643
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,7 +1206,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5010047838777499643}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
@@ -1210,7 +1224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36507ba59cf1f46499906a18f89eb31c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  litNode: 1
+  litNode: 0
 --- !u!1 &5010047838860214210
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,7 +1336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36507ba59cf1f46499906a18f89eb31c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  litNode: 0
+  litNode: 1
 --- !u!1 &5010047838878956787
 GameObject:
   m_ObjectHideFlags: 0
@@ -1434,7 +1448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36507ba59cf1f46499906a18f89eb31c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  litNode: 1
+  litNode: 0
 --- !u!1 &5010047838918309035
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,7 +1560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36507ba59cf1f46499906a18f89eb31c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  litNode: 0
+  litNode: 1
 --- !u!1 &5010047838946414602
 GameObject:
   m_ObjectHideFlags: 0
@@ -1659,11 +1673,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connectedNodes:
+  - {fileID: 5010047839679971504}
   - {fileID: 5010047838918309035}
-  - {fileID: 5010047839651903742}
-  - {fileID: 5010047838777499643}
-  - {fileID: 5010047839749266397}
+  - {fileID: 5010047840593241146}
   - {fileID: 5010047838860214210}
+  - {fileID: 5010047839673880634}
+  - {fileID: 5010047839651903742}
+  - {fileID: 5010047840432083206}
+  - {fileID: 5010047838720199690}
 --- !u!1 &5010047839639284696
 GameObject:
   m_ObjectHideFlags: 0
@@ -1776,12 +1793,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connectedNodes:
+  - {fileID: 5010047838775275580}
+  - {fileID: 5010047838878956787}
+  - {fileID: 5010047838918309035}
+  - {fileID: 5010047838860214210}
   - {fileID: 5010047839679971504}
   - {fileID: 5010047840593241146}
-  - {fileID: 5010047839749266397}
-  - {fileID: 5010047838777499643}
-  - {fileID: 5010047838860214210}
-  - {fileID: 5010047838918309035}
 --- !u!1 &5010047839651903742
 GameObject:
   m_ObjectHideFlags: 0
@@ -1987,7 +2004,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5010047839673880634}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
@@ -2005,7 +2022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36507ba59cf1f46499906a18f89eb31c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  litNode: 0
+  litNode: 1
 --- !u!1 &5010047839679971504
 GameObject:
   m_ObjectHideFlags: 0
@@ -2211,7 +2228,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5010047839749266397}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
@@ -2328,12 +2345,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connectedNodes:
+  - {fileID: 5010047839749266397}
+  - {fileID: 5010047840432083206}
+  - {fileID: 5010047838777499643}
+  - {fileID: 5010047839651903742}
+  - {fileID: 5010047838775275580}
   - {fileID: 5010047838878956787}
   - {fileID: 5010047838918309035}
-  - {fileID: 5010047840432083206}
-  - {fileID: 5010047839679971504}
-  - {fileID: 5010047839673880634}
-  - {fileID: 5010047838720199690}
+  - {fileID: 5010047838860214210}
 --- !u!136 &5010047839960759871
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -6,11 +6,6 @@ public class StoveButton : MonoBehaviour
 {
     [SerializeField] private List<GameObject> connectedNodes;
 
-    private void Start()
-    {
-        gameObject.transform.parent.GetComponent<StoveComponents>().ActivateNode(connectedNodes);
-    }
-
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
