@@ -3,25 +3,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MoleStates
+{
+    Idle,
+    Charge,
+    Attack,
+    HitBird,
+    WaterHit
+}
 
 public class CatAMoleBrain : MonoBehaviour
 {
-    public enum MoleStates
+   
+
+    public MoleStates moleState;
+    public GameObject Cat;
+    private float catTimerDone;
+    public bool hitting = false;
+
+    void Awake()
     {
-        Idle,
-        Charge,
-        Attack,
-        HitBird,
-        WaterHit
+        catTimerDone = 3.0f;
+        NextState();
     }
 
-
-    MoleStates moleStates;
 
     IEnumerator IdleState()
     {
         Debug.Log("Idle: Enter");
-        while (moleStates == MoleStates.Idle)
+        while (moleState == MoleStates.Idle)
         {
             yield return 0;
         }
@@ -32,61 +42,64 @@ public class CatAMoleBrain : MonoBehaviour
     IEnumerator ChargeState()
     {
         Debug.Log("Charge: Enter");
-        while (moleStates == MoleStates.Charge)
+        while (moleState == MoleStates.Charge)
         {
+            yield return new WaitForSeconds(catTimerDone);
+
+            moleState = MoleStates.Attack;
+
             yield return 0;
         }
         Debug.Log("Charge: Exit");
         NextState();
     }
 
-
     IEnumerator AttackState()
     {
         Debug.Log("Attack: Enter");
-        while (moleStates == MoleStates.Attack)
+        while (moleState == MoleStates.Attack)
         {
+            if (!hitting) hitting = true;
+
+            yield return new WaitForSeconds(3);
+            hitting = false;
+            moleState = MoleStates.Charge;
+            NextState();
             yield return 0;
         }
         Debug.Log("Attack: Exit");
     }
+
     IEnumerator HitBirdState()
     {
         Debug.Log("HitBird: Enter");
-        while (moleStates == MoleStates.HitBird)
+        while (moleState == MoleStates.HitBird)
         {
             yield return 0;
         }
-        Debug.Log("HitBird: Exit");
         NextState();
+        Debug.Log("HitBird: Exit");
     }
+
     IEnumerator WaterHitState()
     {
         Debug.Log("WaterHit: Enter");
-        while (moleStates == MoleStates.WaterHit)
+        while (moleState == MoleStates.WaterHit)
         {
             yield return 0;
         }
+        NextState();
         Debug.Log("WaterHit: Exit");
-        NextState();
     }
 
-    void Start()
-    {
-        NextState();
-    }
-
-  
 
     void NextState()
     {
-        string methodName = moleStates.ToString() + "State";
+        string methodName = moleState.ToString() + "State";
         System.Reflection.MethodInfo info =
             GetType().GetMethod(methodName,
                                 System.Reflection.BindingFlags.NonPublic |
                                 System.Reflection.BindingFlags.Instance);
         StartCoroutine((IEnumerator)info.Invoke(this, null));
     }
-
-
 }
