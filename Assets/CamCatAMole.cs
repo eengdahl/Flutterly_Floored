@@ -12,6 +12,7 @@ public class CamCatAMole : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+
             catACam.SetActive(true);
             mainCam.SetActive(false);
         }

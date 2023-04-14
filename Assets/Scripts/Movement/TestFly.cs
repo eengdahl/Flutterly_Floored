@@ -13,8 +13,11 @@ public class TestFly : MonoBehaviour
     private Rigidbody rb;
     private float speed;
 
+
+    bool flyMovementActive;
     private void Awake()
     {
+        flyMovementActive = false;
         input = new PlayerControls();
     }
 
@@ -39,7 +42,7 @@ public class TestFly : MonoBehaviour
     private void FixedUpdate()
     {
 
-
+        if (!flyMovementActive) return;
         // Apply drag based on current gliding angle
         float glideAngle = Vector3.Angle(rb.velocity, transform.forward);
         float glideDragMultiplier = Mathf.Lerp(1f, glideDrag, glideAngle / 180f);
@@ -50,10 +53,10 @@ public class TestFly : MonoBehaviour
         Vector3 moveForce = transform.forward * speed * dragMultiplier;
         rb.AddForce(moveForce, ForceMode.Acceleration);
 
-        // Rotate the glider based on input
-        Vector2 moveInput = input.WindZoneMovement.Move.ReadValue<Vector2>();
-        Vector3 rotation = new Vector3(moveInput.y, moveInput.x, 0f) * rotationSpeed;
-        transform.Rotate(rotation);
+        //// Rotate the glider based on input
+        //Vector2 moveInput = input.WindZoneMovement.Move.ReadValue<Vector2>();
+        //Vector3 rotation = new Vector3(moveInput.y, moveInput.x, 0f) * rotationSpeed;
+        //transform.Rotate(rotation);
 
         // Calculate acceleration based on input
         float accelerationInput = 1;//input.WindZoneMovement.Glide.ReadValue<float>() - input.WindZoneMovement.Dive.ReadValue<float>();
@@ -62,4 +65,10 @@ public class TestFly : MonoBehaviour
         // Set glider velocity to match speed and angle
         rb.velocity = transform.forward * speed;
     }
+
+    public void InvertFly()
+    {
+        flyMovementActive = !flyMovementActive;
+    }
+    
 }

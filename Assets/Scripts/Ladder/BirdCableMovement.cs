@@ -146,7 +146,11 @@ public class BirdCableMovement : MonoBehaviour
         rb.isKinematic = true;
         isClimbing = true;
         rb.useGravity = false;
+        if (isVertical)
+        {
+
         boxCollider.enabled = false;
+        }
         birdBody.transform.localPosition += new Vector3(-0.453f, 0, 0);//Neeeds to be different value or each climbing place make it a 
         birdBody.transform.localEulerAngles += new Vector3(0, 0, 90);
         //animator.SetBool("IsClimbing", true);
