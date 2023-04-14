@@ -7,13 +7,19 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
     Transform respawnTransform;
     public Vector3 respawnPoint;
     [SerializeField] Transform startRespawnPoint;
+    [SerializeField] GameObject birdBody;
+    [SerializeField]BirdCableMovement birdCableMovement;
+
+
     //public Vector3 checkPoint;
     Rigidbody rb;
 
     private void Start()
     {
+        respawnTransform = startRespawnPoint;
         rb = GetComponent<Rigidbody>();
         respawnPoint = startRespawnPoint.position;
+
     }
 
     public void NewCheckpoint(Transform newRespawnPoint) // Vector3 newCheckpoint,
@@ -26,12 +32,14 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
 
     public void Die()
     {
-        transform.rotation = respawnTransform.rotation;
-        transform.position = respawnPoint;
+        birdCableMovement.DisableClimbing();
+        this.transform.rotation = respawnTransform.rotation;
+        this.transform.position = respawnPoint;
         Invoke("ResetRB", 0.5f);
     }
     void ResetRB()
     {
+        birdBody.transform.rotation = this.transform.rotation;
         rb.isKinematic = false;
     }
 }
