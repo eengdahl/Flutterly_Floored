@@ -31,9 +31,10 @@ public class PlayerWind : MonoBehaviour
     {
         if (other.gameObject.tag == "windArea")
         {
-            transform.rotation = other.transform.rotation;
+            //transform.rotation = other.transform.rotation;
             windZone = other.gameObject;
             Invoke("Fly",0.1f);
+            
         }
     }
     private void OnTriggerExit(Collider other)
@@ -73,8 +74,9 @@ public class PlayerWind : MonoBehaviour
     {
         
         EnterWindArea();
-
+        flyScript.InvertFly();
+        transform.rotation = windZone.transform.rotation;
         //Set rotation
-        
+
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DeathScriptAndCheckPoint : MonoBehaviour
 {
+    Transform respawnTransform;
     public Vector3 respawnPoint;
     [SerializeField] Transform startRespawnPoint;
     //public Vector3 checkPoint;
@@ -15,14 +16,17 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
         respawnPoint = startRespawnPoint.position;
     }
 
-    public void NewCheckpoint(Vector3 newRespawnPoint) // Vector3 newCheckpoint,
+    public void NewCheckpoint(Transform newRespawnPoint) // Vector3 newCheckpoint,
     {
+        respawnTransform = newRespawnPoint;
         //checkPoint = newCheckpoint;
-        respawnPoint = newRespawnPoint;
+        respawnPoint = newRespawnPoint.position;
+
     }
 
     public void Die()
     {
+        transform.rotation = respawnTransform.rotation;
         transform.position = respawnPoint;
         Invoke("ResetRB", 0.5f);
     }
