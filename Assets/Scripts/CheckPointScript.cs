@@ -19,7 +19,7 @@ public class CheckPointScript : MonoBehaviour
         {
             if (!dieOfFalling.isDead)
             {
-                other.GetComponent<DeathScriptAndCheckPoint>().NewCheckpoint(RespawnPoint.transform);
+                other.GetComponent<DeathScriptAndCheckPoint>().NewCheckpoint(this.RespawnPoint.transform);
 
             }
         }
