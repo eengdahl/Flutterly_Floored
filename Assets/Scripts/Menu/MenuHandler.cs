@@ -25,8 +25,19 @@ public class MenuHandler : MonoBehaviour
         {
             if (settingsPanel.activeSelf == false && controlsPanel.activeSelf == false && creditsPanel.activeSelf == false && exitGamePanel.activeSelf == false)
             {
-                Time.timeScale = 0;
-                pauseMenuIsShowing = !pauseMenuIsShowing;
+                if (pauseMenuIsShowing == true)
+                {
+                    pauseMenuIsShowing = !pauseMenuIsShowing;
+                    pausePanel.SetActive(false);
+                    Time.timeScale = 1;
+                }
+                else if (pauseMenuIsShowing == false)
+                {
+                    pauseMenuIsShowing = !pauseMenuIsShowing;
+                    pausePanel.SetActive(true);
+                    Time.timeScale = 0;
+                }
+
                 checkmenu = true;
             }
             else if (controlsPanel.activeSelf == true || settingsPanel.activeSelf == true || creditsPanel.activeSelf == true || exitGamePanel.activeSelf == true)
@@ -40,25 +51,26 @@ public class MenuHandler : MonoBehaviour
                 if (exitGamePanel.activeSelf == true)
                     exitGamePanel.SetActive(false);
                 if (pauseMenuIsShowing == false)
+                {
                     pauseMenuIsShowing = !pauseMenuIsShowing;
+                    pausePanel.SetActive(true);
+                }
                     
             }
         }
 
         if (pauseMenuIsShowing == false && settingsPanel.activeSelf == false && controlsPanel.activeSelf == false && creditsPanel.activeSelf == false && exitGamePanel.activeSelf == false && checkmenu)
         {
-            settingsPanel.SetActive(false);
+            pausePanel.SetActive(false);
             checkmenu = false;
         }
-        pausePanel.SetActive(pauseMenuIsShowing);
-        if (Time.timeScale == 0)
-            Time.timeScale = 1;
-
+        //pausePanel.SetActive(pauseMenuIsShowing);
     }
 
     public void ExitGame()
     {
         exitGamePanel.SetActive(true);
+        pausePanel.SetActive(false);
         pauseMenuIsShowing = !pauseMenuIsShowing;
     }
     public void Quit()
@@ -78,24 +90,30 @@ public class MenuHandler : MonoBehaviour
     }
     public void SettingsMenu()
     {
+        pausePanel.SetActive(false);
         settingsPanel.SetActive(true);
         pauseMenuIsShowing = !pauseMenuIsShowing;
     }
     public void ControlsMenu()
     {
         controlsPanel.SetActive(true);
+        pausePanel.SetActive(false);
+
         pauseMenuIsShowing = !pauseMenuIsShowing;
     }
     public void CreditsMenu()
     {
         creditsPanel.SetActive(true);
+        pausePanel.SetActive(false);
+
         pauseMenuIsShowing = !pauseMenuIsShowing;
 
     }
     public void ResumeGame()
     {
         pauseMenuIsShowing = !pauseMenuIsShowing;
-
+        pausePanel.SetActive(false);
+        Time.timeScale = 1;
     }
     public void BackToMenu()
     {
@@ -108,6 +126,9 @@ public class MenuHandler : MonoBehaviour
         if (exitGamePanel.activeSelf == true)
             exitGamePanel.SetActive(false);
         if (pauseMenuIsShowing == false)
+        {
             pauseMenuIsShowing = !pauseMenuIsShowing;
+            pausePanel.SetActive(true);
+        }
     }
 }
