@@ -18,23 +18,22 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
     {
         respawnTransform = startRespawnPoint;
         rb = GetComponent<Rigidbody>();
-        respawnPoint = startRespawnPoint.position;
+        //respawnPoint = startRespawnPoint.position;
 
     }
 
-    public void NewCheckpoint(Transform newRespawnPoint) // Vector3 newCheckpoint,
+    public void NewCheckpoint(Transform newRespawnPoint) 
     {
         respawnTransform = newRespawnPoint;
         //checkPoint = newCheckpoint;
-        respawnPoint = newRespawnPoint.position;
-
+        //respawnPoint = newRespawnPoint.position;
     }
 
     public void Die()
     {
         birdCableMovement.DisableClimbing();
         this.transform.rotation = respawnTransform.rotation;
-        this.transform.position = respawnPoint;
+        this.transform.position = respawnTransform.position;
         Invoke("ResetRB", 0.5f);
     }
     void ResetRB()
