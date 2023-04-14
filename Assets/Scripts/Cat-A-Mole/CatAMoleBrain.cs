@@ -44,6 +44,7 @@ public class CatAMoleBrain : MonoBehaviour
         Debug.Log("Charge: Enter");
         while (moleState == MoleStates.Charge)
         {
+            catTimerDone = Random.Range(1, 4);
             yield return new WaitForSeconds(catTimerDone);
 
             moleState = MoleStates.Attack;
@@ -61,7 +62,7 @@ public class CatAMoleBrain : MonoBehaviour
         {
             if (!hitting) hitting = true;
 
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(1);
             hitting = false;
             moleState = MoleStates.Charge;
             NextState();
