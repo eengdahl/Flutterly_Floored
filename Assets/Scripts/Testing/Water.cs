@@ -80,7 +80,7 @@ public class Water : MonoBehaviour
 
     private void FillWater()
     {
-        if (waterLevel < maxWaterLevel)
+        if (isFossetOn && waterLevel < maxWaterLevel)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y + waterFillSpeed * 0.005f, transform.position.z);
             waterLevel = transform.position.y;
