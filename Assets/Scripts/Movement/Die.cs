@@ -48,7 +48,7 @@ public class Die : MonoBehaviour
         }
 
 
-        if(isFalling && rb.velocity.y >= -0.5f)
+        if (isFalling && rb.velocity.y >= -0.5f)
         {
             ResetFall();
         }
@@ -84,6 +84,7 @@ public class Die : MonoBehaviour
 
     private void RevivePlayer()
     {
+        isDead = false;
         jump.enabled = true;
         movement.enabled = true;
         rb.constraints = RigidbodyConstraints.FreezeRotation;

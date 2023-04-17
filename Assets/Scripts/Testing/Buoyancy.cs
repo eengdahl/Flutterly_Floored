@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR;
 
@@ -21,7 +22,6 @@ public class Buoyancy : MonoBehaviour
     public float airDeceleration;
     public bool isBelowSurface;
     public float surfaceOffset;
-    
 
     void Start()
     {
@@ -60,6 +60,8 @@ public class Buoyancy : MonoBehaviour
                 //decelerationVector = rb.velocity * airDeceleration;
                 //rb.AddForceAtPosition(Vector3.down * Mathf.Abs(depth) - decelerationVector, transform.position, ForceMode.Force);
             }
+
+           
         }
     }
 
@@ -69,4 +71,5 @@ public class Buoyancy : MonoBehaviour
         depth = floater.position.y - water.GetComponent<Water>().GetSimpleWaterHeight();
     }
 
+   
 }

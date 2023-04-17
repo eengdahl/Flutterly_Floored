@@ -6,13 +6,23 @@ public class PerfumeButton : MonoBehaviour
 {
 
     private float catLives = 3;
-    public bool buttonReady;
+    public bool buttonReady = true;
+    AudioSource aS;
+
+    private void Start()
+    {
+          buttonReady = true;
+        aS = GetComponent<AudioSource>();
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && buttonReady)
+
+        if (other.tag == "Player" && buttonReady)
         {
             Debug.Log("sprutsprut");
+            aS.Play();
             
             ButtonPush();
             buttonReady = false;
