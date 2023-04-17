@@ -10,6 +10,12 @@ public class KitchenFanSuck : MonoBehaviour
     Rigidbody rb;
     [SerializeField] float maxSpeed = 5f;     // The maximum speed to move
     [SerializeField] float acceleration = 2f; // The rate at which speed increases as distance decreases
+    AudioSource aS;
+
+    private void Awake()
+    {
+        aS = GetComponent<AudioSource>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,13 +23,14 @@ public class KitchenFanSuck : MonoBehaviour
         {
             cableMovement = other.gameObject.GetComponent<BirdCableMovement>();
             rb = other.gameObject.GetComponent<Rigidbody>();
+            aS.Play();
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
-        {           
+        {
             if (!cableMovement.isClimbing)
             {
                 rb.isKinematic = true;
@@ -36,6 +43,14 @@ public class KitchenFanSuck : MonoBehaviour
                 // Move the object towards the target at the calculated speed
                 other.transform.position += direction.normalized * speed * Time.deltaTime;
             }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            aS.Stop();
         }
     }
 
