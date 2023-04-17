@@ -19,6 +19,10 @@ public class BirdCableMovement : MonoBehaviour
     [Header("Variables")]
     public float forcePower = 20f;
     public float speed = 5f;
+
+    public float downSpeed = 5f;
+    public float downSpeedMin;
+    public float downSpeedMax = 10f;
     public float rotationSpeedAuto = 10f;
     public float rotationSpeed = 10f;
     public float maxYRot = 90;
@@ -46,6 +50,8 @@ public class BirdCableMovement : MonoBehaviour
     }
     private void Start()
     {
+
+        downSpeedMin = downSpeed;
         playerMoveScript = GetComponent<PlayerMove>();
         boxCollider = GetComponent<Collider>();
         rb = GetComponent<Rigidbody>();
@@ -87,6 +93,8 @@ public class BirdCableMovement : MonoBehaviour
     {
         if (!isClimbing) return;
 
+
+
         //W Up
         if (input.Climbing.verticalInput.ReadValue<Vector2>().y > 0)
         {
@@ -120,13 +128,14 @@ public class BirdCableMovement : MonoBehaviour
         //S Down
         if (input.Climbing.verticalInput.ReadValue<Vector2>().y < 0)
         {
+            
             if (currentCableSegment - 1 >= 0)
             {
                 // Get the direction from the bird's current position to the next cable point
                 Vector3 direction = cableplant.points[currentCableSegment - 1].position - transform.position;
                 direction.Normalize();
                 // Move the bird along the cable in the current segment's direction
-                transform.position += direction * speed * Time.deltaTime;
+                transform.position += direction * downSpeed * Time.deltaTime;
                 // Check if the bird has reached the current segment's end point
                 if (Vector3.Distance(transform.position, cableplant.points[currentCableSegment - 1].position) < 0.1f)
                 {
@@ -191,15 +200,17 @@ public class BirdCableMovement : MonoBehaviour
             ApplyFirstJumpForce();
         }
     }
-
-    //void ApplyFirstJumpForce()
-    //{
-    //    Vector3 cameraForward = cameraa.transform.forward;
-    //    Vector3 forceDirection = new Vector3(cameraForward.x, 0, cameraForward.z).normalized;
-    //    Vector3 force = forceDirection * forcePower;
-    //    rb.AddForce(force);
-    //}
-
+    public void ChangeSpeedDown(InputAction.CallbackContext input)
+    {
+        if (isClimbing && input.started)
+        {
+            downSpeed = downSpeedMax;
+        }
+        if (input.canceled)
+        {
+            downSpeed = downSpeedMin;
+        }
+    }
     void ApplyFirstJumpForce()
     {
         Vector3 objectForward = transform.right * -1;

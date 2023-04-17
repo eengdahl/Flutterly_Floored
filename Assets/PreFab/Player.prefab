@@ -384,6 +384,7 @@ MonoBehaviour:
   maxSpeed: 3
   airControl: 1.2
   turnSpeed: 10
+  groundMovement: 0
 --- !u!114 &2793752973741495336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,10 +505,13 @@ MonoBehaviour:
   cameraa: {fileID: 0}
   birdBody: {fileID: 3027560615582138115}
   jumpScript: {fileID: 2793752973741495335}
-  forcePower: 500000
+  forcePower: 10000
   speed: 2
+  downSpeed: 5
+  downSpeedMin: 0
+  downSpeedMax: 10
   rotationSpeedAuto: 10
-  rotationSpeed: 500
+  rotationSpeed: 250
   maxYRot: 90
   minYRot: -90
   isVertical: 0
