@@ -13,7 +13,6 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] private bool readyToJump;
     [SerializeField] private bool gliding;
     [SerializeField] private bool hasCanceledGlide;
-    [SerializeField] private bool coyoteTimeEnabled;
 
     public bool canGlide;
     public float glideTime;
@@ -39,14 +38,12 @@ public class PlayerJump : MonoBehaviour
     {
         //RayCasts grounded
         groundCheckDistance = gameObject.GetComponent<BoxCollider>().size.y / 2 + 0.1f;
-        Debug.DrawLine(transform.position + gameObject.GetComponent<BoxCollider>().center, transform.position + gameObject.GetComponent<BoxCollider>().center + new Vector3(0, -groundCheckDistance, 0), Color.red);
+        Debug.DrawLine(transform.position/* + gameObject.GetComponent<BoxCollider>().center*/, transform.position + gameObject.GetComponent<BoxCollider>().center + new Vector3(0, -groundCheckDistance, 0), Color.red);
         RaycastHit leftFoot;
         if (Physics.Raycast(transform.position + gameObject.GetComponent<BoxCollider>().center, -transform.up, out leftFoot, groundCheckDistance))
         {
             if (leftFoot.collider.tag == "Ground")
             {
-                coyoteTimeCounter = coyoteTime;
-                coyoteTimeEnabled = true;
                 isGrounded = true;
                 hasCanceledGlide = false;
                 readyToJump = true;
@@ -59,8 +56,16 @@ public class PlayerJump : MonoBehaviour
             {
                 canGlide = true;
             }
-            coyoteTimeCounter -= Time.deltaTime;
             isGrounded = false;
+        }
+
+        if (isGrounded)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
         }
 
         if (glideTime >= 1)
@@ -79,7 +84,7 @@ public class PlayerJump : MonoBehaviour
     public void ButtonInput(InputAction.CallbackContext input)
     {
         //Jump if you're on ground or during coyoteTime
-        if (input.started)
+        if (coyoteTimeCounter > 0f && input.started)
         {
             Jump();
         }
@@ -90,9 +95,9 @@ public class PlayerJump : MonoBehaviour
         }
 
         //Enables glide after jumping
-        if (input.canceled && !isGrounded && !hasCanceledGlide)
+        if (input.canceled && rb.velocity.y > 0f /*!isGrounded && !hasCanceledGlide*/)
         {
-            coyoteTimeCounter = -1;
+            coyoteTimeCounter = 0f;
         }
 
         //Gliding input events
@@ -110,21 +115,13 @@ public class PlayerJump : MonoBehaviour
         }
     }
 
-    //Function for jumping, adds force in upwards direction and boosts player in moving direction
+    //Function for jumping, adds force in upwards direction
     private void Jump()
     {
-        if (readyToJump && coyoteTimeCounter > 0.1f)
-        {
-            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        }
-        else if (readyToJump && isGrounded)
-        {
-            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        }
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+ 
         readyToJump = false;
-
     }
 
     private void ResetJump()
