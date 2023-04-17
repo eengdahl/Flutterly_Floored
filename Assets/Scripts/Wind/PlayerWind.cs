@@ -65,7 +65,7 @@ public class PlayerWind : MonoBehaviour
         switchControls.SwitchToFloor();
         flyScript.enabled = false;
         playerMoveScript.enabled = true;
-        windZone = null;
+        //windZone = null;
         inWindZone = false;
         rb.mass = oldMass;
         jumpScript.enabled = true;
