@@ -57,7 +57,23 @@ public class PlayerMove : MonoBehaviour
         mouseDelta = context.ReadValue<Vector2>();
         MovementCommunicator.instance.NotifyLookListeners(mouseDelta.x);
     }
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) && jump.isGrounded)
+        {
+            maxSpeed = 5;
+        }
 
+        if (!Input.GetKey(KeyCode.LeftShift) && jump.isGrounded)
+        {
+            maxSpeed = 3;
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftShift) && jump.isGrounded)
+        {
+            maxSpeed = 3;
+        }
+    }
 
     private void FixedUpdate()
     {
