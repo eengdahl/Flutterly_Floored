@@ -14,6 +14,7 @@ public class BirdCableMovement : MonoBehaviour
     [SerializeField] PlayerJump jumpScript;
     private InputAction.CallbackContext initialInput;
     Transform localTrans;
+    PlayerMove playerMoveScript;
 
     [Header("Variables")]
     public float forcePower = 20f;
@@ -45,6 +46,7 @@ public class BirdCableMovement : MonoBehaviour
     }
     private void Start()
     {
+        playerMoveScript = GetComponent<PlayerMove>();
         boxCollider = GetComponent<Collider>();
         rb = GetComponent<Rigidbody>();
         controllsSwitch = GetComponent<SwitchControls>();
@@ -105,7 +107,10 @@ public class BirdCableMovement : MonoBehaviour
                     // Rotate if necessary
                     Vector3 eulerAngles = cableplant.points[currentCableSegment].eulerAngles;
                     if (isVertical)
+                    {
+
                         eulerAngles.y += transform.eulerAngles.y;
+                    }
                     transform.eulerAngles = eulerAngles;
                     
                 }
@@ -132,7 +137,10 @@ public class BirdCableMovement : MonoBehaviour
                         // Rotate if necessary
                         Vector3 eulerAngles = cableplant.points[currentCableSegment].eulerAngles;
                         if (isVertical)
+                        {
+
                             eulerAngles.y += transform.eulerAngles.y;
+                        }
                         transform.eulerAngles = eulerAngles;
                     }
 
@@ -143,6 +151,7 @@ public class BirdCableMovement : MonoBehaviour
     public void EnableClimbing()
     {
         // Disable regular movement controls
+        ToggleMovement();
         rb.isKinematic = true;
         isClimbing = true;
         rb.useGravity = false;
@@ -160,18 +169,19 @@ public class BirdCableMovement : MonoBehaviour
 
     public void DisableClimbing()
     {
+        Invoke("ToggleMovement", 0.4f);
         // Enable regular movement controls
         controllsSwitch.SwitchToFloor();
         rb.isKinematic = false;
         isClimbing = false;
         rb.useGravity = true;
         Invoke("ActivateCollider", 0.2f);
-        currentCableSegment = 0;       
+        currentCableSegment = 0;
         birdBody.transform.localPosition = Vector3.zero;
         birdBody.transform.localEulerAngles = Vector3.zero;
         //animator.SetBool("IsClimbing", false);
-        SetReadyToClimb();
-        //Invoke("SetReadyToClimb", 0.2f);
+        //SetReadyToClimb();
+        Invoke("SetReadyToClimb", 0.3f);
     }
     public void JumpOff(InputAction.CallbackContext input)
     {
@@ -182,14 +192,21 @@ public class BirdCableMovement : MonoBehaviour
         }
     }
 
+    //void ApplyFirstJumpForce()
+    //{
+    //    Vector3 cameraForward = cameraa.transform.forward;
+    //    Vector3 forceDirection = new Vector3(cameraForward.x, 0, cameraForward.z).normalized;
+    //    Vector3 force = forceDirection * forcePower;
+    //    rb.AddForce(force);
+    //}
+
     void ApplyFirstJumpForce()
     {
-        Vector3 cameraForward = cameraa.transform.forward;
-        Vector3 forceDirection = new Vector3(cameraForward.x, 0, cameraForward.z).normalized;
+        Vector3 objectForward = transform.right * -1;
+        Vector3 forceDirection = new Vector3(objectForward.x, 0, objectForward.z).normalized;
         Vector3 force = forceDirection * forcePower;
         rb.AddForce(force);
     }
-
     void ActivateCollider()
     {
         boxCollider.enabled = true;
@@ -198,5 +215,8 @@ public class BirdCableMovement : MonoBehaviour
     {
         readyToClimb = true;
     }
-
+    public void ToggleMovement()
+    {
+        playerMoveScript.groundMovement = !playerMoveScript.groundMovement;
+    }
 }

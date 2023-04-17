@@ -19,7 +19,7 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
         respawnTransform = startRespawnPoint;
         rb = GetComponent<Rigidbody>();
         //respawnPoint = startRespawnPoint.position;
-
+        
     }
 
     public void NewCheckpoint(Transform newRespawnPoint) 
