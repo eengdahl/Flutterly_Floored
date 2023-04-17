@@ -22,11 +22,24 @@ public class Buoyancy : MonoBehaviour
     public float airDeceleration;
     public bool isBelowSurface;
     public float surfaceOffset;
+    public float resetTime;
+    public float resetSpeed;
+
+    private bool isResettingPosition;
+    private Vector3 startVector;
+    private Vector3[] startPosition;
+    private Vector3 moveFrom;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         water = GameObject.FindGameObjectWithTag("Water");
+        startPosition = new Vector3[floatingPoints.Length];
+        startVector = transform.position;
+        for(int i = 0; i < floatingPoints.Length; i++)
+        {
+            startPosition[i] = floatingPoints[i].transform.position;
+        }
     }
 
     // Update is called once per frame
@@ -46,7 +59,7 @@ public class Buoyancy : MonoBehaviour
                     isBelowSurface = true;
                     decelerationVector = rb.velocity * waterDeceleration;
                 }
-                else if(pointsUnderwater == 0)
+                else if (pointsUnderwater == 0)
                 {
                     isBelowSurface = false;
                     decelerationVector = rb.velocity * airDeceleration;
@@ -60,8 +73,16 @@ public class Buoyancy : MonoBehaviour
                 //decelerationVector = rb.velocity * airDeceleration;
                 //rb.AddForceAtPosition(Vector3.down * Mathf.Abs(depth) - decelerationVector, transform.position, ForceMode.Force);
             }
+        }
 
-           
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+                TriggerReset();
+        }
+
+        if (isResettingPosition)
+        {
+            ResetPosition();
         }
     }
 
@@ -69,6 +90,27 @@ public class Buoyancy : MonoBehaviour
     {
         //depth = floater.position.y - water.GetComponent<Water>().GetHeigthAtPosition(floater.position);
         depth = floater.position.y - water.GetComponent<Water>().GetSimpleWaterHeight();
+    }
+
+    private void TriggerReset()
+    {
+        moveFrom = transform.position;
+        isResettingPosition = true;
+
+        water.GetComponent<Water>().isResetting = true;
+    }
+
+    private void ResetPosition()
+    {
+        Debug.Log((startVector - transform.position).magnitude);
+        if ((startVector - transform.position).magnitude > 0.1f)
+        {
+            Debug.Log("Running");
+            float tick = resetSpeed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, transform.position.y,transform.position.z), new Vector3(startVector.x, transform.position.y, startVector.z), resetSpeed/1000);
+        }
+        else
+            isResettingPosition = false;
     }
 
    
