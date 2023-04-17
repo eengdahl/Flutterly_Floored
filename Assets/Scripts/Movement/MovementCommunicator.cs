@@ -29,6 +29,11 @@ public interface IStoveOnListener : ICommunicatorListener<bool>
 
 }
 
+public interface IPlayerDeath : ICommunicatorListener<bool>
+{
+
+}
+
 #endregion
 
 
@@ -40,7 +45,7 @@ public class MovementCommunicator : MonoBehaviour
     private List<IMoveSpeedListener> moveSpeedListeners;
     private List<ILookChangeListener> lookListeners;
     private List<IStoveOnListener> stoveListener;
-
+    private List<IPlayerDeath> playerDeathListeners;
 
 
     private void Awake()
@@ -50,6 +55,7 @@ public class MovementCommunicator : MonoBehaviour
         moveSpeedListeners = new List<IMoveSpeedListener>();
         lookListeners = new List<ILookChangeListener>();
         stoveListener = new List<IStoveOnListener>();
+        playerDeathListeners = new List<IPlayerDeath>();
     }
 
     //Adding and removing listeners
@@ -94,6 +100,16 @@ public class MovementCommunicator : MonoBehaviour
     {
         stoveListener.Remove(listener);
     }
+
+    public void AddPlayerDeathListeners(IPlayerDeath listener)
+    {
+        playerDeathListeners.Add(listener);
+    }
+
+    public void RemovePlayerDeathListeners(IPlayerDeath listener)
+    {
+        playerDeathListeners.Remove(listener);
+    }
     #endregion
 
 
@@ -129,6 +145,14 @@ public class MovementCommunicator : MonoBehaviour
         foreach (var listener in stoveListener)
         {
             listener.OnValueChanged(isOn);
+        }
+    }
+
+    public void NotifyDeathListeners(bool hasDied)
+    {
+        foreach (var listener in playerDeathListeners)
+        {
+            listener.OnValueChanged(hasDied);
         }
     }
 }

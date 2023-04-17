@@ -339,6 +339,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: cb48faec-491b-4923-80c9-b8ba0bc5664c
     m_ActionName: Floor/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7d3ceaf7-15bb-470b-a297-81117d6cec16
+    m_ActionName: Climbing/GlideDown[/Keyboard/leftShift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Floor
@@ -384,6 +388,7 @@ MonoBehaviour:
   maxSpeed: 3
   airControl: 1.2
   turnSpeed: 10
+  groundMovement: 0
 --- !u!114 &2793752973741495336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,10 +509,13 @@ MonoBehaviour:
   cameraa: {fileID: 0}
   birdBody: {fileID: 3027560615582138115}
   jumpScript: {fileID: 2793752973741495335}
-  forcePower: 500000
+  forcePower: 10000
   speed: 2
+  downSpeed: 5
+  downSpeedMin: 0
+  downSpeedMax: 10
   rotationSpeedAuto: 10
-  rotationSpeed: 500
+  rotationSpeed: 250
   maxYRot: 90
   minYRot: -90
   isVertical: 0

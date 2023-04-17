@@ -438,6 +438,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GlideDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""7d3ceaf7-15bb-470b-a297-81117d6cec16"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -506,6 +515,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2621f900-4624-4dd3-9809-db195ba50aa0"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GlideDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -529,6 +549,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Climbing = asset.FindActionMap("Climbing", throwIfNotFound: true);
         m_Climbing_verticalInput = m_Climbing.FindAction("verticalInput", throwIfNotFound: true);
         m_Climbing_Jump = m_Climbing.FindAction("Jump", throwIfNotFound: true);
+        m_Climbing_GlideDown = m_Climbing.FindAction("GlideDown", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -740,12 +761,14 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IClimbingActions> m_ClimbingActionsCallbackInterfaces = new List<IClimbingActions>();
     private readonly InputAction m_Climbing_verticalInput;
     private readonly InputAction m_Climbing_Jump;
+    private readonly InputAction m_Climbing_GlideDown;
     public struct ClimbingActions
     {
         private @PlayerControls m_Wrapper;
         public ClimbingActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @verticalInput => m_Wrapper.m_Climbing_verticalInput;
         public InputAction @Jump => m_Wrapper.m_Climbing_Jump;
+        public InputAction @GlideDown => m_Wrapper.m_Climbing_GlideDown;
         public InputActionMap Get() { return m_Wrapper.m_Climbing; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -761,6 +784,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @GlideDown.started += instance.OnGlideDown;
+            @GlideDown.performed += instance.OnGlideDown;
+            @GlideDown.canceled += instance.OnGlideDown;
         }
 
         private void UnregisterCallbacks(IClimbingActions instance)
@@ -771,6 +797,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @GlideDown.started -= instance.OnGlideDown;
+            @GlideDown.performed -= instance.OnGlideDown;
+            @GlideDown.canceled -= instance.OnGlideDown;
         }
 
         public void RemoveCallbacks(IClimbingActions instance)
@@ -807,5 +836,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         void OnVerticalInput(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnGlideDown(InputAction.CallbackContext context);
     }
 }

@@ -35,10 +35,12 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
         this.transform.rotation = respawnTransform.rotation;
         this.transform.position = respawnTransform.position;
         Invoke("ResetRB", 0.5f);
+        MovementCommunicator.instance.NotifyDeathListeners(true);
     }
     void ResetRB()
     {
         birdBody.transform.rotation = this.transform.rotation;
         rb.isKinematic = false;
+
     }
 }
