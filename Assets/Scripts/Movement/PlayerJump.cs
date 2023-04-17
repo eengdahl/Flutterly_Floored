@@ -40,7 +40,6 @@ public class PlayerJump : MonoBehaviour
 
     void Update()
     {
-        //raycastOffset = new Vector3(gameObject.GetComponent<BoxCollider>().size.x, 0, gameObject.GetComponent<BoxCollider>().size.z);
         //RayCasts grounded
         groundCheckDistance = 0.1f;
         Debug.DrawLine(leftFoot.transform.position, leftFoot.transform.position + new Vector3(0, -groundCheckDistance, 0), Color.red);
@@ -89,6 +88,15 @@ public class PlayerJump : MonoBehaviour
         {
             CancelGlide();
         }
+
+        if (Input.GetKey(KeyCode.Space) && canGlide && rb.velocity.y < 0)
+        {
+            if (!gliding)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+            }
+            gliding = true;
+        }
     }
 
     void FixedUpdate()
@@ -120,11 +128,8 @@ public class PlayerJump : MonoBehaviour
         //Gliding input events
 
         //Gliding starts if pressing space in air
-        if (input.started && !isGrounded && canGlide)
-        {
-            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-            gliding = true;
-        }
+
+
         //Cancels when you stop pressing space
         if (input.canceled && !isGrounded && gliding)
         {
