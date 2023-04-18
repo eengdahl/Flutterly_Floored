@@ -23,12 +23,15 @@ public class PlayerMove : MonoBehaviour
 
     PlayerWind playerWindScrips;
 
+    public bool groundMovement;
+
     //public Transform MainCamera;
 
     private PlayerJump jump;
 
     private void Awake()
     {
+        groundMovement = true;
         mainCamera = Camera.main;
         playerWindScrips = GetComponent<PlayerWind>();
         playerControls = new PlayerControls();
@@ -54,11 +57,27 @@ public class PlayerMove : MonoBehaviour
         mouseDelta = context.ReadValue<Vector2>();
         MovementCommunicator.instance.NotifyLookListeners(mouseDelta.x);
     }
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) && jump.isGrounded)
+        {
+            maxSpeed = 5;
+        }
 
+        if (!Input.GetKey(KeyCode.LeftShift) && jump.isGrounded)
+        {
+            maxSpeed = 3;
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftShift) && jump.isGrounded)
+        {
+            maxSpeed = 3;
+        }
+    }
 
     private void FixedUpdate()
     {
-
+        if (!groundMovement) return;
         SpeedControl();
         normalizedVel = rb.velocity;
         normalizedVel.y = 0;
@@ -132,4 +151,6 @@ public class PlayerMove : MonoBehaviour
         // determine the direction the player will face based on input and the referenceTransform's right and forward directions
         targetDirection = inputsXZ.x * right + inputsXZ.z * forward;
     }
+
+
 }

@@ -20,6 +20,10 @@ public class PlayerJump : MonoBehaviour
     public float coyoteTimeCounter;
     private float fallSpeed;
     private float groundCheckDistance;
+    private GameObject leftFoot;
+    private GameObject rightFoot;
+    RaycastHit leftFootHit;
+    RaycastHit rightFootHit;
 
     PlayerWind playerWindsScript;
 
@@ -30,34 +34,14 @@ public class PlayerJump : MonoBehaviour
 
     void Awake()
     {
+        leftFoot = GameObject.Find("LeftFootTransform");
+        rightFoot = GameObject.Find("RightFootTransform");
         playerWindsScript = GetComponent<PlayerWind>();
         rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
-        //RayCasts grounded
-        groundCheckDistance = gameObject.GetComponent<BoxCollider>().size.y / 2 + 0.1f;
-        Debug.DrawLine(transform.position/* + gameObject.GetComponent<BoxCollider>().center*/, transform.position + gameObject.GetComponent<BoxCollider>().center + new Vector3(0, -groundCheckDistance, 0), Color.red);
-        RaycastHit leftFoot;
-        if (Physics.Raycast(transform.position + gameObject.GetComponent<BoxCollider>().center, -transform.up, out leftFoot, groundCheckDistance))
-        {
-            if (leftFoot.collider.tag == "Ground")
-            {
-                isGrounded = true;
-                hasCanceledGlide = false;
-                readyToJump = true;
-                canGlide = false;
-            }
-        }
-        else
-        {
-            if(!hasCanceledGlide && coyoteTimeCounter < 0)
-            {
-                canGlide = true;
-            }
-            isGrounded = false;
-        }
 
         if (isGrounded)
         {
@@ -72,10 +56,62 @@ public class PlayerJump : MonoBehaviour
         {
             CancelGlide();
         }
+
+        if (Input.GetKey(KeyCode.Space) && canGlide && rb.velocity.y < 0)
+        {
+            if (!gliding)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+            }
+            gliding = true;
+        }
     }
 
     void FixedUpdate()
     {
+        //RayCasts grounded
+        groundCheckDistance = 0.1f;
+        Debug.DrawLine(leftFoot.transform.position, leftFoot.transform.position + new Vector3(0, -groundCheckDistance, 0), Color.red);
+        Debug.DrawLine(rightFoot.transform.position, rightFoot.transform.position + new Vector3(0, -groundCheckDistance, 0), Color.blue);
+
+        if (Physics.Raycast(leftFoot.transform.position, -leftFoot.transform.up, out leftFootHit, groundCheckDistance) || Physics.Raycast(rightFoot.transform.position, -rightFoot.transform.up, out rightFootHit, groundCheckDistance))
+        {
+            if (leftFootHit.collider.CompareTag("Ground"))
+            {
+                isGrounded = true;
+                hasCanceledGlide = false;
+                readyToJump = true;
+                canGlide = false;
+                return;
+            }
+            else if (rightFootHit.collider.CompareTag("Ground"))
+            {
+                isGrounded = true;
+                hasCanceledGlide = false;
+                readyToJump = true;
+                canGlide = false;
+                return;
+            }
+        }
+        //if (Physics.Raycast(rightFoot.transform.position, -rightFoot.transform.up, out rightFootHit, groundCheckDistance))
+        //{
+        //    if (rightFootHit.collider.tag == "Ground")
+        //    {
+        //        isGrounded = true;
+        //        hasCanceledGlide = false;
+        //        readyToJump = true;
+        //        canGlide = false;
+        //    }
+        //}
+        else
+        {
+            if (!hasCanceledGlide && coyoteTimeCounter < 0)
+            {
+                canGlide = true;
+            }
+            isGrounded = false;
+        }
+
         if (gliding)
             Glide();
     }
@@ -103,13 +139,10 @@ public class PlayerJump : MonoBehaviour
         //Gliding input events
 
         //Gliding starts if pressing space in air
-        if (input.started && !isGrounded && canGlide)
-        {
-            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-            gliding = true;
-        }
+
+
         //Cancels when you stop pressing space
-        if (input.canceled && !isGrounded && gliding)
+        if (input.canceled && gliding)
         {
             CancelGlide();
         }
@@ -133,7 +166,7 @@ public class PlayerJump : MonoBehaviour
     {
         if (!playerWindsScript.inWindZone)
         {
-
+            gameObject.transform.GetChild(0).gameObject.SetActive(true);
             glideTime += Time.deltaTime;
             rb.AddForce(transform.up * glideForce, ForceMode.Acceleration);
         }
@@ -147,6 +180,7 @@ public class PlayerJump : MonoBehaviour
     {
         if (!playerWindsScript.inWindZone)
         {
+            gameObject.transform.GetChild(0).gameObject.SetActive(false);
             gliding = false;
             glideTime = 0f;
             hasCanceledGlide = true;

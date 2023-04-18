@@ -10,9 +10,11 @@ public class StoveComponents : MonoBehaviour
     public Material nodeOff;
     //[SerializeField] private float delayT = 0.1f;
     [SerializeField] private List<GameObject> allNodes;
+    AudioSource aS;
 
     private void Start()
     {
+        aS = GetComponent<AudioSource>();
         foreach (GameObject node in allNodes)
             StartCoroutine(ToggleOn(node.GetComponent<StoveNode>(), 0));
     }
@@ -48,6 +50,22 @@ public class StoveComponents : MonoBehaviour
             StartCoroutine(ToggleOn(node.GetComponent<StoveNode>(), 0));
 
         //GetComponent<StoveNode>().SetAllActive();
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            aS.Play();
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            aS.Stop();
+        }
     }
 
     //public IEnumerator checkWin(float delayTime)

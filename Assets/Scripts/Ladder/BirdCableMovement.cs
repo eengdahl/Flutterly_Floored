@@ -14,10 +14,15 @@ public class BirdCableMovement : MonoBehaviour
     [SerializeField] PlayerJump jumpScript;
     private InputAction.CallbackContext initialInput;
     Transform localTrans;
+    PlayerMove playerMoveScript;
 
     [Header("Variables")]
     public float forcePower = 20f;
     public float speed = 5f;
+
+    public float downSpeed = 5f;
+    public float downSpeedMin;
+    public float downSpeedMax = 10f;
     public float rotationSpeedAuto = 10f;
     public float rotationSpeed = 10f;
     public float maxYRot = 90;
@@ -45,6 +50,9 @@ public class BirdCableMovement : MonoBehaviour
     }
     private void Start()
     {
+
+        downSpeedMin = downSpeed;
+        playerMoveScript = GetComponent<PlayerMove>();
         boxCollider = GetComponent<Collider>();
         rb = GetComponent<Rigidbody>();
         controllsSwitch = GetComponent<SwitchControls>();
@@ -68,22 +76,39 @@ public class BirdCableMovement : MonoBehaviour
         //LimitRotation();
 
     }
+    //void LimitRotation()
+    //{
+    //    Vector3 playerEulerAngles = localTrans.rotation.eulerAngles;
+    //    if (playerEulerAngles.y > 180)//playerEulerAngles.y = (playerEulerAngles.y > 180) ? playerEulerAngles.y - 360 : playerEulerAngles.y; 
+    //    {
+    //        //Maybe change the 180 value if wanting to rotate in the "bad" direction
+    //        playerEulerAngles.y -= 360;
+    //    }
+    //    playerEulerAngles.y = Mathf.Clamp(playerEulerAngles.y, minYRot, maxYRot);
+    //    localTrans.rotation = Quaternion.Euler(playerEulerAngles);
+    //}
     void LimitRotation()
     {
         Vector3 playerEulerAngles = localTrans.rotation.eulerAngles;
-        if (playerEulerAngles.y > 180)//playerEulerAngles.y = (playerEulerAngles.y > 180) ? playerEulerAngles.y - 360 : playerEulerAngles.y; 
+        if (playerEulerAngles.y > -180)
         {
-            //Maybe change the 180 value if wanting to rotate in the "bad" direction
             playerEulerAngles.y -= 360;
         }
-        playerEulerAngles.y = Mathf.Clamp(playerEulerAngles.y, minYRot, maxYRot);
+        playerEulerAngles.y = Clamp(playerEulerAngles.y, minYRot, maxYRot);
         localTrans.rotation = Quaternion.Euler(playerEulerAngles);
+    }
+
+    float Clamp(float value, float min, float max)
+    {
+        return Mathf.Clamp(value, min, max);
     }
 
 
     private void FixedUpdate()
     {
         if (!isClimbing) return;
+
+
 
         //W Up
         if (input.Climbing.verticalInput.ReadValue<Vector2>().y > 0)
@@ -105,7 +130,10 @@ public class BirdCableMovement : MonoBehaviour
                     // Rotate if necessary
                     Vector3 eulerAngles = cableplant.points[currentCableSegment].eulerAngles;
                     if (isVertical)
+                    {
+
                         eulerAngles.y += transform.eulerAngles.y;
+                    }
                     transform.eulerAngles = eulerAngles;
                     
                 }
@@ -115,13 +143,14 @@ public class BirdCableMovement : MonoBehaviour
         //S Down
         if (input.Climbing.verticalInput.ReadValue<Vector2>().y < 0)
         {
+            
             if (currentCableSegment - 1 >= 0)
             {
                 // Get the direction from the bird's current position to the next cable point
                 Vector3 direction = cableplant.points[currentCableSegment - 1].position - transform.position;
                 direction.Normalize();
                 // Move the bird along the cable in the current segment's direction
-                transform.position += direction * speed * Time.deltaTime;
+                transform.position += direction * downSpeed * Time.deltaTime;
                 // Check if the bird has reached the current segment's end point
                 if (Vector3.Distance(transform.position, cableplant.points[currentCableSegment - 1].position) < 0.1f)
                 {
@@ -132,7 +161,10 @@ public class BirdCableMovement : MonoBehaviour
                         // Rotate if necessary
                         Vector3 eulerAngles = cableplant.points[currentCableSegment].eulerAngles;
                         if (isVertical)
+                        {
+
                             eulerAngles.y += transform.eulerAngles.y;
+                        }
                         transform.eulerAngles = eulerAngles;
                     }
 
@@ -143,6 +175,7 @@ public class BirdCableMovement : MonoBehaviour
     public void EnableClimbing()
     {
         // Disable regular movement controls
+        ToggleMovement();
         rb.isKinematic = true;
         isClimbing = true;
         rb.useGravity = false;
@@ -160,18 +193,19 @@ public class BirdCableMovement : MonoBehaviour
 
     public void DisableClimbing()
     {
+        Invoke("ToggleMovement", 0.4f);
         // Enable regular movement controls
         controllsSwitch.SwitchToFloor();
         rb.isKinematic = false;
         isClimbing = false;
         rb.useGravity = true;
         Invoke("ActivateCollider", 0.2f);
-        currentCableSegment = 0;       
+        currentCableSegment = 0;
         birdBody.transform.localPosition = Vector3.zero;
         birdBody.transform.localEulerAngles = Vector3.zero;
         //animator.SetBool("IsClimbing", false);
-        SetReadyToClimb();
-        //Invoke("SetReadyToClimb", 0.2f);
+        //SetReadyToClimb();
+        Invoke("SetReadyToClimb", 0.3f);
     }
     public void JumpOff(InputAction.CallbackContext input)
     {
@@ -181,15 +215,24 @@ public class BirdCableMovement : MonoBehaviour
             ApplyFirstJumpForce();
         }
     }
-
+    public void ChangeSpeedDown(InputAction.CallbackContext input)
+    {
+        if (isClimbing && input.started)
+        {
+            downSpeed = downSpeedMax;
+        }
+        if (input.canceled)
+        {
+            downSpeed = downSpeedMin;
+        }
+    }
     void ApplyFirstJumpForce()
     {
-        Vector3 cameraForward = cameraa.transform.forward;
-        Vector3 forceDirection = new Vector3(cameraForward.x, 0, cameraForward.z).normalized;
+        Vector3 objectForward = transform.right * -1;
+        Vector3 forceDirection = new Vector3(objectForward.x, 0, objectForward.z).normalized;
         Vector3 force = forceDirection * forcePower;
         rb.AddForce(force);
     }
-
     void ActivateCollider()
     {
         boxCollider.enabled = true;
@@ -198,5 +241,8 @@ public class BirdCableMovement : MonoBehaviour
     {
         readyToClimb = true;
     }
-
+    public void ToggleMovement()
+    {
+        playerMoveScript.groundMovement = !playerMoveScript.groundMovement;
+    }
 }
