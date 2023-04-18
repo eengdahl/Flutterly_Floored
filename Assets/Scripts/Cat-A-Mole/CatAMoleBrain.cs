@@ -30,18 +30,18 @@ public class CatAMoleBrain : MonoBehaviour
 
     IEnumerator IdleState()
     {
-        Debug.Log("Idle: Enter");
+        //Debug.Log("Idle: Enter");
         while (moleState == MoleStates.Idle)
         {
             yield return 0;
         }
-        Debug.Log("Idle: Exit");
+        //Debug.Log("Idle: Exit");
         NextState();
     }
 
     IEnumerator ChargeState()
     {
-        Debug.Log("Charge: Enter");
+        //Debug.Log("Charge: Enter");
         while (moleState == MoleStates.Charge)
         {
             catTimerDone = Random.Range(1, 4);
@@ -51,13 +51,13 @@ public class CatAMoleBrain : MonoBehaviour
 
             yield return 0;
         }
-        Debug.Log("Charge: Exit");
+        //Debug.Log("Charge: Exit");
         NextState();
     }
 
     IEnumerator AttackState()
     {
-        Debug.Log("Attack: Enter");
+        //Debug.Log("Attack: Enter");
         while (moleState == MoleStates.Attack)
         {
             if (!hitting) hitting = true;
@@ -68,29 +68,29 @@ public class CatAMoleBrain : MonoBehaviour
             NextState();
             yield return 0;
         }
-        Debug.Log("Attack: Exit");
+        //Debug.Log("Attack: Exit");
     }
 
     IEnumerator HitBirdState()
     {
-        Debug.Log("HitBird: Enter");
+        //Debug.Log("HitBird: Enter");
         while (moleState == MoleStates.HitBird)
         {
             yield return 0;
         }
         NextState();
-        Debug.Log("HitBird: Exit");
+        //Debug.Log("HitBird: Exit");
     }
 
     IEnumerator WaterHitState()
     {
-        Debug.Log("WaterHit: Enter");
+        //Debug.Log("WaterHit: Enter");
         while (moleState == MoleStates.WaterHit)
         {
             yield return 0;
         }
         NextState();
-        Debug.Log("WaterHit: Exit");
+        //Debug.Log("WaterHit: Exit");
     }
 
 
