@@ -33,12 +33,14 @@ public class VitrinBrain : MonoBehaviour
     public bool isGazing;
 
     [SerializeField] ScreenShake screenShake;
+   public GameObject player;
 
 
 
 
     void Awake()
     {
+       
         speed = 5f;
         audioManager = FindObjectOfType<AudioManager>();
         aS = GetComponent<AudioSource>();
@@ -124,7 +126,16 @@ public class VitrinBrain : MonoBehaviour
         while (vitrinState == VitrinStates.Gaze)
         {
             isGazing = true;
+            Vector3 tester = transform.position;
+            Vector3 saver = tester;
+            tester.y = tester.y - 2;
+            this.gameObject.transform.position = tester;
+            this.gameObject.transform.LookAt(player.transform);
+
+            
             yield return new WaitForSeconds(1);
+            this.gameObject.transform.position = saver;
+            this.gameObject.transform.LookAt(waypoints[index].transform);
             isGazing = false;
             vitrinState = VitrinStates.Patrol;
             yield return 0;
