@@ -28,7 +28,6 @@ public class HideNSeekBottles : MonoBehaviour
         if (other.tag == "Player" && buttonReady)
         {
             Debug.Log("sprutsprut");
-            aS.Play();
             ButtonPush();
         }
     }
@@ -44,7 +43,7 @@ public class HideNSeekBottles : MonoBehaviour
     public void ButtonPush()
     {
         //catlives reduce if cat is in range and not defeated
-        if (catInRange || leftBottle.GetComponent<HideNSeekBottles>().catLives > 0 || rightBottle.GetComponent<HideNSeekBottles>().catLives > 0)
+        if (catInRange || leftBottle.GetComponent<HideNSeekBottles>().catLives > 1 || rightBottle.GetComponent<HideNSeekBottles>().catLives > 1)
         {
             if (gameObject == leftBottle)
             {
@@ -55,6 +54,7 @@ public class HideNSeekBottles : MonoBehaviour
                 catLives = leftBottle.GetComponent<HideNSeekBottles>().catLives;
             }
             catLives--;
+            aS.Play();
             Debug.Log(catLives);
             if (catLives <= 0)
             {
