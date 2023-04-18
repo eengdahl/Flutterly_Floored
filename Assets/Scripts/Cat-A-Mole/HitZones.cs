@@ -159,7 +159,7 @@ public class HitZones : MonoBehaviour
                 distanceClosestPosition = tmpDistance;
             }     
         }
-        Debug.Log(closestHitzone.name);
+        //Debug.Log(closestHitzone.name);
 
     }
 

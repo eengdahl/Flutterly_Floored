@@ -84,7 +84,7 @@ public class PlayerJump : MonoBehaviour
                 canGlide = false;
                 return;
             }
-            else if (rightFootHit.collider.CompareTag("Ground"))
+            if (rightFootHit.collider.CompareTag("Ground"))
             {
                 isGrounded = true;
                 hasCanceledGlide = false;

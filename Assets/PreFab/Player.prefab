@@ -114,8 +114,8 @@ GameObject:
   - component: {fileID: 1018667374}
   - component: {fileID: 1018667384}
   - component: {fileID: 1323621769}
-  - component: {fileID: 5716945778697264516}
   - component: {fileID: 753855069}
+  - component: {fileID: 1065998606086559126}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -481,19 +481,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd35010ad4fa6a4a94567722624a3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &5716945778697264516
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2793752973741495329}
-  m_Material: {fileID: 13400000, guid: d5a08fac969c97843a961f18252840b9, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.44934464, y: 0.852005, z: 0.5681534}
-  m_Center: {x: -0.01219368, y: 0.15496635, z: 0.18826866}
 --- !u!114 &753855069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -523,6 +510,20 @@ MonoBehaviour:
   currentCableSegment: 0
   readyToClimb: 0
   isClimbing: 0
+--- !u!136 &1065998606086559126
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793752973741495329}
+  m_Material: {fileID: 13400000, guid: d5a08fac969c97843a961f18252840b9, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.28682327
+  m_Height: 1.0527229
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.116395, z: 0.21317673}
 --- !u!1 &3835471768008943946
 GameObject:
   m_ObjectHideFlags: 0
