@@ -30,6 +30,7 @@ public class VitrinBrain : MonoBehaviour
     AudioSource aS;
     public AudioClip crash;
     public AudioClip catSound;
+    public bool isGazing;
 
 
 
@@ -120,7 +121,9 @@ public class VitrinBrain : MonoBehaviour
     {
         while (vitrinState == VitrinStates.Gaze)
         {
+            isGazing = true;
             yield return new WaitForSeconds(1);
+            isGazing = false;
             vitrinState = VitrinStates.Patrol;
             yield return 0;
         }

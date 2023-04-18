@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GazeOfDeath : MonoBehaviour
 {
+
+    public VitrinBrain brain;
     public GameObject visionCone;
     public float distance;
 
@@ -21,7 +23,7 @@ public class GazeOfDeath : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Player") && brain.isGazing)
         {
             RaycastHit hit;
             Physics.Raycast(visionCone.transform.position, other.transform.position - visionCone.transform.position, out hit,distance);
