@@ -142,7 +142,7 @@ public class PlayerJump : MonoBehaviour
 
 
         //Cancels when you stop pressing space
-        if (input.canceled && !isGrounded && gliding)
+        if (input.canceled && gliding)
         {
             CancelGlide();
         }
@@ -166,7 +166,7 @@ public class PlayerJump : MonoBehaviour
     {
         if (!playerWindsScript.inWindZone)
         {
-
+            gameObject.transform.GetChild(0).gameObject.SetActive(true);
             glideTime += Time.deltaTime;
             rb.AddForce(transform.up * glideForce, ForceMode.Acceleration);
         }
@@ -180,6 +180,7 @@ public class PlayerJump : MonoBehaviour
     {
         if (!playerWindsScript.inWindZone)
         {
+            gameObject.transform.GetChild(0).gameObject.SetActive(false);
             gliding = false;
             glideTime = 0f;
             hasCanceledGlide = true;
