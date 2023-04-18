@@ -9,6 +9,7 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
     [SerializeField] Transform startRespawnPoint;
     [SerializeField] GameObject birdBody;
     [SerializeField]BirdCableMovement birdCableMovement;
+    [SerializeField] CameraFade cameraFade;
 
 
     //public Vector3 checkPoint;
@@ -31,6 +32,8 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
 
     public void Die()
     {
+        Fade();
+        //Invoke("Fade", 1f);
         birdCableMovement.DisableClimbing();
         this.transform.rotation = respawnTransform.rotation;
         this.transform.position = respawnTransform.position;
@@ -41,6 +44,9 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
     {
         birdBody.transform.rotation = this.transform.rotation;
         rb.isKinematic = false;
-
+    }
+    void Fade()
+    {
+        cameraFade.Fade();
     }
 }
