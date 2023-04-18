@@ -76,16 +76,31 @@ public class BirdCableMovement : MonoBehaviour
         //LimitRotation();
 
     }
+    //void LimitRotation()
+    //{
+    //    Vector3 playerEulerAngles = localTrans.rotation.eulerAngles;
+    //    if (playerEulerAngles.y > 180)//playerEulerAngles.y = (playerEulerAngles.y > 180) ? playerEulerAngles.y - 360 : playerEulerAngles.y; 
+    //    {
+    //        //Maybe change the 180 value if wanting to rotate in the "bad" direction
+    //        playerEulerAngles.y -= 360;
+    //    }
+    //    playerEulerAngles.y = Mathf.Clamp(playerEulerAngles.y, minYRot, maxYRot);
+    //    localTrans.rotation = Quaternion.Euler(playerEulerAngles);
+    //}
     void LimitRotation()
     {
         Vector3 playerEulerAngles = localTrans.rotation.eulerAngles;
-        if (playerEulerAngles.y > 180)//playerEulerAngles.y = (playerEulerAngles.y > 180) ? playerEulerAngles.y - 360 : playerEulerAngles.y; 
+        if (playerEulerAngles.y > -180)
         {
-            //Maybe change the 180 value if wanting to rotate in the "bad" direction
             playerEulerAngles.y -= 360;
         }
-        playerEulerAngles.y = Mathf.Clamp(playerEulerAngles.y, minYRot, maxYRot);
+        playerEulerAngles.y = Clamp(playerEulerAngles.y, minYRot, maxYRot);
         localTrans.rotation = Quaternion.Euler(playerEulerAngles);
+    }
+
+    float Clamp(float value, float min, float max)
+    {
+        return Mathf.Clamp(value, min, max);
     }
 
 
