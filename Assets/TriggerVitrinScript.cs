@@ -12,6 +12,7 @@ public class TriggerVitrinScript : MonoBehaviour
     public AudioClip bossMusic;
     VitrinBrain catBrain;
     bool startLock = false;
+    [SerializeField] ScreenShake screenShake;
 
 
     // Start is called before the first frame update
@@ -39,10 +40,12 @@ public class TriggerVitrinScript : MonoBehaviour
         aS.clip = bossMusic;
         aS.Play();
         TriggerCat();
+        screenShake.shakeObjectFalls();
     }
 
     private void TriggerCat()
     {
+        catBrain.ShakeMovement();
         catBrain.vitrinState = VitrinStates.Patrol;
     }
 }

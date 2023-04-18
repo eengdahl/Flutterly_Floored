@@ -32,6 +32,8 @@ public class VitrinBrain : MonoBehaviour
     public AudioClip catSound;
     public bool isGazing;
 
+    [SerializeField] ScreenShake screenShake;
+
 
 
 
@@ -166,5 +168,13 @@ public class VitrinBrain : MonoBehaviour
                                 System.Reflection.BindingFlags.NonPublic |
                                 System.Reflection.BindingFlags.Instance);
         StartCoroutine((IEnumerator)info.Invoke(this, null));
+    }
+
+    public void ShakeMovement()
+    {
+        int randomTimer = Random.Range(1, 3);
+        Invoke("ShakeMovement", randomTimer);
+
+        screenShake.shakeCatMoves();
     }
 }
