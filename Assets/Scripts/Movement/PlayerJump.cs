@@ -76,7 +76,7 @@ public class PlayerJump : MonoBehaviour
 
         if (Physics.Raycast(leftFoot.transform.position, -leftFoot.transform.up, out leftFootHit, groundCheckDistance) || Physics.Raycast(rightFoot.transform.position, -rightFoot.transform.up, out rightFootHit, groundCheckDistance))
         {
-            if (leftFootHit.collider.CompareTag("Ground"))
+            if (leftFootHit.collider != null && leftFootHit.collider.CompareTag("Ground"))
             {
                 isGrounded = true;
                 hasCanceledGlide = false;
@@ -84,7 +84,7 @@ public class PlayerJump : MonoBehaviour
                 canGlide = false;
                 return;
             }
-            if (rightFootHit.collider.CompareTag("Ground"))
+            if (rightFootHit.collider != null && rightFootHit.collider.CompareTag("Ground"))
             {
                 isGrounded = true;
                 hasCanceledGlide = false;
