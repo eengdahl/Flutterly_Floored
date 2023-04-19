@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Fosset : MonoBehaviour
 {
     public GameObject water;
@@ -18,11 +19,18 @@ public class Fosset : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (gameObject.name == "OnButton" && other.gameObject.CompareTag("Player"))
         {
+            Debug.Log("WaterRise");
             water.GetComponent<Water>().isFossetOn = true;
-        }    
+        }
+
+        if (gameObject.name == "OffButton" && other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("WaterLower");
+            water.GetComponent<Water>().isResetting = true;
+        }
     }
 }
