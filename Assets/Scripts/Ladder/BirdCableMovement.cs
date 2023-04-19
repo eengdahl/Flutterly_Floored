@@ -199,8 +199,9 @@ public class BirdCableMovement : MonoBehaviour
         rb.isKinematic = false;
         isClimbing = false;
         rb.useGravity = true;
-        Invoke("ActivateCollider", 0.2f);
+        Invoke("ActivateCollider", 0.3f);
         currentCableSegment = 0;
+        //transform.localEulerAngles = Vector3.zero;
         birdBody.transform.localPosition = Vector3.zero;
         birdBody.transform.localEulerAngles = Vector3.zero;
         //animator.SetBool("IsClimbing", false);
@@ -228,10 +229,10 @@ public class BirdCableMovement : MonoBehaviour
     }
     void ApplyFirstJumpForce()
     {
-        Vector3 objectForward = transform.right * -1;
-        Vector3 forceDirection = new Vector3(objectForward.x, 0, objectForward.z).normalized;
+        Vector3 forceDirection = transform.right.normalized * -1;
         Vector3 force = forceDirection * forcePower;
         rb.AddForce(force);
+        transform.localEulerAngles = Vector3.zero;
     }
     void ActivateCollider()
     {
@@ -239,6 +240,7 @@ public class BirdCableMovement : MonoBehaviour
     }
     void SetReadyToClimb()
     {
+        //ActivateCollider();
         readyToClimb = true;
     }
     public void ToggleMovement()
