@@ -62,10 +62,10 @@ public class Jump : MonoBehaviour, IMoveSpeedListener
             isJumpPressed = false;
             timePressed = 0;
         }
-        else if(timeForChargedJump > timeForChargedJump)
-        {
+        //else if(timeForChargedJump > timeForChargedJump)
+        //{
             
-        }
+        //}
 
         if (isGrounded && !isJumping)
         {
