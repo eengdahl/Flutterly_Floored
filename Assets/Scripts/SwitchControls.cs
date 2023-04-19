@@ -34,9 +34,4 @@ public class SwitchControls : MonoBehaviour
         playerInput.actions.FindActionMap("WindZoneMovement").Disable();
         playerInput.actions.FindActionMap("Floor").Disable();
     }
-
-    public void SwitchToFlying()
-    {
-        playerInput.SwitchCurrentActionMap("Flying");
-    }
 }
