@@ -16,10 +16,11 @@ public class StoveComponents : MonoBehaviour
     {
         aS = GetComponent<AudioSource>();
         foreach (GameObject node in allNodes)
-            StartCoroutine(ToggleOn(node.GetComponent<StoveNode>(), 0));
+            StartCoroutine(InitateStove(node.GetComponent<StoveNode>(), 0));
     }
-    private void ChangeMaterial(MeshRenderer nodeMeshRenderer, Material newMaterial)
+    private IEnumerator ChangeMaterial(MeshRenderer nodeMeshRenderer, Material newMaterial, float delayTime)
     {
+        yield return new WaitForSeconds(delayTime);
         nodeMeshRenderer.material = newMaterial;
     }
 
@@ -39,9 +40,15 @@ public class StoveComponents : MonoBehaviour
 
         //Sets to active or inactive sprite (On/Off)
         if (node.litNode)
-            ChangeMaterial(node.GetComponent<MeshRenderer>(), nodeOn);
+        {
+            StartCoroutine(ChangeMaterial(node.GetComponent<MeshRenderer>(), nodeOn, 0));
+            StartCoroutine(ChangeMaterial(node.GetComponent<MeshRenderer>(), nodeOff, 5));
+        }
         else
-            ChangeMaterial(node.GetComponent<MeshRenderer>(), nodeOff);
+        {
+            StartCoroutine(ChangeMaterial(node.GetComponent<MeshRenderer>(), nodeOff, 0));
+            StartCoroutine(ChangeMaterial(node.GetComponent<MeshRenderer>(), nodeOn, 5));
+        }
     }
 
     public void ToggleAllNodes(List<GameObject> nodes)
@@ -65,6 +72,23 @@ public class StoveComponents : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             aS.Stop();
+        }
+    }
+
+        public IEnumerator InitateStove(StoveNode node, float delayTime)
+    {
+        //Add delay variable to delay toggles
+        yield return new WaitForSeconds(delayTime);
+        node.ToggleActive();
+
+        //Sets to active or inactive sprite (On/Off)
+        if (node.litNode)
+        {
+            StartCoroutine(ChangeMaterial(node.GetComponent<MeshRenderer>(), nodeOn, 0));
+        }
+        else
+        {
+            StartCoroutine(ChangeMaterial(node.GetComponent<MeshRenderer>(), nodeOff, 0));
         }
     }
 
