@@ -31,7 +31,7 @@ public class GazeOfDeath : MonoBehaviour
         {
             RaycastHit hit;
             Physics.Raycast(visionCone.transform.position, other.transform.position - visionCone.transform.position, out hit,distance, player);
-            Debug.Log(hit.collider.gameObject.name);
+            //Debug.Log(hit.collider.gameObject.name);
 
             if(hit.collider.gameObject.CompareTag("Player"))
             {

@@ -12,6 +12,8 @@ public class HideNSeekBottles : MonoBehaviour
     GameObject leftBottle;
     GameObject rightBottle;
     private Animator anim;
+    VitrinBrain vitrinBrain;
+    BoxCollider parentCollider;
 
     private void Start()
     {
@@ -20,7 +22,11 @@ public class HideNSeekBottles : MonoBehaviour
         rightBottle = GameObject.Find("PerfumeButtonRight");
         buttonReady = true;
         aS = GetComponent<AudioSource>();
+        vitrinBrain = FindAnyObjectByType<VitrinBrain>();
+        parentCollider = GetComponentInParent<BoxCollider>();
     }
+
+
 
 
     private void OnTriggerEnter(Collider other)
@@ -30,7 +36,11 @@ public class HideNSeekBottles : MonoBehaviour
             Debug.Log("sprutsprut");
             ButtonPush();
         }
+
+
     }
+
+
 
     private void OnTriggerExit(Collider other)
     {
@@ -47,11 +57,19 @@ public class HideNSeekBottles : MonoBehaviour
         {
             if (gameObject == leftBottle)
             {
-                catLives = rightBottle.GetComponent<HideNSeekBottles>().catLives;
+                if (catLives > rightBottle.GetComponent<HideNSeekBottles>().catLives)
+                {
+                    catLives = rightBottle.GetComponent<HideNSeekBottles>().catLives;
+
+                }
             }
             if (gameObject == rightBottle)
             {
-                catLives = leftBottle.GetComponent<HideNSeekBottles>().catLives;
+                if (catLives > leftBottle.GetComponent<HideNSeekBottles>().catLives)
+                {
+                    catLives = leftBottle.GetComponent<HideNSeekBottles>().catLives;
+
+                }
             }
             catLives--;
             aS.Play();
@@ -59,6 +77,7 @@ public class HideNSeekBottles : MonoBehaviour
             if (catLives <= 0)
             {
                 Debug.Log("CatIsDiededGGEZ");
+                vitrinBrain.vitrinState = VitrinStates.Exit;
             }
         }
         //button push
@@ -72,4 +91,8 @@ public class HideNSeekBottles : MonoBehaviour
         anim.CrossFade("PerfumeButtonInflate", 0, 0);
         buttonReady = true;
     }
+
+
+
+
 }
