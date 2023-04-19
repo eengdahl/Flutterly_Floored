@@ -18,15 +18,27 @@ public class StoveComponents : MonoBehaviour
         foreach (GameObject node in allNodes)
             StartCoroutine(InitateStove(node.GetComponent<StoveNode>(), 0));
     }
-    private IEnumerator ChangeMaterial(MeshRenderer nodeMeshRenderer, Material newMaterial, float delayTime)
+    //private IEnumerator ChangeMaterial(MeshRenderer nodeMeshRenderer, Material newMaterial, float delayTime)
+    //{
+    //    yield return new WaitForSeconds(delayTime);
+    //    nodeMeshRenderer.material = newMaterial;
+    //}
+
+    private IEnumerator TogglePS(ParticleSystem particleSystem, bool state, float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
-        nodeMeshRenderer.material = newMaterial;
+        if (state)
+        {
+            particleSystem.Play();
+        }
+        if (!state)
+        {
+            particleSystem.Stop();
+        }
     }
 
     public void ActivateNode(List<GameObject> nodes)
     {
-        Debug.Log(nodes);
         //Toggles clicked star and connected ones
         foreach (GameObject node in nodes)
             StartCoroutine(ToggleOn(node.GetComponent<StoveNode>(), 0));
@@ -36,19 +48,12 @@ public class StoveComponents : MonoBehaviour
     {
         //Add delay variable to delay toggles
         yield return new WaitForSeconds(delayTime);
+        //Sets particle system to enable or disable according to litNode state
         node.ToggleActive();
+        StartCoroutine(TogglePS(node.GetComponentInChildren<ParticleSystem>(), node.litNode, 0));
 
-        //Sets to active or inactive sprite (On/Off)
-        if (node.litNode)
-        {
-            StartCoroutine(ChangeMaterial(node.GetComponent<MeshRenderer>(), nodeOn, 0));
-            StartCoroutine(ChangeMaterial(node.GetComponent<MeshRenderer>(), nodeOff, 5));
-        }
-        else
-        {
-            StartCoroutine(ChangeMaterial(node.GetComponent<MeshRenderer>(), nodeOff, 0));
-            StartCoroutine(ChangeMaterial(node.GetComponent<MeshRenderer>(), nodeOn, 5));
-        }
+        node.ToggleActive();
+        StartCoroutine(TogglePS(node.GetComponentInChildren<ParticleSystem>(), node.litNode, 5));
     }
 
     public void ToggleAllNodes(List<GameObject> nodes)
@@ -79,17 +84,9 @@ public class StoveComponents : MonoBehaviour
     {
         //Add delay variable to delay toggles
         yield return new WaitForSeconds(delayTime);
-        node.ToggleActive();
+        //Sets particle system to active or inactive
+        StartCoroutine(TogglePS(node.GetComponentInChildren<ParticleSystem>(), node.litNode, 0));
 
-        //Sets to active or inactive sprite (On/Off)
-        if (node.litNode)
-        {
-            StartCoroutine(ChangeMaterial(node.GetComponent<MeshRenderer>(), nodeOn, 0));
-        }
-        else
-        {
-            StartCoroutine(ChangeMaterial(node.GetComponent<MeshRenderer>(), nodeOff, 0));
-        }
     }
 
     //public IEnumerator checkWin(float delayTime)
