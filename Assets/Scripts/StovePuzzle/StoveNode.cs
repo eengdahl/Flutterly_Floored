@@ -11,8 +11,13 @@ public class StoveNode : MonoBehaviour
     {
         fireDeathZone.SetActive(!fireDeathZone.activeSelf);
         litNode = !litNode;
+        Invoke("ResetState", 5);
     }
 
+    private void ResetState()
+    {
+        litNode = !litNode;
+    }
     public void SetAllActive()
     {
         litNode = true;
