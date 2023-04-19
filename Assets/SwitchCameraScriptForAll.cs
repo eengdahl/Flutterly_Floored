@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CupboardCameraScript : MonoBehaviour
+public class SwitchCameraScriptForAll : MonoBehaviour
 {
     [SerializeField] GameObject originalCamera;
     [SerializeField] GameObject cupboardCamera;
