@@ -31,12 +31,12 @@ public class Fan : MonoBehaviour
         if (on)
         {
             // Rotate the fan blade 
-            transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
+            wholeFanPart.transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
             //Rotate whole fan base
 
-            float deltaAngle = rotationSpeedBase * Time.deltaTime;
-            currentAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, deltaAngle);
-            wholeFanPart.transform.localRotation = Quaternion.Euler(0f, currentAngle, 0f);
+            //float deltaAngle = rotationSpeedBase * Time.deltaTime;
+            //currentAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, deltaAngle);
+            //wholeFanPart.transform.localRotation = Quaternion.Euler(0f, currentAngle, 0f);
 
             // Make fan base switch between the different angles when it reaches one of them
             //Mathf.Approximately is apparently a great tool to get if the two values are about the same, exactly the same can be hard sometimes
