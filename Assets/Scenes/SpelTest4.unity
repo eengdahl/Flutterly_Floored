@@ -311,7 +311,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8695146677205320106, guid: 87797732fca81b34eb980bd93b558386, type: 3}
       propertyPath: m_Name
-      value: DeathCube
+      value: DeathCubeCat
       objectReference: {fileID: 0}
     - target: {fileID: 8695146677205320112, guid: 87797732fca81b34eb980bd93b558386, type: 3}
       propertyPath: m_RootOrder
@@ -335,7 +335,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8695146677205320112, guid: 87797732fca81b34eb980bd93b558386, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 60.03
+      value: 59.03
       objectReference: {fileID: 0}
     - target: {fileID: 8695146677205320112, guid: 87797732fca81b34eb980bd93b558386, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2699,6 +2699,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 530649423}
   m_Mesh: {fileID: -1719261962324009891, guid: 7745cf2b020db61428712f9d29a1b7eb, type: 3}
+--- !u!1 &545478825 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8261287542353751898, guid: 345bb0d85ea0eaf4fab89066e88922ed, type: 3}
+  m_PrefabInstance: {fileID: 1264556147}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &554915119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3052,6 +3057,11 @@ MeshCollider:
 Transform:
   m_CorrespondingSourceObject: {fileID: 268192433935285275, guid: 2a228ac4b7531674b9fd4c4daf730292, type: 3}
   m_PrefabInstance: {fileID: 897097655}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &575482588 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8695146677205320106, guid: 87797732fca81b34eb980bd93b558386, type: 3}
+  m_PrefabInstance: {fileID: 100851480}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &592396611
 GameObject:
@@ -6867,7 +6877,7 @@ PrefabInstance:
     - target: {fileID: 268083777916580989, guid: e72c3c97ec6714741ad3f8da73c005b3, type: 3}
       propertyPath: cat
       value: 
-      objectReference: {fileID: 1296954116}
+      objectReference: {fileID: 140182118}
     - target: {fileID: 268083777916580989, guid: e72c3c97ec6714741ad3f8da73c005b3, type: 3}
       propertyPath: legs
       value: 
@@ -6875,7 +6885,7 @@ PrefabInstance:
     - target: {fileID: 268083777916580989, guid: e72c3c97ec6714741ad3f8da73c005b3, type: 3}
       propertyPath: hitSpots
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 545478825}
     - target: {fileID: 268083777916581251, guid: e72c3c97ec6714741ad3f8da73c005b3, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -7760,6 +7770,14 @@ PrefabInstance:
       propertyPath: cat
       value: 
       objectReference: {fileID: 140182118}
+    - target: {fileID: 8261287540805964908, guid: 345bb0d85ea0eaf4fab89066e88922ed, type: 3}
+      propertyPath: DeathBox
+      value: 
+      objectReference: {fileID: 575482588}
+    - target: {fileID: 8261287540805964908, guid: 345bb0d85ea0eaf4fab89066e88922ed, type: 3}
+      propertyPath: hitSpots
+      value: 
+      objectReference: {fileID: 545478825}
     - target: {fileID: 8261287541378835180, guid: 345bb0d85ea0eaf4fab89066e88922ed, type: 3}
       propertyPath: player
       value: 
