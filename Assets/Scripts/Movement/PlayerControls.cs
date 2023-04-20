@@ -528,6 +528,133 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Flying"",
+            ""id"": ""75eb74f8-a02b-40b5-b148-6676c2d4ea90"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Value"",
+                    ""id"": ""84e6e7cc-c73e-408f-90b5-3a152f1439f7"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""d8492fd0-d677-4ef5-8696-39359245505a"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""34d9736a-b152-4229-9698-87c59e4e5c30"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""472ad45d-4551-4d4f-9d4b-68541763c26c"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""b4462a37-b313-45d4-a8dd-d0104d0ef8a6"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""b9e88029-eb61-424a-ab8f-23a949dde7a2"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Arrow Keys"",
+                    ""id"": ""1155e0eb-cae3-488b-bc73-9870d8417d73"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""51b7bc0a-ecac-478e-86a4-3e4062c5e8e3"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""b4b93d91-f195-46a3-b3cb-36cc3f63b210"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""6ba22c94-9e7e-4c27-91a4-9ddaa4192d67"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""d2c52ff1-450c-479b-b09f-de0c03ae0a6b"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -550,6 +677,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Climbing_verticalInput = m_Climbing.FindAction("verticalInput", throwIfNotFound: true);
         m_Climbing_Jump = m_Climbing.FindAction("Jump", throwIfNotFound: true);
         m_Climbing_GlideDown = m_Climbing.FindAction("GlideDown", throwIfNotFound: true);
+        // Flying
+        m_Flying = asset.FindActionMap("Flying", throwIfNotFound: true);
+        m_Flying_Newaction = m_Flying.FindAction("New action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -817,6 +947,52 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public ClimbingActions @Climbing => new ClimbingActions(this);
+
+    // Flying
+    private readonly InputActionMap m_Flying;
+    private List<IFlyingActions> m_FlyingActionsCallbackInterfaces = new List<IFlyingActions>();
+    private readonly InputAction m_Flying_Newaction;
+    public struct FlyingActions
+    {
+        private @PlayerControls m_Wrapper;
+        public FlyingActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_Flying_Newaction;
+        public InputActionMap Get() { return m_Wrapper.m_Flying; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(FlyingActions set) { return set.Get(); }
+        public void AddCallbacks(IFlyingActions instance)
+        {
+            if (instance == null || m_Wrapper.m_FlyingActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_FlyingActionsCallbackInterfaces.Add(instance);
+            @Newaction.started += instance.OnNewaction;
+            @Newaction.performed += instance.OnNewaction;
+            @Newaction.canceled += instance.OnNewaction;
+        }
+
+        private void UnregisterCallbacks(IFlyingActions instance)
+        {
+            @Newaction.started -= instance.OnNewaction;
+            @Newaction.performed -= instance.OnNewaction;
+            @Newaction.canceled -= instance.OnNewaction;
+        }
+
+        public void RemoveCallbacks(IFlyingActions instance)
+        {
+            if (m_Wrapper.m_FlyingActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IFlyingActions instance)
+        {
+            foreach (var item in m_Wrapper.m_FlyingActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_FlyingActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public FlyingActions @Flying => new FlyingActions(this);
     public interface IFloorActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -837,5 +1013,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnVerticalInput(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnGlideDown(InputAction.CallbackContext context);
+    }
+    public interface IFlyingActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
     }
 }
