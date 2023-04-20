@@ -221,6 +221,7 @@ public class BirdCableMovement : MonoBehaviour
     }
     public void ChangeSpeedDown(InputAction.CallbackContext input)
     {
+        if (!isVertical) return;
         if (isClimbing && input.started)
         {
             downSpeed = downSpeedMax;
