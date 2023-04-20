@@ -97,7 +97,7 @@ public class Buoyancy : MonoBehaviour
         moveFrom = transform.position;
         isResettingPosition = true;
 
-        water.GetComponent<Water>().isResetting = true;
+        water.GetComponent<Water>().isDraining = true;
     }
 
     private void ResetPosition()

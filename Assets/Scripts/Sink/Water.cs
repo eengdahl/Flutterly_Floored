@@ -13,8 +13,8 @@ public class Water : MonoBehaviour
     public float waterFillSpeed;
 
 
-    public bool isFossetOn;
-    public bool isResetting;
+    public bool isFilling;
+    public bool isDraining;
 
     public GameObject maxWaterPoint;
    
@@ -32,25 +32,27 @@ public class Water : MonoBehaviour
 
     private void Update()
     {
-        if (isFossetOn && waterLevel < maxWaterLevel)
+        if (isFilling && waterLevel < maxWaterLevel)
         {
             FillWater();
+            isDraining = false;
         }
         else
-            isFossetOn = false;
+            isFilling = false;
 
-        if(isResetting && waterLevel > minWaterLevel)
+        if(isDraining && waterLevel > minWaterLevel)
         {
             DrainWater();
+            isFilling = false;
         }
         else
-            isResetting = false;
+            isDraining = false;
     }
 
 
     private void FillWater()
     {
-        if (isFossetOn && waterLevel < maxWaterLevel)
+        if (isFilling && waterLevel < maxWaterLevel && !isDraining)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y + waterFillSpeed * 0.005f, transform.position.z);
             waterLevel = transform.position.y;
