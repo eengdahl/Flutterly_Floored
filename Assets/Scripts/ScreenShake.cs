@@ -19,6 +19,6 @@ public class ScreenShake : MonoBehaviour
     }
     public void shakeCatMoves()
     {
-        impuls.GenerateImpulse(0.02f);
+        impuls.GenerateImpulse(0.01f);
     }
 }
