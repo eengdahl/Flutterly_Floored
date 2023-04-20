@@ -196,7 +196,7 @@ public class BirdCableMovement : MonoBehaviour
 
     public void DisableClimbing()
     {
-        Invoke("ToggleMovement", 0.4f);
+        //Invoke("ToggleMovement", 0.4f);
         // Enable regular movement controls
         controllsSwitch.SwitchToFloor();
         rb.isKinematic = false;

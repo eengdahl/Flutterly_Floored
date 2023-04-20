@@ -75,7 +75,7 @@ public class Die : MonoBehaviour
     {
         isDead = true;
         jump.enabled = false;
-        movement.enabled = false;
+        movement.groundMovement = false;
         rb.constraints = RigidbodyConstraints.None;
         rb.AddRelativeTorque(new Vector3(Random.Range(0, 2), Random.Range(0, 2), Random.Range(0, 2)) * torque);
 
@@ -84,9 +84,10 @@ public class Die : MonoBehaviour
 
     private void RevivePlayer()
     {
+        rb.velocity = Vector3.zero;
         isDead = false;
         jump.enabled = true;
-        movement.enabled = true;
+        movement.groundMovement = true;
         rb.constraints = RigidbodyConstraints.FreezeRotation;
         revive.Die();
     }
