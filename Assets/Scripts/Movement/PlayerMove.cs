@@ -92,12 +92,12 @@ public class PlayerMove : MonoBehaviour
         {
             if (!playerWindScrips.inWindZone)
             {
-                rb.AddForce(targetDirection * speed * 10f * airControl, ForceMode.Force);
+                rb.AddForce(10f * airControl * speed * targetDirection, ForceMode.Force);
 
             }
             else
             {
-                rb.AddForce(new Vector3(inputsXZ.x, 0f, 0f) * speed * 10f * airControl, ForceMode.Force);
+                rb.AddForce(10f * airControl * speed * new Vector3(inputsXZ.x, 0f, 0f), ForceMode.Force);
             }
         }
 
