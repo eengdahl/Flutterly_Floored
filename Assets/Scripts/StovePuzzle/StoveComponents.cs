@@ -41,19 +41,18 @@ public class StoveComponents : MonoBehaviour
     {
         //Toggles clicked star and connected ones
         foreach (GameObject node in nodes)
-            StartCoroutine(ToggleOn(node.GetComponent<StoveNode>(), 0));
+            StartCoroutine(ToggleOn(node.GetComponent<StoveNode>(), 10));
     }
 
     public IEnumerator ToggleOn(StoveNode node, float delayTime)
     {
         //Add delay variable to delay toggles
-        yield return new WaitForSeconds(delayTime);
         //Sets particle system to enable or disable according to litNode state
         node.ToggleActive();
         StartCoroutine(TogglePS(node.GetComponentInChildren<ParticleSystem>(), node.litNode, 0));
-
+        yield return new WaitForSeconds(delayTime);
         node.ToggleActive();
-        StartCoroutine(TogglePS(node.GetComponentInChildren<ParticleSystem>(), node.litNode, 5));
+        StartCoroutine(TogglePS(node.GetComponentInChildren<ParticleSystem>(), node.litNode, 0));
     }
 
     public void ToggleAllNodes(List<GameObject> nodes)
@@ -63,8 +62,6 @@ public class StoveComponents : MonoBehaviour
 
         //GetComponent<StoveNode>().SetAllActive();
     }
-
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

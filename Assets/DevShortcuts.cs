@@ -15,10 +15,10 @@ public class DevShortcuts : MonoBehaviour
         deathScript = FindAnyObjectByType<DeathScriptAndCheckPoint>();
 
         // var temp = GetComponentInChildren<Transform>();
-        var gargarga = GetComponentsInChildren<Transform>();
+        var temp = GetComponentsInChildren<Transform>();
 
 
-        foreach (Transform item in gargarga)
+        foreach (Transform item in temp)
         {
             if (item.ToString().Contains("RespawnCube"))
             {
@@ -69,12 +69,7 @@ public class DevShortcuts : MonoBehaviour
             deathScript.Die();
 
         }
-        if (Input.GetKeyDown(KeyCode.Keypad6))
-        {
-            deathScript.NewCheckpoint(respawnPoints[6]);
-            deathScript.Die();
-
-        }
+      
 
 
     }
