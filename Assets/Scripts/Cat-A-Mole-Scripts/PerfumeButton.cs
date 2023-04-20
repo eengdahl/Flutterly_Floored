@@ -57,7 +57,7 @@ public class PerfumeButton : MonoBehaviour
 
     void KillCat()
     {
-        Legs.SetActive(false);
+      //  Legs.SetActive(false);
         DeathBox.SetActive(false);
         hitSpots.SetActive(false);
         cat.SetActive(false);

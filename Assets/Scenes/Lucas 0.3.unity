@@ -1559,8 +1559,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.0667167, y: 1, z: 0.6501794}
+  m_Center: {x: -0.03335912, y: 0, z: 0.032641217}
 --- !u!23 &151058247
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11147,9 +11147,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 268192433924426093, guid: d154f7e32ca375840877269d37858074, type: 3}
+      propertyPath: isVertical
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268192434053452954, guid: d154f7e32ca375840877269d37858074, type: 3}
+      propertyPath: isVertical
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268192434249388883, guid: d154f7e32ca375840877269d37858074, type: 3}
+      propertyPath: isVertical
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268192434636468405, guid: d154f7e32ca375840877269d37858074, type: 3}
+      propertyPath: isVertical
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268192435086661943, guid: d154f7e32ca375840877269d37858074, type: 3}
+      propertyPath: isVertical
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268192435651994341, guid: d154f7e32ca375840877269d37858074, type: 3}
+      propertyPath: isVertical
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4239963564737998196, guid: d154f7e32ca375840877269d37858074, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5010047838769993120, guid: d154f7e32ca375840877269d37858074, type: 3}
       propertyPath: m_RootOrder
@@ -11207,6 +11231,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b739a3f02ff77bf48b7636e64c3e3b4c, type: 2}
+    - target: {fileID: 5010047838878956790, guid: d154f7e32ca375840877269d37858074, type: 3}
+      propertyPath: litNode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010047839749266400, guid: d154f7e32ca375840877269d37858074, type: 3}
+      propertyPath: litNode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5912921087111154852, guid: d154f7e32ca375840877269d37858074, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -11214,6 +11246,10 @@ PrefabInstance:
     - target: {fileID: 6963934097937945269, guid: d154f7e32ca375840877269d37858074, type: 3}
       propertyPath: m_RootOrder
       value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178237220262848331, guid: d154f7e32ca375840877269d37858074, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7638461973720370113, guid: d154f7e32ca375840877269d37858074, type: 3}
       propertyPath: m_IsActive
@@ -13349,6 +13385,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonReady: 0
+  cat: {fileID: 0}
+  hitSpots: {fileID: 0}
+  Legs: {fileID: 0}
+  DeathBox: {fileID: 0}
 --- !u!65 &1606682573
 BoxCollider:
   m_ObjectHideFlags: 0
