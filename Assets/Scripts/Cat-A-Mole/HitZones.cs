@@ -75,15 +75,15 @@ public class HitZones : MonoBehaviour
                 //leftPaw.transform.position = Vector3.MoveTowards(leftPaw.transform.position, closestHitzone.transform.position, Time.deltaTime * attackSpeed);
             }
 
-            if(closestHitzone.name == "Hitzone3")
+            if (closestHitzone.name == "Hitzone3")
             {
-                animationTrigger = "ShortLeft";
+                animationTrigger = "SuperLongLeft";
                 //pawAnimator.SetTrigger(animationTrigger);
             }
 
             if (closestHitzone.name == "Hitzone4")
             {
-                animationTrigger = "LongLeft";
+                animationTrigger = "SuperLongLeft";
                 //pawAnimator.SetTrigger(animationTrigger);
             }
 
