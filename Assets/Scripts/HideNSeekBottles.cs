@@ -14,6 +14,7 @@ public class HideNSeekBottles : MonoBehaviour
     private Animator anim;
     VitrinBrain vitrinBrain;
     BoxCollider parentCollider;
+    private bool onceLock;
 
     private void Start()
     {
@@ -22,8 +23,9 @@ public class HideNSeekBottles : MonoBehaviour
         rightBottle = GameObject.Find("PerfumeButtonRight");
         buttonReady = true;
         aS = GetComponent<AudioSource>();
-        vitrinBrain = FindAnyObjectByType<VitrinBrain>();
         parentCollider = GetComponentInParent<BoxCollider>();
+        catInRange = false;
+        onceLock = false;
     }
 
 
@@ -33,11 +35,15 @@ public class HideNSeekBottles : MonoBehaviour
     {
         if (other.tag == "Player" && buttonReady)
         {
+            if (!onceLock)
+            {
+                vitrinBrain = FindAnyObjectByType<VitrinBrain>();
+                onceLock = true;
+            }
+            vitrinBrain = FindAnyObjectByType<VitrinBrain>();
             Debug.Log("sprutsprut");
             ButtonPush();
         }
-
-
     }
 
 
@@ -52,9 +58,15 @@ public class HideNSeekBottles : MonoBehaviour
 
     public void ButtonPush()
     {
+      
         //catlives reduce if cat is in range and not defeated
-        if (catInRange || leftBottle.GetComponent<HideNSeekBottles>().catLives > 1 || rightBottle.GetComponent<HideNSeekBottles>().catLives > 1)
+        if (catInRange)
         {
+            Debug.Log("CatInRange");
+            //if (leftBottle.GetComponent<HideNSeekBottles>().catLives !> 1 || rightBottle.GetComponent<HideNSeekBottles>().catLives !> 1)
+            //{
+            //    return;
+            //}
             if (gameObject == leftBottle)
             {
                 if (catLives > rightBottle.GetComponent<HideNSeekBottles>().catLives)
@@ -71,13 +83,14 @@ public class HideNSeekBottles : MonoBehaviour
 
                 }
             }
+            vitrinBrain.grace = true;
             catLives--;
             aS.Play();
             Debug.Log(catLives);
             if (catLives <= 0)
             {
                 Debug.Log("CatIsDiededGGEZ");
-                vitrinBrain.vitrinState = VitrinStates.Exit;
+                vitrinBrain.catIsDead = true;
             }
         }
         //button push

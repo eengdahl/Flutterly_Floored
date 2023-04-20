@@ -11,14 +11,16 @@ public class TriggerVitrinScript : MonoBehaviour
     public AudioClip crash;
     public AudioClip bossMusic;
     VitrinBrain catBrain;
+   public GameObject cat;
     bool startLock = false;
     [SerializeField] ScreenShake screenShake;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        catBrain = FindObjectOfType<VitrinBrain>();
+        
         audioManager = FindObjectOfType<AudioManager>();
         aS = GetComponent<AudioSource>();
     }
@@ -36,6 +38,8 @@ public class TriggerVitrinScript : MonoBehaviour
 
     private void TriggerMusic()
     {
+        cat.SetActive(true);
+        catBrain = FindObjectOfType<VitrinBrain>();
         audioManager.TurnOfMainMusic();
         aS.clip = bossMusic;
         aS.Play();
@@ -47,5 +51,6 @@ public class TriggerVitrinScript : MonoBehaviour
     {
         catBrain.ShakeMovement();
         catBrain.vitrinState = VitrinStates.Patrol;
+
     }
 }

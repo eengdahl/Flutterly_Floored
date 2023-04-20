@@ -71,7 +71,7 @@ public class Die : MonoBehaviour
         fallheight = 0;
     }
 
-    private void KillPlayer()
+    public void KillPlayer()
     {
         isDead = true;
         jump.enabled = false;

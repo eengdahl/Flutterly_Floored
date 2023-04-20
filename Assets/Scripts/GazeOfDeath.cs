@@ -9,18 +9,14 @@ public class GazeOfDeath : MonoBehaviour
     public GameObject visionCone;
     public float distance;
     public LayerMask player;
+    Die dieScript;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        dieScript=FindAnyObjectByType<Die>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
     private void OnTriggerStay(Collider other)
     {
@@ -36,6 +32,8 @@ public class GazeOfDeath : MonoBehaviour
             if(hit.collider.gameObject.CompareTag("Player"))
             {
                 Debug.Log("Player Hit");
+                dieScript.KillPlayer();
+
             }
 
         }

@@ -32,7 +32,7 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
 
     public void Die()
     {
-        Fade();
+       // Fade();
         //Invoke("Fade", 1f);
         birdCableMovement.DisableClimbing();
         this.transform.rotation = respawnTransform.rotation;

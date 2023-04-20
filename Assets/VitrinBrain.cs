@@ -31,16 +31,19 @@ public class VitrinBrain : MonoBehaviour
     public AudioClip crash;
     public AudioClip catSound;
     public bool isGazing;
+    public bool catIsDead;
+    public bool grace;
 
     [SerializeField] ScreenShake screenShake;
-   public GameObject player;
+    public GameObject player;
 
 
 
 
     void Awake()
     {
-       
+        catIsDead = false;
+        grace = false;  
         speed = 5f;
         audioManager = FindObjectOfType<AudioManager>();
         aS = GetComponent<AudioSource>();
@@ -49,7 +52,10 @@ public class VitrinBrain : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        if (catIsDead)
+        {
+            vitrinState = VitrinStates.Exit;
+        }
 
 
         if (vitrinState == VitrinStates.Patrol)
@@ -87,6 +93,11 @@ public class VitrinBrain : MonoBehaviour
     {
         while (vitrinState == VitrinStates.Patrol)
         {
+            if (catIsDead)
+            {
+                vitrinState = VitrinStates.Exit;
+            }
+
             int catTimerDone = Random.Range(1, 4);
             yield return new WaitForSeconds(catTimerDone);
             vitrinState = VitrinStates.Attack;
@@ -95,12 +106,15 @@ public class VitrinBrain : MonoBehaviour
         }
         NextState();
     }
-
+    //Might not be neccesary 
     IEnumerator StopState()
     {
         while (vitrinState == VitrinStates.Stop)
         {
-
+            if (catIsDead)
+            {
+                vitrinState = VitrinStates.Exit;
+            }
             yield return new WaitForSeconds(1);
 
             NextState();
@@ -112,6 +126,10 @@ public class VitrinBrain : MonoBehaviour
     {
         while (vitrinState == VitrinStates.Attack)
         {
+            if (catIsDead)
+            {
+                vitrinState = VitrinStates.Exit;
+            }
             aS.clip = catSound;
             aS.Play();
             yield return new WaitForSeconds(1);
@@ -125,15 +143,25 @@ public class VitrinBrain : MonoBehaviour
     {
         while (vitrinState == VitrinStates.Gaze)
         {
-            isGazing = true;
+            if (catIsDead)
+            {
+                vitrinState = VitrinStates.Exit;
+            }
             Vector3 tester = transform.position;
             Vector3 saver = tester;
-            tester.y = tester.y - 2;
+            tester.y = tester.y - 3;
             this.gameObject.transform.position = tester;
             this.gameObject.transform.LookAt(player.transform);
 
-            
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(2);
+      
+
+            if (!grace)
+            {
+            isGazing = true;
+            }
+            yield return new WaitForSeconds(2);
+            grace = false;
             this.gameObject.transform.position = saver;
             this.gameObject.transform.LookAt(waypoints[index].transform);
             isGazing = false;
@@ -146,6 +174,11 @@ public class VitrinBrain : MonoBehaviour
     {
         while (vitrinState == VitrinStates.KillPlayer)
         {
+            if (catIsDead)
+            {
+                vitrinState = VitrinStates.Exit;
+            }
+            
             yield return 0;
         }
         NextState();
@@ -155,16 +188,21 @@ public class VitrinBrain : MonoBehaviour
     {
         while (vitrinState == VitrinStates.Exit)
         {
+            catIsDead = true;
+
+            Debug.Log("enterExit");
             Destroy(bloackade);
 
             aS.clip = crash;
+            aS.loop = false;
+
+           
             aS.Play();
             yield return new WaitForSeconds(2);
+            aS.Stop();
             audioManager.ResumeMainMusic();
+            this.gameObject.SetActive(false);
 
-
-
-            vitrinState = VitrinStates.Idle;
             yield return 0;
         }
         NextState();
