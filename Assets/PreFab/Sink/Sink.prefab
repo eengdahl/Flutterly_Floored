@@ -122,8 +122,7 @@ GameObject:
   - component: {fileID: 507560672}
   - component: {fileID: 507560671}
   - component: {fileID: 507560670}
-  - component: {fileID: 741169034}
-  - component: {fileID: 741169035}
+  - component: {fileID: 422503679}
   m_Layer: 0
   m_Name: OnButton
   m_TagString: Ground
@@ -139,7 +138,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 507560667}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.530005, y: 21.42, z: -3.5300007}
+  m_LocalPosition: {x: -18.74, y: 21.42, z: -8.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -206,24 +205,11 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.35
+  m_Radius: 0.69
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0.51, z: -0.00000008940697}
---- !u!65 &741169034
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 507560667}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.8, y: 2, z: 0.8}
-  m_Center: {x: -0.00000423193, y: 0, z: -0.0000005662441}
---- !u!114 &741169035
+--- !u!114 &422503679
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -454,7 +440,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1881064060}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.98, y: 21.8, z: -8.7}
+  m_LocalPosition: {x: -24.98, y: 20.83, z: -8.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -489,8 +475,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1479328156110340654}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -23.4159, y: 16.19, z: -10.2645}
-  m_LocalScale: {x: 0.79435647, y: 1, z: 1.2364876}
+  m_LocalPosition: {x: -23.52, y: 17.75, z: -9.46}
+  m_LocalScale: {x: 0.84268695, y: 1, z: 0.9729103}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 387352198}
@@ -574,8 +560,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waterFillSpeed: 0.2
-  isFossetOn: 0
-  isResetting: 0
+  isFilling: 0
+  isDraining: 0
   maxWaterPoint: {fileID: 1881064060}
 --- !u!1 &1996144177901317358
 GameObject:
@@ -590,7 +576,7 @@ GameObject:
   - component: {fileID: 7213400947436098950}
   - component: {fileID: 8028109925116614282}
   - component: {fileID: 684209431}
-  - component: {fileID: 684209432}
+  - component: {fileID: 8028109925231308976}
   m_Layer: 0
   m_Name: OffButton
   m_TagString: Ground
@@ -606,8 +592,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1996144177901317358}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -22.760004, y: 21.42, z: -3.5300007}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -20.547, y: 21.543, z: -3.86}
+  m_LocalScale: {x: 0.37244, y: 0.14779909, z: 0.37244}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6978387916950759932}
@@ -673,10 +659,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.35
-  m_Height: 2
+  m_Radius: 0.45
+  m_Height: 4.61
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0.51, z: -0.00000008940697}
+  m_Center: {x: 0.000000059604645, y: 0.48, z: -0.00000008940697}
 --- !u!65 &684209431
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -686,11 +672,11 @@ BoxCollider:
   m_GameObject: {fileID: 1996144177901317358}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.8, y: 2, z: 0.8}
   m_Center: {x: -0.000004351139, y: 0, z: -0.0000005662441}
---- !u!114 &684209432
+--- !u!114 &8028109925231308976
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2811,8 +2797,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.65029144, y: 1, z: 0.9820424}
+  m_Center: {x: 0.17485426, y: 0, z: 0.12213439}
 --- !u!114 &8856993186585381979
 MonoBehaviour:
   m_ObjectHideFlags: 0
