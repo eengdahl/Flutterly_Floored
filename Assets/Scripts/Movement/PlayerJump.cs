@@ -17,6 +17,7 @@ public class PlayerJump : MonoBehaviour
     public bool canGlide;
     public float glideTime;
     public float coyoteTime;
+    public float airTime;
     public float coyoteTimeCounter;
     private float fallSpeed;
     private float groundCheckDistance;
@@ -110,6 +111,16 @@ public class PlayerJump : MonoBehaviour
 
         if (gliding)
             Glide();
+
+        if (!isGrounded)
+        {
+            airTime += Time.deltaTime;
+        }
+
+        if (isGrounded)
+        {
+            airTime = 0;
+        }
     }
 
     //Input events for Spacebar (Jump key)

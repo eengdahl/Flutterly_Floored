@@ -11,6 +11,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] float turnSpeed = 10f;
     
     private float turnSpeedMultiplier;
+    private float lerpDuration = 3;
     private Rigidbody rb;
     private PlayerControls playerControls;
     private Vector2 moveInput;
@@ -59,19 +60,24 @@ public class PlayerMove : MonoBehaviour
     }
     private void Update()
     {
+        //hold shift to sprint
         if (Input.GetKey(KeyCode.LeftShift) && jump.isGrounded)
         {
             maxSpeed = 5;
         }
-
+        //if not holding sprint on ground, walk
         if (!Input.GetKey(KeyCode.LeftShift) && jump.isGrounded)
         {
             maxSpeed = 3;
         }
-
+        //if releasing sprint key on ground start walking
         if (Input.GetKeyUp(KeyCode.LeftShift) && jump.isGrounded)
         {
             maxSpeed = 3;
+        }
+        if (maxSpeed > 3 && !jump.isGrounded)
+        {
+            maxSpeed = Mathf.Lerp(5, 3, jump.airTime / lerpDuration);
         }
     }
 
