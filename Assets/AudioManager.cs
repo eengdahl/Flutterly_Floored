@@ -12,15 +12,10 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         aS = GetComponent<AudioSource>();
+        MainMusic();
 
     }
-    private void Update()
-    {
-        if (!aS.isPlaying)
-        {
-            MainMusic();
-        }
-    }
+
 
 
     public void TurnOfMainMusic()
