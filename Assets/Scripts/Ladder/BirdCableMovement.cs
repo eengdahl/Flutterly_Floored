@@ -111,7 +111,10 @@ public class BirdCableMovement : MonoBehaviour
     {
         if (!isClimbing) return;
 
-
+       if(!input.Climbing.LeaveClimbing.IsPressed())
+        {
+            DisableClimbing();
+        }
 
         //W Up
         if (input.Climbing.verticalInput.ReadValue<Vector2>().y > 0)
@@ -175,6 +178,8 @@ public class BirdCableMovement : MonoBehaviour
 
 
     }
+
+
     public void EnableClimbing()
     {
         // Disable regular movement controls

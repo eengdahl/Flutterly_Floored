@@ -8,9 +8,10 @@ public class Fan : MonoBehaviour
     //public GameObject fan;
     public bool on;
     public float rotationSpeed = 40f;
-    [SerializeField]GameObject windArea;
+    [SerializeField] GameObject windArea;
     [SerializeField] GameObject wholeFanPart;
-
+    [SerializeField] GameObject baseOfFan;
+    bool shoudlRotateBase = false;
 
     //Base of fan rotation
     public float maxAngle = 45f; // Maximum angle of rotation in 
@@ -33,23 +34,26 @@ public class Fan : MonoBehaviour
             // Rotate the fan blade 
             wholeFanPart.transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
             //Rotate whole fan base
-
-            //float deltaAngle = rotationSpeedBase * Time.deltaTime;
-            //currentAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, deltaAngle);
-            //wholeFanPart.transform.localRotation = Quaternion.Euler(0f, currentAngle, 0f);
-
-            // Make fan base switch between the different angles when it reaches one of them
-            //Mathf.Approximately is apparently a great tool to get if the two values are about the same, exactly the same can be hard sometimes
-            //if (Mathf.Approximately(currentAngle, targetAngle))
+            //if (shoudlRotateBase)
             //{
-            //    if (targetAngle == maxAngle)
-            //    {
-            //        targetAngle = minAngle;
-            //    }
-            //    else
-            //    {
-            //        targetAngle = maxAngle;
-            //    }               
+                float deltaAngle = rotationSpeedBase * Time.deltaTime;
+                currentAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, deltaAngle);
+                baseOfFan.transform.localRotation = Quaternion.Euler(currentAngle, -90f, 90f);
+
+                //Make fan base switch between the different angles when it reaches one of them
+                //Mathf.Approximately is apparently a great tool to get if the two values are about the same, exactly the same can be hard sometimes
+                if (Mathf.Approximately(currentAngle, targetAngle))
+                {
+                    if (targetAngle == maxAngle)
+                    {
+                        targetAngle = minAngle;
+                    }
+                    else
+                    {
+                        targetAngle = maxAngle;
+                    }
+                }
+
             //}
         }
     }

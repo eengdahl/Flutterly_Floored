@@ -447,6 +447,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeaveClimbing"",
+                    ""type"": ""Button"",
+                    ""id"": ""1318223e-d16b-40ac-856e-87ee3b04f767"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -524,6 +533,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""GlideDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7f300f9b-68a0-4eb2-9087-393a6e1d79e1"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeaveClimbing"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -677,6 +697,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Climbing_verticalInput = m_Climbing.FindAction("verticalInput", throwIfNotFound: true);
         m_Climbing_Jump = m_Climbing.FindAction("Jump", throwIfNotFound: true);
         m_Climbing_GlideDown = m_Climbing.FindAction("GlideDown", throwIfNotFound: true);
+        m_Climbing_LeaveClimbing = m_Climbing.FindAction("LeaveClimbing", throwIfNotFound: true);
         // Flying
         m_Flying = asset.FindActionMap("Flying", throwIfNotFound: true);
         m_Flying_Newaction = m_Flying.FindAction("New action", throwIfNotFound: true);
@@ -892,6 +913,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Climbing_verticalInput;
     private readonly InputAction m_Climbing_Jump;
     private readonly InputAction m_Climbing_GlideDown;
+    private readonly InputAction m_Climbing_LeaveClimbing;
     public struct ClimbingActions
     {
         private @PlayerControls m_Wrapper;
@@ -899,6 +921,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @verticalInput => m_Wrapper.m_Climbing_verticalInput;
         public InputAction @Jump => m_Wrapper.m_Climbing_Jump;
         public InputAction @GlideDown => m_Wrapper.m_Climbing_GlideDown;
+        public InputAction @LeaveClimbing => m_Wrapper.m_Climbing_LeaveClimbing;
         public InputActionMap Get() { return m_Wrapper.m_Climbing; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -917,6 +940,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @GlideDown.started += instance.OnGlideDown;
             @GlideDown.performed += instance.OnGlideDown;
             @GlideDown.canceled += instance.OnGlideDown;
+            @LeaveClimbing.started += instance.OnLeaveClimbing;
+            @LeaveClimbing.performed += instance.OnLeaveClimbing;
+            @LeaveClimbing.canceled += instance.OnLeaveClimbing;
         }
 
         private void UnregisterCallbacks(IClimbingActions instance)
@@ -930,6 +956,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @GlideDown.started -= instance.OnGlideDown;
             @GlideDown.performed -= instance.OnGlideDown;
             @GlideDown.canceled -= instance.OnGlideDown;
+            @LeaveClimbing.started -= instance.OnLeaveClimbing;
+            @LeaveClimbing.performed -= instance.OnLeaveClimbing;
+            @LeaveClimbing.canceled -= instance.OnLeaveClimbing;
         }
 
         public void RemoveCallbacks(IClimbingActions instance)
@@ -1013,6 +1042,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnVerticalInput(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnGlideDown(InputAction.CallbackContext context);
+        void OnLeaveClimbing(InputAction.CallbackContext context);
     }
     public interface IFlyingActions
     {
