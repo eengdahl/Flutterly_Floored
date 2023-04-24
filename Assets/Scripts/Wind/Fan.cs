@@ -11,7 +11,7 @@ public class Fan : MonoBehaviour
     [SerializeField] GameObject windArea;
     [SerializeField] GameObject wholeFanPart;
     [SerializeField] GameObject baseOfFan;
-    bool shoudlRotateBase = false;
+
 
     //Base of fan rotation
     public float maxAngle = 45f; // Maximum angle of rotation in 
@@ -20,6 +20,12 @@ public class Fan : MonoBehaviour
 
     private float targetAngle; // Target angle for rotation
     private float currentAngle; // Current angle of rotation
+
+    [Header("Buttons")]
+    [SerializeField] FanButton rotationButton;
+    [SerializeField] FanButton strengthButton;
+
+
 
     private void Start()
     {
@@ -34,8 +40,8 @@ public class Fan : MonoBehaviour
             // Rotate the fan blade 
             wholeFanPart.transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
             //Rotate whole fan base
-            //if (shoudlRotateBase)
-            //{
+            if (rotationButton.buttonOn)
+            {
                 float deltaAngle = rotationSpeedBase * Time.deltaTime;
                 currentAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, deltaAngle);
                 baseOfFan.transform.localRotation = Quaternion.Euler(currentAngle, -90f, 90f);
@@ -54,7 +60,7 @@ public class Fan : MonoBehaviour
                     }
                 }
 
-            //}
+            }
         }
     }
     public void TurnOn()
