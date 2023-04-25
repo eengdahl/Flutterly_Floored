@@ -76,7 +76,7 @@ public class PlayerJump : MonoBehaviour
         Debug.DrawLine(rightFoot.transform.position, rightFoot.transform.position + new Vector3(0, -groundCheckDistance, 0), Color.blue);
         bool rayCastHit = false;
 
-        if (Physics.Raycast(leftFoot.transform.position, -leftFoot.transform.up, out leftFootHit, groundCheckDistance) /*|| Physics.Raycast(rightFoot.transform.position, -rightFoot.transform.up, out rightFootHit, groundCheckDistance)*/)
+        if (Physics.Raycast(leftFoot.transform.position, -leftFoot.transform.up, out leftFootHit, groundCheckDistance))
         {
             if (leftFootHit.collider != null && leftFootHit.collider.CompareTag("Ground"))
             {
