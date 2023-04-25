@@ -32,6 +32,8 @@ public class PlayerMove : MonoBehaviour
 
     private void Awake()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         groundMovement = true;
         mainCamera = Camera.main;
         playerWindScrips = GetComponent<PlayerWind>();
