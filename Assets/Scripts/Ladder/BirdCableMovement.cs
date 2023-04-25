@@ -33,6 +33,24 @@ public class BirdCableMovement : MonoBehaviour
     public bool isClimbing;
 
 
+    //Raycast for rotation
+    bool canTurnRight;
+    bool canTurnLeft;
+    [SerializeField] GameObject raycastStartOne;
+    [SerializeField] GameObject raycastStartTwo;
+    //Raycast for up and down
+    
+    [SerializeField] GameObject raycastUp;
+
+
+    [SerializeField] GameObject raycastDown;
+
+    bool inWall;
+
+
+    //Raycast for up or down
+    bool canGoUp;
+    bool canGoDown;
 
     private void OnEnable()
     {
@@ -61,20 +79,46 @@ public class BirdCableMovement : MonoBehaviour
         readyToClimb = true;
 
     }
+    
     private void LateUpdate()
     {
         //For rotation
         if (!isClimbing) return;
-        if (!isVertical) return;
-        float horizontalInput = input.Climbing.verticalInput.ReadValue<Vector2>().x;
-        //Dont do if input is zero, Approximately i think is good when using gamepad
-        if (Mathf.Approximately(horizontalInput, 0f))
-        {
-            return;
-        }
-        float targetRotation = horizontalInput * rotationSpeed * Time.deltaTime;
+        //if (!isVertical)
+        //{
+        //    canGoDown = true;
+        //    canGoUp = true;
+        //    return;
+        //}
 
-        transform.Rotate(0f, targetRotation, 0f);
+        
+        float horizontalInput = input.Climbing.verticalInput.ReadValue<Vector2>().x;
+
+
+
+        if (horizontalInput > 0 && canTurnRight)
+        {
+
+            //Dont do if input is zero, Approximately i think is good when using gamepad
+            if (Mathf.Approximately(horizontalInput, 0f))
+            {
+                return;
+            }
+            float targetRotation = horizontalInput * rotationSpeed * Time.deltaTime;
+
+            transform.Rotate(0f, targetRotation, 0f);
+        }
+        else if (horizontalInput < 0 && canTurnLeft)
+        {
+            //Dont do if input is zero, Approximately i think is good when using gamepad
+            if (Mathf.Approximately(horizontalInput, 0f))
+            {
+                return;
+            }
+            float targetRotation = horizontalInput * rotationSpeed * Time.deltaTime;
+
+            transform.Rotate(0f, targetRotation, 0f);
+        }
         //LimitRotation();
 
 
@@ -111,14 +155,60 @@ public class BirdCableMovement : MonoBehaviour
     {
         if (!isClimbing) return;
 
-       if(!input.Climbing.LeaveClimbing.IsPressed())
+        if (!input.Climbing.LeaveClimbing.IsPressed())
         {
             DisableClimbing();
         }
+        //Raycast for up&down
+        RaycastHit hitUp;
+        if (Physics.Raycast(raycastUp.transform.position, raycastUp.transform.forward, out hitUp, 0.4f))
+            canGoUp = false;
+        else canGoUp = true;
+        RaycastHit hitDown;
+        if (Physics.Raycast(raycastDown.transform.position, raycastDown.transform.forward, out hitDown, 0.4f))
+            canGoDown = false;
+        else canGoDown = true;
+        Debug.Log(canGoDown);
+
+        Debug.DrawRay(raycastUp.transform.position, raycastUp.transform.forward, Color.red);
+        Debug.DrawRay(raycastDown.transform.position, raycastDown.transform.forward, Color.red);
+
+        //Raycast for rotation
+        RaycastHit hitOne;
+
+        if (Physics.Raycast(raycastStartOne.transform.position, raycastStartOne.transform.forward, out hitOne, 0.2f))
+        {
+            canTurnLeft = false;
+        }
+        else
+        {
+            canTurnLeft = true;
+        }
+        RaycastHit hitTwo;
+        if (Physics.Raycast(raycastStartTwo.transform.position, raycastStartTwo.transform.forward, out hitTwo, 0.2f))
+        {
+            canTurnRight = false;
+        }
+        else
+        {
+            canTurnRight = true;
+        }
+
+        if(!canTurnLeft || !canTurnRight)
+        {
+            inWall = true;
+        }
+        else
+        {
+            inWall = false;
+        }
+        Debug.DrawRay(raycastStartOne.transform.position, raycastStartOne.transform.forward, Color.red);
+        Debug.DrawRay(raycastStartTwo.transform.position, raycastStartTwo.transform.forward, Color.red);
 
         //W Up
-        if (input.Climbing.verticalInput.ReadValue<Vector2>().y > 0)
+        if (input.Climbing.verticalInput.ReadValue<Vector2>().y > 0 && canGoUp && !inWall)
         {
+
             // Get the direction from the bird's current position to the next cable point
             Vector3 direction = cableplant.points[currentCableSegment].position - transform.position;
             direction.Normalize();
@@ -145,7 +235,7 @@ public class BirdCableMovement : MonoBehaviour
             }
         }
         //S Down
-        if (input.Climbing.verticalInput.ReadValue<Vector2>().y < 0)
+        if (input.Climbing.verticalInput.ReadValue<Vector2>().y < 0 && canGoDown && !inWall)
         {
 
             if (currentCableSegment - 1 >= 0)

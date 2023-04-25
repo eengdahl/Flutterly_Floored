@@ -8,7 +8,9 @@ public class Fan : MonoBehaviour
     //public GameObject fan;
     public bool on;
     public float rotationSpeed = 40f;
-    [SerializeField] GameObject windArea;
+                     GameObject windArea;
+    [SerializeField] GameObject windAreaOne;
+    [SerializeField] GameObject windAreaTwo;
     [SerializeField] GameObject wholeFanPart;
     [SerializeField] GameObject baseOfFan;
 
@@ -25,11 +27,14 @@ public class Fan : MonoBehaviour
     [SerializeField] FanButton rotationButton;
     [SerializeField] FanButton strengthButton;
 
+    
+
 
 
     private void Start()
     {
         on = false;
+        windArea = windAreaOne;
     }
 
 
@@ -44,7 +49,7 @@ public class Fan : MonoBehaviour
             {
                 float deltaAngle = rotationSpeedBase * Time.deltaTime;
                 currentAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, deltaAngle);
-                baseOfFan.transform.localRotation = Quaternion.Euler(currentAngle, -90f, 90f);
+                baseOfFan.transform.localRotation = Quaternion.Euler(currentAngle, -90f, 0f);
 
                 //Make fan base switch between the different angles when it reaches one of them
                 //Mathf.Approximately is apparently a great tool to get if the two values are about the same, exactly the same can be hard sometimes
@@ -61,6 +66,7 @@ public class Fan : MonoBehaviour
                 }
 
             }
+
         }
     }
     public void TurnOn()
@@ -72,5 +78,27 @@ public class Fan : MonoBehaviour
     {
         on = false;
         windArea.SetActive(false);
+    }
+    public void SwitchWindStr()
+    {
+        if (on)
+        {
+        windArea.SetActive(false);
+
+        }
+
+        if (windArea == windAreaOne)
+        {
+            windArea = windAreaTwo;
+        }
+        else if (windArea == windAreaTwo)
+        {
+            windArea = windAreaOne;
+        }
+
+        if (on)
+        {
+            windArea.SetActive(true);
+        }
     }
 }

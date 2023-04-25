@@ -15,11 +15,11 @@ public class FanButton : MonoBehaviour
     private bool prevPressedState;
 
     //bool is playing
-
+    [SerializeField] bool isStrButton;
     public bool gotElectricity;
     public bool buttonOn;
     [SerializeField] Fan fanScript;
-    
+
 
 
     void Start()
@@ -49,7 +49,7 @@ public class FanButton : MonoBehaviour
 
     void Update()
     {
-       
+
 
         buttonPart.transform.localPosition = new Vector3(0, buttonPart.transform.localPosition.y, 0); //do this in unityeditor instead?
         buttonPart.transform.localEulerAngles = Vector3.zero;
@@ -98,13 +98,20 @@ public class FanButton : MonoBehaviour
     private void Pressed()
     {
         prevPressedState = isPressed;
-        if (!buttonOn)
+        if (!isStrButton)
         {
-            buttonOn = true;
+            if (!buttonOn)
+            {
+                buttonOn = true;
+            }
+            else if (buttonOn)
+            {
+                buttonOn = false;
+            }
         }
-        else if (buttonOn)
+        else if (isStrButton)
         {
-            buttonOn = false;
+            fanScript.SwitchWindStr();
         }
 
     }

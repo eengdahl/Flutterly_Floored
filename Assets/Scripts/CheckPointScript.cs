@@ -15,14 +15,14 @@ public class CheckPointScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
-        {
-            if (!dieOfFalling.isDead)
-            {
-                other.GetComponent<DeathScriptAndCheckPoint>().NewCheckpoint(RespawnPoint.transform);
+        //if (other.tag == "Player")
+        //{
+        //    if (!dieOfFalling.isDead)
+        //    {
+        //        other.GetComponent<DeathScriptAndCheckPoint>().NewCheckpoint(RespawnPoint.transform);
 
-            }
-        }
+        //    }
+        //}
 
     }
 }

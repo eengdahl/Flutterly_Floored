@@ -7,6 +7,7 @@ public class PlayerWind : MonoBehaviour
 {
     public bool inWindZone;
     public GameObject windZone;
+    WindArea windAreaScript;
     Rigidbody rb;
     PlayerJump jumpScript;
     [SerializeField] float mass;
@@ -33,6 +34,7 @@ public class PlayerWind : MonoBehaviour
         {
             //transform.rotation = other.transform.rotation;
             windZone = other.gameObject;
+            windAreaScript = other.GetComponent<WindArea>();
             Invoke("Fly",0.1f);
             
         }
@@ -70,13 +72,26 @@ public class PlayerWind : MonoBehaviour
         rb.mass = oldMass;
         jumpScript.enabled = true;
     }
+    //public void Fly()
+    //{
+
+    //    EnterWindArea();
+    //    flyScript.InvertFly();
+
+
+    //    transform.rotation = windZone.transform.rotation;
+    //    //Set rotation
+
+    //}
     public void Fly()
     {
-        
         EnterWindArea();
         flyScript.InvertFly();
-        transform.rotation = windZone.transform.rotation;
-        //Set rotation
 
+        // Calculate the new rotation for the player
+        Quaternion targetRotation = Quaternion.Euler(windZone.transform.rotation.eulerAngles.x, windZone.transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+        transform.rotation = targetRotation;
+
+        //Set rotation
     }
 }
