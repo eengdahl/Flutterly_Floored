@@ -8804,7 +8804,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 5000
+  far clip plane: 1000
   field of view: 60
   orthographic: 0
   orthographic size: 10
@@ -8830,8 +8830,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1442956642}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -145.96, y: 14.766, z: 47.730003}
+  m_LocalRotation: {x: -0.0019938026, y: 0.997355, z: -0.03006268, w: -0.066146106}
+  m_LocalPosition: {x: -95.76, y: 10.82, z: 67.12003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13583,6 +13583,10 @@ PrefabInstance:
     - target: {fileID: 753855069, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
       propertyPath: downSpeedMin
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1018667384, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1018667384, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
       propertyPath: maxFallheight
