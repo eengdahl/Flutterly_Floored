@@ -17,7 +17,6 @@ public class CatAMoleBrain : MonoBehaviour
    
 
     public MoleStates moleState;
-    public GameObject Cat;
     private float catTimerDone;
     public bool hitting = false;
 
