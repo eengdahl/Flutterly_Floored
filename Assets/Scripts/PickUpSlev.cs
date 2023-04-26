@@ -16,7 +16,11 @@ public class PickUpSlev : MonoBehaviour
     {
         if (other.CompareTag("Slev"))
         {
+            if(heldItem == null)
+            {
+
             heldItem = other.gameObject;
+            }
         }
     }
 
@@ -25,7 +29,7 @@ public class PickUpSlev : MonoBehaviour
         if (other.CompareTag("Slev"))
         {
 
-            // heldItem = null;
+            heldItem = null;
 
         }
     }
@@ -39,17 +43,13 @@ public class PickUpSlev : MonoBehaviour
                 itemRb = heldItem.GetComponent<Rigidbody>();
                 if (itemRb != null)
                 {
-                    itemRb.isKinematic = true; // Disable physics on the held item
+                    itemRb.isKinematic = true; // Disable physics on held item
                 }
 
-                Vector3 holdPointWorldPosition = holdPoint.parent.TransformPoint(holdPoint.localPosition);
-                heldItem.transform.position = holdPointWorldPosition;
-
-                Vector3 holdPointWorldDirection = holdPoint.parent.TransformDirection(holdPoint.localRotation * Vector3.forward);
-                Quaternion heldItemRotation = Quaternion.LookRotation(holdPointWorldDirection, Vector3.up);
-                heldItem.transform.rotation = heldItemRotation;
-
+                // Set the position and rotation of the held item to the hold point position and rotation
                 heldItem.transform.SetParent(holdPoint);
+                heldItem.transform.localPosition = Vector3.zero;
+                heldItem.transform.localRotation = Quaternion.identity;
             }
         }
 
@@ -61,10 +61,9 @@ public class PickUpSlev : MonoBehaviour
 
     public void OnDrop()
     {
-
+        //Drop the item
         if (heldItem != null)
         {
-            // If the bird is holding an item, drop it
             heldItem.transform.parent = null;
             itemRb = heldItem.GetComponent<Rigidbody>();
             if (itemRb != null)
