@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class SwitchCameraScriptForAll : MonoBehaviour
 {
@@ -14,15 +15,15 @@ public class SwitchCameraScriptForAll : MonoBehaviour
         if (other.CompareTag("Player"))
         {
 
-        SwitchCamera();
+            SwitchCamera();
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-
-        SwitchCamera();
+            originalCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Lens.Orthographic = false;
+            SwitchCamera();
         }
     }
 
