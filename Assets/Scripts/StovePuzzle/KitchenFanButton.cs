@@ -18,31 +18,30 @@ public class KitchenFanButton : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !buttonDown)
         {
             ButtonPush();
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            Invoke(nameof(ButtonReset), 3);
+            foreach (GameObject button in otherButtons)
+            {
+                button.GetComponent<KitchenFanButton>().ButtonReset();
+            }
         }
     }
 
     private void ButtonPush()
     {
         anim.CrossFade("KitchenFanDown", 0, 0);
-        kitchenFan.GetComponent<BoxCollider>().enabled = !kitchenFan.GetComponent<BoxCollider>().enabled;
+        kitchenFan.GetComponent<BoxCollider>().enabled = true;
         buttonDown = true;
     }
 
     private void ButtonReset()
     {
-        anim.CrossFade("KitchenFanUp", 0, 0);
-        buttonDown = false;
+        if (buttonDown)
+        {
+            anim.CrossFade("KitchenFanButtonUp", 0, 0);
+            buttonDown = false;
+        }
     }
     // Update is called once per frame
 
