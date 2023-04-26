@@ -25,8 +25,6 @@ public class BirdCableMovement : MonoBehaviour
     public float downSpeedMax = 10f;
     public float rotationSpeedAuto = 10f;
     public float rotationSpeed = 10f;
-    public float maxYRot = 90;
-    public float minYRot = -90;
     public bool isVertical;
     public int currentCableSegment = 0;
     public bool readyToClimb;
@@ -119,37 +117,8 @@ public class BirdCableMovement : MonoBehaviour
 
             transform.Rotate(0f, targetRotation, 0f);
         }
-        //LimitRotation();
-
 
     }
-    //void LimitRotation()
-    //{
-    //    Vector3 playerEulerAngles = localTrans.rotation.eulerAngles;
-    //    if (playerEulerAngles.y > 180)//playerEulerAngles.y = (playerEulerAngles.y > 180) ? playerEulerAngles.y - 360 : playerEulerAngles.y; 
-    //    {
-    //        //Maybe change the 180 value if wanting to rotate in the "bad" direction
-    //        playerEulerAngles.y -= 360;
-    //    }
-    //    playerEulerAngles.y = Mathf.Clamp(playerEulerAngles.y, minYRot, maxYRot);
-    //    localTrans.rotation = Quaternion.Euler(playerEulerAngles);
-    //}
-    void LimitRotation()
-    {
-        Vector3 playerEulerAngles = localTrans.rotation.eulerAngles;
-        if (playerEulerAngles.y > -180)
-        {
-            playerEulerAngles.y -= 360;
-        }
-        playerEulerAngles.y = Clamp(playerEulerAngles.y, minYRot, maxYRot);
-        localTrans.rotation = Quaternion.Euler(playerEulerAngles);
-    }
-
-    float Clamp(float value, float min, float max)
-    {
-        return Mathf.Clamp(value, min, max);
-    }
-
 
     private void FixedUpdate()
     {
@@ -279,11 +248,11 @@ public class BirdCableMovement : MonoBehaviour
         rb.useGravity = false;
         if (isVertical)
         {
-
             boxCollider.enabled = false;
         }
         birdBody.transform.localPosition += new Vector3(-0.453f, 0, 0);//Neeeds to be different value or each climbing place make it a 
         birdBody.transform.localEulerAngles += new Vector3(0, 0, 90);
+        
         //animator.SetBool("IsClimbing", true);
         readyToClimb = false;
         rb.velocity = Vector3.zero;

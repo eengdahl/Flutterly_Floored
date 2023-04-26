@@ -4,7 +4,10 @@ using UnityEngine;
 public class ClimbAlongScript : MonoBehaviour
 {
     public List<Transform> points = new List<Transform>();
+    public bool rotationStartLocked;
+    public Vector3 startRotation;
 
+ 
     private void OnDrawGizmos()
     {
         // Draw the cable in the scene view using Gizmos

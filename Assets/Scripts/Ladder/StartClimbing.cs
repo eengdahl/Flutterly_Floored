@@ -44,6 +44,10 @@ public class StartClimbing : MonoBehaviour
                 CableMovement.EnableClimbing();
                 other.GetComponent<SwitchControls>().SwitchToClimbing();
                 other.gameObject.transform.position = transform.position;
+                if (climbAlongScript.rotationStartLocked)
+                {
+                    other.transform.rotation = Quaternion.Euler(   climbAlongScript.startRotation);
+                }
                 if (isVertical)
                 {
                     other.GetComponent<BirdCableMovement>().isVertical = true;
