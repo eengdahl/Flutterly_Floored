@@ -6,12 +6,11 @@ using UnityEngine.InputSystem.LowLevel;
 
 public class HitZones : MonoBehaviour
 {
+    public GameObject cat;
     public GameObject[] hitzones;
     public Animator pawAnimator;
     public CatAMoleBrain gamestate;
     public GameObject player;
-    //public GameObject leftPaw;
-    //public GameObject rightPaw;
     public float attackSpeed;
     public float lazySpeed;
     public float notAttackingTimer;
@@ -23,8 +22,6 @@ public class HitZones : MonoBehaviour
     public bool isCharging;
     public bool isPlayerInZone;
     private bool isAnimTriggered;
-    //private Vector3 leftPawStartPosition;
-    //private Vector3 rightPawStartPosition;
 
 
     // Start is called before the first frame update
@@ -39,64 +36,63 @@ public class HitZones : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        CheckClosestZone();
+
         if (gamestate.moleState == MoleStates.Attack && !isAttacking)
         {
-            CheckClosestZone();
+            //CheckClosestZone();
             CheckPlayerInZone();
             isAttacking= true;
             isCharging = false;
 
+           
+
             //What happens to player if in a hitzone
-            if (closestHitzone != null && isPlayerInZone)
+            if (closestHitzone != null)
             {
+                
                 //Debug.Log("bird got hit in Zone:" +closestHitzone.name);
             }
         }
 
-        //Make cat attack with paws
+        if(closestHitzone != null)
+        {
+           
+        }
+
+        //Make cat attack
         if (isAttacking && !isAnimTriggered)
         {
-            isCharging = true;
+            isCharging = false;
             if (closestHitzone.name == "Hitzone1")
             {
                 animationTrigger = "ShortRight";
-                //pawAnimator.SetBool(animationTrigger, true);
-                //leftPaw.GetComponent<Rigidbody>().AddForce(transform.up * 2, ForceMode.Impulse);
-                //leftPaw.transform.position = Vector3.MoveTowards(leftPaw.transform.position, closestHitzone.transform.position, Time.deltaTime * attackSpeed);
-            }
-
-
-            if (closestHitzone.name == "Hitzone2")
-            {
-                animationTrigger = "LongRight";
-                //pawAnimator.SetTrigger(animationTrigger);
-                //leftPaw.GetComponent<Rigidbody>().AddForce(transform.up * 2, ForceMode.Impulse);
-                //leftPaw.transform.position = Vector3.MoveTowards(leftPaw.transform.position, closestHitzone.transform.position, Time.deltaTime * attackSpeed);
-            }
-
-            if (closestHitzone.name == "Hitzone3")
-            {
-                animationTrigger = "SuperLongLeft";
-                //pawAnimator.SetTrigger(animationTrigger);
             }
 
             if (closestHitzone.name == "Hitzone4")
             {
-                animationTrigger = "SuperLongLeft";
-                //pawAnimator.SetTrigger(animationTrigger);
+                animationTrigger = "ShortLeft";
             }
 
-            pawAnimator.SetBool(animationTrigger, true);
+            if (closestHitzone.name == "Hitzone2")
+            {
+                animationTrigger = "LongRight";
+            }
 
-            pawAnimator.SetBool("AttackCanBeTriggered", false);
+            if (closestHitzone.name == "Hitzone5")
+            {
+                animationTrigger = "LongLeft";
+            }
 
+            if (closestHitzone.name == "Hitzone3")
+            {
+                animationTrigger = "SuperLongRight";
+            }
 
-
-            //else
-            //{
-            //    //rightPaw.transform.position = Vector3.MoveTowards(rightPaw.transform.position, closestHitzone.transform.position, Time.deltaTime * attackSpeed);
-            //}
+            if (closestHitzone.name == "Hitzone6")
+            {
+                animationTrigger = "SuperLongLeft";
+            }
         }
 
         if(isCharging)
@@ -111,29 +107,14 @@ public class HitZones : MonoBehaviour
             pawAnimator.SetBool("Charging", false);
         }
 
-        //Pull back pawns
-        if (gamestate.moleState == MoleStates.Charge && isCharging)
+        if (gamestate.moleState == MoleStates.Charge && isAttacking)
         {
             isCharging = true;
             isAttacking = false;
             pawAnimator.ResetTrigger(animationTrigger);
-
-            
-
-            if (closestHitzone.CompareTag("LeftHitZone"))
-            {
-                //leftPaw.transform.position = Vector3.Lerp(leftPaw.transform.position, leftPawStartPosition, Time.deltaTime * lazySpeed);
-            }
-            else
-            {
-                //rightPaw.transform.position = Vector3.Lerp(rightPaw.transform.position, rightPawStartPosition, Time.deltaTime * lazySpeed);
-            }
-
-            //Debug.Log("rightpaw start pos: " + leftPawStartPosition);
-
-
         }
     }
+
 
 
     private void CheckPlayerInZone()
@@ -159,7 +140,7 @@ public class HitZones : MonoBehaviour
                 distanceClosestPosition = tmpDistance;
             }     
         }
-        //Debug.Log(closestHitzone.name);
+        Debug.Log(closestHitzone.name);
 
     }
 
