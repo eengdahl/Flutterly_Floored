@@ -18,12 +18,6 @@ public class CatAMoleShake : MonoBehaviour
         Debug.Log(cameraPerlinNoise);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void ShakeCam()
     {
         cameraPerlinNoise.m_AmplitudeGain = shakePower;

@@ -10,10 +10,4 @@ public class BirdOfDoom : MonoBehaviour
     {
         doom.Play();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

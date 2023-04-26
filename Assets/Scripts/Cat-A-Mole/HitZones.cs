@@ -114,7 +114,6 @@ public class HitZones : MonoBehaviour
             pawAnimator.SetBool(animationTrigger, false);
             isCharging = true;
             isAttacking = false;
-            //pawAnimator.ResetTrigger(animationTrigger);
         }
     }
 
