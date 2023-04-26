@@ -5575,6 +5575,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1943286587526172390, guid: d3aa6efffce1a024dbdbb583249cd5ec, type: 3}
+      propertyPath: catAMoleCam
+      value: 
+      objectReference: {fileID: 816452998}
     - target: {fileID: 2124935583028095245, guid: d3aa6efffce1a024dbdbb583249cd5ec, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -5624,6 +5628,22 @@ PrefabInstance:
 --- !u!1 &878761374 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1600634990608675767, guid: d3aa6efffce1a024dbdbb583249cd5ec, type: 3}
+  m_PrefabInstance: {fileID: 878761373}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &878761377 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1943286587526172392, guid: d3aa6efffce1a024dbdbb583249cd5ec, type: 3}
+  m_PrefabInstance: {fileID: 878761373}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878761374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99e17b1654a23fe47af83b9b62aeae42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &878761378 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1943286587526172393, guid: d3aa6efffce1a024dbdbb583249cd5ec, type: 3}
   m_PrefabInstance: {fileID: 878761373}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &881584396 stripped
@@ -11945,6 +11965,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 738457558534337977, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 878761374}
+    - target: {fileID: 738457558534337977, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
+      propertyPath: gamestate
+      value: 
+      objectReference: {fileID: 878761377}
+    - target: {fileID: 738457558534337977, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
+      propertyPath: pawAnimator
+      value: 
+      objectReference: {fileID: 878761378}
+    - target: {fileID: 738457558534337977, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
+      propertyPath: attackAnimator
+      value: 
+      objectReference: {fileID: 878761378}
     - target: {fileID: 8690392584342548785, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
       propertyPath: m_Name
       value: CatAMole2

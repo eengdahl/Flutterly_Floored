@@ -8,7 +8,7 @@ public class HitZones : MonoBehaviour
 {
     public GameObject cat;
     public GameObject[] hitzones;
-    public Animator pawAnimator;
+    public Animator attackAnimator;
     public CatAMoleBrain gamestate;
     public GameObject player;
     public float attackSpeed;
@@ -94,24 +94,24 @@ public class HitZones : MonoBehaviour
                 animationTrigger = "SuperLongLeft";
             }
 
-            pawAnimator.SetBool(animationTrigger, true);
+            attackAnimator.SetBool(animationTrigger, true);
         }
 
         if(isCharging)
         {
             isAnimTriggered = false;
-            pawAnimator.SetBool("AttackCanBeTriggered", true);
-            pawAnimator.SetBool(animationTrigger, false);
-            pawAnimator.SetBool("Charging", true);
+            attackAnimator.SetBool("AttackCanBeTriggered", true);
+            attackAnimator.SetBool(animationTrigger, false);
+            attackAnimator.SetBool("Charging", true);
         }
         else
         {
-            pawAnimator.SetBool("Charging", false);
+            attackAnimator.SetBool("Charging", false);
         }
 
         if (gamestate.moleState == MoleStates.Charge && isAttacking)
         {
-            pawAnimator.SetBool(animationTrigger, false);
+            attackAnimator.SetBool(animationTrigger, false);
             isCharging = true;
             isAttacking = false;
         }
