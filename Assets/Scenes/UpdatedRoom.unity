@@ -3084,8 +3084,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a70e26b52d2d67439ce7121117b605f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  otherButtons: []
-  kitchenFan: {fileID: 0}
+  otherButtons:
+  - {fileID: 1681396219}
+  - {fileID: 965187603}
+  - {fileID: 2042429783}
+  kitchenFan: {fileID: 1893250048}
+--- !u!95 &498235845
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498235836}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 85d47499bbea7a142b1427486e5e7d90, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &498235846
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498235836}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.010228168, y: 0.00898815, z: 0.009226162}
+  m_Center: {x: 0.026468692, y: -0.13692062, z: -0.06649578}
 --- !u!4 &524982356 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b72d4b7d7af9c954d931b04a7fba7609, type: 3}
@@ -6504,6 +6541,57 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5746147162638082140, guid: 24044ce30ad681c4880fe7ccda674a59, type: 3}
+--- !u!114 &965187611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965187603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a70e26b52d2d67439ce7121117b605f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  otherButtons:
+  - {fileID: 1681396219}
+  - {fileID: 498235836}
+  - {fileID: 2042429783}
+  kitchenFan: {fileID: 1893250048}
+--- !u!95 &965187612
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965187603}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 85d47499bbea7a142b1427486e5e7d90, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &965187613
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965187603}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.010228164, y: 0.009359259, z: 0.009152332}
+  m_Center: {x: 0.026468748, y: -0.1371062, z: -0.12511583}
 --- !u!1001 &966510802
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7772,6 +7860,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: -5843695826044790269, guid: 24044ce30ad681c4880fe7ccda674a59, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 51.908
+      objectReference: {fileID: 0}
     - target: {fileID: -5574624638293139136, guid: 24044ce30ad681c4880fe7ccda674a59, type: 3}
       propertyPath: m_TagString
       value: Ground
@@ -7819,6 +7911,10 @@ PrefabInstance:
     - target: {fileID: -3919476192568553184, guid: 24044ce30ad681c4880fe7ccda674a59, type: 3}
       propertyPath: m_TagString
       value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: -3860519174671996195, guid: 24044ce30ad681c4880fe7ccda674a59, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 51.94
       objectReference: {fileID: 0}
     - target: {fileID: -3807485315920446229, guid: 24044ce30ad681c4880fe7ccda674a59, type: 3}
       propertyPath: m_TagString
@@ -7963,6 +8059,10 @@ PrefabInstance:
     - target: {fileID: -1599826595754709761, guid: 24044ce30ad681c4880fe7ccda674a59, type: 3}
       propertyPath: m_TagString
       value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: -1450214524555725693, guid: 24044ce30ad681c4880fe7ccda674a59, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 52.001
       objectReference: {fileID: 0}
     - target: {fileID: -1450214524555725693, guid: 24044ce30ad681c4880fe7ccda674a59, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8143,6 +8243,10 @@ PrefabInstance:
     - target: {fileID: 6806708169297508064, guid: 24044ce30ad681c4880fe7ccda674a59, type: 3}
       propertyPath: m_TagString
       value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 6918000421265322446, guid: 24044ce30ad681c4880fe7ccda674a59, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 51.921
       objectReference: {fileID: 0}
     - target: {fileID: 6944656104360116776, guid: 24044ce30ad681c4880fe7ccda674a59, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -12274,6 +12378,57 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -1407623660032272785, guid: 24044ce30ad681c4880fe7ccda674a59, type: 3}
+--- !u!114 &1681396227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681396219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a70e26b52d2d67439ce7121117b605f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  otherButtons:
+  - {fileID: 498235836}
+  - {fileID: 965187603}
+  - {fileID: 2042429783}
+  kitchenFan: {fileID: 1893250048}
+--- !u!95 &1681396228
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681396219}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 85d47499bbea7a142b1427486e5e7d90, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &1681396229
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681396219}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.010228168, y: 0.009359259, z: 0.009280686}
+  m_Center: {x: 0.026468713, y: -0.1371062, z: -0.09649542}
 --- !u!1 &1685219510 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2229229445340648753, guid: 24044ce30ad681c4880fe7ccda674a59, type: 3}
@@ -14090,7 +14245,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a70e26b52d2d67439ce7121117b605f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  otherButtons: []
+  otherButtons:
+  - {fileID: 965187603}
+  - {fileID: 1681396219}
+  - {fileID: 498235836}
   kitchenFan: {fileID: 1893250048}
 --- !u!95 &2042429792
 Animator:
