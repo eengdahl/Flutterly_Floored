@@ -11,6 +11,7 @@ public class OrthographicScript : MonoBehaviour
     {
         vCam = GetComponent<CinemachineVirtualCamera>();
         vCam.m_Lens.Orthographic = true;
+        vCam.m_Lens.OrthographicSize = 1.5f;
     }
 
 

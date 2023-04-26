@@ -43,15 +43,26 @@ public class VitrinBrain : MonoBehaviour
     void Awake()
     {
         catIsDead = false;
-        grace = false;  
+        grace = false;
         speed = 5f;
         audioManager = FindObjectOfType<AudioManager>();
         aS = GetComponent<AudioSource>();
         NextState();
     }
 
+
     private void FixedUpdate()
     {
+
+
+        if (transform.rotation == waypoints[1].rotation)
+        {
+            transform.rotation = Quaternion.Lerp(waypoints[1].rotation, waypoints[0].rotation, 5 * Time.deltaTime);
+        }
+        if (transform.rotation == waypoints[0].rotation)
+        {
+            transform.rotation = Quaternion.Lerp(waypoints[0].rotation, waypoints[1].rotation, 5 * Time.deltaTime);
+        }
         if (catIsDead)
         {
             vitrinState = VitrinStates.Exit;
@@ -61,20 +72,19 @@ public class VitrinBrain : MonoBehaviour
         if (vitrinState == VitrinStates.Patrol)
         {
 
-            if (Vector3.Distance(transform.position, waypoints[index].position) < 0.01f)
-            {
-                index++;
-                this.gameObject.transform.Rotate(Vector3.up, 180);
-            }
-            if (index == waypoints.Count)
-            {
-                index = 0;
-            }
+            //if (Vector3.Distance(transform.position, waypoints[index].position) < 0.01f)
+            //{
+            //    index++;
+            //    this.gameObject.transform.Rotate(Vector3.up, 180);
+            //}
+            //if (index == waypoints.Count)
+            //{
+            //    index = 0;
+            //}
 
-            transform.position = Vector3.MoveTowards(
-                  transform.position,
-                  waypoints[index].position,
-                  speed * Time.deltaTime);
+            //   transform.position = Vector3.MoveTowards(transform.position, waypoints[index].position, speed * Time.deltaTime);
+            // transform.rotation = Vector3.RotateTowards(transform.forward, (waypoints[index].position-transform.position));
+            //  transform.LookAt(waypoints[index]);
         }
     }
 
@@ -154,11 +164,11 @@ public class VitrinBrain : MonoBehaviour
             this.gameObject.transform.LookAt(player.transform);
 
             yield return new WaitForSeconds(2);
-      
+
 
             if (!grace)
             {
-            isGazing = true;
+                isGazing = true;
             }
             yield return new WaitForSeconds(2);
             grace = false;
@@ -178,7 +188,7 @@ public class VitrinBrain : MonoBehaviour
             {
                 vitrinState = VitrinStates.Exit;
             }
-            
+
             yield return 0;
         }
         NextState();
@@ -196,7 +206,7 @@ public class VitrinBrain : MonoBehaviour
             aS.clip = crash;
             aS.loop = false;
 
-           
+
             aS.Play();
             yield return new WaitForSeconds(2);
             aS.Stop();

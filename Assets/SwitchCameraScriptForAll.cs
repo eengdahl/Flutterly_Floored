@@ -9,7 +9,6 @@ public class SwitchCameraScriptForAll : MonoBehaviour
     [SerializeField] GameObject cupboardCamera;
 
 
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
