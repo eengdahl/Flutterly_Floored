@@ -9,11 +9,12 @@ public class GazeOfDeath : MonoBehaviour
     public GameObject visionCone;
     public float distance;
     public LayerMask player;
-    Die dieScript;
+    DeathScriptAndCheckPoint dieScript;
+
 
     private void Start()
     {
-        dieScript=FindAnyObjectByType<Die>();
+        dieScript=FindAnyObjectByType<DeathScriptAndCheckPoint>();
     }
 
 
@@ -32,7 +33,7 @@ public class GazeOfDeath : MonoBehaviour
             if(hit.collider.gameObject.CompareTag("Player"))
             {
                 Debug.Log("Player Hit");
-                dieScript.KillPlayer();
+                dieScript.Die();
 
             }
 
