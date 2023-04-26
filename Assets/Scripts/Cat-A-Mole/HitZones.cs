@@ -27,8 +27,6 @@ public class HitZones : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //leftPawStartPosition = leftPaw.transform.position;
-        //rightPawStartPosition = rightPaw.transform.position;
         CheckClosestZone();     //Check closest hitzone to player
         gamestate.moleState = MoleStates.Charge;
     }
@@ -36,11 +34,11 @@ public class HitZones : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckClosestZone();
+        //CheckClosestZone();
 
         if (gamestate.moleState == MoleStates.Attack && !isAttacking)
         {
-            //CheckClosestZone();
+            CheckClosestZone();
             CheckPlayerInZone();
             isAttacking= true;
             isCharging = false;
@@ -63,7 +61,9 @@ public class HitZones : MonoBehaviour
         //Make cat attack
         if (isAttacking && !isAnimTriggered)
         {
+            Debug.Log("Runs attack code");
             isCharging = false;
+            isAnimTriggered = true;
             if (closestHitzone.name == "Hitzone1")
             {
                 animationTrigger = "ShortRight";
@@ -93,13 +93,15 @@ public class HitZones : MonoBehaviour
             {
                 animationTrigger = "SuperLongLeft";
             }
+
+            pawAnimator.SetBool(animationTrigger, true);
         }
 
         if(isCharging)
         {
             isAnimTriggered = false;
             pawAnimator.SetBool("AttackCanBeTriggered", true);
-            pawAnimator.SetBool(animationTrigger, true);
+            pawAnimator.SetBool(animationTrigger, false);
             pawAnimator.SetBool("Charging", true);
         }
         else
@@ -109,9 +111,10 @@ public class HitZones : MonoBehaviour
 
         if (gamestate.moleState == MoleStates.Charge && isAttacking)
         {
+            pawAnimator.SetBool(animationTrigger, false);
             isCharging = true;
             isAttacking = false;
-            pawAnimator.ResetTrigger(animationTrigger);
+            //pawAnimator.ResetTrigger(animationTrigger);
         }
     }
 
