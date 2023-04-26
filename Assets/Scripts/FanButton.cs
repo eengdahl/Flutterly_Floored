@@ -63,14 +63,14 @@ public class FanButton : MonoBehaviour
         {
             buttonPart.GetComponent<Rigidbody>().AddForce(buttonPart.transform.up * force * Time.fixedDeltaTime);
         }
+        //Bring button back to LowerLimit if going to far
+        if (buttonPart.localPosition.y <= buttonLowerLimit.localPosition.y)
+        {
+            buttonPart.transform.position = buttonLowerLimit.position;
+            buttonPart.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
         if (fanScript.on)
         {
-            //Bring button back to LowerLimit if going to far
-            if (buttonPart.localPosition.y <= buttonLowerLimit.localPosition.y)
-            {
-                buttonPart.transform.position = buttonLowerLimit.position;
-                buttonPart.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            }
             //threshold check for turning on and off
             if (Vector3.Distance(buttonPart.position, buttonLowerLimit.position) < upperLowerDiff * threshHold)
             {
@@ -90,6 +90,8 @@ public class FanButton : MonoBehaviour
             {
                 Released();
             }
+
+
 
         }
 
