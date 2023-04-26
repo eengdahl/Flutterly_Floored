@@ -27,6 +27,7 @@ public class PlayerJump : MonoBehaviour
     RaycastHit rightFootHit;
 
     PlayerWind playerWindsScript;
+    KitchenFan kitchenFan;
 
     [SerializeField]
     public bool isGrounded;
@@ -38,6 +39,7 @@ public class PlayerJump : MonoBehaviour
         leftFoot = GameObject.Find("LeftFootTransform");
         rightFoot = GameObject.Find("RightFootTransform");
         playerWindsScript = GetComponent<PlayerWind>();
+        kitchenFan = GameObject.Find("Kitchenfan.001").GetComponent<KitchenFan>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -171,15 +173,21 @@ public class PlayerJump : MonoBehaviour
 
     public void Glide()
     {
-        if (!playerWindsScript.inWindZone)
+        if (!playerWindsScript.inWindZone && !kitchenFan.inGawkArea)
         {
             gameObject.transform.GetChild(0).gameObject.SetActive(true);
             glideTime += Time.deltaTime;
             rb.AddForce(transform.up * glideForce, ForceMode.Acceleration);
         }
-        else if (playerWindsScript.inWindZone)
+        if (playerWindsScript.inWindZone)
         {
             rb.AddForce(transform.up * windTunnelAscend, ForceMode.Force);
+        }
+        if (kitchenFan.inGawkArea)
+        {
+            gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            glideTime += Time.deltaTime;
+            rb.AddForce(transform.up * (glideForce * 2), ForceMode.Acceleration);
         }
     }
 
