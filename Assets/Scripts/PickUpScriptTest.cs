@@ -101,7 +101,7 @@ public class PickUpScriptTest : MonoBehaviour
         }
         //Set thing to pull to closest  item and change colour
         thingToPull = closestItem;
-        SetMaterialTarget();
+        //SetMaterialTarget();
 
         //If rope change force
         //if (thingToPull.tag == "Rope")
@@ -127,7 +127,7 @@ public class PickUpScriptTest : MonoBehaviour
     {
         if (thingToPull != null)
         {
-            ReturnMaterial();
+            //ReturnMaterial();
             thingToPull = null;
 
         }

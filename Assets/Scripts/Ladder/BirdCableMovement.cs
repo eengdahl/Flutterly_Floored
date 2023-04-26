@@ -44,6 +44,7 @@ public class BirdCableMovement : MonoBehaviour
     [SerializeField] GameObject raycastDown;
 
     bool inWall;
+    //public bool isJungle;
 
 
     //Raycast for up or down
@@ -82,17 +83,13 @@ public class BirdCableMovement : MonoBehaviour
     {
         //For rotation
         if (!isClimbing) return;
-        //if (!isVertical)
-        //{
-        //    canGoDown = true;
-        //    canGoUp = true;
-        //    return;
-        //}
+        if (!isVertical)
+        {
+            return;
+        }
 
-        
+
         float horizontalInput = input.Climbing.verticalInput.ReadValue<Vector2>().x;
-
-
 
         if (horizontalInput > 0 && canTurnRight)
         {
@@ -123,6 +120,11 @@ public class BirdCableMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (!isClimbing) return;
+
+        if (cableplant.isJungle)
+        {
+            transform.position = cableplant.points[currentCableSegment].position;
+        }
 
         if (!input.Climbing.LeaveClimbing.IsPressed())
         {
@@ -175,7 +177,7 @@ public class BirdCableMovement : MonoBehaviour
         Debug.DrawRay(raycastStartTwo.transform.position, raycastStartTwo.transform.forward, Color.red);
 
         //W Up
-        if (input.Climbing.verticalInput.ReadValue<Vector2>().y > 0 && canGoUp && !inWall)
+        if (input.Climbing.verticalInput.ReadValue<Vector2>().y > 0 && canGoUp && !inWall && !cableplant.isJungle)
         {
 
             // Get the direction from the bird's current position to the next cable point
@@ -204,7 +206,7 @@ public class BirdCableMovement : MonoBehaviour
             }
         }
         //S Down
-        if (input.Climbing.verticalInput.ReadValue<Vector2>().y < 0 && canGoDown && !inWall)
+        if (input.Climbing.verticalInput.ReadValue<Vector2>().y < 0 && canGoDown && !inWall && ! cableplant.isJungle)
         {
 
             if (currentCableSegment - 1 >= 0)
@@ -235,7 +237,16 @@ public class BirdCableMovement : MonoBehaviour
             }
         }
 
+        if(input.Climbing.verticalInput.ReadValue<Vector2>().y > 0 && cableplant.isJungle)
+        {
+            cableplant.points[currentCableSegment].gameObject.GetComponentInParent<Rigidbody>().AddForce(birdBody.transform.up * 100f);
 
+        }
+        if (input.Climbing.verticalInput.ReadValue<Vector2>().y < 0 && cableplant.isJungle)
+        {
+            cableplant.points[currentCableSegment].gameObject.GetComponentInParent<Rigidbody>().AddForce(-birdBody.transform.up * 100f);
+           
+        }
     }
 
 
@@ -260,12 +271,17 @@ public class BirdCableMovement : MonoBehaviour
 
     public void DisableClimbing()
     {
+
         playerMoveScript.groundMovement = true;
         // Enable regular movement controls
         controllsSwitch.SwitchToFloor();
         rb.isKinematic = false;
         isClimbing = false;
         rb.useGravity = true;
+        if (cableplant.isJungle)
+        {
+            rb.velocity = cableplant.points[currentCableSegment].gameObject.GetComponentInParent<Rigidbody>().velocity;
+        }
         Invoke("ActivateCollider", 0.3f);
         currentCableSegment = 0;
         //transform.localEulerAngles = Vector3.zero;
@@ -274,6 +290,7 @@ public class BirdCableMovement : MonoBehaviour
         //animator.SetBool("IsClimbing", false);
         //SetReadyToClimb();
         Invoke("SetReadyToClimb", 0.3f);
+        
     }
     public void JumpOff(InputAction.CallbackContext input)
     {

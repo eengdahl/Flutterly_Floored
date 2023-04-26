@@ -6,7 +6,7 @@ public class ClimbAlongScript : MonoBehaviour
     public List<Transform> points = new List<Transform>();
     public bool rotationStartLocked;
     public Vector3 startRotation;
-
+    public bool isJungle;
  
     private void OnDrawGizmos()
     {
