@@ -31,7 +31,6 @@ public class DestructableObject : MonoBehaviour
         if (isFalling)
         {
             CalculateFallheight();
-            Debug.Log(fallheight);
         }
     }
 

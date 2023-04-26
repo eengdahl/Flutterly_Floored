@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 4137840830984103103}
   - component: {fileID: 2200121778967859317}
   - component: {fileID: 115058639480041114}
-  - component: {fileID: 115058639480041115}
   - component: {fileID: 2678990559108323781}
+  - component: {fileID: 1762239583}
   m_Layer: 0
   m_Name: mugWhole
   m_TagString: Untagged
@@ -94,7 +94,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 398739446043079072}
   serializedVersion: 2
-  m_Mass: 0.5
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 1
@@ -102,20 +102,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!64 &115058639480041115
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 398739446043079072}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -7219886339314900476, guid: 32f7dae0980b5114685c49f49b0eaeac, type: 3}
 --- !u!114 &2678990559108323781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,5 +117,18 @@ MonoBehaviour:
   destructionPrefab: {fileID: 8922774636421089370, guid: 6313be2c86f7c7a4292b14d5481f0e11, type: 3}
   canTakeFallDamage: 1
   canBeShot: 0
-  breakThresholdHeight: 5
-  isFalling: 0
+  breakThresholdHeight: 2
+--- !u!64 &1762239583
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398739446043079072}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7219886339314900476, guid: 9016f5dc93bbb6241a27af4178c7b65c, type: 3}
