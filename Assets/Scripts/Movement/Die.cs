@@ -32,6 +32,8 @@ public class Die : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        
         if (rb.velocity.y < -0.1f && !isFalling)
         {
             StartFall();
@@ -43,7 +45,11 @@ public class Die : MonoBehaviour
 
             if (fallheight >= maxFallheight)
             {
+                if (!isDead)
+                {
+
                 KillPlayer();
+                }
             }
         }
 

@@ -32,7 +32,7 @@ public class StartClimbing : MonoBehaviour
         FindIndexInList();
     }
 
-
+ 
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player") && CableMovement.readyToClimb && input.Floor.Drag.IsPressed())

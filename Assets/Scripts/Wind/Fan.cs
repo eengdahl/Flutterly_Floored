@@ -8,8 +8,11 @@ public class Fan : MonoBehaviour
     //public GameObject fan;
     public bool on;
     public float rotationSpeed = 40f;
-    [SerializeField]GameObject windArea;
+                     GameObject windArea;
+    [SerializeField] GameObject windAreaOne;
+    [SerializeField] GameObject windAreaTwo;
     [SerializeField] GameObject wholeFanPart;
+    [SerializeField] GameObject baseOfFan;
 
 
     //Base of fan rotation
@@ -20,9 +23,18 @@ public class Fan : MonoBehaviour
     private float targetAngle; // Target angle for rotation
     private float currentAngle; // Current angle of rotation
 
+    [Header("Buttons")]
+    [SerializeField] FanButton rotationButton;
+    [SerializeField] FanButton strengthButton;
+
+    
+
+
+
     private void Start()
     {
         on = false;
+        windArea = windAreaOne;
     }
 
 
@@ -33,24 +45,28 @@ public class Fan : MonoBehaviour
             // Rotate the fan blade 
             wholeFanPart.transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
             //Rotate whole fan base
+            if (rotationButton.buttonOn)
+            {
+                float deltaAngle = rotationSpeedBase * Time.deltaTime;
+                currentAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, deltaAngle);
+                baseOfFan.transform.localRotation = Quaternion.Euler(currentAngle, -90f, 0f);
 
-            //float deltaAngle = rotationSpeedBase * Time.deltaTime;
-            //currentAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, deltaAngle);
-            //wholeFanPart.transform.localRotation = Quaternion.Euler(0f, currentAngle, 0f);
+                //Make fan base switch between the different angles when it reaches one of them
+                //Mathf.Approximately is apparently a great tool to get if the two values are about the same, exactly the same can be hard sometimes
+                if (Mathf.Approximately(currentAngle, targetAngle))
+                {
+                    if (targetAngle == maxAngle)
+                    {
+                        targetAngle = minAngle;
+                    }
+                    else
+                    {
+                        targetAngle = maxAngle;
+                    }
+                }
 
-            // Make fan base switch between the different angles when it reaches one of them
-            //Mathf.Approximately is apparently a great tool to get if the two values are about the same, exactly the same can be hard sometimes
-            //if (Mathf.Approximately(currentAngle, targetAngle))
-            //{
-            //    if (targetAngle == maxAngle)
-            //    {
-            //        targetAngle = minAngle;
-            //    }
-            //    else
-            //    {
-            //        targetAngle = maxAngle;
-            //    }               
-            //}
+            }
+
         }
     }
     public void TurnOn()
@@ -62,5 +78,27 @@ public class Fan : MonoBehaviour
     {
         on = false;
         windArea.SetActive(false);
+    }
+    public void SwitchWindStr()
+    {
+        if (on)
+        {
+        windArea.SetActive(false);
+
+        }
+
+        if (windArea == windAreaOne)
+        {
+            windArea = windAreaTwo;
+        }
+        else if (windArea == windAreaTwo)
+        {
+            windArea = windAreaOne;
+        }
+
+        if (on)
+        {
+            windArea.SetActive(true);
+        }
     }
 }

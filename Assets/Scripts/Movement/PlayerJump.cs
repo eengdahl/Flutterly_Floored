@@ -17,6 +17,7 @@ public class PlayerJump : MonoBehaviour
     public bool canGlide;
     public float glideTime;
     public float coyoteTime;
+    public float airTime;
     public float coyoteTimeCounter;
     private float fallSpeed;
     private float groundCheckDistance;
@@ -75,7 +76,7 @@ public class PlayerJump : MonoBehaviour
         Debug.DrawLine(rightFoot.transform.position, rightFoot.transform.position + new Vector3(0, -groundCheckDistance, 0), Color.blue);
         bool rayCastHit = false;
 
-        if (Physics.Raycast(leftFoot.transform.position, -leftFoot.transform.up, out leftFootHit, groundCheckDistance) /*|| Physics.Raycast(rightFoot.transform.position, -rightFoot.transform.up, out rightFootHit, groundCheckDistance)*/)
+        if (Physics.Raycast(leftFoot.transform.position, -leftFoot.transform.up, out leftFootHit, groundCheckDistance))
         {
             if (leftFootHit.collider != null && leftFootHit.collider.CompareTag("Ground"))
             {
@@ -110,6 +111,16 @@ public class PlayerJump : MonoBehaviour
 
         if (gliding)
             Glide();
+
+        if (!isGrounded)
+        {
+            airTime += Time.deltaTime;
+        }
+
+        if (isGrounded)
+        {
+            airTime = 0;
+        }
     }
 
     //Input events for Spacebar (Jump key)
