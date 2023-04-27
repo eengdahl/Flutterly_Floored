@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class StartClimbing : MonoBehaviour
 {
-
+    SwitchControls switchControls;
     ClimbAlongScript climbAlongScript;
     BirdCableMovement CableMovement;
     public bool isVertical;
@@ -22,41 +22,47 @@ public class StartClimbing : MonoBehaviour
     }
     private void Awake()
     {
+        switchControls = FindAnyObjectByType<SwitchControls>();
         input = new PlayerControls();
-    }
-    void Start()
-    {
         CableMovement = FindAnyObjectByType<BirdCableMovement>();
         climbAlongScript = GetComponentInParent<ClimbAlongScript>();
 
         FindIndexInList();
     }
 
- 
+
+
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player") && CableMovement.readyToClimb && input.Floor.Drag.IsPressed())
+        if (other.CompareTag("Player"))
         {
-            if (!CableMovement.isClimbing)
+            if (CableMovement.readyToClimb)
             {
-                other.GetComponent<BirdCableMovement>().cableplant = climbAlongScript;
-                CableMovement.currentCableSegment = index;
-                CableMovement.EnableClimbing();
-                other.GetComponent<SwitchControls>().SwitchToClimbing();
-                other.gameObject.transform.position = transform.position;
-                if (climbAlongScript.rotationStartLocked)
+                if (input.Floor.Drag.IsPressed())
                 {
-                    other.transform.rotation = Quaternion.Euler(   climbAlongScript.startRotation);
-                }
-                if (isVertical)
-                {
-                    other.GetComponent<BirdCableMovement>().isVertical = true;
-                }
-                else
-                {
-                    other.GetComponent<BirdCableMovement>().isVertical = false;
-                }
+                    if (!CableMovement.isClimbing)
+                    {
+                        CableMovement.cableplant = climbAlongScript;
+                        CableMovement.currentCableSegment = index;
+                        CableMovement.EnableClimbing();
+                        switchControls.SwitchToClimbing();
+                        other.gameObject.transform.position = transform.position;
+                        if (climbAlongScript.rotationStartLocked)
+                        {
+                            other.transform.rotation = Quaternion.Euler(climbAlongScript.startRotation);
+                        }
+                        if (isVertical)
+                        {
+                            CableMovement.isVertical = true;
+                        }
+                        else
+                        {
+                            CableMovement.isVertical = false;
+                        }
 
+                    }
+
+                }
             }
 
         }

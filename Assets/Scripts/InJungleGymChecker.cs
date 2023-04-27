@@ -5,17 +5,33 @@ using UnityEngine;
 public class InJungleGymChecker : MonoBehaviour
 {
     public bool inJungle = false;
+    [SerializeField]GameObject jungle;
+    float distance;
 
-    private void OnTriggerEnter(Collider other)
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("JungleGym"))
+    //    {
+    //        inJungle = true;
+    //    }
+    //}
+
+    private void Update()
     {
-        if (other.CompareTag("JungleGym"))
+        distance = Vector3.Distance(transform.position, jungle.transform.position);
+        if(distance >= 30)
+        {
+            inJungle = false;
+        }
+        else if (distance<30)
         {
             inJungle = true;
         }
+
     }
     //private void OnTriggerExit(Collider other)
     //{
-    //    if (other.CompareTag("JungleGym"))
+    //    if (other.CompareTag("JungleGym") && distance > 30)
     //    {
     //        inJungle = false;
     //    }

@@ -3,12 +3,12 @@ using UnityEngine;
 public class TurnOnOffDistance : MonoBehaviour
 {
     public Transform playerTransform;
-    float activationDistance = 10f;
+    float activationDistance = 20f;
     public GameObject onlyMeshObject;
     public GameObject physicsObject;
     InJungleGymChecker gymChecker;
 
-    private void Start()
+    private void Awake()
     {
         gymChecker = FindAnyObjectByType<InJungleGymChecker>();
 

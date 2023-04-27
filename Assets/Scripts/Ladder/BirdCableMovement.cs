@@ -13,7 +13,7 @@ public class BirdCableMovement : MonoBehaviour
     Collider boxCollider;
     [SerializeField] PlayerJump jumpScript;
     //private InputAction.CallbackContext initialInput;
-    Transform localTrans;
+
     PlayerMove playerMoveScript;
 
     [Header("Variables")]
@@ -64,18 +64,23 @@ public class BirdCableMovement : MonoBehaviour
     {
         input = new PlayerControls();
 
-        localTrans = GetComponent<Transform>();
-
-    }
-    private void Start()
-    {
-
+ 
         downSpeedMin = downSpeed;
         playerMoveScript = GetComponent<PlayerMove>();
         boxCollider = GetComponent<Collider>();
         rb = GetComponent<Rigidbody>();
         controllsSwitch = GetComponent<SwitchControls>();
         readyToClimb = true;
+    }
+    private void Start()
+    {
+
+        //downSpeedMin = downSpeed;
+        //playerMoveScript = GetComponent<PlayerMove>();
+        //boxCollider = GetComponent<Collider>();
+        //rb = GetComponent<Rigidbody>();
+        //controllsSwitch = GetComponent<SwitchControls>();
+        //readyToClimb = true;
 
     }
 

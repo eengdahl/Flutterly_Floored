@@ -9,8 +9,9 @@ public class ClimbAlongScript : MonoBehaviour
     public bool isJungle;
     Rigidbody rb;
     public bool canFall;
+    public MeshCollider meshCollider;
 
-    private void Start()
+    private void Awake()
     {
         rb = GetComponentInParent<Rigidbody>();
     }
@@ -27,6 +28,7 @@ public class ClimbAlongScript : MonoBehaviour
     public void FallToGround()
     {
         rb.isKinematic = false;
+        meshCollider.enabled = true;
         gameObject.SetActive(false);
     }
 }

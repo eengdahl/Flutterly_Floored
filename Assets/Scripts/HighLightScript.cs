@@ -44,6 +44,7 @@ public class HighLightScript : MonoBehaviour
         float closestDistance = Mathf.Infinity;
         GameObject newClosestObject = null;
 
+        if (objectsInTrigger.Count == 0) return;
         foreach (GameObject obj in objectsInTrigger)
         {
             float distance = Vector3.Distance(closestObjectTransform.position, obj.transform.position);
