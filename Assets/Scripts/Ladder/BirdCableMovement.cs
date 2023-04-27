@@ -37,7 +37,7 @@ public class BirdCableMovement : MonoBehaviour
     [SerializeField] GameObject raycastStartOne;
     [SerializeField] GameObject raycastStartTwo;
     //Raycast for up and down
-    
+
     [SerializeField] GameObject raycastUp;
 
 
@@ -78,7 +78,7 @@ public class BirdCableMovement : MonoBehaviour
         readyToClimb = true;
 
     }
-    
+
     private void LateUpdate()
     {
         //For rotation
@@ -165,7 +165,7 @@ public class BirdCableMovement : MonoBehaviour
             canTurnRight = true;
         }
 
-        if(!canTurnLeft || !canTurnRight)
+        if (!canTurnLeft || !canTurnRight)
         {
             inWall = true;
         }
@@ -177,53 +177,25 @@ public class BirdCableMovement : MonoBehaviour
         Debug.DrawRay(raycastStartTwo.transform.position, raycastStartTwo.transform.forward, Color.red);
 
         //W Up
-        if (input.Climbing.verticalInput.ReadValue<Vector2>().y > 0 && canGoUp && !inWall && !cableplant.isJungle)
+        if (cableplant != null)
         {
 
-            // Get the direction from the bird's current position to the next cable point
-            Vector3 direction = cableplant.points[currentCableSegment].position - transform.position;
-            direction.Normalize();
-            // Move the bird along the cable in the current segment's direction
-            transform.position += direction * speed * Time.deltaTime;
-            // Check if the bird has reached the current segment's end point
-            if (Vector3.Distance(transform.position, cableplant.points[currentCableSegment].position) < 0.1f)
+            if (input.Climbing.verticalInput.ReadValue<Vector2>().y > 0 && canGoUp && !inWall && !cableplant.isJungle)
             {
-                if (currentCableSegment < cableplant.points.Count - 1)
-                {
-                    // Move to the next segment of the cable
-                    currentCableSegment = currentCableSegment + 1;
-                    //Rotate
-                    Vector3 eulerAngles = cableplant.points[currentCableSegment].eulerAngles;
-                    if (isVertical)
-                    {
 
-                        eulerAngles.y += transform.eulerAngles.y;
-                    }
-                    transform.eulerAngles = eulerAngles;
-
-                }
-
-            }
-        }
-        //S Down
-        if (input.Climbing.verticalInput.ReadValue<Vector2>().y < 0 && canGoDown && !inWall && ! cableplant.isJungle)
-        {
-
-            if (currentCableSegment - 1 >= 0)
-            {
                 // Get the direction from the bird's current position to the next cable point
-                Vector3 direction = cableplant.points[currentCableSegment - 1].position - transform.position;
+                Vector3 direction = cableplant.points[currentCableSegment].position - transform.position;
                 direction.Normalize();
                 // Move the bird along the cable in the current segment's direction
-                transform.position += direction * downSpeed * Time.deltaTime;
+                transform.position += direction * speed * Time.deltaTime;
                 // Check if the bird has reached the current segment's end point
-                if (Vector3.Distance(transform.position, cableplant.points[currentCableSegment - 1].position) < 0.1f)
+                if (Vector3.Distance(transform.position, cableplant.points[currentCableSegment].position) < 0.1f)
                 {
-                    if (currentCableSegment > 1)
+                    if (currentCableSegment < cableplant.points.Count - 1)
                     {
                         // Move to the next segment of the cable
-                        currentCableSegment = currentCableSegment - 1;
-                        // Rotate if necessary
+                        currentCableSegment = currentCableSegment + 1;
+                        //Rotate
                         Vector3 eulerAngles = cableplant.points[currentCableSegment].eulerAngles;
                         if (isVertical)
                         {
@@ -231,21 +203,53 @@ public class BirdCableMovement : MonoBehaviour
                             eulerAngles.y += transform.eulerAngles.y;
                         }
                         transform.eulerAngles = eulerAngles;
+
                     }
 
                 }
             }
-        }
-        //if it is jungle swings
-        if(input.Climbing.verticalInput.ReadValue<Vector2>().y > 0 && cableplant.isJungle)
-        {
-            cableplant.points[currentCableSegment].gameObject.GetComponentInParent<Rigidbody>().AddForce(birdBody.transform.up * 300f);
+            //S Down
+            if (input.Climbing.verticalInput.ReadValue<Vector2>().y < 0 && canGoDown && !inWall && !cableplant.isJungle)
+            {
 
-        }
-        if (input.Climbing.verticalInput.ReadValue<Vector2>().y < 0 && cableplant.isJungle)
-        {
-            cableplant.points[currentCableSegment].gameObject.GetComponentInParent<Rigidbody>().AddForce(-birdBody.transform.up * 300f);
-           
+                if (currentCableSegment - 1 >= 0)
+                {
+                    // Get the direction from the bird's current position to the next cable point
+                    Vector3 direction = cableplant.points[currentCableSegment - 1].position - transform.position;
+                    direction.Normalize();
+                    // Move the bird along the cable in the current segment's direction
+                    transform.position += direction * downSpeed * Time.deltaTime;
+                    // Check if the bird has reached the current segment's end point
+                    if (Vector3.Distance(transform.position, cableplant.points[currentCableSegment - 1].position) < 0.1f)
+                    {
+                        if (currentCableSegment > 1)
+                        {
+                            // Move to the next segment of the cable
+                            currentCableSegment = currentCableSegment - 1;
+                            // Rotate if necessary
+                            Vector3 eulerAngles = cableplant.points[currentCableSegment].eulerAngles;
+                            if (isVertical)
+                            {
+
+                                eulerAngles.y += transform.eulerAngles.y;
+                            }
+                            transform.eulerAngles = eulerAngles;
+                        }
+
+                    }
+                }
+            }
+            //if it is jungle swings
+            if (input.Climbing.verticalInput.ReadValue<Vector2>().y > 0 && cableplant.isJungle)
+            {
+                cableplant.points[currentCableSegment].gameObject.GetComponentInParent<Rigidbody>().AddForce(birdBody.transform.up * 300f);
+
+            }
+            if (input.Climbing.verticalInput.ReadValue<Vector2>().y < 0 && cableplant.isJungle)
+            {
+                cableplant.points[currentCableSegment].gameObject.GetComponentInParent<Rigidbody>().AddForce(-birdBody.transform.up * 300f);
+
+            }
         }
     }
 
@@ -263,7 +267,7 @@ public class BirdCableMovement : MonoBehaviour
         }
         birdBody.transform.localPosition += new Vector3(-0.453f, 0, 0);//Neeeds to be different value or each climbing place make it a 
         birdBody.transform.localEulerAngles += new Vector3(0, 0, 90);
-        
+
         //animator.SetBool("IsClimbing", true);
         readyToClimb = false;
         rb.velocity = Vector3.zero;
@@ -278,9 +282,14 @@ public class BirdCableMovement : MonoBehaviour
         rb.isKinematic = false;
         isClimbing = false;
         rb.useGravity = true;
-        
+
         if (cableplant != null)
         {
+            if (cableplant.canFall)
+            {
+                cableplant.FallToGround();
+            }
+
             if (cableplant.isJungle)
             {
                 rb.velocity = cableplant.points[currentCableSegment].gameObject.GetComponentInParent<Rigidbody>().velocity * 2;
@@ -295,7 +304,7 @@ public class BirdCableMovement : MonoBehaviour
         //animator.SetBool("IsClimbing", false);
         //SetReadyToClimb();
         Invoke("SetReadyToClimb", 0.3f);
-        
+
     }
     public void JumpOff(InputAction.CallbackContext input)
     {

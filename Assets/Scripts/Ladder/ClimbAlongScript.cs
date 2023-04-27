@@ -7,7 +7,13 @@ public class ClimbAlongScript : MonoBehaviour
     public bool rotationStartLocked;
     public Vector3 startRotation;
     public bool isJungle;
- 
+    Rigidbody rb;
+    public bool canFall;
+
+    private void Start()
+    {
+        rb = GetComponentInParent<Rigidbody>();
+    }
     private void OnDrawGizmos()
     {
         // Draw the cable in the scene view using Gizmos
@@ -16,5 +22,11 @@ public class ClimbAlongScript : MonoBehaviour
             Gizmos.color = Color.red;
             Gizmos.DrawLine(points[i].position, points[i + 1].position);
         }
+    }
+
+    public void FallToGround()
+    {
+        rb.isKinematic = false;
+        gameObject.SetActive(false);
     }
 }
