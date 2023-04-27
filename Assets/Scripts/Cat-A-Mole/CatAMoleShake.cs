@@ -20,8 +20,11 @@ public class CatAMoleShake : MonoBehaviour
 
     public void ShakeCam()
     {
-        cameraPerlinNoise.m_AmplitudeGain = shakePower;
-        StartCoroutine(ShakeCoroutine());
+        if (catAMoleCam != null)
+        {
+            cameraPerlinNoise.m_AmplitudeGain = shakePower;
+            StartCoroutine(ShakeCoroutine());
+        }
     }
 
     private IEnumerator ShakeCoroutine()
