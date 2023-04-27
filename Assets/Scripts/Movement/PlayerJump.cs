@@ -39,7 +39,7 @@ public class PlayerJump : MonoBehaviour
         leftFoot = GameObject.Find("LeftFootTransform");
         rightFoot = GameObject.Find("RightFootTransform");
         playerWindsScript = GetComponent<PlayerWind>();
-        kitchenFan = GameObject.Find("Kitchenfan.001").GetComponent<KitchenFan>();
+        kitchenFan = GameObject.Find("KitchenFan").GetComponent<KitchenFan>();
         rb = GetComponent<Rigidbody>();
     }
 
