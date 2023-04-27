@@ -3088,6 +3088,9 @@ MonoBehaviour:
   - {fileID: 1681396219}
   - {fileID: 965187603}
   - {fileID: 2042429783}
+  buttonDown: 0
+  offButton: 0
+  fanMultiplier: 0
   kitchenFan: {fileID: 1893250048}
 --- !u!95 &498235845
 Animator:
@@ -3501,6 +3504,7 @@ MonoBehaviour:
   rotationStartLocked: 1
   startRotation: {x: 0, y: 143, z: 0}
   isJungle: 0
+  canFall: 0
 --- !u!1 &599043824 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2800250516343163423, guid: 24044ce30ad681c4880fe7ccda674a59, type: 3}
@@ -3604,6 +3608,7 @@ MonoBehaviour:
   rotationStartLocked: 0
   startRotation: {x: 0, y: 0, z: 0}
   isJungle: 0
+  canFall: 0
 --- !u!1 &624224219 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5574624638293139136, guid: 24044ce30ad681c4880fe7ccda674a59, type: 3}
@@ -6467,6 +6472,9 @@ MonoBehaviour:
   - {fileID: 1681396219}
   - {fileID: 498235836}
   - {fileID: 2042429783}
+  buttonDown: 0
+  offButton: 0
+  fanMultiplier: 0
   kitchenFan: {fileID: 1893250048}
 --- !u!95 &965187612
 Animator:
@@ -8416,7 +8424,7 @@ PrefabInstance:
     - target: {fileID: 268083777916580989, guid: e72c3c97ec6714741ad3f8da73c005b3, type: 3}
       propertyPath: cat
       value: 
-      objectReference: {fileID: 1600634990807918122}
+      objectReference: {fileID: 0}
     - target: {fileID: 268083777916580989, guid: e72c3c97ec6714741ad3f8da73c005b3, type: 3}
       propertyPath: legs
       value: 
@@ -8629,6 +8637,7 @@ MonoBehaviour:
   rotationStartLocked: 1
   startRotation: {x: 0, y: -85, z: 0}
   isJungle: 0
+  canFall: 0
 --- !u!1001 &1171608879
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12058,25 +12067,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 738457558534337977, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
-      propertyPath: cat
-      value: 
-      objectReference: {fileID: 1600634990807918122}
-    - target: {fileID: 738457558534337977, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1319664378}
     - target: {fileID: 738457558534337977, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
       propertyPath: gamestate
       value: 
-      objectReference: {fileID: 1943286586785897333}
-    - target: {fileID: 738457558534337977, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
-      propertyPath: pawAnimator
-      value: 
-      objectReference: {fileID: 1943286586785897332}
+      objectReference: {fileID: 0}
     - target: {fileID: 738457558534337977, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
       propertyPath: attackAnimator
       value: 
-      objectReference: {fileID: 1943286586785897332}
+      objectReference: {fileID: 0}
     - target: {fileID: 8690392584342548785, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
       propertyPath: m_Name
       value: CatAMole2
@@ -12125,28 +12126,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8690392584342548791, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
-      propertyPath: m_Avatar
-      value: 
-      objectReference: {fileID: 9000000, guid: 4c3edd70220d48b4eb1cd594a7ed696c, type: 3}
-    - target: {fileID: 8690392584342548794, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8690392585233210930, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.68
-      objectReference: {fileID: 0}
-    - target: {fileID: 8690392585350610495, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.665
-      objectReference: {fileID: 0}
-    - target: {fileID: 8690392586401165838, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.678
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8690392584342548794, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
 --- !u!1 &1630960760 stripped
 GameObject:
@@ -12403,6 +12383,9 @@ MonoBehaviour:
   - {fileID: 498235836}
   - {fileID: 965187603}
   - {fileID: 2042429783}
+  buttonDown: 0
+  offButton: 0
+  fanMultiplier: 0
   kitchenFan: {fileID: 1893250048}
 --- !u!95 &1681396228
 Animator:
@@ -13581,7 +13564,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126ce18bcc192234aa12e14b6cd9c536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonList: []
   inGawkArea: 0
+  glideMultiplier: 0
 --- !u!65 &1893250057
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14258,6 +14243,9 @@ MonoBehaviour:
   - {fileID: 965187603}
   - {fileID: 1681396219}
   - {fileID: 498235836}
+  buttonDown: 0
+  offButton: 0
+  fanMultiplier: 0
   kitchenFan: {fileID: 1893250048}
 --- !u!95 &2042429792
 Animator:
@@ -15463,27 +15451,6 @@ PrefabInstance:
       objectReference: {fileID: 450283581}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3aa6efffce1a024dbdbb583249cd5ec, type: 3}
---- !u!1 &1600634990807918122 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2222779026496123076, guid: d3aa6efffce1a024dbdbb583249cd5ec, type: 3}
-  m_PrefabInstance: {fileID: 643588910812223214}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1943286586785897332 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1304227973665148314, guid: d3aa6efffce1a024dbdbb583249cd5ec, type: 3}
-  m_PrefabInstance: {fileID: 643588910812223214}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1943286586785897333 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1304227973665148315, guid: d3aa6efffce1a024dbdbb583249cd5ec, type: 3}
-  m_PrefabInstance: {fileID: 643588910812223214}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1600634990807918122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99e17b1654a23fe47af83b9b62aeae42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7326423126609819636
 PrefabInstance:
   m_ObjectHideFlags: 0
