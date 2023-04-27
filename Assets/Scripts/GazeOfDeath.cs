@@ -9,12 +9,13 @@ public class GazeOfDeath : MonoBehaviour
     public GameObject visionCone;
     public float distance;
     public LayerMask player;
-    DeathScriptAndCheckPoint dieScript;
+    DeathScriptAndCheckPoint playerDeath;
+
 
 
     private void Start()
     {
-        dieScript=FindAnyObjectByType<DeathScriptAndCheckPoint>();
+        playerDeath = FindAnyObjectByType<DeathScriptAndCheckPoint>();
     }
 
 
@@ -22,18 +23,16 @@ public class GazeOfDeath : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
 
-        //Debug.Log(other.gameObject.name);
-
         if(other.CompareTag("Player"))
         {
-                Debug.Log("Player Hit");
             RaycastHit hit;
             Physics.Raycast(visionCone.transform.position, other.transform.position - visionCone.transform.position, out hit,distance, player);
-            //Debug.Log(hit.collider.gameObject.name);
 
             if(hit.collider.gameObject.CompareTag("Player"))
             {
-                dieScript.Die();
+                playerDeath = other.GetComponent<DeathScriptAndCheckPoint>();
+                other.GetComponent<Rigidbody>().isKinematic = false;
+                playerDeath.Die();
 
             }
 
