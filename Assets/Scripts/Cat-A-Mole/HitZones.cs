@@ -6,7 +6,6 @@ using UnityEngine.InputSystem.LowLevel;
 
 public class HitZones : MonoBehaviour
 {
-    public GameObject cat;
     public GameObject[] hitzones;
     public Animator attackAnimator;
     public CatAMoleBrain gamestate;
@@ -117,7 +116,10 @@ public class HitZones : MonoBehaviour
         }
     }
 
-
+    private void PlayerVisable()
+    {
+        RaycastHit hit;
+    }
 
     private void CheckPlayerInZone()
     {
