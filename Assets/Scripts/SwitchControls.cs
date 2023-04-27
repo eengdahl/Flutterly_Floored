@@ -39,4 +39,9 @@ public class SwitchControls : MonoBehaviour
     {
         playerInput.SwitchCurrentActionMap("Flying");
     }
+    public void SwitchToNoInput()
+    {
+        playerInput.SwitchCurrentActionMap("NoInput");
+    }
+
 }
