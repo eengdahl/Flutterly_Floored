@@ -12,7 +12,7 @@ public class HideNSeekBottles : MonoBehaviour
     GameObject leftBottle;
     GameObject rightBottle;
     private Animator anim;
-    VitrinBrain vitrinBrain;
+    VitrinBrain2 vitrinBrain;
     BoxCollider parentCollider;
     private bool onceLock;
 
@@ -37,10 +37,10 @@ public class HideNSeekBottles : MonoBehaviour
         {
             if (!onceLock)
             {
-                vitrinBrain = FindAnyObjectByType<VitrinBrain>();
+                vitrinBrain = FindAnyObjectByType<VitrinBrain2>();
                 onceLock = true;
             }
-            vitrinBrain = FindAnyObjectByType<VitrinBrain>();
+            vitrinBrain = FindAnyObjectByType<VitrinBrain2>();
             Debug.Log("sprutsprut");
             ButtonPush();
         }
@@ -58,41 +58,36 @@ public class HideNSeekBottles : MonoBehaviour
 
     public void ButtonPush()
     {
-      
-        //catlives reduce if cat is in range and not defeated
-        if (catInRange)
-        {
-            Debug.Log("CatInRange");
-            //if (leftBottle.GetComponent<HideNSeekBottles>().catLives !> 1 || rightBottle.GetComponent<HideNSeekBottles>().catLives !> 1)
-            //{
-            //    return;
-            //}
-            if (gameObject == leftBottle)
-            {
-                if (catLives > rightBottle.GetComponent<HideNSeekBottles>().catLives)
-                {
-                    catLives = rightBottle.GetComponent<HideNSeekBottles>().catLives;
 
-                }
-            }
-            if (gameObject == rightBottle)
-            {
-                if (catLives > leftBottle.GetComponent<HideNSeekBottles>().catLives)
-                {
-                    catLives = leftBottle.GetComponent<HideNSeekBottles>().catLives;
 
-                }
-            }
-            vitrinBrain.grace = true;
-            catLives--;
-            aS.Play();
-            Debug.Log(catLives);
-            if (catLives <= 0)
-            {
-                Debug.Log("CatIsDiededGGEZ");
-                vitrinBrain.catIsDead = true;
-            }
-        }
+        //if (leftBottle.GetComponent<HideNSeekBottles>().catLives !> 1 || rightBottle.GetComponent<HideNSeekBottles>().catLives !> 1)
+        //{
+        //    return;
+        //}
+        //if (gameObject == leftBottle)
+        //{
+        //    if (catLives > rightBottle.GetComponent<HideNSeekBottles>().catLives)
+        //    {
+        //        catLives = rightBottle.GetComponent<HideNSeekBottles>().catLives;
+
+        //    }
+        //}
+        //if (gameObject == rightBottle)
+        //{
+        //    if (catLives > leftBottle.GetComponent<HideNSeekBottles>().catLives)
+        //    {
+        //        catLives = leftBottle.GetComponent<HideNSeekBottles>().catLives;
+
+        //    }
+        //}
+        // vitrinBrain.grace = true;
+        catLives--;
+        aS.Play();
+
+        Debug.Log("CatIsDiededGGEZ");
+        vitrinBrain.catIsDead = true;
+
+
         //button push
         buttonReady = false;
         anim.CrossFade("PerfumeButtonPush", 0, 0);

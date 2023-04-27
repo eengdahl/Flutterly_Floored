@@ -24,15 +24,15 @@ public class GazeOfDeath : MonoBehaviour
 
         //Debug.Log(other.gameObject.name);
 
-        if(other.CompareTag("Player") && brain.isGazing)
+        if(other.CompareTag("Player"))
         {
+                Debug.Log("Player Hit");
             RaycastHit hit;
             Physics.Raycast(visionCone.transform.position, other.transform.position - visionCone.transform.position, out hit,distance, player);
             //Debug.Log(hit.collider.gameObject.name);
 
             if(hit.collider.gameObject.CompareTag("Player"))
             {
-                Debug.Log("Player Hit");
                 dieScript.Die();
 
             }
