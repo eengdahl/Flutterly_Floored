@@ -24,6 +24,7 @@ public class VitrinBrain2 : MonoBehaviour
     private bool toSpot;
     private bool fromSpot;
     private bool locker;
+    public bool catIsDead;
     float RotAngleY = -60;
 
     private Vector3 orginalPos;
@@ -39,6 +40,7 @@ public class VitrinBrain2 : MonoBehaviour
 
     void Awake()
     {
+        catIsDead = false;
         locker = false;
         switchControls = FindAnyObjectByType<SwitchControls>();
         speed = 4f;
@@ -77,6 +79,11 @@ public class VitrinBrain2 : MonoBehaviour
         {
             float rY = Mathf.SmoothStep(-120, RotAngleY, Mathf.PingPong(Time.time * speed / 10, 1));
             vitrinCat.transform.rotation = Quaternion.Euler(0, rY, 0);
+        }
+
+        if (catIsDead)
+        {
+            activeState = VitrinState.Exit;
         }
     }
 
@@ -150,7 +157,7 @@ public class VitrinBrain2 : MonoBehaviour
         {
             aS.PlayOneShot(catSound);
             yield return new WaitForSeconds(catSound.length);
-            //POFF cat disaperade 
+            Destroy(this.gameObject);
             yield return 0;
         }
         NextState();
