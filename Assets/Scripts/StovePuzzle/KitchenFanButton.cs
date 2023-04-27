@@ -6,7 +6,11 @@ public class KitchenFanButton : MonoBehaviour
 {
     private Animator anim;
     public List<GameObject> otherButtons;
-    private bool buttonDown;
+    public bool buttonDown;
+    [SerializeField] private bool offButton;
+    public float fanMultiplier;
+
+
 
     public GameObject kitchenFan;
 
@@ -14,6 +18,10 @@ public class KitchenFanButton : MonoBehaviour
     void Start()
     {
         anim = gameObject.GetComponent<Animator>();
+        if (offButton)
+        {
+            anim.CrossFade("KitchenFanDown", 0, 0);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,9 +38,18 @@ public class KitchenFanButton : MonoBehaviour
 
     private void ButtonPush()
     {
-        anim.CrossFade("KitchenFanDown", 0, 0);
-        kitchenFan.GetComponent<BoxCollider>().enabled = true;
-        buttonDown = true;
+        if (offButton)
+        {
+            anim.CrossFade("KitchenFanDown", 0, 0);
+            kitchenFan.GetComponent<BoxCollider>().enabled = false;
+            buttonDown = true;
+        }
+        else
+        {
+            anim.CrossFade("KitchenFanDown", 0, 0);
+            kitchenFan.GetComponent<BoxCollider>().enabled = true;
+            buttonDown = true;
+        }
     }
 
     private void ButtonReset()

@@ -187,7 +187,7 @@ public class PlayerJump : MonoBehaviour
         {
             gameObject.transform.GetChild(0).gameObject.SetActive(true);
             glideTime += Time.deltaTime;
-            rb.AddForce(transform.up * (glideForce * 2), ForceMode.Acceleration);
+            rb.AddForce(transform.up * (glideForce * kitchenFan.glideMultiplier), ForceMode.Acceleration);
         }
     }
 
