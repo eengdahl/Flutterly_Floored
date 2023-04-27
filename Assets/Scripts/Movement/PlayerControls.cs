@@ -675,6 +675,34 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""NoInput"",
+            ""id"": ""825cac77-8efa-4b69-a020-82a936d2b1e4"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""e05472c6-020b-4e1d-9f61-04eb0644b04e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""0618a85f-67da-42e7-b7c1-b420f96e21f3"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -701,6 +729,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // Flying
         m_Flying = asset.FindActionMap("Flying", throwIfNotFound: true);
         m_Flying_Newaction = m_Flying.FindAction("New action", throwIfNotFound: true);
+        // NoInput
+        m_NoInput = asset.FindActionMap("NoInput", throwIfNotFound: true);
+        m_NoInput_Newaction = m_NoInput.FindAction("New action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1022,6 +1053,52 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public FlyingActions @Flying => new FlyingActions(this);
+
+    // NoInput
+    private readonly InputActionMap m_NoInput;
+    private List<INoInputActions> m_NoInputActionsCallbackInterfaces = new List<INoInputActions>();
+    private readonly InputAction m_NoInput_Newaction;
+    public struct NoInputActions
+    {
+        private @PlayerControls m_Wrapper;
+        public NoInputActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_NoInput_Newaction;
+        public InputActionMap Get() { return m_Wrapper.m_NoInput; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(NoInputActions set) { return set.Get(); }
+        public void AddCallbacks(INoInputActions instance)
+        {
+            if (instance == null || m_Wrapper.m_NoInputActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_NoInputActionsCallbackInterfaces.Add(instance);
+            @Newaction.started += instance.OnNewaction;
+            @Newaction.performed += instance.OnNewaction;
+            @Newaction.canceled += instance.OnNewaction;
+        }
+
+        private void UnregisterCallbacks(INoInputActions instance)
+        {
+            @Newaction.started -= instance.OnNewaction;
+            @Newaction.performed -= instance.OnNewaction;
+            @Newaction.canceled -= instance.OnNewaction;
+        }
+
+        public void RemoveCallbacks(INoInputActions instance)
+        {
+            if (m_Wrapper.m_NoInputActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(INoInputActions instance)
+        {
+            foreach (var item in m_Wrapper.m_NoInputActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_NoInputActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public NoInputActions @NoInput => new NoInputActions(this);
     public interface IFloorActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -1045,6 +1122,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnLeaveClimbing(InputAction.CallbackContext context);
     }
     public interface IFlyingActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
+    }
+    public interface INoInputActions
     {
         void OnNewaction(InputAction.CallbackContext context);
     }

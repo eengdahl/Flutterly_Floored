@@ -7,22 +7,35 @@ public class SwitchCameraScriptForAll : MonoBehaviour
 {
     [SerializeField] GameObject originalCamera;
     [SerializeField] GameObject cupboardCamera;
+    private bool locker;
 
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+            if (!locker)
+            {
+                SwitchCamera();
+                locker = true;
+                Invoke("LockSwitch", 1);
 
-            SwitchCamera();
+            }
+
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            originalCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Lens.Orthographic = false;
-            SwitchCamera();
+
+            if (!locker)
+            {
+                originalCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Lens.Orthographic = false;
+                SwitchCamera();
+                Invoke("LockSwitch", 1);
+                locker = true;
+            }
         }
     }
 
@@ -30,5 +43,10 @@ public class SwitchCameraScriptForAll : MonoBehaviour
     {
         originalCamera.SetActive(!originalCamera.activeSelf);
         cupboardCamera.SetActive(!originalCamera.activeSelf);
+    }
+
+    private void LockSwitch()
+    {
+        locker = false;
     }
 }

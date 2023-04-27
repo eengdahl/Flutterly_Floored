@@ -5,7 +5,7 @@ using UnityEngine;
 public class GazeOfDeath : MonoBehaviour
 {
 
-    public VitrinBrain brain;
+    public VitrinBrain2 brain;
     public GameObject visionCone;
     public float distance;
     public LayerMask player;
@@ -23,7 +23,7 @@ public class GazeOfDeath : MonoBehaviour
 
         //Debug.Log(other.gameObject.name);
 
-        if(other.CompareTag("Player") && brain.isGazing)
+        if(other.CompareTag("Player")  /*/&& brain.activeState==VitrinState.Gaze/*/)//gazeState can be used for graceperiod 
         {
             RaycastHit hit;
             Physics.Raycast(visionCone.transform.position, other.transform.position - visionCone.transform.position, out hit,distance, player);
