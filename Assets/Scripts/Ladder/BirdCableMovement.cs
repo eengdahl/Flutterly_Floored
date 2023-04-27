@@ -236,15 +236,15 @@ public class BirdCableMovement : MonoBehaviour
                 }
             }
         }
-
+        //if it is jungle swings
         if(input.Climbing.verticalInput.ReadValue<Vector2>().y > 0 && cableplant.isJungle)
         {
-            cableplant.points[currentCableSegment].gameObject.GetComponentInParent<Rigidbody>().AddForce(birdBody.transform.up * 100f);
+            cableplant.points[currentCableSegment].gameObject.GetComponentInParent<Rigidbody>().AddForce(birdBody.transform.up * 300f);
 
         }
         if (input.Climbing.verticalInput.ReadValue<Vector2>().y < 0 && cableplant.isJungle)
         {
-            cableplant.points[currentCableSegment].gameObject.GetComponentInParent<Rigidbody>().AddForce(-birdBody.transform.up * 100f);
+            cableplant.points[currentCableSegment].gameObject.GetComponentInParent<Rigidbody>().AddForce(-birdBody.transform.up * 300f);
            
         }
     }
