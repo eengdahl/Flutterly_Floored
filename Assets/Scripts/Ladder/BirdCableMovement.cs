@@ -278,11 +278,13 @@ public class BirdCableMovement : MonoBehaviour
         rb.isKinematic = false;
         isClimbing = false;
         rb.useGravity = true;
+        
         if (cableplant != null)
         {
             if (cableplant.isJungle)
             {
                 rb.velocity = cableplant.points[currentCableSegment].gameObject.GetComponentInParent<Rigidbody>().velocity * 2;
+                cableplant = null;
             }
         }
         Invoke("ActivateCollider", 0.3f);
