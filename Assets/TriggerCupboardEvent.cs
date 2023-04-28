@@ -7,6 +7,7 @@ public class TriggerCupboardEvent : MonoBehaviour
 
     private SwitchControls switchControls;
     VitrinBrain2 vitrinBrain;
+    public GameObject vitrinCat;
     bool locker;
 
     // Start is called before the first frame update
@@ -20,7 +21,8 @@ public class TriggerCupboardEvent : MonoBehaviour
     {
         if (other.tag == "Player" && locker)
         {
-
+            vitrinCat.GetComponent<BoxCollider>().enabled = true;
+            vitrinCat.GetComponent<MeshRenderer>().enabled = true;
             vitrinBrain = FindAnyObjectByType<VitrinBrain2>();
             vitrinBrain.activeState = VitrinState.Wake;
             switchControls.SwitchToNoInput();
