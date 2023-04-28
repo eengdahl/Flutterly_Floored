@@ -8,6 +8,7 @@ public class PerfumeButton : MonoBehaviour
     private float catLives = 3;
     public bool buttonReady = true;
     AudioSource aS;
+    Animator anim;
 
     [Header("KillCatStuff")]
     [SerializeField] GameObject cat;
@@ -18,6 +19,7 @@ public class PerfumeButton : MonoBehaviour
 
     private void Start()
     {
+        anim = gameObject.GetComponent<Animator>();
           buttonReady = true;
         aS = GetComponent<AudioSource>();
     }
@@ -39,6 +41,7 @@ public class PerfumeButton : MonoBehaviour
 
     public void ButtonPush()
     {
+        anim.CrossFade("PerfumeButtonPush", 0, 0);
         catLives--;
         Debug.Log(catLives);
         if (catLives <= 0)
@@ -51,7 +54,8 @@ public class PerfumeButton : MonoBehaviour
 
     private IEnumerator ButtonReset()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
+        anim.CrossFade("PerfumeButtonUp", 0, 0);
         buttonReady = true;
     }
 
