@@ -7,8 +7,8 @@ public class Fan : MonoBehaviour
 
     //public GameObject fan;
     public bool on;
-    public float rotationSpeed = 40f;
-                     GameObject windArea;
+    private float rotationSpeed = 600f;
+    GameObject windArea;
     [SerializeField] GameObject windAreaOne;
     [SerializeField] GameObject windAreaTwo;
     [SerializeField] GameObject wholeFanPart;
@@ -27,12 +27,15 @@ public class Fan : MonoBehaviour
     [SerializeField] FanButton rotationButton;
     [SerializeField] FanButton strengthButton;
 
-    
+    //Sound
+    AudioSource aS;
 
 
 
     private void Start()
     {
+        rotationSpeed = 600;
+        aS = GetComponent<AudioSource>();
         on = false;
         windArea = windAreaOne;
     }
@@ -83,16 +86,19 @@ public class Fan : MonoBehaviour
     {
         if (on)
         {
-        windArea.SetActive(false);
+            windArea.SetActive(false);
 
         }
 
         if (windArea == windAreaOne)
         {
+
+            rotationSpeed = 1200;
             windArea = windAreaTwo;
         }
         else if (windArea == windAreaTwo)
         {
+            rotationSpeed = 600;
             windArea = windAreaOne;
         }
 

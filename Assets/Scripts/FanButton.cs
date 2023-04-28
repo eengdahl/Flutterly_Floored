@@ -52,7 +52,7 @@ public class FanButton : MonoBehaviour
 
 
         buttonPart.transform.localPosition = new Vector3(0, buttonPart.transform.localPosition.y, 0); //do this in unityeditor instead?
-        buttonPart.transform.localEulerAngles = Vector3.zero;
+        buttonPart.transform.localEulerAngles = Vector3.zero;//new Vector3(-90,0,83);
 
         //Bring button back to  Upper limit if going to far
         if (buttonPart.localPosition.y >= 0)
