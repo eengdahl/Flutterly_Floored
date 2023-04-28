@@ -7,7 +7,7 @@ public class DestroyAfterTime : MonoBehaviour
 
     public float destroyTimer;
 
-    private void OnDestroy()
+    private void Start()
     {
         Destroy(gameObject,destroyTimer);
     }
