@@ -17,10 +17,14 @@ public class Water : MonoBehaviour
     public bool isDraining;
 
     public GameObject maxWaterPoint;
-   
+    private AudioSource aS;
+    public AudioClip fillWater;
+    public AudioClip EmptyWater;
+
 
     void Start()
     {
+        aS = GetComponent<AudioSource>();
         maxWaterLevel = maxWaterPoint.transform.position.y;
         minWaterLevel = transform.position.y;
     }
@@ -38,15 +42,24 @@ public class Water : MonoBehaviour
             isDraining = false;
         }
         else
+        {
             isFilling = false;
 
-        if(isDraining && waterLevel > minWaterLevel)
+        }
+
+        if (isDraining && waterLevel > minWaterLevel)
         {
             DrainWater();
             isFilling = false;
         }
         else
             isDraining = false;
+
+        if (!isFilling && !isDraining)
+        {
+            aS.Stop();
+
+        }
     }
 
 
@@ -56,12 +69,36 @@ public class Water : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, transform.position.y + waterFillSpeed * 0.005f, transform.position.z);
             waterLevel = transform.position.y;
+            PlayFillSound();
         }
+
     }
 
     public void DrainWater()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y - waterFillSpeed * 0.005f, transform.position.z);
         waterLevel = transform.position.y;
+        PlayDrainSound();
+    }
+
+    public void PlayFillSound()
+    {
+        if (!isFilling || aS.isPlaying)
+        {
+            return;
+
+        }
+        aS.PlayOneShot(fillWater);
+
+    }
+    public void PlayDrainSound()
+    {
+        if (!isDraining || aS.isPlaying)
+        {
+
+            return;
+        }
+        aS.PlayOneShot(EmptyWater);
+
     }
 }
