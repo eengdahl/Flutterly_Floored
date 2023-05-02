@@ -2550,6 +2550,7 @@ MonoBehaviour:
   releasedSound: {fileID: 0}
   isPlaying: 0
   gotElectricity: 0
+  audioManager: {fileID: 0}
 --- !u!82 &4020213316846313829
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2606,7 +2607,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5717,7 +5718,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4df76197ad68b24a9a3089f77f266b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ropeStartScript: {fileID: 4020213316230648924}
   listOfTransforms:
   - {fileID: 4020213317843199589}
   - {fileID: 4020213316275764084}
