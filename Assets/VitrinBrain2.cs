@@ -55,6 +55,10 @@ public class VitrinBrain2 : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (catIsDead)
+        {
+            activeState = VitrinState.Exit;
+        }
         if (activeState == VitrinState.Wake)
         {
             if (toSpot)
@@ -81,10 +85,6 @@ public class VitrinBrain2 : MonoBehaviour
             vitrinCat.transform.rotation = Quaternion.Euler(0, rY, 0);
         }
 
-        if (catIsDead)
-        {
-            activeState = VitrinState.Exit;
-        }
     }
 
 

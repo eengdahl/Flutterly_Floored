@@ -11,14 +11,13 @@ public class HideNSeekBottles : MonoBehaviour
     AudioSource aS;
     GameObject leftBottle;
     GameObject rightBottle;
-    private Animator anim;
+    public Animator anim;
     VitrinBrain2 vitrinBrain;
     BoxCollider parentCollider;
     private bool onceLock;
 
     private void Start()
     {
-        anim = gameObject.GetComponent<Animator>();
         leftBottle = GameObject.Find("PerfumeButtonLeft");
         rightBottle = GameObject.Find("PerfumeButtonRight");
         buttonReady = true;
@@ -85,7 +84,7 @@ public class HideNSeekBottles : MonoBehaviour
         aS.Play();
 
         Debug.Log("CatIsDiededGGEZ");
-      //  vitrinBrain.catIsDead = true;
+        vitrinBrain.catIsDead = true;
 
 
         //button push
