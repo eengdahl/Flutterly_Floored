@@ -30,12 +30,16 @@ public class MenuHandler : MonoBehaviour
                     pauseMenuIsShowing = !pauseMenuIsShowing;
                     pausePanel.SetActive(false);
                     Time.timeScale = 1;
+                    Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;
                 }
                 else if (pauseMenuIsShowing == false)
                 {
                     pauseMenuIsShowing = !pauseMenuIsShowing;
                     pausePanel.SetActive(true);
                     Time.timeScale = 0;
+                    Cursor.lockState = CursorLockMode.Confined;
+                    Cursor.visible = true;
                 }
 
                 checkmenu = true;
@@ -114,6 +118,8 @@ public class MenuHandler : MonoBehaviour
         pauseMenuIsShowing = !pauseMenuIsShowing;
         pausePanel.SetActive(false);
         Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     public void BackToMenu()
     {
