@@ -450,6 +450,7 @@ GameObject:
   - component: {fileID: 1623503583}
   - component: {fileID: 1552577750}
   - component: {fileID: 1552577758}
+  - component: {fileID: 1623503584}
   m_Layer: 0
   m_Name: Cabinet Variant
   m_TagString: VitrinCat
@@ -688,6 +689,30 @@ MonoBehaviour:
   crash: {fileID: 8300000, guid: ecd582a9fec2fd54bb9013ae9f9452b2, type: 3}
   catSound: {fileID: 8300000, guid: 4ddfeb194fc4b0b478adc5a7a9eb8f6a, type: 3}
   catSound0: {fileID: 8300000, guid: 4ddfeb194fc4b0b478adc5a7a9eb8f6a, type: 3}
+--- !u!114 &1623503584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8369815460673511059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e1ca8bcbf5a38468a2b5bda8c92981, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  vitrinState: 0
+  bloackade: {fileID: 0}
+  crash: {fileID: 8300000, guid: ecd582a9fec2fd54bb9013ae9f9452b2, type: 3}
+  catSound: {fileID: 8300000, guid: 4ddfeb194fc4b0b478adc5a7a9eb8f6a, type: 3}
+  isGazing: 0
+  catIsDead: 0
+  grace: 0
+  screenShake: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1001 &488381375433430089
 PrefabInstance:
   m_ObjectHideFlags: 0
