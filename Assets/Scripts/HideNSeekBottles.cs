@@ -85,7 +85,7 @@ public class HideNSeekBottles : MonoBehaviour
         aS.Play();
 
         Debug.Log("CatIsDiededGGEZ");
-        vitrinBrain.catIsDead = true;
+      //  vitrinBrain.catIsDead = true;
 
 
         //button push
