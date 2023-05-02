@@ -8,7 +8,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public Image settingsMenu;
+
+    public Button quit;
+    public Button start;
+    public Button settings;
+
+   // public Image settingsMenu;
     public GameObject backFromSettings;
     public GameObject volumeObj;
     public GameObject SFXObj;
@@ -16,18 +21,6 @@ public class MainMenu : MonoBehaviour
     public Slider SFXSlider;
     public AudioMixer mixer;
 
-
-
-    public void Update()
-    {
-        if (Input.GetButton("Cancel"))
-        {
-            if (settingsMenu.enabled)
-            {
-                settingsMenu.enabled = false;
-            }
-        }
-    }
 
 
     public void OnPlayClick()
@@ -47,14 +40,18 @@ public class MainMenu : MonoBehaviour
 
     public void OnSettingsClick()
     {
-        settingsMenu.enabled = true;
+        start.gameObject.SetActive(false);
+        quit.gameObject.SetActive(false);
+        settings.gameObject.SetActive(false);
         backFromSettings.SetActive(true);
         volumeObj.SetActive(true);
         SFXObj.SetActive(true);
     }
     public void OnSettingsBackClick()
     {
-        settingsMenu.enabled = false;
+        start.gameObject.SetActive(true);
+        quit.gameObject.SetActive(true);
+        settings.gameObject.SetActive(true);
         backFromSettings.SetActive(false);
         volumeObj.SetActive(false);
         SFXObj.SetActive(false);
