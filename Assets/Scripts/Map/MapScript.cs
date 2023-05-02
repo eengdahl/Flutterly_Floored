@@ -9,9 +9,10 @@ public class MapScript : MonoBehaviour
     [SerializeField] GameObject[] CheckPointCubes;
     bool mapUp;
     bool pauseMenuIsShowing = false;
-
+    ActivateButtonsMap mapButtons;
     void Start()
     {
+        mapButtons = FindAnyObjectByType<ActivateButtonsMap>();
         deathScript = FindAnyObjectByType<DeathScriptAndCheckPoint>();
         gameObject.SetActive(false);
     }
@@ -23,6 +24,7 @@ public class MapScript : MonoBehaviour
         mapUp = !mapUp;
         if (mapUp)      UnityEngine.Cursor.lockState = CursorLockMode.None;
         else UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        mapButtons.ActiveCheckpoints();
     }
 
     public void RespawnOne()
