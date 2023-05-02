@@ -21,11 +21,18 @@ public class TriggerCupboardEvent : MonoBehaviour
     {
         if (other.tag == "Player" && locker)
         {
-            vitrinCat.GetComponent<BoxCollider>().enabled = true;
-            vitrinCat.GetComponent<MeshRenderer>().enabled = true;
+            vitrinCat.SetActive(true);
+            // vitrinCat.GetComponent<BoxCollider>().enabled = true;
             vitrinBrain = FindAnyObjectByType<VitrinBrain2>();
             vitrinBrain.activeState = VitrinState.Wake;
             switchControls.SwitchToNoInput();
+
+
+            //MeshRenderer[] rs = vitrinCat.GetComponentsInChildren<MeshRenderer>();
+            //foreach (Renderer r in rs)
+            //    r.enabled = false;
+
+
             locker = false;
         }
     }

@@ -18623,10 +18623,6 @@ PrefabInstance:
       propertyPath: wakePoint
       value: 
       objectReference: {fileID: 1132004541}
-    - target: {fileID: 2483946505708120725, guid: fbbb3d50e9ddc7b4384e92b9c36899b3, type: 3}
-      propertyPath: brain
-      value: 
-      objectReference: {fileID: 1623503584, guid: fbbb3d50e9ddc7b4384e92b9c36899b3, type: 3}
     - target: {fileID: 8369815460673511059, guid: fbbb3d50e9ddc7b4384e92b9c36899b3, type: 3}
       propertyPath: m_Name
       value: Cabinet Variant
@@ -18677,6 +18673,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbbb3d50e9ddc7b4384e92b9c36899b3, type: 3}
+--- !u!1 &1465234838 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1343230765008709369, guid: fbbb3d50e9ddc7b4384e92b9c36899b3, type: 3}
+  m_PrefabInstance: {fileID: 1465234837}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1467399217
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19783,11 +19784,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -312632889247815047, guid: 24044ce30ad681c4880fe7ccda674a59, type: 3}
---- !u!1 &1552577742 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8369815460673511059, guid: fbbb3d50e9ddc7b4384e92b9c36899b3, type: 3}
-  m_PrefabInstance: {fileID: 1465234837}
-  m_PrefabAsset: {fileID: 0}
 --- !u!64 &1555319518
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -23999,7 +23995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e48c5e4aff0ef5041962b4771fd1d920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vitrinCat: {fileID: 1552577742}
+  vitrinCat: {fileID: 1465234838}
 --- !u!4 &1761468184
 Transform:
   m_ObjectHideFlags: 0
@@ -28442,7 +28438,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 6.6
-  MaxDistance: 40
+  MaxDistance: 13.79
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -28515,7 +28511,7 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.0037269592
+      time: 0
       value: 1
       inSlope: 0
       outSlope: 0
