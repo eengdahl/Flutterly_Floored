@@ -15,6 +15,8 @@ public class HideNSeekBottles : MonoBehaviour
     VitrinBrain2 vitrinBrain;
     BoxCollider parentCollider;
     private bool onceLock;
+    public AudioClip cat;
+    public AudioClip spray;
 
     private void Start()
     {
@@ -34,6 +36,7 @@ public class HideNSeekBottles : MonoBehaviour
     {
         if (other.tag == "Player" && buttonReady)
         {
+            aS.PlayOneShot(spray);
             if (!onceLock)
             {
                 vitrinBrain = FindAnyObjectByType<VitrinBrain2>();
@@ -81,7 +84,7 @@ public class HideNSeekBottles : MonoBehaviour
         //}
         // vitrinBrain.grace = true;
         catLives--;
-        aS.Play();
+        aS.PlayOneShot(cat);
 
         Debug.Log("CatIsDiededGGEZ");
         vitrinBrain.catIsDead = true;
@@ -89,7 +92,7 @@ public class HideNSeekBottles : MonoBehaviour
 
         //button push
         buttonReady = false;
-        anim.CrossFade("PerfumeButtonPush", 0, 0);
+      //  anim.CrossFade("PerfumeButtonPush", 0, 0);
     }
 
     private IEnumerator ButtonReset()
