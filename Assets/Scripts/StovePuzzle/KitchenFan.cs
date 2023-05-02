@@ -8,7 +8,12 @@ public class KitchenFan : MonoBehaviour
     //public List<GameObject> fanButtons;
     public bool inGawkArea;
     public float glideMultiplier;
-    // Start is called before the first frame update
+    AudioSource aS;
+
+    private void Awake()
+    {
+        aS = GetComponent<AudioSource>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -21,6 +26,8 @@ public class KitchenFan : MonoBehaviour
                     glideMultiplier = btn.fanMultiplier;
                 }
             }
+            if (!aS.isPlaying) aS.Play();
+            
         }
     }
 
@@ -29,6 +36,7 @@ public class KitchenFan : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             inGawkArea = false;
+            aS.Stop();
         }
     }
 }
