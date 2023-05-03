@@ -22,10 +22,10 @@ public class SeedPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             seedCounter.AddSeed(seedValue);
-            UpdateSeedUI();
 
             aS.Play();
             anim.CrossFade("PickedUp", 0);
+            Invoke(nameof(UpdateSeedUI), 1);
             Invoke(nameof(DestroyObject), 1);
         }
     }
@@ -37,7 +37,7 @@ public class SeedPickup : MonoBehaviour
     private void UpdateSeedUI()
     {
         seedCounter.seedCountText.enabled = true;
-        //GameObject ui = Instantiate(seedUI, seedUIHolder);
+        GameObject ui = Instantiate(seedUI, seedUIHolder);
         
         if (seedCounter != null)
         {
