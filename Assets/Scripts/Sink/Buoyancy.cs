@@ -88,8 +88,9 @@ public class Buoyancy : MonoBehaviour
 
     private void CalculateDepth(Transform floater)
     {
-        //depth = floater.position.y - water.GetComponent<Water>().GetHeigthAtPosition(floater.position);
+        //Debug.Log(water.GetComponent<Water>().GetAdvancedWaterHeight(floater.position));
         depth = floater.position.y - water.GetComponent<Water>().GetSimpleWaterHeight();
+        //depth = floater.position.y - water.GetComponent<Water>().GetAdvancedWaterHeight(floater.position);
     }
 
     private void TriggerReset()
