@@ -6,13 +6,13 @@ public class CheckPointScript : MonoBehaviour
 {
     [SerializeField] Transform RespawnPoint;
     [SerializeField] int index;
-    public Die dieOfFalling;
+   // public Die dieOfFalling;
     ActivateButtonsMap activateButtons;
 
     private void Start()
     {
         activateButtons = FindObjectOfType<ActivateButtonsMap>();
-        dieOfFalling = FindObjectOfType<Die>();
+      //  dieOfFalling = FindObjectOfType<Die>();
     }
 
     private void OnTriggerEnter(Collider other)
