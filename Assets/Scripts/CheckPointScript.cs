@@ -20,7 +20,7 @@ public class CheckPointScript : MonoBehaviour
         if (other.tag == "Player")
         {       
                 other.GetComponent<DeathScriptAndCheckPoint>().NewCheckpoint(RespawnPoint.transform);
-                activateButtons.SetBoolToTrue(index);
+               // activateButtons.SetBoolToTrue(index);
         }
 
     }
