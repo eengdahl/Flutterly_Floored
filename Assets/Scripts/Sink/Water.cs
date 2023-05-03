@@ -33,10 +33,10 @@ public class Water : MonoBehaviour
 
     void Start()
     {
-        waterFilter = GetComponent<MeshFilter>();
-        waterPlane = transform.GetComponent<Cloth>();
-        waterMaterial = GetComponent<Renderer>().sharedMaterial;
-        waterTexture = (Texture2D)waterMaterial.GetTexture("_Noise");
+        //waterFilter = GetComponent<MeshFilter>();
+        //waterPlane = transform.GetComponent<Cloth>();
+        //waterMaterial = GetComponent<Renderer>().sharedMaterial;
+        //waterTexture = (Texture2D)waterMaterial.GetTexture("_Noise");
 
         aS = GetComponent<AudioSource>();
         maxWaterLevel = maxWaterPoint.transform.position.y;
