@@ -3067,6 +3067,8 @@ MonoBehaviour:
   rotationStartLocked: 0
   startRotation: {x: 0, y: 0, z: 0}
   isJungle: 0
+  canFall: 0
+  meshCollider: {fileID: 0}
 --- !u!1 &619745660
 GameObject:
   m_ObjectHideFlags: 0
@@ -3151,6 +3153,8 @@ MonoBehaviour:
   rotationStartLocked: 0
   startRotation: {x: 0, y: 0, z: 0}
   isJungle: 0
+  canFall: 0
+  meshCollider: {fileID: 0}
 --- !u!1001 &625272746
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7239,6 +7243,8 @@ MonoBehaviour:
   rotationStartLocked: 0
   startRotation: {x: 0, y: 0, z: 0}
   isJungle: 0
+  canFall: 0
+  meshCollider: {fileID: 0}
 --- !u!1001 &1171608879
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12548,6 +12554,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4168839538257392746, guid: 2d2460ef5f5139145944bfd5710d1de3, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 450283581}
     - target: {fileID: 4385856215612912600, guid: 2d2460ef5f5139145944bfd5710d1de3, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -12708,6 +12718,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 3.53
       objectReference: {fileID: 0}
+    - target: {fileID: 5335215185272190219, guid: 2d2460ef5f5139145944bfd5710d1de3, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 450283581}
+    - target: {fileID: 6518454672623459180, guid: 2d2460ef5f5139145944bfd5710d1de3, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 450283581}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d2460ef5f5139145944bfd5710d1de3, type: 3}
 --- !u!64 &1934914740

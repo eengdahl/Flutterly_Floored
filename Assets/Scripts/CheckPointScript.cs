@@ -9,7 +9,7 @@ public class CheckPointScript : MonoBehaviour
    // public Die dieOfFalling;
     ActivateButtonsMap activateButtons;
 
-    private void Start()
+    private void Awake()
     {
         activateButtons = FindObjectOfType<ActivateButtonsMap>();
       //  dieOfFalling = FindObjectOfType<Die>();
@@ -20,7 +20,7 @@ public class CheckPointScript : MonoBehaviour
         if (other.tag == "Player")
         {       
                 other.GetComponent<DeathScriptAndCheckPoint>().NewCheckpoint(RespawnPoint.transform);
-               // activateButtons.SetBoolToTrue(index);
+                activateButtons.SetBoolToTrue(index);
         }
 
     }
