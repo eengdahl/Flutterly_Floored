@@ -11,6 +11,7 @@ public class HideNSeekBottles : MonoBehaviour
     AudioSource aS;
     GameObject leftBottle;
     GameObject rightBottle;
+    public GameObject blocker;
     public Animator anim;
     VitrinBrain2 vitrinBrain;
     BoxCollider parentCollider;
@@ -92,7 +93,7 @@ public class HideNSeekBottles : MonoBehaviour
 
         //button push
         buttonReady = false;
-
+        Destroy(blocker);
         Destroy(this.gameObject);
       //  anim.CrossFade("PerfumeButtonPush", 0, 0);
     }
