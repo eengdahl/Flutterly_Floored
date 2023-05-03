@@ -5,6 +5,8 @@ using UnityEngine;
 public class SeedPickup : MonoBehaviour
 {
     SeedCounter seedCounter;
+    Animator anim;
+    AudioSource aS;
     public int seedValue = 1;
     public GameObject seedUI;
     public Transform seedUIHolder;
@@ -12,6 +14,8 @@ public class SeedPickup : MonoBehaviour
     void Start()
     {
         seedCounter = GameObject.Find("SeedCounter").GetComponent<SeedCounter>();
+        anim = gameObject.GetComponent<Animator>();
+        aS = gameObject.GetComponent<AudioSource>();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -19,17 +23,26 @@ public class SeedPickup : MonoBehaviour
         {
             seedCounter.AddSeed(seedValue);
             UpdateSeedUI();
-            Destroy(gameObject);
+
+            aS.Play();
+            anim.CrossFade("PickedUp", 0);
+            Invoke(nameof(DestroyObject), 1);
         }
     }
 
+    private void DestroyObject()
+    {
+        Destroy(gameObject);
+    }
     private void UpdateSeedUI()
     {
-        GameObject ui = Instantiate(seedUI, seedUIHolder);
+        seedCounter.seedCountText.enabled = true;
+        //GameObject ui = Instantiate(seedUI, seedUIHolder);
         
         if (seedCounter != null)
         {
             seedCounter.SetSeedCount(seedCounter.GetSeedCount());
+
         }
     }
 }

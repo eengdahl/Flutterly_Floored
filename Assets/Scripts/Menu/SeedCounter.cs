@@ -7,6 +7,7 @@ public class SeedCounter : MonoBehaviour
 {
     private int seedCount = 0;
     public TextMeshProUGUI seedCountText;
+    public Camera cam;
 
     public void AddSeed(int value)
     {
@@ -18,6 +19,13 @@ public class SeedCounter : MonoBehaviour
     }
     public void SetSeedCount(int seedCount)
     {
-        seedCountText.text = "Seeds: " + seedCount.ToString();
+        cam.enabled = true;
+        seedCountText.text = seedCount.ToString();
+        Invoke(nameof(DisableCam), 3);
+    }
+
+    public void DisableCam()
+    {
+        cam.enabled = false;
     }
 }
