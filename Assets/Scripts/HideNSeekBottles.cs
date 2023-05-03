@@ -85,13 +85,15 @@ public class HideNSeekBottles : MonoBehaviour
         // vitrinBrain.grace = true;
         catLives--;
         aS.PlayOneShot(cat);
-
+        
         Debug.Log("CatIsDiededGGEZ");
         vitrinBrain.catIsDead = true;
 
 
         //button push
         buttonReady = false;
+
+        Destroy(this.gameObject);
       //  anim.CrossFade("PerfumeButtonPush", 0, 0);
     }
 
