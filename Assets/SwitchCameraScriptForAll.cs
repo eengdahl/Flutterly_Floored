@@ -16,25 +16,16 @@ public class SwitchCameraScriptForAll : MonoBehaviour
         if (other.CompareTag("Player"))
         {
 
-            if (!locker)
-            {
-                SwitchCamera();
-                locker = true;
-                Invoke("ResetLock", 1);
-            }
+            Invoke("SwitchCamera", 0.1f);
+
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            if (!locker)
-            {
-                originalCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Lens.Orthographic = false;
-                SwitchCamera();
-                locker = true;
-                Invoke("ResetLock", 1);
-            }
+            originalCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Lens.Orthographic = false;
+            Invoke("SwitchCamera", 0.1f);
         }
     }
 
@@ -42,10 +33,8 @@ public class SwitchCameraScriptForAll : MonoBehaviour
     {
         originalCamera.SetActive(!originalCamera.activeSelf);
         cupboardCamera.SetActive(!originalCamera.activeSelf);
+
     }
 
-    private void ResetLock()
-    {
-        locker = false;
-    }
+
 }

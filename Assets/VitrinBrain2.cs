@@ -44,6 +44,7 @@ public class VitrinBrain2 : MonoBehaviour
         locker = false;
         switchControls = FindAnyObjectByType<SwitchControls>();
         speed = 4f;
+        
         vitrinCat = this.gameObject;
         aS = GetComponent<AudioSource>();
         audioManager = FindObjectOfType<AudioManager>();
@@ -55,6 +56,10 @@ public class VitrinBrain2 : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (catIsDead)
+        {
+            activeState = VitrinState.Exit;
+        }
         if (activeState == VitrinState.Wake)
         {
             if (toSpot)
@@ -81,10 +86,6 @@ public class VitrinBrain2 : MonoBehaviour
             vitrinCat.transform.rotation = Quaternion.Euler(0, rY, 0);
         }
 
-        if (catIsDead)
-        {
-            activeState = VitrinState.Exit;
-        }
     }
 
 
@@ -103,7 +104,7 @@ public class VitrinBrain2 : MonoBehaviour
             if (!locker)
             {
                 toSpot = true;
-                vitrinCat.GetComponent<MeshRenderer>().enabled = true;
+                //vitrinCat.GetComponent<MeshRenderer>().enabled = true;
                 aS.PlayOneShot(catStomp);
                 yield return new WaitForSeconds(catStomp.length);
                 aS.PlayOneShot(catSound0);

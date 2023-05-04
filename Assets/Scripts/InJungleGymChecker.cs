@@ -8,13 +8,7 @@ public class InJungleGymChecker : MonoBehaviour
     [SerializeField]GameObject jungle;
     float distance;
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag("JungleGym"))
-    //    {
-    //        inJungle = true;
-    //    }
-    //}
+
 
     private void Update()
     {
@@ -29,11 +23,5 @@ public class InJungleGymChecker : MonoBehaviour
         }
 
     }
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.CompareTag("JungleGym") && distance > 30)
-    //    {
-    //        inJungle = false;
-    //    }
-    //}
+
 }

@@ -71,6 +71,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Map"",
+                    ""type"": ""Button"",
+                    ""id"": ""8921a77e-da04-4a23-9635-dec402246f40"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -225,6 +234,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dd4be42b-3240-48dd-a6ee-6b7946fa31ec"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Map"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -714,6 +734,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Floor_Jump = m_Floor.FindAction("Jump", throwIfNotFound: true);
         m_Floor_Drag = m_Floor.FindAction("Drag", throwIfNotFound: true);
         m_Floor_Pause = m_Floor.FindAction("Pause", throwIfNotFound: true);
+        m_Floor_Map = m_Floor.FindAction("Map", throwIfNotFound: true);
         // WindZoneMovement
         m_WindZoneMovement = asset.FindActionMap("WindZoneMovement", throwIfNotFound: true);
         m_WindZoneMovement_Move = m_WindZoneMovement.FindAction("Move", throwIfNotFound: true);
@@ -798,6 +819,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Floor_Jump;
     private readonly InputAction m_Floor_Drag;
     private readonly InputAction m_Floor_Pause;
+    private readonly InputAction m_Floor_Map;
     public struct FloorActions
     {
         private @PlayerControls m_Wrapper;
@@ -807,6 +829,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Floor_Jump;
         public InputAction @Drag => m_Wrapper.m_Floor_Drag;
         public InputAction @Pause => m_Wrapper.m_Floor_Pause;
+        public InputAction @Map => m_Wrapper.m_Floor_Map;
         public InputActionMap Get() { return m_Wrapper.m_Floor; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -831,6 +854,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @Map.started += instance.OnMap;
+            @Map.performed += instance.OnMap;
+            @Map.canceled += instance.OnMap;
         }
 
         private void UnregisterCallbacks(IFloorActions instance)
@@ -850,6 +876,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @Map.started -= instance.OnMap;
+            @Map.performed -= instance.OnMap;
+            @Map.canceled -= instance.OnMap;
         }
 
         public void RemoveCallbacks(IFloorActions instance)
@@ -1106,6 +1135,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnDrag(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnMap(InputAction.CallbackContext context);
     }
     public interface IWindZoneMovementActions
     {

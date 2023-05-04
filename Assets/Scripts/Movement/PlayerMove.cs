@@ -159,6 +159,4 @@ public class PlayerMove : MonoBehaviour
         // determine the direction the player will face based on input and the referenceTransform's right and forward directions
         targetDirection = inputsXZ.x * right + inputsXZ.z * forward;
     }
-
-
 }

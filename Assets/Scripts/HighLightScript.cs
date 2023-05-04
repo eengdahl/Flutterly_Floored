@@ -13,7 +13,7 @@ public class HighLightScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Rope") || other.gameObject.CompareTag("Handle"))
+        if (other.gameObject.CompareTag("Rope") || other.gameObject.CompareTag("Handle")|| other.gameObject.CompareTag("HighLightMe"))
         {
             objectsInTrigger.Add(other.gameObject);
 
@@ -26,7 +26,7 @@ public class HighLightScript : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Rope")|| other.gameObject.CompareTag("Handle"))
+        if (other.gameObject.CompareTag("Rope")|| other.gameObject.CompareTag("Handle") || other.gameObject.CompareTag("HighLightMe"))
         {
             objectsInTrigger.Remove(other.gameObject);
 

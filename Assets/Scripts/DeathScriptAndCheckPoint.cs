@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DeathScriptAndCheckPoint : MonoBehaviour
 {
-    Transform respawnTransform;
+    public Transform respawnTransform;
     public Vector3 respawnPoint;
     [SerializeField] Transform startRespawnPoint;
     [SerializeField] GameObject birdBody;

@@ -5,24 +5,23 @@ using UnityEngine;
 public class CheckPointScript : MonoBehaviour
 {
     [SerializeField] Transform RespawnPoint;
+    [SerializeField] int index;
+   // public Die dieOfFalling;
+    ActivateButtonsMap activateButtons;
 
-    public Die dieOfFalling;
-
-    private void Start()
+    private void Awake()
     {
-        dieOfFalling = FindObjectOfType<Die>();
+        activateButtons = FindObjectOfType<ActivateButtonsMap>();
+      //  dieOfFalling = FindObjectOfType<Die>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        //if (other.tag == "Player")
-        //{
-        //    if (!dieOfFalling.isDead)
-        //    {
-        //        other.GetComponent<DeathScriptAndCheckPoint>().NewCheckpoint(RespawnPoint.transform);
-
-        //    }
-        //}
+        if (other.tag == "Player")
+        {       
+                other.GetComponent<DeathScriptAndCheckPoint>().NewCheckpoint(RespawnPoint.transform);
+                activateButtons.SetBoolToTrue(index);
+        }
 
     }
 }
