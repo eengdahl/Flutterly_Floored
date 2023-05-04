@@ -3047,6 +3047,51 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 8695146677205320119, guid: 87797732fca81b34eb980bd93b558386, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 87797732fca81b34eb980bd93b558386, type: 3}
+--- !u!1 &101697185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 101697186}
+  - component: {fileID: 101697187}
+  m_Layer: 0
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &101697186
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101697185}
+  m_LocalRotation: {x: 0.043444738, y: 0.000000014901156, z: -0.00000004470347, w: 0.9990558}
+  m_LocalPosition: {x: 0.00106, y: 0.0129, z: 0.00976}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2048039244}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 4.98, y: 0, z: 0}
+--- !u!65 &101697187
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101697185}
+  m_Material: {fileID: 13400000, guid: d5a08fac969c97843a961f18252840b9, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.00656759, y: 0.029053926, z: 0.0025312696}
+  m_Center: {x: -0.00069545646, y: 0.012122763, z: 0.0009144322}
 --- !u!1 &104698392 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7040911840684755198, guid: 24044ce30ad681c4880fe7ccda674a59, type: 3}
@@ -26874,19 +26919,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 80c900992b122df42b7f1c6bdecf0535, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.4839442
+      value: 0.35829768
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 80c900992b122df42b7f1c6bdecf0535, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.48394424
+      value: -0.35829768
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 80c900992b122df42b7f1c6bdecf0535, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.51555604
+      value: 0.60960877
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 80c900992b122df42b7f1c6bdecf0535, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.515556
+      value: 0.6096087
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 80c900992b122df42b7f1c6bdecf0535, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -26898,7 +26943,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 80c900992b122df42b7f1c6bdecf0535, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 93.623
+      value: 119.11
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 80c900992b122df42b7f1c6bdecf0535, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -53053,6 +53098,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.019017888, y: 0.018558698, z: 0.008765051}
   m_Center: {x: 0.0014622728, y: 0.00071954064, z: 0.0040313234}
+--- !u!4 &2048039244 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6cb35907f054a354e8570d31e8602aca, type: 3}
+  m_PrefabInstance: {fileID: 1302983493}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2049616647
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54193,8 +54243,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0006937202, y: 0.0062014177, z: 0.0004445756}
-  m_Center: {x: -0.000017649021, y: 0.0067871064, z: -0.00010649008}
+  m_Size: {x: 0.0014242751, y: 0.0062014177, z: 0.0004445756}
+  m_Center: {x: 0.00006220579, y: 0.00678711, z: -0.00010648611}
 --- !u!114 &2094224935 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3559863725831732709, guid: 280009b8bfff17f408e4973939f80381, type: 3}
