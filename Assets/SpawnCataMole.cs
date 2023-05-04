@@ -7,6 +7,7 @@ public class SpawnCataMole : MonoBehaviour
     [Header("KillCatStuff")]
     [SerializeField] GameObject cat;
     [SerializeField] GameObject hitSpots;
+
     //[SerializeField] GameObject legs;
     bool hasSpawned;
     private void Start()
@@ -22,6 +23,7 @@ public class SpawnCataMole : MonoBehaviour
         {
             SpawnCat();
             hasSpawned = true;
+           
         }
     }
 
