@@ -27,19 +27,13 @@ public class Buoyancy : MonoBehaviour
 
     private bool isResettingPosition;
     private Vector3 startVector;
-    private Vector3[] startPosition;
-    private Vector3 moveFrom;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         water = GameObject.FindGameObjectWithTag("Water");
-        startPosition = new Vector3[floatingPoints.Length];
+
         startVector = transform.position;
-        for(int i = 0; i < floatingPoints.Length; i++)
-        {
-            startPosition[i] = floatingPoints[i].transform.position;
-        }
     }
 
     // Update is called once per frame
@@ -64,9 +58,6 @@ public class Buoyancy : MonoBehaviour
                     isBelowSurface = false;
                     decelerationVector = rb.velocity * airDeceleration;
                 }
-
-
-
             }
             else
             {
@@ -95,7 +86,6 @@ public class Buoyancy : MonoBehaviour
 
     private void TriggerReset()
     {
-        moveFrom = transform.position;
         isResettingPosition = true;
 
         water.GetComponent<Water>().isDraining = true;
@@ -103,7 +93,7 @@ public class Buoyancy : MonoBehaviour
 
     private void ResetPosition()
     {
-        Debug.Log((startVector - transform.position).magnitude);
+        //Debug.Log((startVector - transform.position).magnitude);
         if ((startVector - transform.position).magnitude > 0.1f)
         {
             Debug.Log("Running");
@@ -113,6 +103,4 @@ public class Buoyancy : MonoBehaviour
         else
             isResettingPosition = false;
     }
-
-   
 }

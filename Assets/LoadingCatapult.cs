@@ -7,7 +7,7 @@ public class LoadingCatapult : MonoBehaviour
     public bool isSugarFilled, isFlourFilled, isEggFilled;
     public bool canShoot;
 
-    // Start is called before the first frame update
+
 
     private void OnTriggerEnter(Collider other)
     {
