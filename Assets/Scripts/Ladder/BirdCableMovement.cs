@@ -20,6 +20,8 @@ public class BirdCableMovement : MonoBehaviour
     public float forcePower = 20f;
     public float speed = 5f;
 
+    public float isMoving;
+    public float horizontalInput;
     public float downSpeed = 5f;
     public float downSpeedMin;
     public float downSpeedMax = 10f;
@@ -93,8 +95,8 @@ public class BirdCableMovement : MonoBehaviour
             return;
         }
 
-
-        float horizontalInput = input.Climbing.verticalInput.ReadValue<Vector2>().x;
+        isMoving = input.Climbing.verticalInput.ReadValue<Vector2>().y;
+        horizontalInput = input.Climbing.verticalInput.ReadValue<Vector2>().x;
 
         if (horizontalInput > 0 && canTurnRight)
         {
