@@ -17,7 +17,7 @@ public class PickUpScriptTest : MonoBehaviour
     [SerializeField] GameObject thingToPull;
     private Dictionary<GameObject, float> distances = new Dictionary<GameObject, float>();
 
-    float force = 1000;
+    float force = 500;
 
     private void Start()
     {
