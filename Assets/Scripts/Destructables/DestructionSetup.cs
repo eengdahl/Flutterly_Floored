@@ -23,9 +23,9 @@ public class DestructionSetup : MonoBehaviour
             part.gameObject.AddComponent<Rigidbody>();
             Rigidbody rb = part.GetComponent<Rigidbody>();
             rb.useGravity = true;
-            //part.gameObject.AddComponent<BoxCollider>();
-            //part.gameObject.AddComponent<MeshCollider>();
-            //part.gameObject.GetComponent<MeshCollider>().convex = true;
+            part.gameObject.AddComponent<BoxCollider>();
+            part.gameObject.AddComponent<MeshCollider>();
+            part.gameObject.GetComponent<MeshCollider>().convex = true;
             parts.Add(part.gameObject);
             part.GetComponent<Rigidbody>().velocity = transform.GetComponent<Rigidbody>().velocity;
         }
