@@ -9,7 +9,7 @@ public class IngredientPickup : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Spoon") && hasBeenPickedUp == false)
-            if (!other.GetComponent<Spoon>().isFull)
+            if (!other.GetComponentInParent<Spoon>().isFull)
             {
                 {
                     Spoon spoon = other.GetComponentInParent<Spoon>();

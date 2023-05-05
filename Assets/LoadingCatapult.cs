@@ -77,12 +77,14 @@ public class LoadingCatapult : MonoBehaviour
         isFlourFilled = false;
         isEggFilled = false;
         isSugarFilled = false;
-        StartCoroutine(DespawnCat());
+        Invoke(nameof(DespawnCat), 2);
+       // StartCoroutine(DespawnCat());
+
     }
 
-    IEnumerator DespawnCat()
+    private void DespawnCat()
     {
-        yield return new WaitForSeconds(1.5f);
+       // yield return new WaitForSeconds(1.5f);
         cat.SetActive(false);
         hitspots.SetActive(false);
     }
