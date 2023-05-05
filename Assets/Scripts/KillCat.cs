@@ -16,8 +16,9 @@ public class KillCat : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OntriggerEnter(Collision collision)
     {
+        Debug.Log(collision.gameObject.name);
         if(collision.gameObject.CompareTag("CatCatAMole"))
         {
             collision.gameObject.SetActive(false);
