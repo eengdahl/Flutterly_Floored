@@ -8,12 +8,11 @@ public class SeedPickup : MonoBehaviour
     Animator anim;
     AudioSource aS;
     public int seedValue = 1;
-    public GameObject seedUI;
     public Transform seedUIHolder;
     // Start is called before the first frame update
     void Start()
     {
-        seedCounter = GameObject.Find("SeedCounter").GetComponent<SeedCounter>();
+        seedCounter = GameObject.Find("SeedDisplay").GetComponent<SeedCounter>();
         anim = gameObject.GetComponent<Animator>();
         aS = gameObject.GetComponent<AudioSource>();
     }
@@ -37,7 +36,6 @@ public class SeedPickup : MonoBehaviour
     private void UpdateSeedUI()
     {
         seedCounter.seedCountText.enabled = true;
-        GameObject ui = Instantiate(seedUI, seedUIHolder);
         
         if (seedCounter != null)
         {
