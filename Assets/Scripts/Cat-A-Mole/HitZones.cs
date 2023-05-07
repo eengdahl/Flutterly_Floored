@@ -114,7 +114,11 @@ public class HitZones : MonoBehaviour
         }
         else
         {
-            attackAnimator.SetBool("Charging", false);
+            if (attackAnimator.gameObject.activeSelf == true)
+            {
+                attackAnimator.SetBool("Charging", false);
+
+            }
         }
 
         if (gamestate.moleState == MoleStates.Charge && isAttacking)

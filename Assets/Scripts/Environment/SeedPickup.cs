@@ -8,10 +8,13 @@ public class SeedPickup : MonoBehaviour
     Animator anim;
     AudioSource aS;
     public int seedValue = 1;
-    public Transform seedUIHolder;
+    private Transform backpack;
+    private GameObject seedParent;
     // Start is called before the first frame update
     void Start()
     {
+        seedParent = gameObject.transform.parent.gameObject;
+        backpack = GameObject.Find("BackpackPosition").GetComponent<Transform>();
         seedCounter = GameObject.Find("SeedDisplay").GetComponent<SeedCounter>();
         anim = gameObject.GetComponent<Animator>();
         aS = gameObject.GetComponent<AudioSource>();
@@ -21,17 +24,18 @@ public class SeedPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             seedCounter.AddSeed(seedValue);
-
+            seedParent.transform.position = Vector3.zero;
+            seedParent.transform.SetParent(backpack, false);
             aS.Play();
             anim.CrossFade("PickedUp", 0);
-            Invoke(nameof(UpdateSeedUI), 1);
-            Invoke(nameof(DestroyObject), 1);
+            Invoke(nameof(UpdateSeedUI), 2);
+            Invoke(nameof(DestroyObject), 2);
         }
     }
 
     private void DestroyObject()
     {
-        Destroy(gameObject);
+        Destroy(seedParent);
     }
     private void UpdateSeedUI()
     {

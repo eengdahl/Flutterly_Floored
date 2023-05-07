@@ -21,6 +21,8 @@ public class PlayerMove : MonoBehaviour
     private Quaternion freeRotation;
     private Camera mainCamera;
     private Vector3 normalizedVel;
+    private AudioSource aS;
+
 
     PlayerWind playerWindScrips;
 
@@ -32,6 +34,7 @@ public class PlayerMove : MonoBehaviour
     private PlayerJump jump;
     private BirdCableMovement climb;
 
+    public GameObject dustPS;
     public Animator animator;
     //Animation ShortCuts
     //private static readonly string Idle = Animator.StringToHash("Idle sustainCopy");
@@ -61,6 +64,7 @@ public class PlayerMove : MonoBehaviour
         jump = GetComponent<PlayerJump>();
         climb = GetComponent<BirdCableMovement>();
         animator.CrossFade(Idle, 0);
+        aS = gameObject.GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -183,16 +187,26 @@ public class PlayerMove : MonoBehaviour
             if (maxSpeed == 5 && jump.isGrounded)
             {
                 stringToPlay = Sprint;
+                dustPS.SetActive(true);
+                aS.enabled = true;
             }
             else if (maxSpeed == 3 && jump.isGrounded)
             {
                 stringToPlay = Walk;
+                dustPS.SetActive(true);
+                aS.enabled = true;
             }
             rb.AddForce(targetDirection * speed * 10f, ForceMode.Force);
+        }
+        else
+        {
+            dustPS.SetActive(false);
+            aS.enabled = false;
 
         }
+
         //in air
-        else if (!jump.isGrounded)
+        if (!jump.isGrounded)
         {
             if (!jump.gliding && rb.velocity.y < -5)
             {
