@@ -14,9 +14,14 @@ public class MenuHandler : MonoBehaviour
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject exitGamePanel;
     //[SerializeField] private GameObject musicSource;
-    [SerializeField] private bool pauseMenuIsShowing;
+    [SerializeField] public bool pauseMenuIsShowing;
     bool checkmenu;
+    MapScript mapScript;
 
+    private void Start()
+    {
+        mapScript = FindObjectOfType<MapScript>();
+    }
 
     public void ButtonInput(InputAction.CallbackContext input)
 
@@ -30,11 +35,16 @@ public class MenuHandler : MonoBehaviour
                     pauseMenuIsShowing = !pauseMenuIsShowing;
                     pausePanel.SetActive(false);
                     Time.timeScale = 1;
+
                     Cursor.lockState = CursorLockMode.Locked;
                     Cursor.visible = false;
                 }
                 else if (pauseMenuIsShowing == false)
                 {
+                    if (mapScript.mapUp)
+                    {
+                        mapScript.ToggleMap();
+                    }
                     pauseMenuIsShowing = !pauseMenuIsShowing;
                     pausePanel.SetActive(true);
                     Time.timeScale = 0;
@@ -59,7 +69,7 @@ public class MenuHandler : MonoBehaviour
                     pauseMenuIsShowing = !pauseMenuIsShowing;
                     pausePanel.SetActive(true);
                 }
-                    
+
             }
         }
 
