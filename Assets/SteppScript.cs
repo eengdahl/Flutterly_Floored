@@ -15,4 +15,9 @@ public class SteppScript : MonoBehaviour
     {
         aS.PlayOneShot(step);
     }
+
+    public void StopStepSound()
+    {
+        aS.Stop();
+    }
 }
