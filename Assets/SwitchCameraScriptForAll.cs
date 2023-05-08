@@ -8,7 +8,11 @@ public class SwitchCameraScriptForAll : MonoBehaviour
     [SerializeField] GameObject originalCamera;
     [SerializeField] GameObject cupboardCamera;
     private bool locker = false;
-
+    LightSway mainLight;
+    private void Start()
+    {
+           mainLight = FindAnyObjectByType<LightSway>();
+    }
 
 
     private void OnTriggerEnter(Collider other)
@@ -24,8 +28,10 @@ public class SwitchCameraScriptForAll : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            mainLight.gameObject.SetActive(false);
             originalCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Lens.Orthographic = false;
             Invoke("SwitchCamera", 0.1f);
+            mainLight.SetRoomDark();
         }
     }
 

@@ -9,6 +9,7 @@ public class LightSway : MonoBehaviour
     Light Light;
     private float standardLight = 2662;
     private float currentLight;
+    public bool lockLight;
 
 
     Transform lightTransform;
@@ -24,6 +25,11 @@ public class LightSway : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (lockLight)
+        {
+            return;
+        }
+
         currentLight = Mathf.SmoothStep(2100, 3100, Mathf.PingPong(Time.time / 10, 1));
         Light.colorTemperature = currentLight;
 
@@ -32,7 +38,15 @@ public class LightSway : MonoBehaviour
         //float rY = Mathf.SmoothStep(34.8f, 40, Mathf.PingPong(Time.time  / 100, 1));
         //lightTransform.rotation = Quaternion.Euler(rY, -83.18f, 0);
 
+    }
+    public void SetRoomDark()
+    {
+        lockLight = true;
+        Light.colorTemperature = 0;
+    }
 
-
+    public void ReSetLightInRoom()
+    {
+        lockLight = false;
     }
 }
