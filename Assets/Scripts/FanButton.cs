@@ -90,9 +90,6 @@ public class FanButton : MonoBehaviour
             {
                 Released();
             }
-
-
-
         }
 
     }
