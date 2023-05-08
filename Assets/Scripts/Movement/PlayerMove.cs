@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
+using Unity.VisualScripting;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -22,7 +24,8 @@ public class PlayerMove : MonoBehaviour
     private Camera mainCamera;
     private Vector3 normalizedVel;
     private AudioSource aS;
-
+    public CinemachineVirtualCamera virtualCamera;
+    private float fovFloat;
 
     PlayerWind playerWindScrips;
 
@@ -54,6 +57,7 @@ public class PlayerMove : MonoBehaviour
 
     private void Awake()
     {
+        fovFloat = 60f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         groundMovement = true;
@@ -168,9 +172,13 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        virtualCamera.m_Lens.FieldOfView = fovFloat;
+
         if (inputsXZ == Vector3.zero && !jump.hasCanceledGlide && !jump.gliding && !jump.canCrash && !climb.isClimbing)
         {
             stringToPlay = Idle;
+            fovFloat = Mathf.MoveTowards(fovFloat, 60, 10 * Time.deltaTime);
         }
 
 
@@ -186,12 +194,14 @@ public class PlayerMove : MonoBehaviour
 
             if (maxSpeed == 5 && jump.isGrounded)
             {
+                fovFloat = Mathf.MoveTowards(fovFloat, 50, 5 * Time.deltaTime);
                 stringToPlay = Sprint;
                 dustPS.SetActive(true);
                 aS.enabled = true;
             }
             else if (maxSpeed == 3 && jump.isGrounded)
             {
+                fovFloat = Mathf.MoveTowards(fovFloat, 60, 5 * Time.deltaTime);
                 stringToPlay = Walk;
                 dustPS.SetActive(true);
                 aS.enabled = true;
