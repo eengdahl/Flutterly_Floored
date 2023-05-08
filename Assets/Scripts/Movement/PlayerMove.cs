@@ -40,7 +40,7 @@ public class PlayerMove : MonoBehaviour
     //private static readonly string Idle = Animator.StringToHash("Idle sustainCopy");
     //private static readonly string Walk = Animator.StringToHash("Sprint test 1Copy");
     private string Idle = "Idle sustain";
-    private string Walk = "Hop 4";
+    private string Walk = "Hop_Copy";
     private string Sprint = "Sprint test 1"; //Wrong Animation
     private string Glide = "Glide flap";
     private string Fall = "Fall";
