@@ -24,6 +24,7 @@ public class PlayerMove : MonoBehaviour
     private Camera mainCamera;
     private Vector3 normalizedVel;
     private AudioSource aS;
+    SteppScript steppScript;
     public CinemachineVirtualCamera virtualCamera;
     private float fovFloat;
 
@@ -57,6 +58,7 @@ public class PlayerMove : MonoBehaviour
 
     private void Awake()
     {
+        steppScript = FindObjectOfType<SteppScript>();
         fovFloat = 60f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -148,9 +150,10 @@ public class PlayerMove : MonoBehaviour
         }
         if (activeString != stringToPlay)
         {
-
+            steppScript.StopStepSound();
             if (stringToPlay == Idle)
             {
+                steppScript.StopStepSound();
                 AnimationWithDelay(stringToPlay, 0.1f);
                 activeString = stringToPlay;
                 return;
