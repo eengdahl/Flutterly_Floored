@@ -13,11 +13,8 @@ public class WinScript : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             YouWinText.SetActive(true);
-            Invoke("ChangeScene", 5f);
+
         }
     }
-    void ChangeScene()
-    {
-        SceneManager.LoadScene("Doomsday");
-    }
+
 }

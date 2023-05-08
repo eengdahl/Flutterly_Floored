@@ -23,32 +23,35 @@ public class Fan : MonoBehaviour
     private float targetAngle; // Target angle for rotation
     private float currentAngle; // Current angle of rotation
 
-    [Header("Buttons")]
-    [SerializeField] FanButton rotationButton;
-    [SerializeField] FanButton strengthButton;
+    public bool shouldRotate;
+
 
     //Sound
     AudioSource aS;
 
 
+    //Add got electricity in begining
+    public bool gotElectricity;
 
     private void Start()
     {
+        shouldRotate = false;
         rotationSpeed = 600;
         aS = GetComponent<AudioSource>();
-        on = false;
+        on = true;
         windArea = windAreaOne;
     }
 
 
     void Update()
     {
+        if (!gotElectricity) return;
         if (on)
         {
             // Rotate the fan blade 
             wholeFanPart.transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
             //Rotate whole fan base
-            if (rotationButton.buttonOn)
+            if (shouldRotate)
             {
                 float deltaAngle = rotationSpeedBase * Time.deltaTime;
                 currentAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, deltaAngle);
@@ -74,12 +77,16 @@ public class Fan : MonoBehaviour
     }
     public void TurnOn()
     {
-        on = true;
-        windArea.SetActive(true);
+        gotElectricity = true;
+        if (on)
+        {
+          windArea.SetActive(true);
+
+        }
     }
     public void TurnOff()
     {
-        on = false;
+        gotElectricity = false;
         windArea.SetActive(false);
     }
     public void SwitchWindStr()

@@ -20,6 +20,7 @@ public class VitrinBrain2 : MonoBehaviour
     public GameObject wakePoint;
     public GameObject gazePoint;
 
+
     private float speed;
     private bool toSpot;
     private bool fromSpot;
@@ -30,6 +31,7 @@ public class VitrinBrain2 : MonoBehaviour
     private Vector3 orginalPos;
 
     private SwitchControls switchControls;
+    LightSway mainLight;
 
     AudioManager audioManager;
     private AudioSource aS;
@@ -44,7 +46,7 @@ public class VitrinBrain2 : MonoBehaviour
         locker = false;
         switchControls = FindAnyObjectByType<SwitchControls>();
         speed = 4f;
-        
+        mainLight = FindAnyObjectByType<LightSway>();
         vitrinCat = this.gameObject;
         aS = GetComponent<AudioSource>();
         audioManager = FindObjectOfType<AudioManager>();
@@ -158,6 +160,7 @@ public class VitrinBrain2 : MonoBehaviour
         {
             aS.PlayOneShot(catSound);
             yield return new WaitForSeconds(catSound.length);
+            mainLight.ReSetLightInRoom();
             Destroy(this.gameObject);
             yield return 0;
         }

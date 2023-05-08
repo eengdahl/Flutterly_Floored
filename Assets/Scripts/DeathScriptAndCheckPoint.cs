@@ -10,6 +10,9 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
     [SerializeField] GameObject birdBody;
     [SerializeField]BirdCableMovement birdCableMovement;
     [SerializeField] CameraFade cameraFade;
+    public GameObject featherPuff;
+    PlayerMove playerMoveScript;
+    PlayerJump playerJumpScript;
 
 
     //public Vector3 checkPoint;
@@ -17,6 +20,8 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
 
     private void Start()
     {
+        playerMoveScript = gameObject.GetComponent<PlayerMove>();
+        playerJumpScript = gameObject.GetComponent<PlayerJump>();
         respawnTransform = startRespawnPoint;
         rb = GetComponent<Rigidbody>();
         //respawnPoint = startRespawnPoint.position;
@@ -32,13 +37,21 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
 
     public void Die()
     {
-       // Fade();
-        //Invoke("Fade", 1f);
+        // Fade();
+        //Invoke(nameof(Fade), 1f);
+        playerMoveScript.enabled = false;
+        playerJumpScript.enabled = false;
         birdCableMovement.DisableClimbing();
-        this.transform.rotation = respawnTransform.rotation;
-        this.transform.position = respawnTransform.position;
         Invoke("ResetRB", 0.5f);
-        MovementCommunicator.instance.NotifyDeathListeners(true);
+        FeatherPuff();
+        Invoke(nameof(DelayedDeath), 2);
+    }
+    public void Teleport()
+    {
+        playerMoveScript.enabled = false;
+        playerJumpScript.enabled = false;
+        birdCableMovement.DisableClimbing();
+        Invoke("ResetRB", 0.5f);
     }
     void ResetRB()
     {
@@ -48,5 +61,21 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
     void Fade()
     {
         cameraFade.Fade();
+    }
+
+    private void FeatherPuff()
+    {
+        birdBody.SetActive(false);
+        Instantiate(featherPuff, gameObject.transform.position + new Vector3(0, 0.2f, 0), Quaternion.identity);
+    }
+
+    public void DelayedDeath()
+    {
+        this.transform.rotation = respawnTransform.rotation;
+        this.transform.position = respawnTransform.position;
+        MovementCommunicator.instance.NotifyDeathListeners(true);
+        birdBody.SetActive(true);
+        playerMoveScript.enabled = true;
+        playerJumpScript.enabled = true;
     }
 }

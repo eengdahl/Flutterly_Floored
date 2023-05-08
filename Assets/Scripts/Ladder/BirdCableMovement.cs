@@ -20,6 +20,8 @@ public class BirdCableMovement : MonoBehaviour
     public float forcePower = 20f;
     public float speed = 5f;
 
+    public float isMoving;
+    public float horizontalInput;
     public float downSpeed = 5f;
     public float downSpeedMin;
     public float downSpeedMax = 10f;
@@ -29,6 +31,8 @@ public class BirdCableMovement : MonoBehaviour
     public int currentCableSegment = 0;
     public bool readyToClimb;
     public bool isClimbing;
+    [SerializeField] float redForce = 10000;
+    [SerializeField] float greenForce = 7000;
 
 
     //Raycast for rotation
@@ -93,8 +97,8 @@ public class BirdCableMovement : MonoBehaviour
             return;
         }
 
-
-        float horizontalInput = input.Climbing.verticalInput.ReadValue<Vector2>().x;
+        isMoving = input.Climbing.verticalInput.ReadValue<Vector2>().y;
+        horizontalInput = input.Climbing.verticalInput.ReadValue<Vector2>().x;
 
         if (horizontalInput > 0 && canTurnRight)
         {
@@ -333,10 +337,12 @@ public class BirdCableMovement : MonoBehaviour
     }
     void ApplyFirstJumpForce()
     {
-        Vector3 forceDirection = transform.right.normalized * -1;
-        Vector3 force = forceDirection * forcePower;
-        rb.AddForce(force);
-        transform.localEulerAngles = Vector3.zero;
+        //Vector3 forceDirection = transform.right.normalized * -1;
+        //Vector3 force = forceDirection * forcePower;
+        //rb.AddForce(force);
+        //transform.localEulerAngles = Vector3.zero;
+        Vector3 force = new Vector3(-redForce, greenForce, 0f);
+        rb.AddRelativeForce(force);
     }
     void ActivateCollider()
     {

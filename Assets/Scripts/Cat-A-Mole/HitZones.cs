@@ -10,16 +10,23 @@ public class HitZones : MonoBehaviour
     public Animator attackAnimator;
     public CatAMoleBrain gamestate;
     public GameObject player;
+
+
     public float attackSpeed;
     public float lazySpeed;
     public float notAttackingTimer;
+    public float StrikeDistance;        //distance between player and cat to trigger attack
+    public bool withinStrikeDistance;   //If player is within striking distance
+    public bool catIsActive;           //to stop cat from resetting attackanimations before cat has started attacking
 
+
+    private float currentDistance;      //Current distance between player and cat
+    private GameObject closestHitzone;
     private string animationTrigger;
-    public GameObject closestHitzone;
     private float distanceClosestPosition;
-    public bool isAttacking;
-    public bool isCharging;
-    public bool isPlayerInZone;
+    private bool isAttacking;
+    private bool isCharging;
+    private bool isPlayerInZone;
     private bool isAnimTriggered;
 
 
@@ -34,6 +41,8 @@ public class HitZones : MonoBehaviour
     void Update()
     {
         //CheckClosestZone();
+        DistanceToPlayer();
+
 
         if (gamestate.moleState == MoleStates.Attack && !isAttacking)
         {
@@ -58,7 +67,7 @@ public class HitZones : MonoBehaviour
         }
 
         //Make cat attack
-        if (isAttacking && !isAnimTriggered)
+        if (isAttacking && !isAnimTriggered && withinStrikeDistance)
         {
             Debug.Log("Runs attack code");
             isCharging = false;
@@ -100,17 +109,25 @@ public class HitZones : MonoBehaviour
         {
             isAnimTriggered = false;
             attackAnimator.SetBool("AttackCanBeTriggered", true);
-            attackAnimator.SetBool(animationTrigger, false);
+            //attackAnimator.SetBool(animationTrigger, false);
             attackAnimator.SetBool("Charging", true);
         }
         else
         {
-            attackAnimator.SetBool("Charging", false);
+            if (attackAnimator.gameObject.activeSelf == true)
+            {
+                attackAnimator.SetBool("Charging", false);
+
+            }
         }
 
         if (gamestate.moleState == MoleStates.Charge && isAttacking)
         {
-            attackAnimator.SetBool(animationTrigger, false);
+            if (catIsActive)
+            {
+                attackAnimator.SetBool(animationTrigger, false);
+            }
+
             isCharging = true;
             isAttacking = false;
         }
@@ -144,8 +161,24 @@ public class HitZones : MonoBehaviour
                 distanceClosestPosition = tmpDistance;
             }     
         }
-        Debug.Log(closestHitzone.name);
+        //Debug.Log(closestHitzone.name);
 
+    }
+
+
+    //Calculates the distance between cat and player and sets if player is close enough for attack
+    public void DistanceToPlayer()
+    {
+        currentDistance = (player.transform.position - gamestate.gameObject.transform.position).magnitude;
+
+        if(currentDistance < StrikeDistance)
+        {
+            withinStrikeDistance = true;
+        }
+        else
+        {
+            withinStrikeDistance = false;
+        }
     }
 
 }

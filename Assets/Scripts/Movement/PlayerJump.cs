@@ -11,9 +11,9 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] private float windTunnelAscend;
 
     [SerializeField] private bool readyToJump;
-    [SerializeField] private bool gliding;
-    [SerializeField] private bool hasCanceledGlide;
-
+    [SerializeField] public bool gliding;
+    [SerializeField] public bool hasCanceledGlide;
+    public bool canCrash;
     public bool canGlide;
     public float glideTime;
     public float coyoteTime;
@@ -82,10 +82,12 @@ public class PlayerJump : MonoBehaviour
         {
             if (leftFootHit.collider != null && leftFootHit.collider.CompareTag("Ground"))
             {
-                isGrounded = true;
+                canCrash = false;
                 hasCanceledGlide = false;
+                isGrounded = true;
                 readyToJump = true;
                 canGlide = false;
+                Invoke(nameof(ReSetCrash), 1);
                 rayCastHit = true;
             }
         }
@@ -94,10 +96,11 @@ public class PlayerJump : MonoBehaviour
         {
             if (rightFootHit.collider != null && rightFootHit.collider.CompareTag("Ground"))
             {
-                isGrounded = true;
                 hasCanceledGlide = false;
+                isGrounded = true;
                 readyToJump = true;
                 canGlide = false;
+                Invoke(nameof(ReSetCrash), 1);
                 rayCastHit = true;
             }
         }
@@ -161,7 +164,7 @@ public class PlayerJump : MonoBehaviour
     {
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
- 
+
         readyToJump = false;
     }
 
@@ -174,7 +177,6 @@ public class PlayerJump : MonoBehaviour
     {
         if (!playerWindsScript.inWindZone && !kitchenFan.inGawkArea)
         {
-            gameObject.transform.GetChild(0).gameObject.SetActive(true);
             glideTime += Time.deltaTime;
             rb.AddForce(transform.up * glideForce, ForceMode.Acceleration);
         }
@@ -184,7 +186,6 @@ public class PlayerJump : MonoBehaviour
         }
         if (kitchenFan.inGawkArea)
         {
-            gameObject.transform.GetChild(0).gameObject.SetActive(true);
             glideTime += Time.deltaTime;
             rb.AddForce(transform.up * (glideForce * kitchenFan.glideMultiplier), ForceMode.Acceleration);
         }
@@ -194,11 +195,18 @@ public class PlayerJump : MonoBehaviour
     {
         if (!playerWindsScript.inWindZone)
         {
-            gameObject.transform.GetChild(0).gameObject.SetActive(false);
+
             gliding = false;
             glideTime = 0f;
             hasCanceledGlide = true;
+            canCrash = true;
             canGlide = false;
+
         }
+    }
+
+    private void ReSetCrash()
+    {
+        canCrash = false;
     }
 }

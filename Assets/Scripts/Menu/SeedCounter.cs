@@ -7,7 +7,9 @@ public class SeedCounter : MonoBehaviour
 {
     private int seedCount = 0;
     public TextMeshProUGUI seedCountText;
-    public Camera cam;
+    public GameObject seedCounterPanel;
+    public GameObject seed2D;
+    public GameObject instatiatePos;
 
     public void AddSeed(int value)
     {
@@ -19,13 +21,15 @@ public class SeedCounter : MonoBehaviour
     }
     public void SetSeedCount(int seedCount)
     {
-        cam.enabled = true;
+        //GameObject seed = Instantiate(seed2D, Vector3.zero, Quaternion.identity, instatiatePos.transform);
+
+        seedCounterPanel.SetActive(true);
         seedCountText.text = seedCount.ToString();
-        Invoke(nameof(DisableCam), 3);
+        Invoke(nameof(DisablePanel), 3);
     }
 
-    public void DisableCam()
+    public void DisablePanel()
     {
-        cam.enabled = false;
+        seedCounterPanel.SetActive(false);
     }
 }

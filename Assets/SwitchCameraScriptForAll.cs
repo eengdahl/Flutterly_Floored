@@ -8,7 +8,11 @@ public class SwitchCameraScriptForAll : MonoBehaviour
     [SerializeField] GameObject originalCamera;
     [SerializeField] GameObject cupboardCamera;
     private bool locker = false;
-
+    LightSway mainLight;
+    private void Start()
+    {
+           mainLight = FindAnyObjectByType<LightSway>();
+    }
 
 
     private void OnTriggerEnter(Collider other)
