@@ -46,6 +46,13 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
         FeatherPuff();
         Invoke(nameof(DelayedDeath), 2);
     }
+    public void Teleport()
+    {
+        playerMoveScript.enabled = false;
+        playerJumpScript.enabled = false;
+        birdCableMovement.DisableClimbing();
+        Invoke("ResetRB", 0.5f);
+    }
     void ResetRB()
     {
         birdBody.transform.rotation = this.transform.rotation;

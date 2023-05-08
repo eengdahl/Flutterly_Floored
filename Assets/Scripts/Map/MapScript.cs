@@ -34,37 +34,37 @@ public class MapScript : MonoBehaviour
     public void RespawnOne()
     {
         deathScript.respawnTransform = CheckPointCubes[0].transform;
-        deathScript.Die();
+        deathScript.Teleport();
         ToggleMap();
     }
     public void RespawnTwo()
     {
         deathScript.respawnTransform = CheckPointCubes[1].transform;
-        deathScript.Die();
+        deathScript.Teleport();
         ToggleMap();
     }
     public void RespawnThree()
     {
         deathScript.respawnTransform = CheckPointCubes[2].transform;
-        deathScript.Die();
+        deathScript.Teleport();
         ToggleMap();
     }
     public void RespawnFour()
     {
         deathScript.respawnTransform = CheckPointCubes[3].transform;
-        deathScript.Die();
+        deathScript.Teleport();
         ToggleMap();
     }
     public void RespawnFive()
     {
         deathScript.respawnTransform = CheckPointCubes[4].transform;
-        deathScript.Die();
+        deathScript.Teleport();
         ToggleMap();
     }
     public void RespawnSix()
     {
         deathScript.respawnTransform = CheckPointCubes[5].transform;
-        deathScript.Die();
+        deathScript.Teleport();
         ToggleMap();
     }
 
