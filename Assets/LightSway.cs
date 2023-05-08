@@ -7,24 +7,26 @@ using UnityEngine;
 public class LightSway : MonoBehaviour
 {
     Light Light;
-    private float standardLight = 2662;
+    private float standardLightIntensity;
     private float currentLight;
     public bool lockLight;
 
 
-    Transform lightTransform;
 
+    Transform lightTransform;
+   public GameObject spotLight;
     // Start is called before the first frame update
     void Start()
     {
         Light = GetComponent<Light>();
         lightTransform = GetComponent<Transform>();
-        // Light.colorTemperature
+        standardLightIntensity = Light.intensity;
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (lockLight)
         {
             return;
@@ -33,7 +35,6 @@ public class LightSway : MonoBehaviour
         currentLight = Mathf.SmoothStep(2100, 3100, Mathf.PingPong(Time.time / 10, 1));
         Light.colorTemperature = currentLight;
 
-
         //Sol går ner. Stannar i botten 
         //float rY = Mathf.SmoothStep(34.8f, 40, Mathf.PingPong(Time.time  / 100, 1));
         //lightTransform.rotation = Quaternion.Euler(rY, -83.18f, 0);
@@ -41,12 +42,16 @@ public class LightSway : MonoBehaviour
     }
     public void SetRoomDark()
     {
+        Debug.Log("Dark");
+        Light.intensity = 0;
         lockLight = true;
-        Light.colorTemperature = 0;
+        spotLight.SetActive(false);
     }
 
     public void ReSetLightInRoom()
     {
+        spotLight.SetActive(true);
+        Light.intensity = standardLightIntensity;
         lockLight = false;
     }
 }

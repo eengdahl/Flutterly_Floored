@@ -28,10 +28,8 @@ public class SwitchCameraScriptForAll : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            mainLight.gameObject.SetActive(false);
             originalCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Lens.Orthographic = false;
             Invoke("SwitchCamera", 0.1f);
-            mainLight.SetRoomDark();
         }
     }
 

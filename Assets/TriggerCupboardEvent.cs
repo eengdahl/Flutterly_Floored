@@ -6,6 +6,7 @@ public class TriggerCupboardEvent : MonoBehaviour
 {
 
     private SwitchControls switchControls;
+    LightSway mainLight;
     VitrinBrain2 vitrinBrain;
     public GameObject vitrinCat;
     bool locker;
@@ -17,6 +18,7 @@ public class TriggerCupboardEvent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mainLight = FindAnyObjectByType<LightSway>();
         switchControls = FindAnyObjectByType<SwitchControls>();
         locker = true;
     }
@@ -25,6 +27,7 @@ public class TriggerCupboardEvent : MonoBehaviour
     {
         if (other.tag == "Player" && locker)
         {
+            mainLight.SetRoomDark();
             blocker.SetActive(true);
             vitrinCat.SetActive(true);
             light0.SetActive(true);
