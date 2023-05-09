@@ -48,6 +48,7 @@ public class Fan : MonoBehaviour
         if (!gotElectricity) return;
         if (on)
         {
+
             // Rotate the fan blade 
             wholeFanPart.transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
             //Rotate whole fan base
@@ -74,18 +75,24 @@ public class Fan : MonoBehaviour
             }
 
         }
+        else
+        {
+            aS.Stop();
+        }
     }
     public void TurnOn()
     {
+        aS.Play();
         gotElectricity = true;
         if (on)
         {
-          windArea.SetActive(true);
+            windArea.SetActive(true);
 
         }
     }
     public void TurnOff()
     {
+        aS.Stop();
         gotElectricity = false;
         windArea.SetActive(false);
     }
@@ -94,23 +101,29 @@ public class Fan : MonoBehaviour
         if (on)
         {
             windArea.SetActive(false);
+            aS.Stop();
 
         }
 
         if (windArea == windAreaOne)
         {
-
+            aS.Play();
+            aS.pitch = 2f;
             rotationSpeed = 1200;
             windArea = windAreaTwo;
         }
         else if (windArea == windAreaTwo)
         {
+            aS.Play();
+            aS.pitch = 1.5f;
             rotationSpeed = 600;
             windArea = windAreaOne;
         }
 
         if (on)
         {
+            aS.Play();
+
             windArea.SetActive(true);
         }
     }

@@ -63,6 +63,7 @@ public class FanPowerButton : MonoBehaviour
             else if (isPowerButton)
             {
                 fanScript.on = false;
+                
 
             }
         }
