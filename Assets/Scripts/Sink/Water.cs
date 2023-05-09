@@ -23,6 +23,7 @@ public class Water : MonoBehaviour
     public bool isFilling;
     public bool isDraining;
 
+    public GameObject waterTapPS;
     public GameObject maxWaterPoint;
     private AudioSource aS;
     private int closestVertexIndex = -1;
@@ -74,11 +75,12 @@ public class Water : MonoBehaviour
         {
             FillWater();
             isDraining = false;
+            waterTapPS.SetActive(true);
         }
         else
         {
             isFilling = false;
-
+            waterTapPS.SetActive(false);
         }
 
         if (isDraining && waterLevel > minWaterLevel)
