@@ -250,17 +250,7 @@ public class PlayerMove : MonoBehaviour
 
         if (inputsXZ != Vector3.zero && targetDirection.magnitude > 0.1f)
         {
-
-
-            Vector3 lookDirection = targetDirection.normalized;
-            freeRotation = Quaternion.LookRotation(lookDirection, transform.up);
-            var diferenceRotation = freeRotation.eulerAngles.y - transform.eulerAngles.y;
-            var eulerY = transform.eulerAngles.y;
-
-            if (diferenceRotation < 0 || diferenceRotation > 0) eulerY = freeRotation.eulerAngles.y;
-            var euler = new Vector3(0, eulerY, 0);
-
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(euler), turnSpeed * turnSpeedMultiplier * Time.deltaTime);
+            transform.forward = Vector3.Slerp(transform.forward, targetDirection, turnSpeed * turnSpeedMultiplier * Time.deltaTime);
         }
         //on ground
     }
@@ -284,11 +274,12 @@ public class PlayerMove : MonoBehaviour
     public virtual void UpdateTargetDirection()
     {
         turnSpeedMultiplier = 1f;
-        var forward = mainCamera.transform.TransformDirection(Vector3.forward);
+        var lookDirection = transform.position - new Vector3(mainCamera.transform.position.x, transform.position.y, mainCamera.transform.position.z);
+        //var forward = mainCamera.transform.TransformDirection(Vector3.forward);
+        var forward = lookDirection.normalized;
         forward.y = 0;
-
         //get the right-facing direction of the referenceTransform
-        var right = mainCamera.transform.TransformDirection(Vector3.right);
+        var right = new Vector3(mainCamera.transform.right.x, 0, mainCamera.transform.right.z);
 
         // determine the direction the player will face based on input and the referenceTransform's right and forward directions
         targetDirection = inputsXZ.x * right + inputsXZ.z * forward;
