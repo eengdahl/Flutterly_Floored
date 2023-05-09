@@ -27,10 +27,10 @@ public class Fosset : MonoBehaviour
             water.GetComponent<Water>().isFilling = true;
         }
 
-        if (gameObject.name == "OffButton" && other.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("WaterLower");
-            water.GetComponent<Water>().isDraining = true;
-        }
+        //if (gameObject.name == "OffButton" && other.gameObject.CompareTag("Player"))
+        //{
+        //    Debug.Log("WaterLower");
+        //    water.GetComponent<Water>().isDraining = true;
+        //}
     }
 }
