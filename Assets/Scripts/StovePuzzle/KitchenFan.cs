@@ -24,10 +24,11 @@ public class KitchenFan : MonoBehaviour
                 if (btn.buttonDown == true)
                 {
                     glideMultiplier = btn.fanMultiplier;
+                    aS.pitch = btn.fanMultiplier;
                 }
             }
             if (!aS.isPlaying) aS.Play();
-            
+
         }
     }
 
