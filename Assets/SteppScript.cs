@@ -13,7 +13,10 @@ public class SteppScript : MonoBehaviour
     // Start is called before the first frame update
     public void PlayStep()
     {
+        aS.pitch = Random.Range(2f, 3f);
+        Debug.Log(aS.pitch);
         aS.PlayOneShot(step);
+
     }
 
     public void StopStepSound()
