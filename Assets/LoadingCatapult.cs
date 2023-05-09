@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LoadingCatapult : MonoBehaviour
 {
-    public bool isSugarFilled, isFlourFilled, isEggFilled;
+    public bool isSugarFilled, isFlourFilled, isMilkFilled;
     public bool canShoot;
     public int ingredientCount;
     public GameObject cat;
@@ -46,10 +46,10 @@ public class LoadingCatapult : MonoBehaviour
                         ScaleUpMoshyThing();
                         break;
                     }
-                case "EggPile":
+                case "MilkPile":
                     {
-                        isEggFilled = true;
-                        spoon.eggFilled= true;
+                        isMilkFilled = true;
+                        spoon.milkFilled= true;
                         ingredientCount++;
                         ScaleUpMoshyThing();
                         break;
@@ -58,7 +58,7 @@ public class LoadingCatapult : MonoBehaviour
 
             spoon.isFull = false;
 
-            if (isFlourFilled && isSugarFilled && isEggFilled)
+            if (isFlourFilled && isSugarFilled && isMilkFilled)
             {
                 canShoot = true;
             }
@@ -75,7 +75,7 @@ public class LoadingCatapult : MonoBehaviour
         transform.localScale = startScale;
         ingredientCount = 0;
         isFlourFilled = false;
-        isEggFilled = false;
+        isMilkFilled = false;
         isSugarFilled = false;
         Invoke(nameof(DespawnCat), 2);
        // StartCoroutine(DespawnCat());
