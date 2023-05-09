@@ -48,10 +48,10 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
     }
     public void Teleport()
     {
-        playerMoveScript.enabled = false;
-        playerJumpScript.enabled = false;
         birdCableMovement.DisableClimbing();
         Invoke("ResetRB", 0.5f);
+        this.transform.rotation = respawnTransform.rotation;
+        this.transform.position = respawnTransform.position;
     }
     void ResetRB()
     {
