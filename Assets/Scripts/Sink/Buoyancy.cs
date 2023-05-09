@@ -26,14 +26,14 @@ public class Buoyancy : MonoBehaviour
     public float resetSpeed;
 
     private bool isResettingPosition;
-    private Vector3 startVector;
+    private Vector3 startPosition;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         water = GameObject.FindGameObjectWithTag("Water");
 
-        startVector = transform.position;
+        startPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -91,16 +91,24 @@ public class Buoyancy : MonoBehaviour
         water.GetComponent<Water>().isDraining = true;
     }
 
-    private void ResetPosition()
+    public void ResetPosition()
     {
-        //Debug.Log((startVector - transform.position).magnitude);
-        if ((startVector - transform.position).magnitude > 0.1f)
+        transform.position = new Vector3(startPosition.x, transform.position.y, startPosition.z);
+        Vector2 tmpStartVector = new Vector2(startPosition.x, startPosition.z);
+        Vector2 tmpCurrentVextor = new Vector2(transform.position.x, transform.position.z);
+
+        if((tmpStartVector - tmpCurrentVextor).magnitude < 0.1f)
         {
-            Debug.Log("Running");
-            float tick = resetSpeed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, transform.position.y,transform.position.z), new Vector3(startVector.x, transform.position.y, startVector.z), resetSpeed/1000);
-        }
-        else
             isResettingPosition = false;
+        }
+        //Debug.Log((startVector - transform.position).magnitude);
+        //if ((startPosition - transform.position).magnitude > 0.1f)
+        //{
+        //    Debug.Log("Running");
+        //    float tick = resetSpeed * Time.deltaTime;
+        //    transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, transform.position.y,transform.position.z), new Vector3(startPosition.x, transform.position.y, startPosition.z), resetSpeed/1000);
+        //}
+        //else
+        //    isResettingPosition = false;
     }
 }
