@@ -18,6 +18,7 @@ public class HideNSeekBottles : MonoBehaviour
     private bool onceLock;
     public AudioClip cat;
     public AudioClip spray;
+    public GameObject sprayPS;
 
     private void Start()
     {
@@ -86,7 +87,7 @@ public class HideNSeekBottles : MonoBehaviour
         // vitrinBrain.grace = true;
         catLives--;
         aS.PlayOneShot(cat);
-        
+        sprayPS.SetActive(true);
         Debug.Log("CatIsDiededGGEZ");
         vitrinBrain.catIsDead = true;
 
@@ -103,6 +104,7 @@ public class HideNSeekBottles : MonoBehaviour
         yield return new WaitForSeconds(10f);
         anim.CrossFade("PerfumeButtonInflate", 0, 0);
         buttonReady = true;
+        sprayPS.SetActive(false);
     }
 
 
