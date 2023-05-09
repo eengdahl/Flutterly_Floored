@@ -169,8 +169,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
-      minScalar: 1
+      scalar: 3
+      minScalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1027,7 +1027,7 @@ ParticleSystem:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-      cycleCount: 5
+      cycleCount: 1
       repeatInterval: 0.01
       probability: 1
   SizeModule:
@@ -2093,13 +2093,13 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.21011129
         - serializedVersion: 3
-          time: 0.98965913
-          value: 0.41666666
-          inSlope: -0.8603824
-          outSlope: -0.8603824
+          time: 0.6692049
+          value: 0.10416544
+          inSlope: -2.7130418
+          outSlope: -2.7130418
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.2053685
+          inWeight: 0.16929291
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -4046,10 +4046,10 @@ ParticleSystem:
     ribbonCount: 1
     shadowBias: 0.5
     worldSpace: 0
-    dieWithParticles: 1
+    dieWithParticles: 0
     sizeAffectsWidth: 0
-    sizeAffectsLifetime: 0
-    inheritParticleColor: 1
+    sizeAffectsLifetime: 1
+    inheritParticleColor: 0
     generateLightingData: 0
     splitSubEmitterRibbons: 0
     attachRibbonsToTransform: 0
@@ -4841,7 +4841,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_RenderMode: 0
+  m_RenderMode: 5
   m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -4862,7 +4862,7 @@ ParticleSystemRenderer:
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
   m_VertexStreams: 00010304
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}

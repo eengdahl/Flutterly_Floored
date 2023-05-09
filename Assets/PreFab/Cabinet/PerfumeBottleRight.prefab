@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 932871283457480368}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -13.27, y: 0, z: 1.92}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -49,7 +49,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 932871283457480368}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -93,7 +93,7 @@ MeshCollider:
   m_GameObject: {fileID: 932871283457480368}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -132,6 +132,7 @@ Transform:
   - {fileID: 8959022184238711888}
   - {fileID: 2775743488062655695}
   - {fileID: 2666175000224705132}
+  - {fileID: 1355977686526021065}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 261.78198, z: 0}
@@ -187,7 +188,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4888903249215266956}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -13.93, y: 0, z: 2.01}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -289,7 +290,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8852312004357462785}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -9.12, y: -0.14, z: 0.57}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -505,6 +506,92 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonReady: 1
   catInRange: 0
+  blocker: {fileID: 0}
+  anim: {fileID: 0}
+  cat: {fileID: 0}
+  spray: {fileID: 0}
+--- !u!1001 &1539069958049245730
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2013763976340479294}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: a45e62b9cf0b0f04285ab48e189d697a, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45e62b9cf0b0f04285ab48e189d697a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.39
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45e62b9cf0b0f04285ab48e189d697a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45e62b9cf0b0f04285ab48e189d697a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.68
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45e62b9cf0b0f04285ab48e189d697a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45e62b9cf0b0f04285ab48e189d697a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45e62b9cf0b0f04285ab48e189d697a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45e62b9cf0b0f04285ab48e189d697a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45e62b9cf0b0f04285ab48e189d697a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45e62b9cf0b0f04285ab48e189d697a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45e62b9cf0b0f04285ab48e189d697a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5113719499028415934, guid: a45e62b9cf0b0f04285ab48e189d697a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 46b25986f17d03842b7bc5472bf0adfe, type: 2}
+    - target: {fileID: -1874768578883645879, guid: a45e62b9cf0b0f04285ab48e189d697a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 46b25986f17d03842b7bc5472bf0adfe, type: 2}
+    - target: {fileID: -931124876141851063, guid: a45e62b9cf0b0f04285ab48e189d697a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 46b25986f17d03842b7bc5472bf0adfe, type: 2}
+    - target: {fileID: 919132149155446097, guid: a45e62b9cf0b0f04285ab48e189d697a, type: 3}
+      propertyPath: m_Name
+      value: perfume bottle 003_hilda
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a45e62b9cf0b0f04285ab48e189d697a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878191787561613047, guid: a45e62b9cf0b0f04285ab48e189d697a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 46b25986f17d03842b7bc5472bf0adfe, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a45e62b9cf0b0f04285ab48e189d697a, type: 3}
+--- !u!4 &1355977686526021065 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a45e62b9cf0b0f04285ab48e189d697a, type: 3}
+  m_PrefabInstance: {fileID: 1539069958049245730}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2488961671944916359
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -518,7 +605,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 62a79df6c5dd93a44b72e1b7cfb12c99, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -10.04
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 62a79df6c5dd93a44b72e1b7cfb12c99, type: 3}
       propertyPath: m_LocalPosition.y
@@ -526,7 +613,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 62a79df6c5dd93a44b72e1b7cfb12c99, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 62a79df6c5dd93a44b72e1b7cfb12c99, type: 3}
       propertyPath: m_LocalRotation.w
@@ -556,6 +643,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2690134187693510071, guid: 62a79df6c5dd93a44b72e1b7cfb12c99, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -264430861247414160, guid: 62a79df6c5dd93a44b72e1b7cfb12c99, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 62a79df6c5dd93a44b72e1b7cfb12c99, type: 3}
       propertyPath: m_Name
       value: perfume_bottle_model_001_hilda
@@ -575,6 +670,18 @@ PrefabInstance:
     - target: {fileID: 2866621852552652557, guid: 62a79df6c5dd93a44b72e1b7cfb12c99, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694512719869544682, guid: 62a79df6c5dd93a44b72e1b7cfb12c99, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694512719869544682, guid: 62a79df6c5dd93a44b72e1b7cfb12c99, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899486392329470165, guid: 62a79df6c5dd93a44b72e1b7cfb12c99, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6727007405964328823, guid: 62a79df6c5dd93a44b72e1b7cfb12c99, type: 3}
       propertyPath: m_Layer
@@ -596,7 +703,7 @@ MeshCollider:
   m_GameObject: {fileID: 379102912234859146}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -620,7 +727,7 @@ MeshCollider:
   m_GameObject: {fileID: 4216776060843181876}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
