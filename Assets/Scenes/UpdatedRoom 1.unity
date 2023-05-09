@@ -45669,10 +45669,18 @@ PrefabInstance:
     - target: {fileID: 4433255891132256754, guid: 6b91ad2fdb8b5344c81dce568117a169, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+      objectReference: {fileID: 5523321115099222041, guid: b3b6ed9a6f560114598c568d02004288, type: 3}
     - target: {fileID: 4433255891132256754, guid: 6b91ad2fdb8b5344c81dce568117a169, type: 3}
       propertyPath: m_RenderMode
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433255891132256754, guid: 6b91ad2fdb8b5344c81dce568117a169, type: 3}
+      propertyPath: m_RenderAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433255891132256754, guid: 6b91ad2fdb8b5344c81dce568117a169, type: 3}
+      propertyPath: m_EnableGPUInstancing
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4433255891132256754, guid: 6b91ad2fdb8b5344c81dce568117a169, type: 3}
       propertyPath: m_Materials.Array.size
@@ -45700,7 +45708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4433255891132256755, guid: 6b91ad2fdb8b5344c81dce568117a169, type: 3}
       propertyPath: InitialModule.maxNumParticles
-      value: 5000
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 4433255891132256755, guid: 6b91ad2fdb8b5344c81dce568117a169, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
@@ -45728,7 +45736,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4433255891132256755, guid: 6b91ad2fdb8b5344c81dce568117a169, type: 3}
       propertyPath: EmissionModule.rateOverDistance.scalar
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4433255891414005838, guid: 6b91ad2fdb8b5344c81dce568117a169, type: 3}
       propertyPath: m_Enabled
