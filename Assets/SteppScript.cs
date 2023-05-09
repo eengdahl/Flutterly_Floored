@@ -14,7 +14,6 @@ public class SteppScript : MonoBehaviour
     public void PlayStep()
     {
         aS.pitch = Random.Range(2f, 3f);
-        Debug.Log(aS.pitch);
         aS.PlayOneShot(step);
 
     }
