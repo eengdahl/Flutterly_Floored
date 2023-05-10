@@ -206,21 +206,21 @@ public class PlayerMove : MonoBehaviour
                 fovFloat = Mathf.MoveTowards(fovFloat, 50, 5 * Time.deltaTime);
                 stringToPlay = Sprint;
                 dustPS.SetActive(true);
-                aS.enabled = true;
+                
             }
             else if (maxSpeed == 3 && jump.isGrounded)
             {
                 fovFloat = Mathf.MoveTowards(fovFloat, 60, 5 * Time.deltaTime);
                 stringToPlay = Walk;
                 dustPS.SetActive(true);
-                aS.enabled = true;
+               
             }
             rb.AddForce(targetDirection * speed * 10f, ForceMode.Force);
         }
         else
         {
             dustPS.SetActive(false);
-            aS.enabled = false;
+          
 
         }
 

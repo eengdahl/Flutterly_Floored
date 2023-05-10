@@ -13,6 +13,8 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
     public GameObject featherPuff;
     PlayerMove playerMoveScript;
     PlayerJump playerJumpScript;
+    public AudioClip death;
+    AudioSource aS;
 
 
     //public Vector3 checkPoint;
@@ -20,6 +22,7 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
 
     private void Start()
     {
+        aS = GetComponent<AudioSource>();
         playerMoveScript = gameObject.GetComponent<PlayerMove>();
         playerJumpScript = gameObject.GetComponent<PlayerJump>();
         respawnTransform = startRespawnPoint;
@@ -37,6 +40,7 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
 
     public void Die()
     {
+        aS.PlayOneShot(death);
         // Fade();
         //Invoke(nameof(Fade), 1f);
         playerMoveScript.enabled = false;
