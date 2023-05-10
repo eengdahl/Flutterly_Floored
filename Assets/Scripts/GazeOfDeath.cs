@@ -30,6 +30,10 @@ public class GazeOfDeath : MonoBehaviour
         }
         if(other.CompareTag("Player"))
         {
+            if (locker)
+            {
+                return;
+            }
             RaycastHit hit;
             Physics.Raycast(visionCone.transform.position, other.transform.position - visionCone.transform.position, out hit,distance, player);
             if(hit.collider.gameObject.CompareTag("Player"))

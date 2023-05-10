@@ -177,7 +177,7 @@ public class VitrinBrain2 : MonoBehaviour
             gaze.locker = true;
             aS.PlayOneShot(catSound);
             animator.CrossFade(deadAni, 0, 0);
-            yield return new WaitForSeconds(catSound.length);
+            yield return new WaitForSeconds(3.8f);
             mainLight.ReSetLightInRoom();
             audioManager.ResumeMainMusic();
             this.gameObject.SetActive(false);
