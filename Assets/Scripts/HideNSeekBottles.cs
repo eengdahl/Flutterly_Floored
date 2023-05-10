@@ -38,8 +38,8 @@ public class HideNSeekBottles : MonoBehaviour
     {
         if (other.tag == "Player" && buttonReady)
         {
-
             aS.PlayOneShot(spray);
+
             if (!onceLock)
             {
                 vitrinBrain = FindAnyObjectByType<VitrinBrain2>();
@@ -94,7 +94,6 @@ public class HideNSeekBottles : MonoBehaviour
 
         //button push
         buttonReady = false;
-        this.gameObject.SetActive(false);
         //  anim.CrossFade("PerfumeButtonPush", 0, 0);
     }
 
@@ -109,6 +108,7 @@ public class HideNSeekBottles : MonoBehaviour
     void DestroyBlocker()
     {
         Destroy(blocker);
+        this.gameObject.SetActive(false);
 
     }
 
