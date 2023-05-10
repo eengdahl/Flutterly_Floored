@@ -14,7 +14,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] GameObject stepUpBottom;
     [SerializeField] GameObject stepUpTop;
     [SerializeField] float stepHeight = 0.3f;
-    [SerializeField] float stepSmooth = 0.1f;
+    [SerializeField] float stepSmooth = 0.2f;
 
     private float turnSpeedMultiplier;
     private float lerpDuration = 3;
@@ -181,7 +181,7 @@ public class PlayerMove : MonoBehaviour
     private void FixedUpdate()
     {
 
-        stepClimb();
+        //stepClimb();
         virtualCamera.m_Lens.FieldOfView = fovFloat;
 
         if (inputsXZ == Vector3.zero && !jump.hasCanceledGlide && !jump.gliding && !jump.canCrash && !climb.isClimbing)
@@ -294,10 +294,11 @@ public class PlayerMove : MonoBehaviour
     void stepClimb()
     {
         RaycastHit hitBottom;
-        if (Physics.Raycast(stepUpBottom.transform.position, transform.TransformDirection(Vector3.forward), out hitBottom, 0.1f))
+        Debug.DrawLine(stepUpBottom.transform.position, stepUpBottom.transform.position + new Vector3(0, 0, 0.3f), Color.green);
+        if (Physics.Raycast(stepUpBottom.transform.position, stepUpBottom.transform.TransformDirection(Vector3.forward), out hitBottom, 0.2f))
         {
             RaycastHit hitTop;
-            if (!Physics.Raycast(stepUpTop.transform.position, transform.TransformDirection(Vector3.forward), out hitTop, 0.2f))
+            if (!Physics.Raycast(stepUpTop.transform.position, stepUpTop.transform.TransformDirection(Vector3.forward), out hitTop, 0.3f))
             {
                 rb.position -= new Vector3(0f, -stepSmooth, 0f);
             }
