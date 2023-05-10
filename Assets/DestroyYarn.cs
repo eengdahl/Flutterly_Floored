@@ -7,6 +7,8 @@ public class DestroyYarn : MonoBehaviour
 
     [SerializeField] float destroyScale = 0.1914912f;
     [SerializeField] GameObject seedPrefab;
+    [SerializeField] ParticleSystem pS;
+
 
     private void Update()
     {
@@ -19,6 +21,7 @@ public class DestroyYarn : MonoBehaviour
     public void spawnSeed()
     {
         Instantiate(seedPrefab, transform.position,Quaternion.Euler(new Vector3 (0,0.11f,0)));
-        this.gameObject.SetActive(false);
+        pS.Pause();
+        gameObject.SetActive(false);
     }
 }

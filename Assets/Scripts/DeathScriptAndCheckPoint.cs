@@ -15,6 +15,7 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
     PlayerJump playerJumpScript;
     public AudioClip death;
     AudioSource aS;
+    private bool canDie = true;
 
 
     //public Vector3 checkPoint;
@@ -40,26 +41,30 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
 
     public void Die()
     {
-        aS.PlayOneShot(death);
-        // Fade();
-        //Invoke(nameof(Fade), 1f);
-        playerMoveScript.enabled = false;
-        playerJumpScript.enabled = false;
-        birdCableMovement.DisableClimbing();
-        Invoke("ResetRB", 0.5f);
-        FeatherPuff();
-        Invoke(nameof(DelayedDeath), 2);
+        if (canDie)
+        {
+            canDie = false;
+            aS.PlayOneShot(death);
+            // Fade();
+            //Invoke(nameof(Fade), 1f);
+            playerMoveScript.enabled = false;
+            playerJumpScript.enabled = false;
+            birdCableMovement.DisableClimbing();
+            Invoke("ResetRB", 0.5f);
+            FeatherPuff();
+            Invoke(nameof(DelayedDeath), 2);
+        }
     }
     public void Teleport()
     {
         birdCableMovement.DisableClimbing();
         Invoke("ResetRB", 0.5f);
-        this.transform.rotation = respawnTransform.rotation;
-        this.transform.position = respawnTransform.position;
+        transform.rotation = respawnTransform.rotation;
+        transform.position = respawnTransform.position;
     }
     void ResetRB()
     {
-        birdBody.transform.rotation = this.transform.rotation;
+        birdBody.transform.rotation = transform.rotation;
         rb.isKinematic = false;
     }
     void Fade()
@@ -75,11 +80,12 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
 
     public void DelayedDeath()
     {
-        this.transform.rotation = respawnTransform.rotation;
-        this.transform.position = respawnTransform.position;
+        transform.rotation = respawnTransform.rotation;
+        transform.position = respawnTransform.position;
         MovementCommunicator.instance.NotifyDeathListeners(true);
         birdBody.SetActive(true);
         playerMoveScript.enabled = true;
         playerJumpScript.enabled = true;
+        canDie = true;
     }
 }
