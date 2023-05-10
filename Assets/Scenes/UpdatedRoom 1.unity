@@ -16566,6 +16566,7 @@ GameObject:
   - component: {fileID: 701327699}
   - component: {fileID: 701327698}
   - component: {fileID: 701327702}
+  - component: {fileID: 701327703}
   m_Layer: 0
   m_Name: CameraSwapCatAMole
   m_TagString: Untagged
@@ -16665,6 +16666,102 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCam: {fileID: 1800927610}
   catACam: {fileID: 816452997}
+--- !u!82 &701327703
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701327697}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -3822940979247413351, guid: 1eedbf0e16a6d7c43a284f36de6d54a9, type: 2}
+  m_audioClip: {fileID: 8300000, guid: a42ed98ed2bd35f49ad57caf48aa3891, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &705801837
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54572,6 +54669,10 @@ PrefabInstance:
       value: OnPickup
       objectReference: {fileID: 0}
     - target: {fileID: 2793752973741495336, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
+      propertyPath: death
+      value: 
+      objectReference: {fileID: 8300000, guid: 5d1dd8d90c5036b419308d9a05f0bdcf, type: 3}
+    - target: {fileID: 2793752973741495336, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
       propertyPath: featherPuff
       value: 
       objectReference: {fileID: 6497663458684401242, guid: 984361560954e844e995087ce7e8035e, type: 3}
@@ -55804,6 +55905,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6813756217052911041, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6813756217052911041, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
       propertyPath: m_Pitch
       value: 1.5
       objectReference: {fileID: 0}
@@ -55814,6 +55919,10 @@ PrefabInstance:
     - target: {fileID: 6813756217052911041, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
       propertyPath: m_audioClip
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6813756217052911041, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6813756217052911041, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
       propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
@@ -58449,9 +58558,9 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 3.25
   MinDistance: 13.79
-  MaxDistance: 20
+  MaxDistance: 13.927899
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
