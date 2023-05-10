@@ -6,10 +6,10 @@ public class PickUpSlev : MonoBehaviour
     public Transform holdPoint; // The point on the bird's mouth where the item will be held
     private GameObject heldItem; // The item currently being held by the bird
     private Rigidbody itemRb; // The rigidbody component of the held item
-    public Quaternion holdRotation; // New variable for the rotation of the hold point
+    //Vector3 holdRotation; // New variable for the rotation of the hold point
     void Start()
     {
-        holdPoint.rotation = holdRotation;
+        //holdPoint.rotation = holdRotation;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -49,7 +49,7 @@ public class PickUpSlev : MonoBehaviour
                 // Set the position and rotation of the held item to the hold point position and rotation
                 heldItem.transform.SetParent(holdPoint);
                 heldItem.transform.localPosition = Vector3.zero;
-                heldItem.transform.localRotation = Quaternion.identity;
+                heldItem.transform.rotation = holdPoint.rotation;
             }
         }
 
