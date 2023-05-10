@@ -12,7 +12,7 @@ public class InJungleGymChecker : MonoBehaviour
 
     private void Update()
     {
-        distance = Vector3.Distance(transform.position, jungle.transform.position);
+        //distance = Vector3.Distance(transform.position, jungle.transform.position);
         if(distance >= 30)
         {
             inJungle = false;

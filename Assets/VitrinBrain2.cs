@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
+
 public enum VitrinState
 {
     Idle,
@@ -15,6 +16,9 @@ public enum VitrinState
 }
 public class VitrinBrain2 : MonoBehaviour
 {
+
+    [SerializeField]MapScript mapScript;
+
     public VitrinState activeState;
     private GameObject vitrinCat;
     private Transform wakePoint;
@@ -57,8 +61,8 @@ public class VitrinBrain2 : MonoBehaviour
         mainLight = FindAnyObjectByType<LightSway>();
         aS = GetComponent<AudioSource>();
         audioManager = FindObjectOfType<AudioManager>();
-     
-       
+
+
 
         wakePoint = this.transform;
         catIsDead = false;
@@ -120,6 +124,7 @@ public class VitrinBrain2 : MonoBehaviour
         {
             if (!locker)
             {
+                mapScript.inVitrin = true;
                 audioManager.TurnOfMainMusic();
                 animator.CrossFade(wakeAni, 0, 0);
                 aS.PlayOneShot(catSound);
@@ -173,7 +178,7 @@ public class VitrinBrain2 : MonoBehaviour
     {
         while (activeState == VitrinState.Exit)
         {
-
+            mapScript.inVitrin = false;
             gaze.locker = true;
             aS.PlayOneShot(catSound);
             animator.CrossFade(deadAni, 0, 0);

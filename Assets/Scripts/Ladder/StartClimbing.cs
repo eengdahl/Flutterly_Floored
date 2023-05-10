@@ -51,6 +51,10 @@ public class StartClimbing : MonoBehaviour
                         {
                             other.transform.rotation = Quaternion.Euler(climbAlongScript.startRotation);
                         }
+                        else
+                        {
+                            other.transform.rotation = this.transform.rotation;
+                        }
                         if (isVertical)
                         {
                             CableMovement.isVertical = true;

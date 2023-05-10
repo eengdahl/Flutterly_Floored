@@ -11,10 +11,13 @@ public class MapScript : MonoBehaviour
     bool pauseMenuIsShowing = false;
     ActivateButtonsMap mapButtons;
     MenuHandler menuHandler;
-
+    public bool inVitrin;
+    SwitchControls switchControls;
+    
 
     void Start()
     {
+        switchControls = FindAnyObjectByType<SwitchControls>();
         menuHandler = FindObjectOfType<MenuHandler>();
         mapButtons = FindAnyObjectByType<ActivateButtonsMap>();
         deathScript = FindAnyObjectByType<DeathScriptAndCheckPoint>();
@@ -23,8 +26,17 @@ public class MapScript : MonoBehaviour
 
     public void ToggleMap()
     {
-        if (!menuHandler.pauseMenuIsShowing)
+        if (!menuHandler.pauseMenuIsShowing && !inVitrin)
         {
+            if (mapUp)
+            {
+                Time.timeScale = 1;
+            }
+            else
+            {
+                Time.timeScale = 0;
+            }
+
             SwitchCursor();
             gameObject.SetActive(!gameObject.activeSelf);
             mapButtons.ActiveCheckpoints();
