@@ -114,7 +114,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9181817628643296297}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 13.6, y: 0, z: 0}
 --- !u!108 &153625600
 Light:
@@ -331,7 +331,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9181817628643296297}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 13.6, y: 0, z: 0}
 --- !u!108 &1213176882
 Light:
@@ -636,10 +636,10 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 1868938796981566531}
-  - {fileID: 7935635046734490074}
   - {fileID: 1213176880}
   - {fileID: 153625598}
+  - {fileID: 1868938796981566531}
+  - {fileID: 7935635046734490074}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -721,7 +721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ec6b70983ed93b45a731fab84875e1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brain: {fileID: 1623503584}
+  brain: {fileID: 0}
   visionCone: {fileID: 7307893773890990944}
   distance: 100
   player:
@@ -849,13 +849,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeState: 0
-  wakePoint: {fileID: 0}
-  gazePoint: {fileID: 0}
   catIsDead: 0
-  catStomp: {fileID: 8300000, guid: c5a822f32b0f27342a429adfe9373fd0, type: 3}
-  crash: {fileID: 8300000, guid: ecd582a9fec2fd54bb9013ae9f9452b2, type: 3}
   catSound: {fileID: 8300000, guid: 4ddfeb194fc4b0b478adc5a7a9eb8f6a, type: 3}
-  catSound0: {fileID: 8300000, guid: 4ddfeb194fc4b0b478adc5a7a9eb8f6a, type: 3}
 --- !u!114 &1623503584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -897,7 +892,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7558762294581116307, guid: af195c91875bb7c47a6e8382c9a13f5d, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7558762294581116307, guid: af195c91875bb7c47a6e8382c9a13f5d, type: 3}
       propertyPath: m_LocalScale.x
@@ -993,7 +988,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: de9faa8418be85b4eaf24f26eea53a78, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de9faa8418be85b4eaf24f26eea53a78, type: 3}
       propertyPath: m_LocalScale.x

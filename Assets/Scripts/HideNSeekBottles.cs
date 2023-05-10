@@ -38,6 +38,7 @@ public class HideNSeekBottles : MonoBehaviour
     {
         if (other.tag == "Player" && buttonReady)
         {
+
             aS.PlayOneShot(spray);
             if (!onceLock)
             {
@@ -63,7 +64,6 @@ public class HideNSeekBottles : MonoBehaviour
     public void ButtonPush()
     {
 
-
         //if (leftBottle.GetComponent<HideNSeekBottles>().catLives !> 1 || rightBottle.GetComponent<HideNSeekBottles>().catLives !> 1)
         //{
         //    return;
@@ -86,17 +86,16 @@ public class HideNSeekBottles : MonoBehaviour
         //}
         // vitrinBrain.grace = true;
         catLives--;
-        aS.PlayOneShot(cat);
         sprayPS.SetActive(true);
         Debug.Log("CatIsDiededGGEZ");
+        vitrinBrain.activeState = VitrinState.Exit;
         vitrinBrain.catIsDead = true;
-
+        Invoke(nameof(DestroyBlocker), 1);
 
         //button push
         buttonReady = false;
-        Destroy(blocker);
-        Destroy(this.gameObject);
-      //  anim.CrossFade("PerfumeButtonPush", 0, 0);
+        this.gameObject.SetActive(false);
+        //  anim.CrossFade("PerfumeButtonPush", 0, 0);
     }
 
     private IEnumerator ButtonReset()
@@ -105,6 +104,12 @@ public class HideNSeekBottles : MonoBehaviour
         anim.CrossFade("PerfumeButtonInflate", 0, 0);
         buttonReady = true;
         sprayPS.SetActive(false);
+    }
+
+    void DestroyBlocker()
+    {
+        Destroy(blocker);
+
     }
 
 

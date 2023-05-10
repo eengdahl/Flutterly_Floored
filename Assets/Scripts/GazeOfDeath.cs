@@ -5,16 +5,18 @@ using UnityEngine;
 public class GazeOfDeath : MonoBehaviour
 {
 
-    public VitrinBrain brain;
+    public VitrinBrain2 brain;
     public GameObject visionCone;
     public float distance;
     public LayerMask player;
     DeathScriptAndCheckPoint playerDeath;
+   public bool locker;
 
 
 
     private void Start()
     {
+        locker = false;
         playerDeath = FindAnyObjectByType<DeathScriptAndCheckPoint>();
     }
 
@@ -22,20 +24,29 @@ public class GazeOfDeath : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-
+        if (locker)
+        {
+            return;
+        }
         if(other.CompareTag("Player"))
         {
             RaycastHit hit;
             Physics.Raycast(visionCone.transform.position, other.transform.position - visionCone.transform.position, out hit,distance, player);
-
             if(hit.collider.gameObject.CompareTag("Player"))
             {
                 playerDeath = other.GetComponent<DeathScriptAndCheckPoint>();
                 other.GetComponent<Rigidbody>().isKinematic = false;
                 playerDeath.Die();
+                locker = true;
+                Invoke(nameof(PausRay), 1);
 
             }
 
         }
+    }
+
+    void PausRay()
+    {
+        locker = false;
     }
 }

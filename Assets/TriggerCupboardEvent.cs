@@ -32,16 +32,9 @@ public class TriggerCupboardEvent : MonoBehaviour
             vitrinCat.SetActive(true);
             light0.SetActive(true);
             light1.SetActive(true);
-            //vitrinCat.GetComponent<BoxCollider>().enabled = true;
             vitrinBrain = FindAnyObjectByType<VitrinBrain2>();
             vitrinBrain.activeState = VitrinState.Wake;
             switchControls.SwitchToNoInput();
-
-
-            //MeshRenderer[] rs = vitrinCat.GetComponentsInChildren<MeshRenderer>();
-            //foreach (Renderer r in rs)
-            //    r.enabled = false;
-
 
             locker = false;
         }
