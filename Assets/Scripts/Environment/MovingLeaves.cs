@@ -13,6 +13,7 @@ public class MovingLeaves : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         canPlayiAnimation = true;
+        anim.Play("LeafIdleSway", -1, Random.Range(0.0f, 1.0f));
     }
 
     private void OnTriggerEnter(Collider other)
