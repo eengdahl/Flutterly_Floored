@@ -58,6 +58,8 @@ public class PlayerMove : MonoBehaviour
     private string ClimbRight = "Climb right 3";
     private string activeString;
     private string stringToPlay;
+    private string rightIdle = "Right idle";
+    private string leftIdle = "Left idle";
 
 
     private void Awake()
@@ -150,7 +152,15 @@ public class PlayerMove : MonoBehaviour
             }
             else if (climb.isMoving == 0)
             {
-                animator.speed = 0;
+                animator.speed = 1;
+                if(stringToPlay == ClimbLeft)
+                {
+                    stringToPlay = leftIdle;
+                }
+                else if (stringToPlay == ClimbRight)
+                {
+                    stringToPlay = rightIdle;
+                }
             }
         }
         if (activeString != stringToPlay)
