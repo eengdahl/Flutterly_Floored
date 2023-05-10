@@ -97,7 +97,7 @@ public class BirdCableMovement : MonoBehaviour
             return;
         }
 
-        isMoving = input.Climbing.verticalInput.ReadValue<Vector2>().y;
+        
         horizontalInput = input.Climbing.verticalInput.ReadValue<Vector2>().x;
 
         if (horizontalInput > 0 && canTurnRight)
@@ -129,7 +129,7 @@ public class BirdCableMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (!isClimbing) return;
-
+        isMoving = input.Climbing.verticalInput.ReadValue<Vector2>().y;
         if (cableplant.isJungle)
         {
             transform.position = cableplant.points[currentCableSegment].position;
