@@ -11,6 +11,10 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float maxSpeed;
     [SerializeField] private float airControl;
     [SerializeField] float turnSpeed = 10f;
+    [SerializeField] GameObject stepUpBottom;
+    [SerializeField] GameObject stepUpTop;
+    [SerializeField] float stepHeight = 0.3f;
+    [SerializeField] float stepSmooth = 0.1f;
 
     private float turnSpeedMultiplier;
     private float lerpDuration = 3;
@@ -58,6 +62,7 @@ public class PlayerMove : MonoBehaviour
 
     private void Awake()
     {
+        //stepUpTop.transform.position = new Vector3(stepUpTop.transform.position.x, stepHeight, stepUpTop.transform.position.z);
         steppScript = FindObjectOfType<SteppScript>();
         fovFloat = 60f;
         Cursor.lockState = CursorLockMode.Locked;
@@ -176,6 +181,7 @@ public class PlayerMove : MonoBehaviour
     private void FixedUpdate()
     {
 
+        stepClimb();
         virtualCamera.m_Lens.FieldOfView = fovFloat;
 
         if (inputsXZ == Vector3.zero && !jump.hasCanceledGlide && !jump.gliding && !jump.canCrash && !climb.isClimbing)
@@ -283,5 +289,18 @@ public class PlayerMove : MonoBehaviour
 
         // determine the direction the player will face based on input and the referenceTransform's right and forward directions
         targetDirection = inputsXZ.x * right + inputsXZ.z * forward;
+    }
+
+    void stepClimb()
+    {
+        RaycastHit hitBottom;
+        if (Physics.Raycast(stepUpBottom.transform.position, transform.TransformDirection(Vector3.forward), out hitBottom, 0.1f))
+        {
+            RaycastHit hitTop;
+            if (!Physics.Raycast(stepUpTop.transform.position, transform.TransformDirection(Vector3.forward), out hitTop, 0.2f))
+            {
+                rb.position -= new Vector3(0f, -stepSmooth, 0f);
+            }
+        }
     }
 }
