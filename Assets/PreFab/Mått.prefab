@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 9180248311275420849}
   - component: {fileID: 4046521249605165500}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3277480342821111858
 Transform:
   m_ObjectHideFlags: 0
@@ -259,10 +259,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sugarFilled: 0
-  eggFilled: 0
+  milkFilled: 0
   flourFilled: 0
   isFull: 0
   currentIngredient: 
+  outOfBoundsThreshold: 5
+  filling: {fileID: 404817304383815699}
 --- !u!1 &1117794670994801516
 GameObject:
   m_ObjectHideFlags: 0

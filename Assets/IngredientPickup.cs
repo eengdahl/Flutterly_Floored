@@ -13,7 +13,8 @@ public class IngredientPickup : MonoBehaviour
             {
                 {
                     Spoon spoon = other.GetComponentInParent<Spoon>();
-                    spoon.isFull = true;
+                    //spoon.isFull = true;
+                    spoon.FillSpoon();
                     spoon.currentIngredient = gameObject.name;
                     hasBeenPickedUp = true;
                 }

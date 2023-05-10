@@ -56,7 +56,8 @@ public class LoadingCatapult : MonoBehaviour
                     }
             }
 
-            spoon.isFull = false;
+            //spoon.isFull = false;
+            spoon.EmptySpoon();
 
             if (isFlourFilled && isSugarFilled && isMilkFilled)
             {
