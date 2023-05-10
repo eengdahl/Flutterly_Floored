@@ -6,6 +6,7 @@ using UnityEngine;
 public class LoadingCatapult : MonoBehaviour
 {
     public bool isSugarFilled, isFlourFilled, isMilkFilled;
+    public float ingredientsNeeded; 
     public bool canShoot;
     public int ingredientCount;
     public GameObject cat;
@@ -13,11 +14,15 @@ public class LoadingCatapult : MonoBehaviour
     public GameObject scaleableObject;
 
     private Vector3 startScale;
+    private Vector3 sizeToScale;
 
 
     private void Start()
     {
-        startScale = scaleableObject.transform.localScale;
+        startScale = Vector3.one;
+        sizeToScale = startScale / ingredientsNeeded;
+        Debug.Log(startScale);
+        Debug.Log(sizeToScale);
         scaleableObject.transform.localScale = Vector3.zero;
     }
 
@@ -68,12 +73,12 @@ public class LoadingCatapult : MonoBehaviour
 
     private void ScaleUpMoshyThing()
     {
-        scaleableObject.transform.localScale = startScale * ingredientCount;
+        scaleableObject.transform.localScale += sizeToScale;
     }
 
     public void ResetIngredients()
     {
-        transform.localScale = startScale;
+        transform.localScale = Vector3.zero;
         ingredientCount = 0;
         isFlourFilled = false;
         isMilkFilled = false;
