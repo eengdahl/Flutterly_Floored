@@ -16,12 +16,9 @@ public class MenuHandler : MonoBehaviour
     //[SerializeField] private GameObject musicSource;
     [SerializeField] public bool pauseMenuIsShowing;
     bool checkmenu;
-    MapScript mapScript;
+    [SerializeField] MapScript mapScript;
 
-    private void Start()
-    {
-        mapScript = mapScript.GetComponent<MapScript>();
-    }
+
 
     public void ButtonInput(InputAction.CallbackContext input)
 
