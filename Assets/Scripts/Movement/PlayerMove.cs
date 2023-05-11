@@ -54,19 +54,22 @@ public class PlayerMove : MonoBehaviour
     //private static readonly string Idle = Animator.StringToHash("Idle sustainCopy");
     //private static readonly string Walk = Animator.StringToHash("Sprint test 1Copy");
     private string Idle = "Idle sustain";
-    private string Walk = "Hop_Copy";
+    private string Walk = "Hop 4";
     private string Sprint = "Sprint test 1"; //Wrong Animation
     private string Glide = "Glide flap";
     private string Fall = "Fall";
     private string Impact = "Impact";
     private string Jump = "Jump";
+    private string JumpLand = "Jump land";
     private string ClimbLeft = "Climb left";
     private string ClimbRight = "Climb right 3";
     private string activeString;
     private string stringToPlay;
-    private string rightIdle = "Right idle";
-    private string leftIdle = "Left idle";
-
+    private string rightIdle = "Climb right 3 idle";
+    private string leftIdle = "Climb left idle";
+    private string flight = "Flight sustain";
+    private string peck = "Peck";
+    private string glideFail = "Glide fail extreme";
 
     private void Awake()
     {
@@ -132,7 +135,7 @@ public class PlayerMove : MonoBehaviour
 
         if (jump.gliding)
         {
-            stringToPlay = Glide;
+            stringToPlay = flight;
             if (!flapLock)
             {
                 aS.volume = 2;
@@ -181,7 +184,6 @@ public class PlayerMove : MonoBehaviour
         {
             aS.Stop();
             aS.volume = standardVolume;
-            sprintLock = false;
             flapLock = false;
             steppScript.StopStepSound();
             if (stringToPlay == Idle)
@@ -234,11 +236,6 @@ public class PlayerMove : MonoBehaviour
                 fovFloat = Mathf.MoveTowards(fovFloat, 50, 5 * Time.deltaTime);
                 dustPS.SetActive(true);
                 stringToPlay = Sprint;
-                if (!sprintLock)
-                {
-                    aS.PlayOneShot(sprint);
-                    sprintLock = true;
-                }
 
             }
             else if (maxSpeed == 3 && jump.isGrounded)
@@ -262,11 +259,11 @@ public class PlayerMove : MonoBehaviour
         {
             if (!jump.gliding && rb.velocity.y < -5)
             {
-                stringToPlay = Fall;
+                stringToPlay = glideFail;
             }
             if (jump.hasCanceledGlide && rb.velocity.y < -5)
             {
-                stringToPlay = Fall;
+                stringToPlay = glideFail;
             }
 
             if (!playerWindScrips.inWindZone)
