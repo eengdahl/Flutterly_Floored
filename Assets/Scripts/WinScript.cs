@@ -13,8 +13,13 @@ public class WinScript : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             YouWinText.SetActive(true);
-
+            Invoke(nameof(ChangeToMenu), 5);
         }
     }
 
+
+    void ChangeToMenu()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
 }
