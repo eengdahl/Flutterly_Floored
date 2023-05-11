@@ -68,7 +68,7 @@ public class BirdCableMovement : MonoBehaviour
     {
         input = new PlayerControls();
 
- 
+
         downSpeedMin = downSpeed;
         playerMoveScript = GetComponent<PlayerMove>();
         boxCollider = GetComponent<Collider>();
@@ -97,7 +97,7 @@ public class BirdCableMovement : MonoBehaviour
             return;
         }
 
-        
+
         horizontalInput = input.Climbing.verticalInput.ReadValue<Vector2>().x;
 
         if (horizontalInput > 0 && canTurnRight)
@@ -185,10 +185,32 @@ public class BirdCableMovement : MonoBehaviour
         Debug.DrawRay(raycastStartOne.transform.position, raycastStartOne.transform.forward, Color.red);
         Debug.DrawRay(raycastStartTwo.transform.position, raycastStartTwo.transform.forward, Color.red);
 
-        //W Up
+
         if (cableplant != null)
         {
 
+
+
+            Vector3 eulerAngles = cableplant.points[currentCableSegment].eulerAngles;
+            if (!isVertical)
+            {
+                Quaternion targetRotationQ = Quaternion.Euler(eulerAngles);
+                // Get the current rotation
+                Quaternion currentRotation = transform.rotation;
+
+                // Calculate the rotation to apply towards the target rotation
+                Quaternion rotationToApply = Quaternion.RotateTowards(currentRotation, targetRotationQ, 150f * Time.deltaTime);
+
+                // Apply the rotation to the object's transform
+                transform.rotation = rotationToApply;
+
+            }
+
+            //if (transform.eulerAngles != eulerAngles)
+            //{
+            //    transform.eulerAngles = Vector3.Slerp(transform.eulerAngles, eulerAngles, Time.deltaTime);
+            //}
+            //W Up
             if (input.Climbing.verticalInput.ReadValue<Vector2>().y > 0 && canGoUp && !inWall && !cableplant.isJungle)
             {
 
@@ -205,13 +227,13 @@ public class BirdCableMovement : MonoBehaviour
                         // Move to the next segment of the cable
                         currentCableSegment = currentCableSegment + 1;
                         //Rotate
-                        Vector3 eulerAngles = cableplant.points[currentCableSegment].eulerAngles;
+
                         if (isVertical)
                         {
 
                             eulerAngles.y += transform.eulerAngles.y;
+                            transform.eulerAngles = eulerAngles;
                         }
-                        transform.eulerAngles = eulerAngles;
 
                     }
 
@@ -236,13 +258,13 @@ public class BirdCableMovement : MonoBehaviour
                             // Move to the next segment of the cable
                             currentCableSegment = currentCableSegment - 1;
                             // Rotate if necessary
-                            Vector3 eulerAngles = cableplant.points[currentCableSegment].eulerAngles;
+
                             if (isVertical)
                             {
 
                                 eulerAngles.y += transform.eulerAngles.y;
+                                transform.eulerAngles = eulerAngles;
                             }
-                            transform.eulerAngles = eulerAngles;
                         }
 
                     }
