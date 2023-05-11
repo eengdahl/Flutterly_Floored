@@ -1253,6 +1253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4933222661441876007}
   - component: {fileID: 4933222661441876005}
+  - component: {fileID: 6171788000891829403}
   m_Layer: 5
   m_Name: EffectVolumeSlider
   m_TagString: Untagged
@@ -1334,7 +1335,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6171788000891829403}
         m_TargetAssemblyTypeName: VolumeSlider, Assembly-CSharp
         m_MethodName: SetEffectsVolume
         m_Mode: 0
@@ -1346,6 +1347,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6171788000891829403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4933222661441876006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb2b49d56019643a66809ad4b27159, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slider: {fileID: 0}
+  _musicVolume: 0
+  _effectsVolume: 1
+  _audioMixer: {fileID: 24100000, guid: 1eedbf0e16a6d7c43a284f36de6d54a9, type: 2}
 --- !u!1 &4933222661473556397
 GameObject:
   m_ObjectHideFlags: 0
@@ -3238,6 +3255,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4933222662256048086}
   - component: {fileID: 4933222662256048084}
+  - component: {fileID: 4824590893943877468}
   m_Layer: 5
   m_Name: MasterVolumeSlider
   m_TagString: Untagged
@@ -3319,7 +3337,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4824590893943877468}
         m_TargetAssemblyTypeName: VolumeSlider, Assembly-CSharp
         m_MethodName: SetMasterVolume
         m_Mode: 0
@@ -3331,6 +3349,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4824590893943877468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4933222662256048081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb2b49d56019643a66809ad4b27159, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slider: {fileID: 0}
+  _musicVolume: 0
+  _effectsVolume: 0
+  _audioMixer: {fileID: 24100000, guid: 1eedbf0e16a6d7c43a284f36de6d54a9, type: 2}
 --- !u!1 &4933222662277552279
 GameObject:
   m_ObjectHideFlags: 0
@@ -4306,6 +4340,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4933222662735466770}
   - component: {fileID: 4933222662735466768}
+  - component: {fileID: 1503186742145834889}
   m_Layer: 5
   m_Name: MusicVolumeSlider
   m_TagString: Untagged
@@ -4387,9 +4422,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1503186742145834889}
         m_TargetAssemblyTypeName: VolumeSlider, Assembly-CSharp
-        m_MethodName: SetMusicVolume
+        m_MethodName: SetMasterVolume
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4399,6 +4434,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1503186742145834889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4933222662735466797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb2b49d56019643a66809ad4b27159, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slider: {fileID: 0}
+  _musicVolume: 1
+  _effectsVolume: 0
+  _audioMixer: {fileID: 24100000, guid: 1eedbf0e16a6d7c43a284f36de6d54a9, type: 2}
 --- !u!1 &4933222662765369138
 GameObject:
   m_ObjectHideFlags: 0

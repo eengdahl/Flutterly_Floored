@@ -20,7 +20,7 @@ public class MenuHandler : MonoBehaviour
 
     private void Start()
     {
-        mapScript = FindObjectOfType<MapScript>();
+        mapScript = mapScript.GetComponent<MapScript>();
     }
 
     public void ButtonInput(InputAction.CallbackContext input)
