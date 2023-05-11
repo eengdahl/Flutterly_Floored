@@ -7,25 +7,26 @@ public class KillCat : MonoBehaviour
 {
     public GameObject puffPrefab;
     public Animator cataMoleAnimator;
+    AudioManager audiohandeler;
 
     private GameObject puffObject;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        audiohandeler = FindAnyObjectByType<AudioManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider collision)
     {
         //Debug.Log(collision.gameObject.name);
-        if(collision.gameObject.CompareTag("CatCatAMole"))
+        if (collision.gameObject.CompareTag("CatCatAMole"))
         {
             puffObject = Instantiate(puffPrefab, transform.position, Quaternion.identity);
             puffObject.transform.localScale = puffObject.transform.localScale * 2;
@@ -41,6 +42,7 @@ public class KillCat : MonoBehaviour
     {
         cataMoleAnimator.SetTrigger("DMKCat");
         yield return new WaitForSeconds(2);
+        audiohandeler.ResumeMainMusic();
         Destroy(puffObject);
     }
 }
