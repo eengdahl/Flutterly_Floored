@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
 using Unity.VisualScripting;
+using System.Security.Claims;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] float stepHeight = 0.3f;
     [SerializeField] float stepSmooth = 0.2f;
 
+    private float standardVolume;
+    private bool sprintLock;
+    private bool flapLock;
     private float turnSpeedMultiplier;
     private float lerpDuration = 3;
     private Rigidbody rb;
@@ -27,12 +31,14 @@ public class PlayerMove : MonoBehaviour
     private Quaternion freeRotation;
     private Camera mainCamera;
     private Vector3 normalizedVel;
-    private AudioSource aS;
     SteppScript steppScript;
     public CinemachineVirtualCamera virtualCamera;
-    private float fovFloat;
-
     PlayerWind playerWindScrips;
+    private float fovFloat;
+    //Audio
+    public AudioClip sprint;
+    public AudioClip flySound;
+    private AudioSource aS;
 
     public bool animationLock;
     public bool groundMovement;
@@ -48,17 +54,22 @@ public class PlayerMove : MonoBehaviour
     //private static readonly string Idle = Animator.StringToHash("Idle sustainCopy");
     //private static readonly string Walk = Animator.StringToHash("Sprint test 1Copy");
     private string Idle = "Idle sustain";
-    private string Walk = "Hop_Copy";
+    private string Walk = "Hop 4";
     private string Sprint = "Sprint test 1"; //Wrong Animation
     private string Glide = "Glide flap";
     private string Fall = "Fall";
     private string Impact = "Impact";
     private string Jump = "Jump";
+    private string JumpLand = "Jump land";
     private string ClimbLeft = "Climb left";
     private string ClimbRight = "Climb right 3";
     private string activeString;
     private string stringToPlay;
-
+    private string rightIdle = "Climb right 3 idle";
+    private string leftIdle = "Climb left idle";
+    private string flight = "Flight sustain";
+    private string peck = "Peck";
+    private string glideFail = "Glide fail extreme";
 
     private void Awake()
     {
@@ -76,6 +87,7 @@ public class PlayerMove : MonoBehaviour
         climb = GetComponent<BirdCableMovement>();
         animator.CrossFade(Idle, 0);
         aS = gameObject.GetComponent<AudioSource>();
+        standardVolume = aS.volume;
     }
 
     private void OnEnable()
@@ -123,7 +135,14 @@ public class PlayerMove : MonoBehaviour
 
         if (jump.gliding)
         {
-            stringToPlay = Glide;
+            stringToPlay = flight;
+            if (!flapLock)
+            {
+                aS.volume = 2;
+                Debug.Log("ping");
+                aS.PlayOneShot(flySound);
+                flapLock = true;
+            }
         }
 
         if (jump.canCrash && rb.velocity.y == 0)
@@ -150,11 +169,22 @@ public class PlayerMove : MonoBehaviour
             }
             else if (climb.isMoving == 0)
             {
-                animator.speed = 0;
+                animator.speed = 1;
+                if (stringToPlay == ClimbLeft)
+                {
+                    stringToPlay = leftIdle;
+                }
+                else if (stringToPlay == ClimbRight)
+                {
+                    stringToPlay = rightIdle;
+                }
             }
         }
         if (activeString != stringToPlay)
         {
+            aS.Stop();
+            aS.volume = standardVolume;
+            flapLock = false;
             steppScript.StopStepSound();
             if (stringToPlay == Idle)
             {
@@ -204,23 +234,23 @@ public class PlayerMove : MonoBehaviour
             if (maxSpeed == 5 && jump.isGrounded)
             {
                 fovFloat = Mathf.MoveTowards(fovFloat, 50, 5 * Time.deltaTime);
-                stringToPlay = Sprint;
                 dustPS.SetActive(true);
-                
+                stringToPlay = Sprint;
+
             }
             else if (maxSpeed == 3 && jump.isGrounded)
             {
                 fovFloat = Mathf.MoveTowards(fovFloat, 60, 5 * Time.deltaTime);
                 stringToPlay = Walk;
                 dustPS.SetActive(true);
-               
+
             }
             rb.AddForce(targetDirection * speed * 10f, ForceMode.Force);
         }
         else
         {
             dustPS.SetActive(false);
-          
+
 
         }
 
@@ -229,11 +259,11 @@ public class PlayerMove : MonoBehaviour
         {
             if (!jump.gliding && rb.velocity.y < -5)
             {
-                stringToPlay = Fall;
+                stringToPlay = glideFail;
             }
             if (jump.hasCanceledGlide && rb.velocity.y < -5)
             {
-                stringToPlay = Fall;
+                stringToPlay = glideFail;
             }
 
             if (!playerWindScrips.inWindZone)
