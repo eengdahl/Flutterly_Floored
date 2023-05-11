@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 public class LoadingCatapult : MonoBehaviour
@@ -21,8 +22,6 @@ public class LoadingCatapult : MonoBehaviour
     {
         startScale = Vector3.one;
         sizeToScale = startScale / ingredientsNeeded;
-        Debug.Log(startScale);
-        Debug.Log(sizeToScale);
         scaleableObject.transform.localScale = Vector3.zero;
     }
 
@@ -54,7 +53,7 @@ public class LoadingCatapult : MonoBehaviour
                 case "MilkPile":
                     {
                         isMilkFilled = true;
-                        spoon.milkFilled= true;
+                        spoon.milkFilled = true;
                         ingredientCount++;
                         ScaleUpMoshyThing();
                         break;
@@ -78,12 +77,12 @@ public class LoadingCatapult : MonoBehaviour
 
     public void ResetIngredients()
     {
-        transform.localScale = Vector3.zero;
+        scaleableObject.transform.localScale = Vector3.zero;
         ingredientCount = 0;
         isFlourFilled = false;
         isMilkFilled = false;
         isSugarFilled = false;
-        Invoke(nameof(DespawnCat), 2);
+        //Invoke(nameof(DespawnCat), 2);
        // StartCoroutine(DespawnCat());
 
     }
