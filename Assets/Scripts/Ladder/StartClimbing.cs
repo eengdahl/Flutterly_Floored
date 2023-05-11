@@ -38,6 +38,8 @@ public class StartClimbing : MonoBehaviour
         {
             if (CableMovement.readyToClimb)
             {
+
+
                 if (input.Floor.Drag.IsPressed())
                 {
                     if (!CableMovement.isClimbing)
@@ -81,3 +83,5 @@ public class StartClimbing : MonoBehaviour
 
 
 }
+
+
