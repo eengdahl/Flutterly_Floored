@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
 using Unity.VisualScripting;
+using System.Security.Claims;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] float stepHeight = 0.3f;
     [SerializeField] float stepSmooth = 0.2f;
 
+    private float standardVolume;
+    private bool sprintLock;
+    private bool flapLock;
     private float turnSpeedMultiplier;
     private float lerpDuration = 3;
     private Rigidbody rb;
@@ -27,12 +31,14 @@ public class PlayerMove : MonoBehaviour
     private Quaternion freeRotation;
     private Camera mainCamera;
     private Vector3 normalizedVel;
-    private AudioSource aS;
     SteppScript steppScript;
     public CinemachineVirtualCamera virtualCamera;
-    private float fovFloat;
-
     PlayerWind playerWindScrips;
+    private float fovFloat;
+    //Audio
+    public AudioClip sprint;
+    public AudioClip flySound;
+    private AudioSource aS;
 
     public bool animationLock;
     public bool groundMovement;
@@ -78,6 +84,7 @@ public class PlayerMove : MonoBehaviour
         climb = GetComponent<BirdCableMovement>();
         animator.CrossFade(Idle, 0);
         aS = gameObject.GetComponent<AudioSource>();
+        standardVolume = aS.volume;
     }
 
     private void OnEnable()
@@ -126,6 +133,13 @@ public class PlayerMove : MonoBehaviour
         if (jump.gliding)
         {
             stringToPlay = Glide;
+            if (!flapLock)
+            {
+                aS.volume = 2;
+                Debug.Log("ping");
+                aS.PlayOneShot(flySound);
+                flapLock = true;
+            }
         }
 
         if (jump.canCrash && rb.velocity.y == 0)
@@ -153,7 +167,7 @@ public class PlayerMove : MonoBehaviour
             else if (climb.isMoving == 0)
             {
                 animator.speed = 1;
-                if(stringToPlay == ClimbLeft)
+                if (stringToPlay == ClimbLeft)
                 {
                     stringToPlay = leftIdle;
                 }
@@ -165,6 +179,10 @@ public class PlayerMove : MonoBehaviour
         }
         if (activeString != stringToPlay)
         {
+            aS.Stop();
+            aS.volume = standardVolume;
+            sprintLock = false;
+            flapLock = false;
             steppScript.StopStepSound();
             if (stringToPlay == Idle)
             {
@@ -214,23 +232,28 @@ public class PlayerMove : MonoBehaviour
             if (maxSpeed == 5 && jump.isGrounded)
             {
                 fovFloat = Mathf.MoveTowards(fovFloat, 50, 5 * Time.deltaTime);
-                stringToPlay = Sprint;
                 dustPS.SetActive(true);
-                
+                stringToPlay = Sprint;
+                if (!sprintLock)
+                {
+                    aS.PlayOneShot(sprint);
+                    sprintLock = true;
+                }
+
             }
             else if (maxSpeed == 3 && jump.isGrounded)
             {
                 fovFloat = Mathf.MoveTowards(fovFloat, 60, 5 * Time.deltaTime);
                 stringToPlay = Walk;
                 dustPS.SetActive(true);
-               
+
             }
             rb.AddForce(targetDirection * speed * 10f, ForceMode.Force);
         }
         else
         {
             dustPS.SetActive(false);
-          
+
 
         }
 
