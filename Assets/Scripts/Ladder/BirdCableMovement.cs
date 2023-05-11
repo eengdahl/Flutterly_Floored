@@ -325,7 +325,7 @@ public class BirdCableMovement : MonoBehaviour
         birdBody.transform.localEulerAngles = Vector3.zero;
         //animator.SetBool("IsClimbing", false);
         //SetReadyToClimb();
-        Invoke("SetReadyToClimb", 0.3f);
+        Invoke("SetReadyToClimb", 0.6f);
 
     }
     public void JumpOff(InputAction.CallbackContext input)
