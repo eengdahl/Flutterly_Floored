@@ -24,7 +24,7 @@ public class KillCat : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log(collision.gameObject.name);
+        //Debug.Log(collision.gameObject.name);
         if(collision.gameObject.CompareTag("CatCatAMole"))
         {
             puffObject = Instantiate(puffPrefab, transform.position, Quaternion.identity);
