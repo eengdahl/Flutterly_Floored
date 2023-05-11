@@ -9,13 +9,21 @@ public class mainMenuHandler : MonoBehaviour
     public Animator paperAnimator;
     string startGamepaper = "Plane_004|Plane_004Action_001";
 
-
+    bool mainPanelIsShowing;
     string startGame = "crash in to window";
     public AudioClip pang;
     AudioSource aS;
 
 
     SwitchControls switchControls;
+
+
+    [SerializeField] private GameObject controlsPanel;
+    [SerializeField] private GameObject creditsPanel;
+    [SerializeField] private GameObject mainPanel;
+    [SerializeField] private GameObject settingsPanel;
+    [SerializeField] private GameObject exitPanel;
+
 
 
 
@@ -37,6 +45,41 @@ public class mainMenuHandler : MonoBehaviour
        // Invoke(nameof(playPang), 1.3f);
 
     }
+    public void SettingsMenu()
+    {
+        settingsPanel.SetActive(false);
+        settingsPanel.SetActive(true);
+        mainPanel.SetActive(false);
+
+    }
+    public void ControlsMenu()
+    {
+        controlsPanel.SetActive(true);
+        settingsPanel.SetActive(false);
+        mainPanel.SetActive(false);
+
+    }
+    public void CreditsMenu()
+    {
+        creditsPanel.SetActive(true);
+        settingsPanel.SetActive(false);
+
+        mainPanel.SetActive(false);
+    }
+
+    public void BackToMenu()
+    {
+        if (settingsPanel.activeSelf == true)
+            settingsPanel.SetActive(false);
+        if (controlsPanel.activeSelf == true)
+            controlsPanel.SetActive(false);
+        if (creditsPanel.activeSelf == true)
+            creditsPanel.SetActive(false);
+
+            mainPanelIsShowing = !mainPanelIsShowing;
+            mainPanel.SetActive(true);
+        
+    }
     public void ExitGameButton()
     {
 #if UNITY_EDITOR
@@ -45,6 +88,13 @@ public class mainMenuHandler : MonoBehaviour
          Application.Quit();
 #endif
     }
+
+
+
+
+
+
+
 
 
     void playPang()
