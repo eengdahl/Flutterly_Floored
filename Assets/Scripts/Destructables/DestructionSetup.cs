@@ -10,7 +10,7 @@ public class DestructionSetup : MonoBehaviour
 
     public float explosionPower;
     public float explosionRadius;
-    public float upwatdModifier;
+    public float upwardModifier;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +23,7 @@ public class DestructionSetup : MonoBehaviour
             part.gameObject.AddComponent<Rigidbody>();
             Rigidbody rb = part.GetComponent<Rigidbody>();
             rb.useGravity = true;
-            part.gameObject.AddComponent<BoxCollider>();
+            //part.gameObject.AddComponent<BoxCollider>();
             part.gameObject.AddComponent<MeshCollider>();
             part.gameObject.GetComponent<MeshCollider>().convex = true;
             parts.Add(part.gameObject);
@@ -37,7 +37,7 @@ public class DestructionSetup : MonoBehaviour
 
         foreach(GameObject partObject in parts)
         {
-            partObject.GetComponent<Rigidbody>().AddExplosionForce(explosionPower, transform.position, upwatdModifier);
+            partObject.GetComponent<Rigidbody>().AddExplosionForce(explosionPower, transform.position, upwardModifier);
         }
     }
 
