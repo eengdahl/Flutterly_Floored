@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DeathScriptAndCheckPoint : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
     PlayerJump playerJumpScript;
     public AudioClip death;
     AudioSource aS;
+    public GameObject fadeToBlackImage;
     private bool canDie = true;
 
 
@@ -53,6 +55,7 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
             Invoke("ResetRB", 0.5f);
             FeatherPuff();
             Invoke(nameof(DelayedDeath), 2);
+            StartCoroutine(FadeToBlack());
         }
     }
     public void Teleport()
@@ -87,5 +90,37 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
         playerMoveScript.enabled = true;
         playerJumpScript.enabled = true;
         canDie = true;
+        StartCoroutine(FadeToBlack(false));
+    }
+
+    public IEnumerator FadeToBlack(bool fadeToBlack = true, int fadeSpeed = 1)
+    {
+        Color objectColor = fadeToBlackImage.GetComponent<Image>().color;
+        float fadeAmount;
+
+        yield return new WaitForSeconds(1);
+        if (fadeToBlack)
+        {
+            while (fadeToBlackImage.GetComponent<Image>().color.a < 1)
+            {
+                fadeAmount = objectColor.a + (fadeSpeed * Time.deltaTime);
+
+                objectColor = new Color(objectColor.r, objectColor.g, objectColor.b, fadeAmount);
+                fadeToBlackImage.GetComponent<Image>().color = objectColor;
+                yield return null;
+            }
+        }
+        else
+        {
+            while (fadeToBlackImage.GetComponent<Image>().color.a > 0)
+            {
+                fadeAmount = objectColor.a - (fadeSpeed * Time.deltaTime);
+
+                objectColor = new Color(objectColor.r, objectColor.g, objectColor.b, fadeAmount);
+                fadeToBlackImage.GetComponent<Image>().color = objectColor;
+                yield return null;
+            }
+        }
+
     }
 }
