@@ -27,6 +27,7 @@ public class Buoyancy : MonoBehaviour
 
     private bool isResettingPosition;
     private Vector3 startPosition;
+    private Quaternion startRotation;
 
     void Start()
     {
@@ -34,6 +35,7 @@ public class Buoyancy : MonoBehaviour
         water = GameObject.FindGameObjectWithTag("Water");
 
         startPosition = transform.position;
+        startRotation = transform.rotation;
     }
 
     // Update is called once per frame
@@ -96,6 +98,7 @@ public class Buoyancy : MonoBehaviour
         transform.position = new Vector3(startPosition.x, transform.position.y, startPosition.z);
         Vector2 tmpStartVector = new Vector2(startPosition.x, startPosition.z);
         Vector2 tmpCurrentVextor = new Vector2(transform.position.x, transform.position.z);
+        transform.rotation = startRotation;
 
         if((tmpStartVector - tmpCurrentVextor).magnitude < 0.1f)
         {

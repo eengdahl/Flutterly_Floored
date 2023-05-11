@@ -13,6 +13,7 @@ public class Spoon : MonoBehaviour
 
     private GameObject player;
     private Vector3 startPosition;
+    private Quaternion startRotation;
     private bool isOutOfBounds;
     private float outOfBoundsTimer;
 
@@ -27,6 +28,7 @@ public class Spoon : MonoBehaviour
     private void Start()
     {
         startPosition = transform.position;
+        startRotation = transform.rotation;
         player = GameObject.FindGameObjectWithTag("Player");
 
     }
@@ -40,6 +42,7 @@ public class Spoon : MonoBehaviour
             {
                 player.GetComponentInChildren<PickUpSlev>().OnDrop();
                 transform.position = startPosition;
+                transform.rotation = startRotation;
                 isOutOfBounds = false;
                 outOfBoundsTimer = 0;
             }
