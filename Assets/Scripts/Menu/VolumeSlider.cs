@@ -31,7 +31,7 @@ public class VolumeSlider : MonoBehaviour
     }
     public void SetMusicVolume(float _sliderValue)
     {
-        _audioMixer.SetFloat("BackGround", Mathf.Log10(_sliderValue) * 20);
+        _audioMixer.SetFloat("Background", Mathf.Log10(_sliderValue) * 20);
     }
 }
 
