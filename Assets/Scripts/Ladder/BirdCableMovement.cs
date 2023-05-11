@@ -35,6 +35,8 @@ public class BirdCableMovement : MonoBehaviour
     [SerializeField] float greenForce = 7000;
 
 
+    StartClimbing startClimbingRef;
+
     //Raycast for rotation
     bool canTurnRight;
     bool canTurnLeft;
@@ -75,17 +77,6 @@ public class BirdCableMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         controllsSwitch = GetComponent<SwitchControls>();
         readyToClimb = true;
-    }
-    private void Start()
-    {
-
-        //downSpeedMin = downSpeed;
-        //playerMoveScript = GetComponent<PlayerMove>();
-        //boxCollider = GetComponent<Collider>();
-        //rb = GetComponent<Rigidbody>();
-        //controllsSwitch = GetComponent<SwitchControls>();
-        //readyToClimb = true;
-
     }
 
     private void LateUpdate()
@@ -379,4 +370,88 @@ public class BirdCableMovement : MonoBehaviour
     {
         playerMoveScript.groundMovement = !playerMoveScript.groundMovement;
     }
+
+    //Get the index and stuff
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("ClimbingPart"))
+        {
+            if (readyToClimb)
+            {
+                if (input.Floor.Drag.IsPressed())
+                {
+                    if (!isClimbing)
+                    {
+                        cableplant = other.gameObject.GetComponent<StartClimbing>().climbAlongScript;
+                        currentCableSegment = other.gameObject.GetComponent<StartClimbing>().index;
+                        EnableClimbing();
+                        controllsSwitch.SwitchToClimbing();
+                        transform.position = other.gameObject.transform.position;
+                        if (cableplant.rotationStartLocked)
+                        {
+                            transform.rotation = Quaternion.Euler(cableplant.startRotation);
+                        }
+                        else
+                        {
+                            transform.rotation = other.transform.rotation;
+                        }
+                        if (other.gameObject.GetComponent<StartClimbing>().isVertical)
+                        {
+                            isVertical = true;
+                        }
+                        else if (!other.gameObject.GetComponent<StartClimbing>().isVertical)
+                        {
+                            isVertical = false;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+
+    //    if (other.CompareTag("Player"))
+    //    {
+    //        if (CableMovement.readyToClimb)
+    //        {
+
+
+    //            if (input.Floor.Drag.IsPressed())
+    //            {
+    //                if (!CableMovement.isClimbing)
+    //                {
+    //                    CableMovement.cableplant = climbAlongScript; // done
+    //                    CableMovement.currentCableSegment = index;
+    //                    CableMovement.EnableClimbing();
+    //                    switchControls.SwitchToClimbing();
+    //                    other.gameObject.transform.position = transform.position;
+    //                    if (climbAlongScript.rotationStartLocked)
+    //                    {
+    //                        other.transform.rotation = Quaternion.Euler(climbAlongScript.startRotation);
+    //                    }
+    //                    else
+    //                    {
+    //                        other.transform.rotation = this.transform.rotation;
+    //                    }
+    //                    if (isVertical)
+    //                    {
+    //                        CableMovement.isVertical = true;
+    //                    }
+    //                    else
+    //                    {
+    //                        CableMovement.isVertical = false;
+    //                    }
+
+    //                }
+
+    //            }
+    //        }
+
+    //    }
+    //}
+
+
 }
