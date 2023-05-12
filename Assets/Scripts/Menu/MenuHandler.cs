@@ -21,8 +21,13 @@ public class MenuHandler : MonoBehaviour
 
 
     public void ButtonInput(InputAction.CallbackContext input)
-
     {
+
+        //Fast solution to NOT break titlescene
+        if (SceneManager.GetActiveScene().buildIndex==0)
+        {
+            return;
+        }
         if (input.started)
         {
             if (settingsPanel.activeSelf == false && controlsPanel.activeSelf == false && creditsPanel.activeSelf == false && exitGamePanel.activeSelf == false)
