@@ -27,7 +27,7 @@ public class Fan : MonoBehaviour
 
 
     //Sound
-    AudioSource aS;
+    public AudioSource aS;
 
 
     //Add got electricity in begining
@@ -48,7 +48,6 @@ public class Fan : MonoBehaviour
         if (!gotElectricity) return;
         if (on)
         {
-
             // Rotate the fan blade 
             wholeFanPart.transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
             //Rotate whole fan base
@@ -80,6 +79,8 @@ public class Fan : MonoBehaviour
             aS.Stop();
         }
     }
+
+    //Electricity cable on
     public void TurnOn()
     {
         aS.Play();
@@ -101,20 +102,20 @@ public class Fan : MonoBehaviour
         if (on)
         {
             windArea.SetActive(false);
-            aS.Stop();
+            //aS.Play();
 
         }
 
         if (windArea == windAreaOne)
         {
-            aS.Play();
+            //aS.Play();
             aS.pitch = 2f;
             rotationSpeed = 1200;
             windArea = windAreaTwo;
         }
         else if (windArea == windAreaTwo)
         {
-            aS.Play();
+            //aS.Play();
             aS.pitch = 1.5f;
             rotationSpeed = 600;
             windArea = windAreaOne;

@@ -62,6 +62,7 @@ public class FanPowerButton : MonoBehaviour
             }
             else if (isPowerButton)
             {
+                fanScript.aS.Stop();
                 fanScript.on = false;
                 
 
@@ -81,6 +82,7 @@ public class FanPowerButton : MonoBehaviour
             }
             else if (isPowerButton)
             {
+                fanScript.aS.Play();
                 fanScript.on = true;
 
             }
