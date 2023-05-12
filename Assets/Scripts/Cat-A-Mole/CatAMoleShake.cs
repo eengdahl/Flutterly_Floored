@@ -8,7 +8,7 @@ public class CatAMoleShake : MonoBehaviour
 {
     public CinemachineVirtualCamera catAMoleCam;
     public AudioClip pawBang;
-    public AudioClip catScream;
+    public AudioClip[] catScream;
     public AudioSource audioSource2;
 
     private AudioSource audioSource;
@@ -46,9 +46,10 @@ public class CatAMoleShake : MonoBehaviour
 
     public void PlayCatScream()
     {
-        float volume = Random.Range(0.5f, 1.0f);
+        float volume = Random.Range(0.8f, 1.0f);
+        int randomCatSound = Random.Range(0, catScream.Length);
         audioSource2.pitch = volume;
-        audioSource2.clip = catScream;
+        audioSource2.clip = catScream[randomCatSound];
         audioSource2.Play();
     }
 
