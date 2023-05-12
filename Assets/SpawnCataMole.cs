@@ -7,6 +7,8 @@ public class SpawnCataMole : MonoBehaviour
     [Header("KillCatStuff")]
     [SerializeField] GameObject cat;
     [SerializeField] GameObject hitSpots;
+    [SerializeField] GameObject idleCat;
+     
 
     //[SerializeField] GameObject legs;
     bool hasSpawned;
@@ -22,6 +24,7 @@ public class SpawnCataMole : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             SpawnCat();
+            idleCat.SetActive(false);
             hasSpawned = true;
            
         }
