@@ -37,8 +37,8 @@ public class PlayerMove : MonoBehaviour
     private float fovFloat;
     //Audio
     public AudioClip sprint;
-    public AudioClip flySound;
-    public AudioClip sineglFlap;
+   public AudioClip flySound;
+   // public AudioClip sineglFlap;
     private AudioSource aS;
 
     public bool animationLock;
@@ -141,7 +141,7 @@ public class PlayerMove : MonoBehaviour
             {
                 aS.volume = 2;
                 Debug.Log("ping");
-                aS.PlayOneShot(flySound);
+              //  aS.PlayOneShot(flySound);
 
                 flapLock = true;
             }
@@ -155,12 +155,7 @@ public class PlayerMove : MonoBehaviour
         if (!jump.isGrounded && !jump.gliding && rb.velocity.y > 0)
         {
             stringToPlay = Jump;
-            if (!flapLock)
-            {
-                aS.PlayOneShot(sineglFlap);
-                flapLock = true;
 
-            }
         }
 
         if (climb.isClimbing)

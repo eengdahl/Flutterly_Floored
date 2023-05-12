@@ -6,6 +6,7 @@ public class CheckPointScript : MonoBehaviour
 {
     [SerializeField] Transform RespawnPoint;
     [SerializeField] int index;
+    [SerializeField] private GameObject mapTutorial;
    // public Die dieOfFalling;
     ActivateButtonsMap activateButtons;
 
@@ -19,9 +20,16 @@ public class CheckPointScript : MonoBehaviour
     {
         if (other.tag == "Player")
         {       
-                other.GetComponent<DeathScriptAndCheckPoint>().NewCheckpoint(RespawnPoint.transform);
-                activateButtons.SetBoolToTrue(index);
+            other.GetComponent<DeathScriptAndCheckPoint>().NewCheckpoint(RespawnPoint.transform);
+            activateButtons.SetBoolToTrue(index);
+            mapTutorial.SetActive(true);
+            Invoke(nameof(DisableMap),3);
         }
 
+    }
+
+    void DisableMap()
+    {
+        mapTutorial.SetActive(false);
     }
 }

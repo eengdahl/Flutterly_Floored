@@ -181,6 +181,7 @@ MonoBehaviour:
   minAngle: -75
   rotationSpeedBase: 24
   shouldRotate: 0
+  aS: {fileID: 0}
   gotElectricity: 0
 --- !u!82 &6411944867852362626
 AudioSource:
@@ -192,7 +193,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3958253429237767906, guid: 1eedbf0e16a6d7c43a284f36de6d54a9, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 01198b1e1048d4d46a05e582fd9c2b7c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 379e3ab9a23c1454ead27a32b9aaf857, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.3
   m_Pitch: 1
@@ -201,9 +202,9 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
-  MinDistance: 11.445013
-  MaxDistance: 14.6
+  DopplerLevel: 0.46
+  MinDistance: 6.86
+  MaxDistance: 7.9
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -368,8 +369,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.32547203, y: 1.5648335, z: 1.8557148}
-  m_Center: {x: 0.03402601, y: 0.18922563, z: 1.1752276}
+  m_Size: {x: 0.32547203, y: 1.5648335, z: 1.3768669}
+  m_Center: {x: 0.034026034, y: 0.18922563, z: 0.93581027}
 --- !u!1 &1890180401954112805
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,7 +693,6 @@ GameObject:
   - component: {fileID: 1154909602}
   - component: {fileID: 1154909603}
   - component: {fileID: 1154909604}
-  - component: {fileID: 1154909605}
   m_Layer: 0
   m_Name: Buttons.004
   m_TagString: Ground
@@ -816,18 +816,6 @@ MonoBehaviour:
   isSpeedButton: 0
   isRotationButton: 0
   isPowerButton: 1
---- !u!114 &1154909605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6500874703015920703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d04f5bbdc2ea0a4798a73e54ea8b2f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6986114236706741117
 GameObject:
   m_ObjectHideFlags: 0
