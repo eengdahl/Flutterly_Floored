@@ -4187,6 +4187,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1766781551, guid: 63eedf0d762d96448a20a8539e981d60, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b6c49380a3f3bb9468e7fc9657af5cd4, type: 3}
     - target: {fileID: 1299370042148655019, guid: 63eedf0d762d96448a20a8539e981d60, type: 3}
       propertyPath: m_LocalPosition.x
       value: -21.2
@@ -8655,6 +8659,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c954d553409cf3641abe20fea6f4698a, type: 3}
       propertyPath: m_Name
       value: "Elefant\xF6ra_Model_001_Anna (2)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c954d553409cf3641abe20fea6f4698a, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c954d553409cf3641abe20fea6f4698a, type: 3}
@@ -18430,7 +18438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1000469776557029237, guid: d664b8367bd7a354a9ab5fb5815b241e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.21
+      value: -2.86
       objectReference: {fileID: 0}
     - target: {fileID: 1000469776557029237, guid: d664b8367bd7a354a9ab5fb5815b241e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -24173,6 +24181,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.006020012, y: 0.029053926, z: 0.0029235214}
   m_Center: {x: -0.00070353074, y: 0.012122764, z: 0.0011105604}
+--- !u!1 &627767037 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3087062772937290337, guid: 63eedf0d762d96448a20a8539e981d60, type: 3}
+  m_PrefabInstance: {fileID: 124659237}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &627767044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627767037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 806adfefb40ebcd42a48cb6810f74f9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  birdDie: {fileID: 0}
 --- !u!64 &631811566
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -31493,7 +31519,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 273817836}
   m_Follow: {fileID: 25500283}
   m_Lens:
-    FieldOfView: 50
+    FieldOfView: 55
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 1000
@@ -31524,8 +31550,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 816452997}
-  m_LocalRotation: {x: -0.0014125458, y: 0.99816614, z: -0.054769304, w: -0.025743533}
-  m_LocalPosition: {x: -90.05, y: 10.55, z: 65.05}
+  m_LocalRotation: {x: -0.0011096098, y: 0.99860984, z: -0.0471758, w: -0.023488045}
+  m_LocalPosition: {x: -90.05, y: 10.55, z: 65.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -39636,6 +39662,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Elefant\xF6ra_Model_001_Anna"
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c954d553409cf3641abe20fea6f4698a, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c954d553409cf3641abe20fea6f4698a, type: 3}
 --- !u!1 &1023985511
@@ -40917,6 +40947,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50c767619bab2eb469bd499d993a469f, type: 3}
+--- !u!1 &1045546392 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c954d553409cf3641abe20fea6f4698a, type: 3}
+  m_PrefabInstance: {fileID: 1023903618}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1045546396
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045546392}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8691780276856062721, guid: c954d553409cf3641abe20fea6f4698a, type: 3}
 --- !u!1001 &1045697814
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53941,7 +53990,7 @@ MonoBehaviour:
   m_Path: {fileID: 890508706}
   m_PathPosition: 0.64
   m_PositionUnits: 0
-  m_PathOffset: {x: -0.4399948, y: -0.2699995, z: -0.6899643}
+  m_PathOffset: {x: -0.4399948, y: -0.2699995, z: -1.4999619}
   m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 1
@@ -70627,6 +70676,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Elefant\xF6ra_Model_001_Anna (1)"
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c954d553409cf3641abe20fea6f4698a, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c954d553409cf3641abe20fea6f4698a, type: 3}
 --- !u!1 &1752792546
@@ -74676,6 +74729,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c954d553409cf3641abe20fea6f4698a, type: 3}
       propertyPath: m_Name
       value: "Elefant\xF6ra_Model_001_Anna (3)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c954d553409cf3641abe20fea6f4698a, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c954d553409cf3641abe20fea6f4698a, type: 3}
@@ -100952,7 +101009,7 @@ PrefabInstance:
     - target: {fileID: 1647170616309270010, guid: 6b0f5bde0e3b0804ba5a06d60968b4be, type: 3}
       propertyPath: destructionPrefab
       value: 
-      objectReference: {fileID: 7071963317580864004, guid: d81801644dc68a14493c894adab1ca6d, type: 3}
+      objectReference: {fileID: 2480230711244702102, guid: e2b0a0b3e84c9db40b41c46d2b8ec8c5, type: 3}
     - target: {fileID: 5979764780831557060, guid: 6b0f5bde0e3b0804ba5a06d60968b4be, type: 3}
       propertyPath: m_Convex
       value: 1
