@@ -605,6 +605,7 @@ MonoBehaviour:
   virtualCamera: {fileID: 0}
   sprint: {fileID: 8300000, guid: 9c2c41ffb3fdc064a9c6f2f44bb3806e, type: 3}
   flySound: {fileID: 8300000, guid: 8418cc27a7ba37e48a8cf37abe0a9d15, type: 3}
+  sineglFlap: {fileID: 8300000, guid: cced32889aab8264b8d45cb5923f02f8, type: 3}
   animationLock: 0
   groundMovement: 0
   dustPS: {fileID: 4394545198870776074}
@@ -628,7 +629,8 @@ MonoBehaviour:
   birdCableMovement: {fileID: 753855069}
   cameraFade: {fileID: 0}
   featherPuff: {fileID: 6497663458684401242, guid: 984361560954e844e995087ce7e8035e, type: 3}
-  death: {fileID: 8300000, guid: 5d1dd8d90c5036b419308d9a05f0bdcf, type: 3}
+  death: {fileID: 8300000, guid: 6b30c12bef0c9de448e3c2341d8d18da, type: 3}
+  fadeToBlackImage: {fileID: 0}
 --- !u!114 &4487452626990692814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -760,7 +762,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -3958253429237767906, guid: 1eedbf0e16a6d7c43a284f36de6d54a9, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 0.8
   m_Pitch: 1.5
   Loop: 1
   Mute: 0

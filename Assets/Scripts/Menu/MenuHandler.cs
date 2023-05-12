@@ -17,14 +17,26 @@ public class MenuHandler : MonoBehaviour
     [SerializeField] public bool pauseMenuIsShowing;
     bool checkmenu;
     [SerializeField] MapScript mapScript;
+    AudioSource aS;
+    public List<AudioClip> clip;
 
+    private void Awake()
+    {
+        aS = GetComponent<AudioSource>();
+    }
 
 
     public void ButtonInput(InputAction.CallbackContext input)
-
     {
+
+        //Fast solution to NOT break titlescene
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            return;
+        }
         if (input.started)
         {
+        aS.PlayOneShot(clip[Random.Range(0, clip.Count)]);
             if (settingsPanel.activeSelf == false && controlsPanel.activeSelf == false && creditsPanel.activeSelf == false && exitGamePanel.activeSelf == false)
             {
                 if (pauseMenuIsShowing == true)
@@ -53,6 +65,7 @@ public class MenuHandler : MonoBehaviour
             }
             else if (controlsPanel.activeSelf == true || settingsPanel.activeSelf == true || creditsPanel.activeSelf == true || exitGamePanel.activeSelf == true)
             {
+                aS.PlayOneShot(clip[Random.Range(0, clip.Count)]);
                 if (settingsPanel.activeSelf == true)
                     settingsPanel.SetActive(false);
                 if (controlsPanel.activeSelf == true)
@@ -72,6 +85,7 @@ public class MenuHandler : MonoBehaviour
 
         if (pauseMenuIsShowing == false && settingsPanel.activeSelf == false && controlsPanel.activeSelf == false && creditsPanel.activeSelf == false && exitGamePanel.activeSelf == false && checkmenu)
         {
+            aS.PlayOneShot(clip[Random.Range(0, clip.Count)]);
             pausePanel.SetActive(false);
             checkmenu = false;
         }
@@ -101,12 +115,14 @@ public class MenuHandler : MonoBehaviour
     }
     public void SettingsMenu()
     {
+        aS.PlayOneShot(clip[Random.Range(0, clip.Count)]);
         pausePanel.SetActive(false);
         settingsPanel.SetActive(true);
         pauseMenuIsShowing = !pauseMenuIsShowing;
     }
     public void ControlsMenu()
     {
+        aS.PlayOneShot(clip[Random.Range(0, clip.Count)]);
         controlsPanel.SetActive(true);
         pausePanel.SetActive(false);
 
@@ -114,6 +130,7 @@ public class MenuHandler : MonoBehaviour
     }
     public void CreditsMenu()
     {
+        aS.PlayOneShot(clip[Random.Range(0, clip.Count)]);
         creditsPanel.SetActive(true);
         pausePanel.SetActive(false);
 
@@ -130,6 +147,7 @@ public class MenuHandler : MonoBehaviour
     }
     public void BackToMenu()
     {
+        aS.PlayOneShot(clip[Random.Range(0, clip.Count)]);
         if (settingsPanel.activeSelf == true)
             settingsPanel.SetActive(false);
         if (controlsPanel.activeSelf == true)

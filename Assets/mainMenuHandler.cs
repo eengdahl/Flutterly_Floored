@@ -13,7 +13,7 @@ public class mainMenuHandler : MonoBehaviour
     string startGame = "crash in to window";
     public AudioClip pang;
     AudioSource aS;
-
+    public List<AudioClip> clip;
 
     SwitchControls switchControls;
 
@@ -40,13 +40,14 @@ public class mainMenuHandler : MonoBehaviour
     {
         paperAnimator.CrossFade(startGamepaper, 0, 0);
         birdAnimator.CrossFade(startGame, 0,0);
-
+        aS.PlayOneShot(clip[Random.Range(0, clip.Count)]);
         Invoke(nameof(StartGame), 2);
        // Invoke(nameof(playPang), 1.3f);
 
     }
     public void SettingsMenu()
     {
+        aS.PlayOneShot(clip[Random.Range(0, clip.Count)]);
         settingsPanel.SetActive(false);
         settingsPanel.SetActive(true);
         mainPanel.SetActive(false);
@@ -54,6 +55,7 @@ public class mainMenuHandler : MonoBehaviour
     }
     public void ControlsMenu()
     {
+        aS.PlayOneShot(clip[Random.Range(0, clip.Count)]);
         controlsPanel.SetActive(true);
         settingsPanel.SetActive(false);
         mainPanel.SetActive(false);
@@ -61,6 +63,7 @@ public class mainMenuHandler : MonoBehaviour
     }
     public void CreditsMenu()
     {
+        aS.PlayOneShot(clip[Random.Range(0, clip.Count)]);
         creditsPanel.SetActive(true);
         settingsPanel.SetActive(false);
 
@@ -69,6 +72,7 @@ public class mainMenuHandler : MonoBehaviour
 
     public void BackToMenu()
     {
+        aS.PlayOneShot(clip[Random.Range(0, clip.Count)]);
         if (settingsPanel.activeSelf == true)
             settingsPanel.SetActive(false);
         if (controlsPanel.activeSelf == true)
