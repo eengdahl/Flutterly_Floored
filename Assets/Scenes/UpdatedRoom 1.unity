@@ -34469,7 +34469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 414405437056148077, guid: d3aa6efffce1a024dbdbb583249cd5ec, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 648846401324048188, guid: d3aa6efffce1a024dbdbb583249cd5ec, type: 3}
       propertyPath: catAMoleCam
@@ -34531,8 +34531,25 @@ PrefabInstance:
       propertyPath: m_Data.m_SourceObjects.m_Item0.transform
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6073305581190096549, guid: d3aa6efffce1a024dbdbb583249cd5ec, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073305581190096549, guid: d3aa6efffce1a024dbdbb583249cd5ec, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073305581190096575, guid: d3aa6efffce1a024dbdbb583249cd5ec, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3aa6efffce1a024dbdbb583249cd5ec, type: 3}
+--- !u!1 &878761374 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6073305581190096575, guid: d3aa6efffce1a024dbdbb583249cd5ec, type: 3}
+  m_PrefabInstance: {fileID: 878761373}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &881195970
 GameObject:
   m_ObjectHideFlags: 0
@@ -76907,7 +76924,7 @@ PrefabInstance:
     - target: {fileID: 4261018209822824095, guid: e88c69e7475a33440bf99662f6172538, type: 3}
       propertyPath: catamoleDeathCube
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 878761374}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e88c69e7475a33440bf99662f6172538, type: 3}
 --- !u!1 &1888349107
