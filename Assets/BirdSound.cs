@@ -16,7 +16,6 @@ public class BirdSound : MonoBehaviour
     }
     private void MakeRandomNoise()
     {
-        Debug.Log("ping");
         aS.clip = clipList[Random.Range(0, clipList.Count - 1)];
         aS.Play();
         randomTimer = Random.Range(5, 20);
