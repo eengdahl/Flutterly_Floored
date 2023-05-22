@@ -24,7 +24,10 @@ public class MenuHandler : MonoBehaviour
     {
         aS = GetComponent<AudioSource>();
     }
-
+    private void Start()
+    {
+        settingsPanel.SetActive(false);
+    }
 
     public void ButtonInput(InputAction.CallbackContext input)
     {

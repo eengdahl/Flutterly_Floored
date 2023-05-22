@@ -73,7 +73,7 @@ public class PlayerJump : MonoBehaviour
     void FixedUpdate()
     {
         //RayCasts grounded
-        groundCheckDistance = 0.1f;
+        groundCheckDistance = 0.2f;
         Debug.DrawLine(leftFoot.transform.position, leftFoot.transform.position + new Vector3(0, -groundCheckDistance, 0), Color.red);
         Debug.DrawLine(rightFoot.transform.position, rightFoot.transform.position + new Vector3(0, -groundCheckDistance, 0), Color.blue);
         bool rayCastHit = false;

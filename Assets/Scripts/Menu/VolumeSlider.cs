@@ -16,10 +16,35 @@ public class VolumeSlider : MonoBehaviour
         AudioHandler.Instance.ChangeMusicVolume(_slider.value);
 
         if (_effectsVolume)
+        {
+            if (!PlayerPrefs.HasKey("effectsVolume"))
+            {
+                PlayerPrefs.SetFloat("effectsVolume", 1);
+                Load();
+            }
+            else
+            {
+                Load();
+            }
             _slider.onValueChanged.AddListener(value => AudioHandler.Instance.ChangeEffectsVolume(value));
+        }
 
         if (_musicVolume)
+        {
+            if(!PlayerPrefs.HasKey("musicVolume"))
+            {
+                PlayerPrefs.SetFloat("musicVolume", 1);
+                Load();
+            }
+            else
+            {
+                Load();
+            }
+
             _slider.onValueChanged.AddListener(value => AudioHandler.Instance.ChangeMusicVolume(value));
+        }
+
+
     }
     public void SetMasterVolume(float _sliderValue)
     {
@@ -28,10 +53,30 @@ public class VolumeSlider : MonoBehaviour
     public void SetEffectsVolume(float _sliderValue)
     {
         _audioMixer.SetFloat("SFX", Mathf.Log10(_sliderValue) * 20);
+        Save();
     }
     public void SetMusicVolume(float _sliderValue)
     {
         _audioMixer.SetFloat("Background", Mathf.Log10(_sliderValue) * 20);
+        Save();
+    }
+
+    private void Load()
+    {
+        if (_effectsVolume)
+            _slider.value = PlayerPrefs.GetFloat("effectsVolume");
+
+        if(_musicVolume)
+            _slider.value = PlayerPrefs.GetFloat("musicVolume");
+    }
+
+    private void Save()
+    {
+        if (_effectsVolume)
+            PlayerPrefs.SetFloat("effectsVolume", _slider.value);
+
+        if (_musicVolume)
+            PlayerPrefs.SetFloat("musicVolume", _slider.value);
     }
 }
 

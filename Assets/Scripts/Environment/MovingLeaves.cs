@@ -31,6 +31,9 @@ public class MovingLeaves : MonoBehaviour
         if(other.gameObject.CompareTag("Player") && canPlayiAnimation)
         {
             anim.SetTrigger("Flutter");
+            canPlayiAnimation = false;
+            StartCoroutine(CooldownTimer());
+
         }
     }
 
