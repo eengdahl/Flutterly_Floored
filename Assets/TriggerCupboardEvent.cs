@@ -23,9 +23,9 @@ public class TriggerCupboardEvent : MonoBehaviour
         locker = true;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void TriggerVitrinEvent()
     {
-        if (other.tag == "Player" && locker)
+        if (locker)
         {
             mainLight.SetRoomDark();
             blocker.SetActive(true);
@@ -39,4 +39,21 @@ public class TriggerCupboardEvent : MonoBehaviour
             locker = false;
         }
     }
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.tag == "Player" && locker)
+    //    {
+    //        mainLight.SetRoomDark();
+    //        blocker.SetActive(true);
+    //        vitrinCat.SetActive(true);
+    //        light0.SetActive(true);
+    //        light1.SetActive(true);
+    //        vitrinBrain = FindAnyObjectByType<VitrinBrain2>();
+    //        vitrinBrain.activeState = VitrinState.Wake;
+    //        switchControls.SwitchToNoInput();
+
+    //        locker = false;
+    //    }
+    //}
 }
