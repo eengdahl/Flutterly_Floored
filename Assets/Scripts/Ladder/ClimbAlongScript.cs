@@ -10,7 +10,9 @@ public class ClimbAlongScript : MonoBehaviour
     Rigidbody rb;
     public bool canFall;
     public MeshCollider meshCollider;
-
+    public bool isSmallClimbing;
+    public ClimbAlongScript otherClimbAlong;
+    public int otherClimbingIndex;
     private void Awake()
     {
         rb = GetComponentInParent<Rigidbody>();
