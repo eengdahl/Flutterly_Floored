@@ -20,6 +20,9 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
     private bool canDie = true;
 
 
+    //Catamole
+    [SerializeField] ResetCatAMole resetCatAMole;
+
     //public Vector3 checkPoint;
     Rigidbody rb;
 
@@ -45,6 +48,7 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
     {
         if (canDie)
         {
+            resetCatAMole.ResetSpoon();
             canDie = false;
             aS.PlayOneShot(death);
             // Fade();
