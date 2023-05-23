@@ -5,7 +5,7 @@ using UnityEngine;
 public class YarnBall : MonoBehaviour
 {
     private Transform ballTransform;
-    private Rigidbody ballRB;
+    public Rigidbody ballRB;
     private new ParticleSystem particleSystem;
     private Vector3 offset;
     private float ballDirection;
@@ -14,7 +14,7 @@ public class YarnBall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ballRB = GameObject.Find("Ball").GetComponent<Rigidbody>();
+        //ballRB = GameObject.Find("Ball").GetComponent<Rigidbody>();
         ballTransform = transform.GetChild(0);
         particleSystem = GetComponentInChildren<ParticleSystem>();
     }
