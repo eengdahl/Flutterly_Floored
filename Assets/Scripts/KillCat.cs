@@ -7,6 +7,7 @@ public class KillCat : MonoBehaviour
     public GameObject puffPrefab;
     public Animator cataMoleAnimator;
     public GameObject catamoleDeathCube;
+    public GameObject catamoleCamSwap;
     AudioManager audiohandeler;
 
     private GameObject puffObject;
@@ -42,6 +43,7 @@ public class KillCat : MonoBehaviour
     {
         cataMoleAnimator.SetTrigger("DMKCat");
         yield return new WaitForSeconds(2);
+        catamoleCamSwap.SetActive(false);
         catamoleDeathCube.SetActive(false);
         audiohandeler.ResumeMainMusic();
         Destroy(puffObject);
