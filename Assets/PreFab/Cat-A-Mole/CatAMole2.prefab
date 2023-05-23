@@ -928,6 +928,89 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.021186322, y: 0.020000001, z: 0.02}
   m_Center: {x: 0.0010699956, y: -3.1891018e-11, z: 0.00000005958678}
+--- !u!1 &3606438458012653580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1747056548666107400}
+  - component: {fileID: 7979714879778449156}
+  - component: {fileID: 5517527747947392764}
+  m_Layer: 0
+  m_Name: Egg_model_001_Anna (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1747056548666107400
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3606438458012653580}
+  m_LocalRotation: {x: -0.6867067, y: -0.16862385, z: -0.16862388, w: 0.6867066}
+  m_LocalPosition: {x: 0.06, y: 0.18, z: -0}
+  m_LocalScale: {x: -52.175167, y: 44.0482, z: 62.576706}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 5298411673519113043}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &7979714879778449156
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3606438458012653580}
+  m_Mesh: {fileID: 4711208715938537054, guid: c6caafc4c61b3314c8c78eec38c81ed2, type: 3}
+--- !u!23 &5517527747947392764
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3606438458012653580}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: fc3322f3e7e3fef4bb9e9bdd7f267b8e, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3745128600142119441
 GameObject:
   m_ObjectHideFlags: 0
@@ -1087,6 +1170,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasBeenPickedUp: 0
+  isMilk: 1
+  isSugar: 0
+  isFlour: 0
 --- !u!1 &6286474472910959612
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,7 +1283,6 @@ GameObject:
   - component: {fileID: 7333481160635281116}
   - component: {fileID: 4765148202913470998}
   - component: {fileID: 849608849}
-  - component: {fileID: 849608850}
   - component: {fileID: 849608854}
   m_Layer: 0
   m_Name: SugarPile
@@ -1284,20 +1369,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.023187153, y: 0.023187147, z: 0.008016307}
   m_Center: {x: 3.5400308e-11, y: -2.1215316e-10, z: -0.0010840246}
---- !u!64 &849608850
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6422636073826925507}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -7387706064836869012, guid: 50acb9cd9d26877418bbe6f3fb7ac935, type: 3}
 --- !u!114 &849608854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1311,6 +1382,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasBeenPickedUp: 0
+  isMilk: 0
+  isSugar: 1
+  isFlour: 0
 --- !u!1 &6422636074194304799
 GameObject:
   m_ObjectHideFlags: 0
@@ -1323,7 +1397,6 @@ GameObject:
   - component: {fileID: 7333481160309910016}
   - component: {fileID: 4765148202856505034}
   - component: {fileID: 792839245}
-  - component: {fileID: 792839246}
   - component: {fileID: 792839242}
   m_Layer: 0
   m_Name: FlourPile
@@ -1410,20 +1483,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.023187153, y: 0.023187147, z: 0.008016307}
   m_Center: {x: 3.5400308e-11, y: -2.1215316e-10, z: -0.0010840246}
---- !u!64 &792839246
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6422636074194304799}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -7387706064836869012, guid: 50acb9cd9d26877418bbe6f3fb7ac935, type: 3}
 --- !u!114 &792839242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1437,6 +1496,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasBeenPickedUp: 0
+  isMilk: 0
+  isSugar: 0
+  isFlour: 1
 --- !u!1 &7520307357580189732
 GameObject:
   m_ObjectHideFlags: 0
@@ -1448,6 +1510,7 @@ GameObject:
   - component: {fileID: 7520307357580189731}
   - component: {fileID: 7520307357580189742}
   - component: {fileID: 7520307357580189730}
+  - component: {fileID: 365332377}
   m_Layer: 0
   m_Name: CatAMole2
   m_TagString: CatCatAMole
@@ -1516,6 +1579,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &365332377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7520307357580189732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f3c430781cb4ce4b909526cb11fd1bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spoon: {fileID: 0}
+  pickUps:
+  - {fileID: 792839242}
+  - {fileID: 849608854}
+  - {fileID: 252018523}
 --- !u!1 &7520307358342074138
 GameObject:
   m_ObjectHideFlags: 0
@@ -1967,6 +2047,89 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.022035759, y: 0.022035759, z: 0.07809843}
   m_Center: {x: 0.0000000060535967, y: -0.0000000023283064, z: 0.028131276}
+--- !u!1 &8379114574990671735
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4260887484376331622}
+  - component: {fileID: 3896404279805995262}
+  - component: {fileID: 5874522967031313232}
+  m_Layer: 0
+  m_Name: Egg_model_001_Anna (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4260887484376331622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8379114574990671735}
+  m_LocalRotation: {x: -0.6867067, y: -0.16862385, z: -0.16862388, w: 0.6867066}
+  m_LocalPosition: {x: -1.19, y: 0.23, z: 0.07}
+  m_LocalScale: {x: -52.175167, y: 44.0482, z: 62.576706}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 5298411673519113043}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &3896404279805995262
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8379114574990671735}
+  m_Mesh: {fileID: 4711208715938537054, guid: c6caafc4c61b3314c8c78eec38c81ed2, type: 3}
+--- !u!23 &5874522967031313232
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8379114574990671735}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: fc3322f3e7e3fef4bb9e9bdd7f267b8e, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1001 &1357362329
 PrefabInstance:
   m_ObjectHideFlags: 0

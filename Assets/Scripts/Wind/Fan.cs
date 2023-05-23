@@ -8,7 +8,7 @@ public class Fan : MonoBehaviour
     //public GameObject fan;
     public bool on;
     private float rotationSpeed = 600f;
-    GameObject windArea;
+    public GameObject windAreaRef;
     [SerializeField] GameObject windAreaOne;
     [SerializeField] GameObject windAreaTwo;
     [SerializeField] GameObject wholeFanPart;
@@ -39,7 +39,7 @@ public class Fan : MonoBehaviour
         rotationSpeed = 600;
         aS = GetComponent<AudioSource>();
         on = true;
-        windArea = windAreaOne;
+        windAreaRef = windAreaOne;
     }
 
 
@@ -87,7 +87,7 @@ public class Fan : MonoBehaviour
         gotElectricity = true;
         if (on)
         {
-            windArea.SetActive(true);
+            windAreaRef.SetActive(true);
 
         }
     }
@@ -95,37 +95,37 @@ public class Fan : MonoBehaviour
     {
         aS.Stop();
         gotElectricity = false;
-        windArea.SetActive(false);
+        windAreaRef.SetActive(false);
     }
     public void SwitchWindStr()
     {
         if (on)
         {
-            windArea.SetActive(false);
+            windAreaRef.SetActive(false);
             //aS.Play();
 
         }
 
-        if (windArea == windAreaOne)
+        if (windAreaRef == windAreaOne)
         {
             //aS.Play();
             aS.pitch = 2f;
             rotationSpeed = 1200;
-            windArea = windAreaTwo;
+            windAreaRef = windAreaTwo;
         }
-        else if (windArea == windAreaTwo)
+        else if (windAreaRef == windAreaTwo)
         {
             //aS.Play();
             aS.pitch = 1.5f;
             rotationSpeed = 600;
-            windArea = windAreaOne;
+            windAreaRef = windAreaOne;
         }
 
         if (on)
         {
             aS.Play();
 
-            windArea.SetActive(true);
+            windAreaRef.SetActive(true);
         }
     }
 }

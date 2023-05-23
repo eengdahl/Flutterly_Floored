@@ -5,7 +5,11 @@ using UnityEngine;
 
 public class Spoon : MonoBehaviour
 {
+    //For catapult
     public bool sugarFilled, milkFilled, flourFilled;
+    // for "Mått"
+    public bool sugarInSpoon, milkInSpoon, flourInSpoon;
+
     public bool isFull;
     public string currentIngredient;
     public float outOfBoundsThreshold;
