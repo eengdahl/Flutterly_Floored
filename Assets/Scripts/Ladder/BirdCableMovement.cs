@@ -66,7 +66,7 @@ public class BirdCableMovement : MonoBehaviour
     private Quaternion targetRotationR;
     private bool isRotating = false;
     //ClimbOn position
-    public float movementDuration = 1f;
+    public float movementDuration = 0.1f;
 
     private bool isMovingP = false;
 
@@ -405,17 +405,18 @@ public class BirdCableMovement : MonoBehaviour
                     {
                         cableplant = other.gameObject.GetComponent<StartClimbing>().climbAlongScript;
                         currentCableSegment = other.gameObject.GetComponent<StartClimbing>().index;
+                        StartCoroutine( SetBirdPosition(other.transform));
                         EnableClimbing();
                         controllsSwitch.SwitchToClimbing();
-                        transform.position = other.gameObject.transform.position;
+                        //transform.position = other.gameObject.transform.position;
                         if (cableplant.rotationStartLocked)
                         {
                             transform.rotation = Quaternion.Euler(cableplant.startRotation);
                         }
                         else
                         {
-                            // transform.rotation = other.transform.rotation;
-                            SetBirdPosition(other.gameObject);
+                             transform.rotation = other.transform.rotation;
+                            
                         }
                         if (other.gameObject.GetComponent<StartClimbing>().isVertical)
                         {
@@ -443,13 +444,13 @@ public class BirdCableMovement : MonoBehaviour
          
     }
 
-    private IEnumerator SetBirdPosition(GameObject targetGO)
+    private IEnumerator SetBirdPosition(Transform targetGO)
     {
         
             isMovingP = true;
 
             Vector3 initialPosition = transform.position;
-            Vector3 targetPosition = targetGO.transform.position;
+            Vector3 targetPosition = targetGO.position;
 
             float elapsedTime = 0f;
             while (elapsedTime < movementDuration)
