@@ -6,11 +6,16 @@ public class DisplayM2 : MonoBehaviour
 {
 
     [SerializeField]GameObject m2Canvas;
-
+    bool hasShown;
+    private void Start()
+    {
+        hasShown = false;
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player")&&!hasShown)
         {
+            
             m2Canvas.SetActive(true);
         }
     }
@@ -19,6 +24,7 @@ public class DisplayM2 : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             m2Canvas.SetActive(false);
+            hasShown = true;
         }
     }
 }
