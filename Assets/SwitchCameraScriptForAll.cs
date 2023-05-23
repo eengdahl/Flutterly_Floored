@@ -25,8 +25,13 @@ public class SwitchCameraScriptForAll : MonoBehaviour
         {
 
             Invoke("SwitchCamOn", 0.5f);
-            StartCoroutine(deathScript.FadeToBlack());
-            Invoke(nameof(ResetFadeToBlack), 2);
+
+            if (!locker)
+            {
+                StartCoroutine(deathScript.FadeToBlack());
+                Invoke(nameof(ResetFadeToBlack), 2);
+                locker = true;
+            }
             //    Invoke("SwitchCamera", 0.1f);
 
         }
