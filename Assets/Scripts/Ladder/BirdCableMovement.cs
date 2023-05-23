@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using System.Collections;
 
 public class BirdCableMovement : MonoBehaviour
 {
@@ -57,7 +58,13 @@ public class BirdCableMovement : MonoBehaviour
     bool canGoUp;
     bool canGoDown;
 
-    //Switch Branch
+    //ClimbON rotation
+    
+    private float rotationSpeedR = 90f;
+    private float rotationDuration = 0.3f;
+
+    private Quaternion targetRotationR;
+    private bool isRotating = false;
 
 
     private void OnEnable()
@@ -297,11 +304,12 @@ public class BirdCableMovement : MonoBehaviour
             boxCollider.enabled = false;
         }
         birdBody.transform.localPosition += new Vector3(-0.453f, 0, 0);//Neeeds to be different value or each climbing place make it a 
-        birdBody.transform.localEulerAngles += new Vector3(0, 0, 90);
+        //birdBody.transform.localEulerAngles += new Vector3(0, 0, 90);
 
         //animator.SetBool("IsClimbing", true);
         readyToClimb = false;
         rb.velocity = Vector3.zero;
+        StartCoroutine(RotateBird(90));
     }
 
     public void DisableClimbing()
@@ -331,7 +339,8 @@ public class BirdCableMovement : MonoBehaviour
         currentCableSegment = 0;
         transform.localEulerAngles = Vector3.zero;
         birdBody.transform.localPosition = Vector3.zero;
-        birdBody.transform.localEulerAngles = Vector3.zero;
+        //birdBody.transform.localEulerAngles = Vector3.zero;
+        StartCoroutine(RotateBird(0));
         //animator.SetBool("IsClimbing", false);
         //SetReadyToClimb();
         Invoke("SetReadyToClimb", 0.6f);
@@ -431,4 +440,22 @@ public class BirdCableMovement : MonoBehaviour
     }
 
 
+    private IEnumerator RotateBird(float degrees)
+    {
+        isRotating = true;
+
+        Quaternion initialRotation = birdBody.transform.localRotation;
+        targetRotationR = Quaternion.Euler( new Vector3(0f, 0f, degrees));
+
+        float elapsedTime = 0f;
+        while (elapsedTime < rotationDuration)
+        {
+            birdBody.transform.localRotation = Quaternion.Lerp(initialRotation, targetRotationR, elapsedTime / rotationDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        birdBody.transform.localRotation = targetRotationR;
+        isRotating = false;
+    }
 }

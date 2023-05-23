@@ -7,12 +7,12 @@ public class ResetCatAMole : MonoBehaviour
     [SerializeField] GameObject spoon;
     Vector3 spoonPosition;
     Quaternion spoonRotation;
-    Spoon spoonScript;
+    [SerializeField]Spoon spoonScript;
     [SerializeField]IngredientPickup[] pickUps;
 
     private void Start()
     {
-        spoonScript = spoon.GetComponent<Spoon>();
+        
         spoonRotation = spoon.transform.rotation;
         spoonPosition = spoon.transform.position;
     }
