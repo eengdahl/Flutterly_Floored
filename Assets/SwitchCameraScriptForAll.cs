@@ -11,8 +11,10 @@ public class SwitchCameraScriptForAll : MonoBehaviour
     LightSway mainLight;
     DeathScriptAndCheckPoint deathScript;
     TriggerCupboardEvent triggerVitrin;
+    private SwitchControls switchControls;
     private void Start()
     {
+        switchControls = FindAnyObjectByType<SwitchControls>();
         mainLight = FindAnyObjectByType<LightSway>();
         deathScript = FindAnyObjectByType<DeathScriptAndCheckPoint>();
         triggerVitrin = FindAnyObjectByType<TriggerCupboardEvent>();
@@ -28,6 +30,7 @@ public class SwitchCameraScriptForAll : MonoBehaviour
 
             if (!locker)
             {
+                switchControls.SwitchToNoInput();
                 StartCoroutine(deathScript.FadeToBlack());
                 Invoke(nameof(ResetFadeToBlack), 2);
                 locker = true;
