@@ -61,12 +61,12 @@ public class BirdCableMovement : MonoBehaviour
     //ClimbON rotation
     
     private float rotationSpeedR = 90f;
-    private float rotationDuration = 0.3f;
+    private float rotationDuration = 0.6f;
 
     private Quaternion targetRotationR;
     private bool isRotating = false;
     //ClimbOn position
-    public float movementDuration = 0.1f;
+    public float movementDuration = 1f;
 
     private bool isMovingP = false;
 
@@ -212,7 +212,7 @@ public class BirdCableMovement : MonoBehaviour
 
 
             //W Up
-            if (input.Climbing.verticalInput.ReadValue<Vector2>().y > 0 && canGoUp && !inWall && !cableplant.isJungle)
+            if (input.Climbing.verticalInput.ReadValue<Vector2>().y > 0 && canGoUp  && !cableplant.isJungle)//&& !inWall
             {
 
                 // Get the direction from the bird's current position to the next cable point
@@ -249,7 +249,7 @@ public class BirdCableMovement : MonoBehaviour
                 }
             }
             //S Down
-            if (input.Climbing.verticalInput.ReadValue<Vector2>().y < 0 && canGoDown && !inWall && !cableplant.isJungle)
+            if (input.Climbing.verticalInput.ReadValue<Vector2>().y < 0 && canGoDown && !cableplant.isJungle) //&&!inWall
             {
 
                 if (currentCableSegment - 1 >= 0)
@@ -307,12 +307,10 @@ public class BirdCableMovement : MonoBehaviour
             boxCollider.enabled = false;
         }
         birdBody.transform.localPosition += new Vector3(-0.453f, 0, 0);//Neeeds to be different value or each climbing place make it a 
-        //birdBody.transform.localEulerAngles += new Vector3(0, 0, 90);
-
         //animator.SetBool("IsClimbing", true);
         readyToClimb = false;
         rb.velocity = Vector3.zero;
-        StartCoroutine(RotateBird(90));
+        StartCoroutine(RotateBird(90,birdBody.transform));
     }
 
     public void DisableClimbing()
@@ -342,10 +340,7 @@ public class BirdCableMovement : MonoBehaviour
         currentCableSegment = 0;
         transform.localEulerAngles = Vector3.zero;
         birdBody.transform.localPosition = Vector3.zero;
-        //birdBody.transform.localEulerAngles = Vector3.zero;
-        StartCoroutine(RotateBird(0));
-        //animator.SetBool("IsClimbing", false);
-        //SetReadyToClimb();
+        StartCoroutine(RotateBird(0,birdBody.transform));
         Invoke("SetReadyToClimb", 0.6f);
 
     }
@@ -370,11 +365,7 @@ public class BirdCableMovement : MonoBehaviour
         }
     }
     void ApplyFirstJumpForce()
-    {
-        //Vector3 forceDirection = transform.right.normalized * -1;
-        //Vector3 force = forceDirection * forcePower;
-        //rb.AddForce(force);
-        //transform.localEulerAngles = Vector3.zero;
+    { 
         Vector3 force = new Vector3(-redForce, greenForce, 0f);
         rb.AddRelativeForce(force);
     }
@@ -446,29 +437,29 @@ public class BirdCableMovement : MonoBehaviour
 
     private IEnumerator SetBirdPosition(Transform targetGO)
     {
-        
-            isMovingP = true;
+        isMovingP = true;
 
-            Vector3 initialPosition = transform.position;
-            Vector3 targetPosition = targetGO.position;
+        Transform birdTransform = transform;
+        Vector3 initialPosition = birdTransform.position;
+        Vector3 targetPosition = targetGO.position;
+        float distance = Vector3.Distance(initialPosition, targetPosition);
+        float speed = distance / movementDuration;
 
-            float elapsedTime = 0f;
-            while (elapsedTime < movementDuration)
-            {
-                transform.position = Vector3.Lerp(initialPosition, targetPosition, elapsedTime / movementDuration);
-                elapsedTime += Time.deltaTime;
-                yield return null;
-            }
+        float startTime = Time.time;
+        while (birdTransform.position != targetPosition)
+        {
+            float step = speed * Time.unscaledDeltaTime;
+            birdTransform.position = Vector3.MoveTowards(birdTransform.position, targetPosition, step);
+            yield return null;
+        }
 
-            transform.position = targetPosition;
-            isMovingP = false;
-        
+        isMovingP = false;
     }
-    private IEnumerator RotateBird(float degrees)
+    private IEnumerator RotateBird(float degrees, Transform transform)
     {
         isRotating = true;
 
-        Quaternion initialRotation = birdBody.transform.localRotation;
+        Quaternion initialRotation = transform.localRotation;//birdBody.transform.localRotation;
         targetRotationR = Quaternion.Euler( new Vector3(0f, 0f, degrees));
 
         float elapsedTime = 0f;
@@ -479,7 +470,7 @@ public class BirdCableMovement : MonoBehaviour
             yield return null;
         }
 
-        birdBody.transform.localRotation = targetRotationR;
+        transform.localRotation = targetRotationR;
         isRotating = false;
     }
 }
