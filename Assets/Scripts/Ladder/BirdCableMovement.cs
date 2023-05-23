@@ -65,7 +65,10 @@ public class BirdCableMovement : MonoBehaviour
 
     private Quaternion targetRotationR;
     private bool isRotating = false;
+    //ClimbOn position
+    public float movementDuration = 1f;
 
+    private bool isMovingP = false;
 
     private void OnEnable()
     {
@@ -411,7 +414,8 @@ public class BirdCableMovement : MonoBehaviour
                         }
                         else
                         {
-                            transform.rotation = other.transform.rotation;
+                            // transform.rotation = other.transform.rotation;
+                            SetBirdPosition(other.gameObject);
                         }
                         if (other.gameObject.GetComponent<StartClimbing>().isVertical)
                         {
@@ -439,7 +443,26 @@ public class BirdCableMovement : MonoBehaviour
          
     }
 
+    private IEnumerator SetBirdPosition(GameObject targetGO)
+    {
+        
+            isMovingP = true;
 
+            Vector3 initialPosition = transform.position;
+            Vector3 targetPosition = targetGO.transform.position;
+
+            float elapsedTime = 0f;
+            while (elapsedTime < movementDuration)
+            {
+                transform.position = Vector3.Lerp(initialPosition, targetPosition, elapsedTime / movementDuration);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            transform.position = targetPosition;
+            isMovingP = false;
+        
+    }
     private IEnumerator RotateBird(float degrees)
     {
         isRotating = true;
