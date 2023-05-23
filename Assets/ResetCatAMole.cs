@@ -7,9 +7,12 @@ public class ResetCatAMole : MonoBehaviour
     [SerializeField] GameObject spoon;
     Vector3 spoonPosition;
     Quaternion spoonRotation;
+    Spoon spoonScript;
+    [SerializeField]IngredientPickup[] pickUps;
 
     private void Start()
     {
+        spoonScript = spoon.GetComponent<Spoon>();
         spoonRotation = spoon.transform.rotation;
         spoonPosition = spoon.transform.position;
     }
@@ -17,5 +20,49 @@ public class ResetCatAMole : MonoBehaviour
     {
         spoon.transform.position = spoonPosition;
         spoon.transform.rotation = spoonRotation;
+        spoonScript.isFull = false;
+        EmptySpoon();
+        spoonScript.EmptySpoon();
+
+    }
+
+    private void EmptySpoon()
+    {
+        if (spoonScript.sugarInSpoon)
+        {
+
+            foreach (IngredientPickup adad in pickUps)
+            {
+                if (adad.isSugar)
+                {
+                    adad.hasBeenPickedUp = false;
+                }
+            }
+            spoonScript.sugarInSpoon = false;
+        }
+        else if (spoonScript.milkInSpoon)
+        {
+
+            foreach (IngredientPickup adad in pickUps)
+            {
+                if (adad.isMilk)
+                {
+                    adad.hasBeenPickedUp = false;
+                }
+            }
+            spoonScript.milkInSpoon = false;
+        }
+        else if (spoonScript.flourInSpoon)
+        {
+
+            foreach (IngredientPickup adad in pickUps)
+            {
+                if (adad.isFlour)
+                {
+                    adad.hasBeenPickedUp = false;
+                }
+            }
+            spoonScript.flourInSpoon = false;
+        }
     }
 }
