@@ -80,6 +80,9 @@ public class Spoon : MonoBehaviour
     {
         filling.SetActive(false);
         isFull = false;
+        if (milkInSpoon == true) milkInSpoon = false;
+        else if (sugarInSpoon == true) sugarInSpoon = false;
+        else if (flourInSpoon == true) flourInSpoon = false;
     }
 
 }
