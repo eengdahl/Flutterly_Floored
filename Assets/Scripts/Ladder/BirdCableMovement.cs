@@ -57,6 +57,9 @@ public class BirdCableMovement : MonoBehaviour
     bool canGoUp;
     bool canGoDown;
 
+    //Switch Branch
+
+
     private void OnEnable()
     {
         input.Enable();
@@ -197,10 +200,7 @@ public class BirdCableMovement : MonoBehaviour
 
             }
 
-            //if (transform.eulerAngles != eulerAngles)
-            //{
-            //    transform.eulerAngles = Vector3.Slerp(transform.eulerAngles, eulerAngles, Time.deltaTime);
-            //}
+
             //W Up
             if (input.Climbing.verticalInput.ReadValue<Vector2>().y > 0 && canGoUp && !inWall && !cableplant.isJungle)
             {
@@ -225,8 +225,16 @@ public class BirdCableMovement : MonoBehaviour
                             eulerAngles.y += transform.eulerAngles.y;
                             transform.eulerAngles = eulerAngles;
                         }
-
+                        if (currentCableSegment == 20)
+                        {
+                            SwitchBranch();
+                        }
                     }
+                    //else if (currentCableSegment == cableplant.points.Count)
+                    //{
+                    //    SwitchBranch();
+                    //}
+
 
                 }
             }
@@ -257,6 +265,7 @@ public class BirdCableMovement : MonoBehaviour
                                 transform.eulerAngles = eulerAngles;
                             }
                         }
+                        
 
                     }
                 }
@@ -320,7 +329,7 @@ public class BirdCableMovement : MonoBehaviour
         }
         Invoke("ActivateCollider", 0.3f);
         currentCableSegment = 0;
-        //transform.localEulerAngles = Vector3.zero;
+        transform.localEulerAngles = Vector3.zero;
         birdBody.transform.localPosition = Vector3.zero;
         birdBody.transform.localEulerAngles = Vector3.zero;
         //animator.SetBool("IsClimbing", false);
@@ -410,48 +419,16 @@ public class BirdCableMovement : MonoBehaviour
         }
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        if (CableMovement.readyToClimb)
-    //        {
-
-
-    //            if (input.Floor.Drag.IsPressed())
-    //            {
-    //                if (!CableMovement.isClimbing)
-    //                {
-    //                    CableMovement.cableplant = climbAlongScript; // done
-    //                    CableMovement.currentCableSegment = index;
-    //                    CableMovement.EnableClimbing();
-    //                    switchControls.SwitchToClimbing();
-    //                    other.gameObject.transform.position = transform.position;
-    //                    if (climbAlongScript.rotationStartLocked)
-    //                    {
-    //                        other.transform.rotation = Quaternion.Euler(climbAlongScript.startRotation);
-    //                    }
-    //                    else
-    //                    {
-    //                        other.transform.rotation = this.transform.rotation;
-    //                    }
-    //                    if (isVertical)
-    //                    {
-    //                        CableMovement.isVertical = true;
-    //                    }
-    //                    else
-    //                    {
-    //                        CableMovement.isVertical = false;
-    //                    }
-
-    //                }
-
-    //            }
-    //        }
-
-    //    }
-    //}
+    private void SwitchBranch()
+    {
+        if (cableplant.isSmallClimbing)
+        {
+            currentCableSegment = cableplant.otherClimbingIndex;
+            cableplant = cableplant.otherClimbAlong;
+            isVertical = false;
+        }
+         
+    }
 
 
 }
