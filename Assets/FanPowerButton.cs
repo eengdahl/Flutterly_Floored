@@ -64,6 +64,7 @@ public class FanPowerButton : MonoBehaviour
             {
                 fanScript.aS.Stop();
                 fanScript.on = false;
+                fanScript.windAreaRef.SetActive(false);
                 
 
             }
@@ -84,7 +85,7 @@ public class FanPowerButton : MonoBehaviour
             {
                 fanScript.aS.Play();
                 fanScript.on = true;
-
+                fanScript.windAreaRef.SetActive(true);
             }
         }
     }
