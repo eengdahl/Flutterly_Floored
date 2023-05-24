@@ -66,12 +66,19 @@ public class HitZones : MonoBehaviour
            
         }
 
+        if(!withinStrikeDistance)
+        {
+            attackAnimator.SetBool("Idling", true);
+        }
+
         //Make cat attack
         if (isAttacking && !isAnimTriggered && withinStrikeDistance)
         {
             Debug.Log("Runs attack code");
             isCharging = false;
             isAnimTriggered = true;
+            attackAnimator.SetBool("Idling", false);
+
             if (closestHitzone.name == "Hitzone1")
             {
                 animationTrigger = "ShortRight";
@@ -131,11 +138,6 @@ public class HitZones : MonoBehaviour
             isCharging = true;
             isAttacking = false;
         }
-    }
-
-    private void PlayerVisable()
-    {
-        RaycastHit hit;
     }
 
     private void CheckPlayerInZone()

@@ -26,7 +26,7 @@ public class SpawnCataMole : MonoBehaviour
             SpawnCat();
             idleCat.SetActive(false);
             hasSpawned = true;
-           
+            hitSpots.GetComponent<HitZones>().attackAnimator.SetBool("Idling", true);      
         }
     }
 
