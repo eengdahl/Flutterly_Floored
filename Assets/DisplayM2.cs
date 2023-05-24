@@ -17,14 +17,14 @@ public class DisplayM2 : MonoBehaviour
         {
             
             m2Canvas.SetActive(true);
+            hasShown = true;
+            Invoke(nameof(DeactivateM2),5f);
         }
     }
-    private void OnTriggerExit(Collider other)
+ 
+    void DeactivateM2()
     {
-        if (other.CompareTag("Player"))
-        {
-            m2Canvas.SetActive(false);
-            hasShown = true;
-        }
+        m2Canvas.SetActive(false);
+        hasShown = true;
     }
 }
