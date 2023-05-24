@@ -35,6 +35,13 @@ public class BirdCableMovement : MonoBehaviour
     [SerializeField] float redForce = 10000;
     [SerializeField] float greenForce = 7000;
 
+    //Sinus curve movement speed
+    public float minSpeed = 1f;
+    public float maxSpeed = 3f;
+    public float speedFrequency = 2f;
+
+
+
 
     StartClimbing startClimbingRef;
 
@@ -214,14 +221,19 @@ public class BirdCableMovement : MonoBehaviour
 
 
             //W Up
-            if (input.Climbing.verticalInput.ReadValue<Vector2>().y > 0 && canGoUp  && !cableplant.isJungle )//&& !inWall
+            if (input.Climbing.verticalInput.ReadValue<Vector2>().y > 0 && canGoUp && !cableplant.isJungle)//&& !inWall
             {
-
                 // Get the direction from the bird's current position to the next cable point
                 Vector3 direction = cableplant.points[currentCableSegment].position - transform.position;
                 direction.Normalize();
-                // Move the bird along the cable in the current segment's direction
-                transform.position += direction * speed * Time.deltaTime;
+
+                // Calculate the sinus multiplier for the speed
+                float timeMultiplier = Mathf.Sin(Time.time * speedFrequency);
+                float currentSpeed = Mathf.Lerp(minSpeed, maxSpeed, (timeMultiplier + 1f) / 2f);
+
+                // Move the bird along the cable in the current segment's direction with the sinus-based speed
+                transform.position += direction * currentSpeed * Time.deltaTime;
+
                 // Check if the bird has reached the current segment's end point
                 if (Vector3.Distance(transform.position, cableplant.points[currentCableSegment].position) < 0.1f)
                 {
@@ -230,10 +242,8 @@ public class BirdCableMovement : MonoBehaviour
                         // Move to the next segment of the cable
                         currentCableSegment = currentCableSegment + 1;
                         //Rotate
-
                         if (isVertical)
                         {
-
                             eulerAngles.y += transform.eulerAngles.y;
                             transform.eulerAngles = eulerAngles;
                         }
@@ -242,25 +252,24 @@ public class BirdCableMovement : MonoBehaviour
                             SwitchBranch();
                         }
                     }
-                    //else if (currentCableSegment == cableplant.points.Count)
-                    //{
-                    //    SwitchBranch();
-                    //}
-
-
                 }
             }
             //S Down
             if (input.Climbing.verticalInput.ReadValue<Vector2>().y < 0 && canGoDown && !cableplant.isJungle) //&&!inWall
             {
-
                 if (currentCableSegment - 1 >= 0)
                 {
                     // Get the direction from the bird's current position to the next cable point
                     Vector3 direction = cableplant.points[currentCableSegment - 1].position - transform.position;
                     direction.Normalize();
-                    // Move the bird along the cable in the current segment's direction
-                    transform.position += direction * downSpeed * Time.deltaTime;
+
+                    // Calculate the sinus multiplier for the speed
+                    float timeMultiplier = Mathf.Sin(Time.time * speedFrequency);
+                    float currentSpeed = Mathf.Lerp(minSpeed, maxSpeed, (timeMultiplier + 1f) / 2f);
+
+                    // Move the bird along the cable in the current segment's direction with the sinus-based speed
+                    transform.position += direction * currentSpeed * Time.deltaTime;
+
                     // Check if the bird has reached the current segment's end point
                     if (Vector3.Distance(transform.position, cableplant.points[currentCableSegment - 1].position) < 0.1f)
                     {
@@ -269,16 +278,12 @@ public class BirdCableMovement : MonoBehaviour
                             // Move to the next segment of the cable
                             currentCableSegment = currentCableSegment - 1;
                             // Rotate if necessary
-
                             if (isVertical)
                             {
-
                                 eulerAngles.y += transform.eulerAngles.y;
                                 transform.eulerAngles = eulerAngles;
                             }
                         }
-                        
-
                     }
                 }
             }
