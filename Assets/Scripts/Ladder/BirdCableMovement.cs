@@ -76,6 +76,8 @@ public class BirdCableMovement : MonoBehaviour
     public float movementDuration = 1f;
     private bool reachedTargetPosition = false;
     private bool isMovingP = false;
+    private bool shouldSetBirdPosition;
+    private Coroutine birdPositionCoroutine;
 
     private void OnEnable()
     {
@@ -304,6 +306,7 @@ public class BirdCableMovement : MonoBehaviour
 
     public void EnableClimbing()
     {
+
         // Disable regular movement controls
         ToggleMovement();
         rb.isKinematic = true;
@@ -347,6 +350,15 @@ public class BirdCableMovement : MonoBehaviour
         currentCableSegment = 0;
         transform.localEulerAngles = Vector3.zero;
         birdBody.transform.localPosition = Vector3.zero;
+        //Stop setting position
+        shouldSetBirdPosition = false;
+        if (birdPositionCoroutine != null)
+        {
+            StopCoroutine(birdPositionCoroutine);
+            birdPositionCoroutine = null;
+        }
+
+
         StartCoroutine(RotateBird(0,birdBody.transform));
         Invoke("SetReadyToClimb", 0.6f);
 
@@ -404,7 +416,9 @@ public class BirdCableMovement : MonoBehaviour
                         reachedTargetPosition = false;
                         cableplant = other.gameObject.GetComponent<StartClimbing>().climbAlongScript;
                         currentCableSegment = other.gameObject.GetComponent<StartClimbing>().index;
-                        StartCoroutine( SetBirdPosition(other.transform));
+                        shouldSetBirdPosition = true;
+                        birdPositionCoroutine = StartCoroutine(SetBirdPosition(other.transform));
+                        //StartCoroutine( SetBirdPosition(other.transform));
                         EnableClimbing();
                         controllsSwitch.SwitchToClimbing();
                         //transform.position = other.gameObject.transform.position;
@@ -445,6 +459,8 @@ public class BirdCableMovement : MonoBehaviour
 
     private IEnumerator SetBirdPosition(Transform targetGO)
     {
+
+  
         isMovingP = true;
 
         Transform birdTransform = transform;
@@ -480,6 +496,7 @@ public class BirdCableMovement : MonoBehaviour
         float elapsedTime = 0f;
         while (elapsedTime < rotationDuration)
         {
+            
             birdBody.transform.localRotation = Quaternion.Lerp(initialRotation, targetRotationR, elapsedTime / rotationDuration);
             elapsedTime += Time.deltaTime;
             yield return null;
