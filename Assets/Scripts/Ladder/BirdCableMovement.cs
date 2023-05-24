@@ -67,7 +67,7 @@ public class BirdCableMovement : MonoBehaviour
     private bool isRotating = false;
     //ClimbOn position
     public float movementDuration = 1f;
-
+    private bool reachedTargetPosition = false;
     private bool isMovingP = false;
 
     private void OnEnable()
@@ -100,6 +100,7 @@ public class BirdCableMovement : MonoBehaviour
         {
             return;
         }
+        if (!reachedTargetPosition) return;
 
 
         horizontalInput = input.Climbing.verticalInput.ReadValue<Vector2>().x;
@@ -133,6 +134,7 @@ public class BirdCableMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (!isClimbing) return;
+        if (!reachedTargetPosition) return;
         isMoving = input.Climbing.verticalInput.ReadValue<Vector2>().y;
         if (cableplant.isJungle)
         {
@@ -212,7 +214,7 @@ public class BirdCableMovement : MonoBehaviour
 
 
             //W Up
-            if (input.Climbing.verticalInput.ReadValue<Vector2>().y > 0 && canGoUp  && !cableplant.isJungle)//&& !inWall
+            if (input.Climbing.verticalInput.ReadValue<Vector2>().y > 0 && canGoUp  && !cableplant.isJungle )//&& !inWall
             {
 
                 // Get the direction from the bird's current position to the next cable point
@@ -315,7 +317,7 @@ public class BirdCableMovement : MonoBehaviour
 
     public void DisableClimbing()
     {
-
+        //reachedTargetPosition = false;
         playerMoveScript.groundMovement = true;
         // Enable regular movement controls
         controllsSwitch.SwitchToFloor();
@@ -336,7 +338,7 @@ public class BirdCableMovement : MonoBehaviour
                 cableplant = null;
             }
         }
-        Invoke("ActivateCollider", 0.3f);
+        Invoke("ActivateCollider", 0.6f);
         currentCableSegment = 0;
         transform.localEulerAngles = Vector3.zero;
         birdBody.transform.localPosition = Vector3.zero;
@@ -394,6 +396,7 @@ public class BirdCableMovement : MonoBehaviour
                 {
                     if (!isClimbing)
                     {
+                        reachedTargetPosition = false;
                         cableplant = other.gameObject.GetComponent<StartClimbing>().climbAlongScript;
                         currentCableSegment = other.gameObject.GetComponent<StartClimbing>().index;
                         StartCoroutine( SetBirdPosition(other.transform));
@@ -450,6 +453,13 @@ public class BirdCableMovement : MonoBehaviour
         {
             float step = speed * Time.unscaledDeltaTime;
             birdTransform.position = Vector3.MoveTowards(birdTransform.position, targetPosition, step);
+          
+            if (birdTransform.position == targetPosition && !reachedTargetPosition)
+            {
+                reachedTargetPosition = true;
+                
+            }
+
             yield return null;
         }
 
