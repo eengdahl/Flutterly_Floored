@@ -13,10 +13,11 @@ public class MapScript : MonoBehaviour
     MenuHandler menuHandler;
     public bool inVitrin;
     SwitchControls switchControls;
-    
+    [SerializeField]AudioSource aS;
 
     void Start()
     {
+       
         switchControls = FindAnyObjectByType<SwitchControls>();
         menuHandler = FindObjectOfType<MenuHandler>();
         mapButtons = FindAnyObjectByType<ActivateButtonsMap>();
@@ -34,9 +35,10 @@ public class MapScript : MonoBehaviour
             }
             else
             {
+                
+                aS.Play();
                 Time.timeScale = 0;
             }
-
             SwitchCursor();
             gameObject.SetActive(!gameObject.activeSelf);
             mapButtons.ActiveCheckpoints();

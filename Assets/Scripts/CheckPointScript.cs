@@ -9,9 +9,12 @@ public class CheckPointScript : MonoBehaviour
     [SerializeField] private GameObject mapTutorial;
     // public Die dieOfFalling;
     ActivateButtonsMap activateButtons;
+    private bool haveShownM = false;
+    AudioSource aS;
 
     private void Awake()
     {
+        aS = GetComponent<AudioSource>();
         activateButtons = FindObjectOfType<ActivateButtonsMap>();
         //  dieOfFalling = FindObjectOfType<Die>();
     }
@@ -24,9 +27,14 @@ public class CheckPointScript : MonoBehaviour
             if (index < activateButtons.onOrOff.Length)
             {
                 activateButtons.SetBoolToTrue(index);
+                if (!haveShownM)
+                {
+                    mapTutorial.SetActive(true);
+                    Invoke(nameof(DisableMap), 3);
+                    aS.Play();
+                    haveShownM = true;
 
-                mapTutorial.SetActive(true);
-                Invoke(nameof(DisableMap), 3);
+                }
             }
         }
 
