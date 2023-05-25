@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PushPlayerUp : MonoBehaviour
 {
-    public Transform frontRayOrigin;        // Transform representing the origin point of the front raycast
+    public Transform lowerRayOrigin;        // Transform representing the origin point of the front raycast
     public Transform higherRayOrigin;       // Transform representing the origin point of the higher raycast
     public float raycastDistance = 1.0f;    // Distance to cast the raycasts
     public LayerMask groundLayer;           // Layer mask to detect the "Ground" layer
@@ -26,7 +26,7 @@ public class PushPlayerUp : MonoBehaviour
         if (climbingScript.isClimbing) return;
         // Perform raycasts
         RaycastHit frontHit;
-        bool frontRaycast = Physics.Raycast(frontRayOrigin.position, frontRayOrigin.forward, out frontHit, raycastDistance, groundLayer);
+        bool frontRaycast = Physics.Raycast(lowerRayOrigin.position, lowerRayOrigin.forward, out frontHit, raycastDistance, groundLayer);
 
         RaycastHit higherHit;
         bool higherRaycast = Physics.Raycast(higherRayOrigin.position, higherRayOrigin.forward, out higherHit, raycastDistance, groundLayer);
@@ -54,7 +54,7 @@ public class PushPlayerUp : MonoBehaviour
         }
 
         // Debug visualization of raycasts
-        Debug.DrawRay(frontRayOrigin.position, frontRayOrigin.forward * raycastDistance, frontRaycast ? Color.green : Color.red);
+        Debug.DrawRay(lowerRayOrigin.position, lowerRayOrigin.forward * raycastDistance, frontRaycast ? Color.green : Color.red);
         Debug.DrawRay(higherRayOrigin.position, higherRayOrigin.forward * raycastDistance, higherRaycast ? Color.green : Color.red);
     }
 }
