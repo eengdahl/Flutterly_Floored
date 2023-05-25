@@ -10,17 +10,20 @@ public class PushPlayerUp : MonoBehaviour
     public LayerMask groundLayer;           // Layer mask to detect the "Ground" layer
 
     PlayerJump jumpScript;
+    BirdCableMovement climbingScript;
 
     private bool isGrounded;                // Flag to track if the player is grounded
 
     private void Start()
     {
         jumpScript = GetComponent<PlayerJump>();
+        climbingScript = GetComponent<BirdCableMovement>();
     }
 
     void Update()
     {
         if (jumpScript.isGrounded) return;
+        if (climbingScript.isClimbing) return;
         // Perform raycasts
         RaycastHit frontHit;
         bool frontRaycast = Physics.Raycast(frontRayOrigin.position, frontRayOrigin.forward, out frontHit, raycastDistance, groundLayer);
