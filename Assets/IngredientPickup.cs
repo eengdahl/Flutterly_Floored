@@ -7,9 +7,11 @@ public class IngredientPickup : MonoBehaviour
     Spoon spoonScript;
     public bool hasBeenPickedUp;
     public bool isMilk, isSugar, isFlour;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Spoon") && hasBeenPickedUp == false)
+        {
             if (!other.GetComponentInParent<Spoon>().isFull)
             {
                 {
@@ -22,6 +24,7 @@ public class IngredientPickup : MonoBehaviour
                     SetSpoonFilling();
                 }
             }
+        }
     }
 
     public void ResetPickups()
@@ -45,10 +48,4 @@ public class IngredientPickup : MonoBehaviour
             spoonScript.flourInSpoon = true;
         }
     }
-    private void ResetOnePickUp()
-    {
-
-    }
-
-
 }

@@ -83,28 +83,23 @@ public class HitZones : MonoBehaviour
             {
                 animationTrigger = "ShortRight";
             }
-
-            if (closestHitzone.name == "Hitzone4")
+            else if (closestHitzone.name == "Hitzone4")
             {
                 animationTrigger = "ShortLeft";
             }
-
-            if (closestHitzone.name == "Hitzone2")
+            else if (closestHitzone.name == "Hitzone2")
             {
                 animationTrigger = "LongRight";
             }
-
-            if (closestHitzone.name == "Hitzone5")
+            else if (closestHitzone.name == "Hitzone5")
             {
                 animationTrigger = "LongLeft";
             }
-
-            if (closestHitzone.name == "Hitzone3")
+            else if (closestHitzone.name == "Hitzone3")
             {
                 animationTrigger = "SuperLongRight";
             }
-
-            if (closestHitzone.name == "Hitzone6")
+            else if (closestHitzone.name == "Hitzone6")
             {
                 animationTrigger = "SuperLongLeft";
             }

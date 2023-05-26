@@ -18,12 +18,6 @@ public class KillCat : MonoBehaviour
         audiohandeler = FindAnyObjectByType<AudioManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void OnTriggerEnter(Collider collision)
     {
         //Debug.Log(collision.gameObject.name);
@@ -34,7 +28,7 @@ public class KillCat : MonoBehaviour
 
 
             StartCoroutine(DestroyPuff());
-            Debug.Log("hit the motherfukking cat!!");
+            //Debug.Log("hit the motherfukking cat!!");
             //collision.gameObject.SetActive(false);
         }
     }

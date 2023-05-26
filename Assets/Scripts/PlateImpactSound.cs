@@ -24,5 +24,4 @@ public class PlateImpactSound : MonoBehaviour
             aS.Play();
         }
     }
-
 }
