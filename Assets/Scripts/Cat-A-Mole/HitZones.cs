@@ -130,7 +130,7 @@ public class HitZones : MonoBehaviour
 
         if (gamestate.moleState == MoleStates.Charge && isAttacking)
         {
-            if (catIsActive)
+            if (catIsActive && animationTrigger != null)
             {
                 attackAnimator.SetBool(animationTrigger, false);
             }
