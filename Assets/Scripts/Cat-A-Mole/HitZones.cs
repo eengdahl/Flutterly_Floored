@@ -66,7 +66,7 @@ public class HitZones : MonoBehaviour
            
         }
 
-        if(!withinStrikeDistance && attackAnimator.gameObject.activeSelf)
+        if(!withinStrikeDistance)
         {
             attackAnimator.SetBool("Idling", true);
         }
