@@ -48,6 +48,7 @@ public class HideNSeekBottles : MonoBehaviour
             vitrinBrain = FindAnyObjectByType<VitrinBrain2>();
             Debug.Log("sprutsprut");
             ButtonPush();
+            Invoke(nameof(ButtonReset),1);
         }
     }
 
@@ -57,7 +58,6 @@ public class HideNSeekBottles : MonoBehaviour
     {
         if (other.tag == "Player" && !buttonReady)
         {
-            StartCoroutine(ButtonReset());
         }
     }
 
@@ -94,12 +94,11 @@ public class HideNSeekBottles : MonoBehaviour
 
         //button push
         buttonReady = false;
-        //  anim.CrossFade("PerfumeButtonPush", 0, 0);
+        anim.CrossFade("PerfumeButtonPush", 0, 0);
     }
 
-    private IEnumerator ButtonReset()
+    private void ButtonReset()
     {
-        yield return new WaitForSeconds(10f);
         anim.CrossFade("PerfumeButtonInflate", 0, 0);
         buttonReady = true;
         sprayPS.SetActive(false);
