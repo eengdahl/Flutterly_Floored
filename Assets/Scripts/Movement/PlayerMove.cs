@@ -147,7 +147,7 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
-        if (jump.canCrash && rb.velocity.y == 0)
+        if (jump.canCrash && activeString == Fall && rb.velocity.y <= 0)
         {
             stringToPlay = Impact;
         }

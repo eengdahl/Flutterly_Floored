@@ -48,7 +48,7 @@ public class HideNSeekBottles : MonoBehaviour
             vitrinBrain = FindAnyObjectByType<VitrinBrain2>();
             Debug.Log("sprutsprut");
             ButtonPush();
-            Invoke(nameof(ButtonReset),1);
+            Invoke(nameof(ButtonReset),2);
         }
     }
 
@@ -107,7 +107,7 @@ public class HideNSeekBottles : MonoBehaviour
     void DestroyBlocker()
     {
         Destroy(blocker);
-        this.gameObject.SetActive(false);
+        //this.gameObject.SetActive(false);
 
     }
 
