@@ -119,7 +119,6 @@ public class HitZones : MonoBehaviour
             if (attackAnimator.gameObject.activeSelf == true)
             {
                 attackAnimator.SetBool("Charging", false);
-
             }
         }
 

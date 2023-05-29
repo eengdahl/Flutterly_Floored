@@ -11,7 +11,6 @@ public class Hitzone : MonoBehaviour
         isPlayerInZone = false;
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
         isPlayerInZone = true;

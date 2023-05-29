@@ -12,21 +12,16 @@ public class Water : MonoBehaviour
     private float maxWaterLevel;
     private float minWaterLevel;
 
-    Material waterMaterial; //!?!?!?!?
-    Texture2D waterTexture; //!?!?!?!?
-    MeshFilter waterFilter; //!?!?!?!
-    Cloth waterPlane;
+    private AudioSource aS;
+    private int closestVertexIndex = -1;
 
     public float waterFillSpeed;
-
 
     public bool isFilling;
     public bool isDraining;
 
     public GameObject waterTapPS;
     public GameObject maxWaterPoint;
-    private AudioSource aS;
-    private int closestVertexIndex = -1;
 
     public AudioClip fillWater;
     public AudioClip EmptyWater;
@@ -42,31 +37,6 @@ public class Water : MonoBehaviour
         aS = GetComponent<AudioSource>();
         maxWaterLevel = maxWaterPoint.transform.position.y;
         minWaterLevel = transform.position.y;
-    }
-
-    public float GetAdvancedWaterHeight(Vector3 position)
-    {
-        for(int i = 0; i < waterPlane.vertices.Length; i++)
-        {
-            if (closestVertexIndex == -1)
-            {
-                closestVertexIndex = i;
-            }
-
-            float distance = Vector3.Distance(waterPlane.vertices[i], position);
-            float closest = Vector3.Distance(waterPlane.vertices[closestVertexIndex], position);
-
-            if(distance < closest)
-            {
-                closestVertexIndex = i;
-            }
-        }
-
-        return waterPlane.vertices[closestVertexIndex].y;
-    }
-    public float GetSimpleWaterHeight()
-    {
-        return transform.position.y;
     }
 
     private void Update()
@@ -98,7 +68,6 @@ public class Water : MonoBehaviour
         }
     }
 
-
     private void FillWater()
     {
         if (isFilling && waterLevel < maxWaterLevel && !isDraining)
@@ -107,7 +76,6 @@ public class Water : MonoBehaviour
             waterLevel = transform.position.y;
             PlayFillSound();
         }
-
     }
 
     public void DrainWater()
@@ -125,8 +93,8 @@ public class Water : MonoBehaviour
 
         }
         aS.PlayOneShot(fillWater);
-
     }
+
     public void PlayDrainSound()
     {
         if (!isDraining || aS.isPlaying)
@@ -135,6 +103,10 @@ public class Water : MonoBehaviour
             return;
         }
         aS.PlayOneShot(EmptyWater);
+    }
 
+    public float GetSimpleWaterHeight()
+    {
+        return transform.position.y;
     }
 }
