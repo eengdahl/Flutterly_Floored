@@ -9,6 +9,7 @@ public class VolumeSlider : MonoBehaviour
     [SerializeField] private Slider _slider;
     [SerializeField] private bool _musicVolume, _effectsVolume;
     [SerializeField] AudioMixer _audioMixer;
+    private AudioSource aS;
 
     void Start()
     {
@@ -17,6 +18,7 @@ public class VolumeSlider : MonoBehaviour
 
         if (_effectsVolume)
         {
+            aS = GetComponent<AudioSource>();
             if (!PlayerPrefs.HasKey("effectsVolume"))
             {
                 PlayerPrefs.SetFloat("effectsVolume", 1);
@@ -31,7 +33,8 @@ public class VolumeSlider : MonoBehaviour
 
         if (_musicVolume)
         {
-            if(!PlayerPrefs.HasKey("musicVolume"))
+            aS = null;
+            if (!PlayerPrefs.HasKey("musicVolume"))
             {
                 PlayerPrefs.SetFloat("musicVolume", 1);
                 Load();
@@ -54,6 +57,7 @@ public class VolumeSlider : MonoBehaviour
     {
         _audioMixer.SetFloat("SFX", Mathf.Log10(_sliderValue) * 20);
         Save();
+        aS.Play();
     }
     public void SetMusicVolume(float _sliderValue)
     {
@@ -66,7 +70,7 @@ public class VolumeSlider : MonoBehaviour
         if (_effectsVolume)
             _slider.value = PlayerPrefs.GetFloat("effectsVolume");
 
-        if(_musicVolume)
+        if (_musicVolume)
             _slider.value = PlayerPrefs.GetFloat("musicVolume");
     }
 
