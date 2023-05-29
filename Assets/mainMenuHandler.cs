@@ -39,10 +39,10 @@ public class mainMenuHandler : MonoBehaviour
     public void StartGameButton()
     {
         paperAnimator.CrossFade(startGamepaper, 0, 0);
-        birdAnimator.CrossFade(startGame, 0,0);
+        birdAnimator.CrossFade(startGame, 0, 0);
         aS.PlayOneShot(clip[Random.Range(0, clip.Count)]);
         Invoke(nameof(StartGame), 9);
-       // Invoke(nameof(playPang), 1.3f);
+        // Invoke(nameof(playPang), 1.3f);
 
     }
     public void SettingsMenu()
@@ -80,9 +80,9 @@ public class mainMenuHandler : MonoBehaviour
         if (creditsPanel.activeSelf == true)
             creditsPanel.SetActive(false);
 
-            mainPanelIsShowing = !mainPanelIsShowing;
-            mainPanel.SetActive(true);
-        
+        mainPanelIsShowing = !mainPanelIsShowing;
+        mainPanel.SetActive(true);
+
     }
     public void ExitGameButton()
     {
@@ -96,7 +96,10 @@ public class mainMenuHandler : MonoBehaviour
 
 
 
-
+    public void PlayRandomClip()
+    {
+        aS.PlayOneShot(clip[Random.Range(0, clip.Count)]);  
+    }
 
 
 
@@ -108,6 +111,6 @@ public class mainMenuHandler : MonoBehaviour
     private void StartGame()
     {
 
-         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
