@@ -29,54 +29,23 @@ public class GazeOfDeath : MonoBehaviour
         {
             RaycastHit hit;
             Physics.Raycast(visionCone.transform.position, objectInGaze.transform.position - visionCone.transform.position, out hit, distance, player);
+            Debug.DrawRay(visionCone.transform.position, objectInGaze.transform.position - visionCone.transform.position, Color.cyan, 500);
+            Debug.Log(hit.transform.gameObject.name);
             if (hit.collider.gameObject.CompareTag("Player"))
             {
                 playerDeath = objectInGaze.GetComponent<DeathScriptAndCheckPoint>();
                 objectInGaze.GetComponent<Rigidbody>().isKinematic = false;
                 playerDeath.Die();
-                locker = true;
-                Invoke(nameof(PausRay), 1);
-
+                objectInGaze = null;
+                inKillerGazeOfDeath = false;
             }
         }
     }
-
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if (locker)
-    //    {
-    //        return;
-    //    }
-    //    if(other.CompareTag("Player"))
-    //    {
-    //        if (locker)
-    //        {
-    //            return;
-    //        }
-    //        RaycastHit hit;
-    //        Physics.Raycast(visionCone.transform.position, other.transform.position - visionCone.transform.position, out hit,distance, player);
-    //        if(hit.collider.gameObject.CompareTag("Player"))
-    //        {
-    //            playerDeath = other.GetComponent<DeathScriptAndCheckPoint>();
-    //            other.GetComponent<Rigidbody>().isKinematic = false;
-    //            playerDeath.Die();
-    //            locker = true;
-    //            Invoke(nameof(PausRay), 1);
-
-    //        }
-
-    //    }
-    //}
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
-            if(locker) 
-            { 
-                return; 
-            }
-
             objectInGaze = other.gameObject;
             inKillerGazeOfDeath = true;
             
@@ -87,18 +56,8 @@ public class GazeOfDeath : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (locker)
-            {
-                return;
-            }
-
             objectInGaze = null;
             inKillerGazeOfDeath = false;
         }
-    }
-
-    void PausRay()
-    {
-        locker = false;
     }
 }
