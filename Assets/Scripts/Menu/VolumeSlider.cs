@@ -18,7 +18,7 @@ public class VolumeSlider : MonoBehaviour
 
         if (_effectsVolume)
         {
-            aS = GetComponent<AudioSource>();
+        aS = GetComponent<AudioSource>();
             if (!PlayerPrefs.HasKey("effectsVolume"))
             {
                 PlayerPrefs.SetFloat("effectsVolume", 1);
@@ -33,7 +33,6 @@ public class VolumeSlider : MonoBehaviour
 
         if (_musicVolume)
         {
-            aS = null;
             if (!PlayerPrefs.HasKey("musicVolume"))
             {
                 PlayerPrefs.SetFloat("musicVolume", 1);
