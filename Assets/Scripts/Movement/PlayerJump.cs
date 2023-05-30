@@ -13,6 +13,11 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] private bool readyToJump;
     [SerializeField] public bool gliding;
     [SerializeField] public bool hasCanceledGlide;
+
+    [SerializeField] private Animator anim;
+    [SerializeField] private float crashRayDistance;
+    private float crashNotGroundedTimer;
+
     public bool canCrash;
     public bool canGlide;
     public float glideTime;
@@ -23,6 +28,7 @@ public class PlayerJump : MonoBehaviour
     private float groundCheckDistance;
     private GameObject leftFoot;
     private GameObject rightFoot;
+    private GameObject crashRayObject;
     RaycastHit leftFootHit;
     RaycastHit rightFootHit;
 
@@ -38,6 +44,7 @@ public class PlayerJump : MonoBehaviour
     {
         leftFoot = GameObject.Find("LeftFootTransform");
         rightFoot = GameObject.Find("RightFootTransform");
+        crashRayObject = GameObject.Find("CrashRayTransform");
         playerWindsScript = GetComponent<PlayerWind>();
         kitchenFan = GameObject.Find("KitchenFan").GetComponent<KitchenFan>();
         rb = GetComponent<Rigidbody>();
@@ -45,6 +52,21 @@ public class PlayerJump : MonoBehaviour
 
     void Update()
     {
+        RaycastHit crashHit;
+        if (Physics.Raycast(crashRayObject.transform.position, -crashRayObject.transform.up, out crashHit, crashRayDistance) 
+            && crashHit.collider != null && crashHit.collider.CompareTag("Ground"))
+        {
+            if (crashNotGroundedTimer >= 1f)
+            {
+                anim.SetTrigger("Crash");
+            }
+            crashNotGroundedTimer = 0f;
+        }
+        else
+        {
+            crashNotGroundedTimer += Time.deltaTime;
+        }
+
 
         if (isGrounded)
         {
