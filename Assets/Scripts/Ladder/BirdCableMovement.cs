@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using System.Collections;
-
+using Cinemachine;
 public class BirdCableMovement : MonoBehaviour
 {
     SwitchControls controllsSwitch;
@@ -14,7 +14,7 @@ public class BirdCableMovement : MonoBehaviour
     Collider boxCollider;
     [SerializeField] PlayerJump jumpScript;
     //private InputAction.CallbackContext initialInput;
-
+    [SerializeField] CinemachineVirtualCamera cAmera;
     PlayerMove playerMoveScript;
 
     [Header("Variables")]
@@ -143,7 +143,7 @@ public class BirdCableMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (!isClimbing) return;
-        if (!reachedTargetPosition) return;
+        if (isMovingP) return;
         isMoving = input.Climbing.verticalInput.ReadValue<Vector2>().y;
         if (cableplant.isJungle)
         {
@@ -306,7 +306,8 @@ public class BirdCableMovement : MonoBehaviour
 
     public void EnableClimbing()
     {
-
+        SetDampeningHigh();
+        shouldSetBirdPosition = true;
         // Disable regular movement controls
         ToggleMovement();
         rb.isKinematic = true;
@@ -325,6 +326,7 @@ public class BirdCableMovement : MonoBehaviour
 
     public void DisableClimbing()
     {
+        SetDampeningZero();
         //reachedTargetPosition = false;
         playerMoveScript.groundMovement = true;
         // Enable regular movement controls
@@ -460,7 +462,7 @@ public class BirdCableMovement : MonoBehaviour
     private IEnumerator SetBirdPosition(Transform targetGO)
     {
 
-  
+       
         isMovingP = true;
 
         Transform birdTransform = transform;
@@ -478,9 +480,9 @@ public class BirdCableMovement : MonoBehaviour
             if (birdTransform.position == targetPosition && !reachedTargetPosition)
             {
                 reachedTargetPosition = true;
-                yield return null;
                 
             }
+             yield return null;
 
         }
 
@@ -505,4 +507,22 @@ public class BirdCableMovement : MonoBehaviour
         transform.localRotation = targetRotationR;
         isRotating = false;
     }
+
+    private void SetDampeningHigh()
+    {
+        cAmera.GetCinemachineComponent<CinemachineFramingTransposer>().m_XDamping = 1f;
+        cAmera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ZDamping = 1f;
+        cAmera.GetCinemachineComponent<CinemachineFramingTransposer>().m_YDamping = 1f;
+
+
+    }
+    private void SetDampeningZero()
+    {
+        cAmera.GetCinemachineComponent<CinemachineFramingTransposer>().m_XDamping = 0f;
+        cAmera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ZDamping = 0f;
+        cAmera.GetCinemachineComponent<CinemachineFramingTransposer>().m_YDamping = 0f;
+    }
+
+
+
 }
