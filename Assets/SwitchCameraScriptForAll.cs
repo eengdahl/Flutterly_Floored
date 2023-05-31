@@ -7,13 +7,21 @@ public class SwitchCameraScriptForAll : MonoBehaviour
 {
     [SerializeField] GameObject originalCamera;
     [SerializeField] GameObject cupboardCamera;
+    private AudioSource aS;
+    [SerializeField] AudioClip catScream;
+
+    private GameObject player;
     private bool locker = false;
     LightSway mainLight;
     DeathScriptAndCheckPoint deathScript;
     TriggerCupboardEvent triggerVitrin;
     private SwitchControls switchControls;
+
+
     private void Start()
     {
+        aS = gameObject.AddComponent<AudioSource>();
+        player = GameObject.FindGameObjectWithTag("Player");
         switchControls = FindAnyObjectByType<SwitchControls>();
         mainLight = FindAnyObjectByType<LightSway>();
         deathScript = FindAnyObjectByType<DeathScriptAndCheckPoint>();
@@ -29,20 +37,30 @@ public class SwitchCameraScriptForAll : MonoBehaviour
 
             if (!locker)
             {
+                //Make first cat sound
+                aS.clip = catScream;
+                aS.Play();
                 switchControls.SwitchToNoInput();
                 StartCoroutine(deathScript.FadeToBlack());
-                Invoke(nameof(ResetFadeToBlack), 2);
+                Invoke(nameof(ResetFadeToBlack), 3);
                 locker = true;
             }
-            Invoke("SwitchCamOn", 0.5f);
+            Invoke("SwitchCamOn", 2f);
             //    Invoke("SwitchCamera", 0.1f);
-        triggerVitrin.TriggerVitrinEvent();
 
         }
     }
     public void ResetFadeToBlack()
     {
+        player.transform.position = new Vector3(-137.9307f, 10.667f, 100.2542f);
         StartCoroutine(deathScript.FadeToBlack(false));
+        Invoke(nameof(LastResetFromBlack), 1.5f);
+    }
+
+    private void LastResetFromBlack()
+    {
+        triggerVitrin.TriggerVitrinEvent();
+
     }
     private void OnTriggerExit(Collider other)
     {
