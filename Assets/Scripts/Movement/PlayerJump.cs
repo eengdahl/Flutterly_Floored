@@ -59,7 +59,11 @@ public class PlayerJump : MonoBehaviour
         if (Physics.Raycast(crashRayObject.transform.position, -crashRayObject.transform.up, out crashHit, crashRayDistance)
             && crashHit.collider != null && crashHit.collider.CompareTag("Ground"))
         {
-            if (crashNotGroundedTimer >= 1.5f)
+            if (crashNotGroundedTimer >= 1 && crashNotGroundedTimer <= 2.5f)
+            {
+                anim.SetTrigger("SmoothCrash");
+            }
+            if (crashNotGroundedTimer >= 2.5f) //old 1.5f
             {
                 anim.SetTrigger("Crash");
             }
