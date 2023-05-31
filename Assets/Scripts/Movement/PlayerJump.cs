@@ -52,11 +52,12 @@ public class PlayerJump : MonoBehaviour
 
     void Update()
     {
+        //conflicts with climb. should check = if climbing, return
         RaycastHit crashHit;
-        if (Physics.Raycast(crashRayObject.transform.position, -crashRayObject.transform.up, out crashHit, crashRayDistance) 
+        if (Physics.Raycast(crashRayObject.transform.position, -crashRayObject.transform.up, out crashHit, crashRayDistance)
             && crashHit.collider != null && crashHit.collider.CompareTag("Ground"))
         {
-            if (crashNotGroundedTimer >= 1f)
+            if (crashNotGroundedTimer >= 1.5f)
             {
                 anim.SetTrigger("Crash");
             }

@@ -22,7 +22,7 @@ public class BirdSound : MonoBehaviour
         aS.clip = clipList[Random.Range(0, clipList.Count - 1)];
         aS.Play();
         randomTimer = Random.Range(5, 20);
-        animator.CrossFade(openBeak, 0, 1);
+        animator.CrossFade(openBeak, 0, 2);
         Invoke(nameof(MakeRandomNoise), randomTimer);
     }
 

@@ -140,7 +140,6 @@ public class PlayerMove : MonoBehaviour
             if (!flapLock)
             {
                 aS.volume = 2;
-                Debug.Log("ping");
               //  aS.PlayOneShot(flySound);
 
                 flapLock = true;
