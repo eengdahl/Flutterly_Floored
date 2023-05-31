@@ -36,12 +36,14 @@ public class PlayerJump : MonoBehaviour
     KitchenFan kitchenFan;
 
     [SerializeField]
+    BirdCableMovement climScript;
     public bool isGrounded;
     private Rigidbody rb;
 
 
     void Awake()
     {
+
         leftFoot = GameObject.Find("LeftFootTransform");
         rightFoot = GameObject.Find("RightFootTransform");
         crashRayObject = GameObject.Find("CrashRayTransform");
@@ -65,7 +67,10 @@ public class PlayerJump : MonoBehaviour
         }
         else
         {
-            crashNotGroundedTimer += Time.deltaTime;
+            if (!climScript.isClimbing)
+            {
+                crashNotGroundedTimer += Time.deltaTime;
+            }
         }
 
 
