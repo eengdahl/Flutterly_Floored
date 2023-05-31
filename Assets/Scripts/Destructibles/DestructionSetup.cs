@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class DestructionSetup : MonoBehaviour
@@ -11,6 +13,8 @@ public class DestructionSetup : MonoBehaviour
     public float explosionPower;
     public float explosionRadius;
     public float upwardModifier;
+
+    public float disablePhysicTimer = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +31,7 @@ public class DestructionSetup : MonoBehaviour
             part.gameObject.AddComponent<MeshCollider>();
             part.gameObject.GetComponent<MeshCollider>().convex = true;
             parts.Add(part.gameObject);
+            part.AddComponent<DestructableSleep>();
             part.GetComponent<Rigidbody>().velocity = transform.GetComponent<Rigidbody>().velocity;
         }
 
@@ -38,12 +43,22 @@ public class DestructionSetup : MonoBehaviour
         foreach(GameObject partObject in parts)
         {
             partObject.GetComponent<Rigidbody>().AddExplosionForce(explosionPower, transform.position, upwardModifier);
+            StartCoroutine(DisablePartPhysics(partObject));
+            StartCoroutine(DestroyParentPhysics());
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        IEnumerator DisablePartPhysics(GameObject partObject)
+        {
+            yield return new WaitForSeconds(disablePhysicTimer);
+            partObject.GetComponent<Rigidbody>().Sleep();
+            //Destroy(partObject.GetComponent<Rigidbody>());
+            partObject.tag = "Ground";
+        }
+
+        IEnumerator DestroyParentPhysics()
+        {
+            yield return new WaitForSeconds(disablePhysicTimer);
+            Destroy(rb);
+        }
     }
 }
