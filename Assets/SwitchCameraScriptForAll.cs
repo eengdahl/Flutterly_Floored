@@ -26,7 +26,6 @@ public class SwitchCameraScriptForAll : MonoBehaviour
         if (other.CompareTag("Player"))
         {
 
-            Invoke("SwitchCamOn", 0.5f);
 
             if (!locker)
             {
@@ -35,14 +34,15 @@ public class SwitchCameraScriptForAll : MonoBehaviour
                 Invoke(nameof(ResetFadeToBlack), 2);
                 locker = true;
             }
+            Invoke("SwitchCamOn", 0.5f);
             //    Invoke("SwitchCamera", 0.1f);
+        triggerVitrin.TriggerVitrinEvent();
 
         }
     }
     public void ResetFadeToBlack()
     {
         StartCoroutine(deathScript.FadeToBlack(false));
-        triggerVitrin.TriggerVitrinEvent();
     }
     private void OnTriggerExit(Collider other)
     {

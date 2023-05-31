@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TriggerCupboardEvent : MonoBehaviour
@@ -13,6 +14,7 @@ public class TriggerCupboardEvent : MonoBehaviour
     public GameObject blocker;
     public GameObject light0;
     public GameObject light1;
+    [SerializeField] GameObject player;
 
 
     // Start is called before the first frame update
@@ -27,17 +29,34 @@ public class TriggerCupboardEvent : MonoBehaviour
     {
         if (locker)
         {
-            mainLight.SetRoomDark();
-            blocker.SetActive(true);
-            vitrinCat.SetActive(true);
-            light0.SetActive(true);
-            light1.SetActive(true);
-            vitrinBrain = FindAnyObjectByType<VitrinBrain2>();
-            vitrinBrain.activeState = VitrinState.Wake;
-            switchControls.SwitchToNoInput();
+
+            StartCoroutine("TriggerOrderVitrin");
+            //mainLight.SetRoomDark();
+            //blocker.SetActive(true);
+            //vitrinCat.SetActive(true);
+            //light0.SetActive(true);
+            //light1.SetActive(true);
+            //vitrinBrain = FindAnyObjectByType<VitrinBrain2>();
+            //vitrinBrain.activeState = VitrinState.Wake;
+            //switchControls.SwitchToNoInput();
 
             locker = false;
         }
+    }
+    IEnumerator TriggerOrderVitrin()
+    {
+        mainLight.SetRoomDark();
+        blocker.SetActive(true);
+        vitrinCat.SetActive(true);
+        light0.SetActive(true);
+        light1.SetActive(true);
+        //Set player position 
+        player.transform.position = new Vector3(-138.61f, 10.667f, 100.3451f);
+        switchControls.SwitchToNoInput();
+        yield return new WaitForSeconds(1);
+        vitrinBrain = FindAnyObjectByType<VitrinBrain2>();
+        vitrinBrain.activeState = VitrinState.Wake;
+        yield return 0;
     }
 
     //private void OnTriggerEnter(Collider other)
