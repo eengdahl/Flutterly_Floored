@@ -12,7 +12,7 @@ public class HideNSeekBottles : MonoBehaviour
     GameObject leftBottle;
     GameObject rightBottle;
     public GameObject blocker;
-    public Animator anim;
+    private Animator anim;
     VitrinBrain2 vitrinBrain;
     BoxCollider parentCollider;
     private bool onceLock;
@@ -22,6 +22,7 @@ public class HideNSeekBottles : MonoBehaviour
 
     private void Start()
     {
+        anim = GetComponent<Animator>();
         leftBottle = GameObject.Find("PerfumeButtonLeft");
         rightBottle = GameObject.Find("PerfumeButtonRight");
         buttonReady = true;
@@ -38,6 +39,7 @@ public class HideNSeekBottles : MonoBehaviour
     {
         if (other.tag == "Player" && buttonReady)
         {
+
             aS.PlayOneShot(spray);
 
             if (!onceLock)
@@ -45,10 +47,11 @@ public class HideNSeekBottles : MonoBehaviour
                 vitrinBrain = FindAnyObjectByType<VitrinBrain2>();
                 onceLock = true;
             }
-            vitrinBrain = FindAnyObjectByType<VitrinBrain2>();
+            // vitrinBrain = FindAnyObjectByType<VitrinBrain2>();
             Debug.Log("sprutsprut");
+            anim.CrossFade("ParfumePuffDeflate", 0, 0);
             ButtonPush();
-            Invoke(nameof(ButtonReset),2);
+            Invoke(nameof(ButtonReset), 2);
         }
     }
 
@@ -88,18 +91,21 @@ public class HideNSeekBottles : MonoBehaviour
         catLives--;
         sprayPS.SetActive(true);
         Debug.Log("CatIsDiededGGEZ");
-        vitrinBrain.activeState = VitrinState.Exit;
-        vitrinBrain.catIsDead = true;
         Invoke(nameof(DestroyBlocker), 1);
+        buttonReady = false;
+
+        if (!vitrinBrain.catIsDead)
+        {
+            vitrinBrain.activeState = VitrinState.Exit;
+            vitrinBrain.catIsDead = true;
+        }
 
         //button push
-        buttonReady = false;
-        anim.CrossFade("PerfumeButtonPush", 0, 0);
     }
 
     private void ButtonReset()
     {
-        anim.CrossFade("PerfumeButtonInflate", 0, 0);
+        anim.CrossFade("ParfumePuffInflate", 0, 0);
         buttonReady = true;
         sprayPS.SetActive(false);
     }

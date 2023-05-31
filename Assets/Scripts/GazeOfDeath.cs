@@ -25,12 +25,14 @@ public class GazeOfDeath : MonoBehaviour
 
     private void Update()
     {
-        if(inKillerGazeOfDeath)
+        if (brain.catIsDead)
+            return;
+        if (inKillerGazeOfDeath)
         {
             RaycastHit hit;
             Physics.Raycast(visionCone.transform.position, objectInGaze.transform.position - visionCone.transform.position, out hit, distance, player);
-            Debug.DrawRay(visionCone.transform.position, objectInGaze.transform.position - visionCone.transform.position, Color.cyan, 500);
-            Debug.Log(hit.transform.gameObject.name);
+            //Debug.DrawRay(visionCone.transform.position, objectInGaze.transform.position - visionCone.transform.position, Color.cyan, 500);
+            //Debug.Log(hit.transform.gameObject.name);
             if (hit.collider.gameObject.CompareTag("Player"))
             {
                 playerDeath = objectInGaze.GetComponent<DeathScriptAndCheckPoint>();
@@ -44,11 +46,11 @@ public class GazeOfDeath : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             objectInGaze = other.gameObject;
             inKillerGazeOfDeath = true;
-            
+
         }
     }
 
