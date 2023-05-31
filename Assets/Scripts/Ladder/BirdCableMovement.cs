@@ -478,10 +478,10 @@ public class BirdCableMovement : MonoBehaviour
             if (birdTransform.position == targetPosition && !reachedTargetPosition)
             {
                 reachedTargetPosition = true;
+                yield return null;
                 
             }
 
-            yield return null;
         }
 
         isMovingP = false;
