@@ -13,7 +13,6 @@ public class Water : MonoBehaviour
     private float minWaterLevel;
 
     private AudioSource aS;
-    private int closestVertexIndex = -1;
 
     public float waterFillSpeed;
 
