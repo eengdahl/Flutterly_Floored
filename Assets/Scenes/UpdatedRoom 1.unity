@@ -4236,6 +4236,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -21.2
       objectReference: {fileID: 0}
+    - target: {fileID: 1844426271909337572, guid: 63eedf0d762d96448a20a8539e981d60, type: 3}
+      propertyPath: water
+      value: 
+      objectReference: {fileID: 346623213}
     - target: {fileID: 1844426273372110694, guid: 63eedf0d762d96448a20a8539e981d60, type: 3}
       propertyPath: m_LocalPosition.y
       value: 21.12
@@ -10628,6 +10632,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0021706542, y: 0.010519877, z: 0.003241132}
   m_Center: {x: -0.0021235005, y: 0.0051441276, z: -0.0015822422}
+--- !u!1 &346623213 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7869832949239899875, guid: 63eedf0d762d96448a20a8539e981d60, type: 3}
+  m_PrefabInstance: {fileID: 124659237}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &347656913
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22231,24 +22240,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.006020012, y: 0.029053926, z: 0.0029235214}
   m_Center: {x: -0.00070353074, y: 0.012122764, z: 0.0011105604}
---- !u!1 &627767037 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3087062772937290337, guid: 63eedf0d762d96448a20a8539e981d60, type: 3}
-  m_PrefabInstance: {fileID: 124659237}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &627767044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 627767037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 806adfefb40ebcd42a48cb6810f74f9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  birdDie: {fileID: 0}
 --- !u!64 &631811566
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -31141,6 +31132,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 273817837, guid: d3aa6efffce1a024dbdbb583249cd5ec, type: 3}
+      propertyPath: originalCamera
+      value: 
+      objectReference: {fileID: 1800927610}
     - target: {fileID: 414405437056148077, guid: d3aa6efffce1a024dbdbb583249cd5ec, type: 3}
       propertyPath: m_Name
       value: CatCatAMole2
