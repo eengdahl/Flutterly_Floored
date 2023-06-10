@@ -104,7 +104,7 @@ public class SimpleWater : MonoBehaviour
         mesh.vertices = vertices;
         mesh.RecalculateNormals();
         mesh.RecalculateBounds();
-        Debug.Log(vertices[10]);
+    
     }
 
     public float GetXSpeed()
