@@ -4320,6 +4320,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 6110522658444836569, guid: 63eedf0d762d96448a20a8539e981d60, type: 3}
+      propertyPath: birdDie
+      value: 
+      objectReference: {fileID: 8300000, guid: b6c49380a3f3bb9468e7fc9657af5cd4, type: 3}
     - target: {fileID: 6201146827709558766, guid: 63eedf0d762d96448a20a8539e981d60, type: 3}
       propertyPath: m_RootOrder
       value: 23
@@ -50159,6 +50163,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SleepingCat2
       objectReference: {fileID: 0}
+    - target: {fileID: 8113438066248232540, guid: 178d77287a7f74540936d56bb660a4f4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8922589926666269926, guid: 178d77287a7f74540936d56bb660a4f4, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -50210,6 +50218,129 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8113438066248232540, guid: 178d77287a7f74540936d56bb660a4f4, type: 3}
   m_PrefabInstance: {fileID: 1396821322}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &1396821326
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396821323}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -3958253429237767906, guid: 1eedbf0e16a6d7c43a284f36de6d54a9, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 41bab14fbd0496a4888c81a60210c450, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 2.05
+  MaxDistance: 25.769981
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.081999995
+      value: 1
+      inSlope: -12.199999
+      outSlope: -12.199999
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.16399999
+      value: 0.5
+      inSlope: -3.0499997
+      outSlope: -3.0499997
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.32799998
+      value: 0.25
+      inSlope: -0.7624999
+      outSlope: -0.7624999
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.65599996
+      value: 0.125
+      inSlope: -0.19062498
+      outSlope: -0.19062498
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.082032755
+      outSlope: -0.082032755
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!64 &1397621210
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -83643,7 +83774,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 664564392289328325, guid: 573bf33644211064799c1f4846f421b8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 799448474584730330, guid: 573bf33644211064799c1f4846f421b8, type: 3}
       propertyPath: anim

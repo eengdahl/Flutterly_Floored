@@ -9,7 +9,7 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
     public Vector3 respawnPoint;
     [SerializeField] Transform startRespawnPoint;
     [SerializeField] GameObject birdBody;
-    [SerializeField]BirdCableMovement birdCableMovement;
+    [SerializeField] BirdCableMovement birdCableMovement;
     [SerializeField] CameraFade cameraFade;
     public GameObject featherPuff;
     PlayerMove playerMoveScript;
@@ -34,10 +34,10 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
         respawnTransform = startRespawnPoint;
         rb = GetComponent<Rigidbody>();
         //respawnPoint = startRespawnPoint.position;
-        
+
     }
 
-    public void NewCheckpoint(Transform newRespawnPoint) 
+    public void NewCheckpoint(Transform newRespawnPoint)
     {
         respawnTransform = newRespawnPoint;
         //checkPoint = newCheckpoint;
@@ -50,6 +50,7 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
         {
             resetCatAMole.ResetSpoon();
             canDie = false;
+            aS.volume = 1;
             aS.PlayOneShot(death);
             // Fade();
             //Invoke(nameof(Fade), 1f);
@@ -71,6 +72,7 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
     }
     void ResetRB()
     {
+        aS.volume = 0.8f;
         birdBody.transform.rotation = transform.rotation;
         rb.isKinematic = false;
     }
