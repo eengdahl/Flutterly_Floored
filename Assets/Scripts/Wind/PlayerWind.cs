@@ -71,6 +71,7 @@ public class PlayerWind : MonoBehaviour
         inWindZone = false;
         rb.mass = oldMass;
         jumpScript.enabled = true;
+        flyScript.speed = 0;
     }
     //public void Fly()
     //{

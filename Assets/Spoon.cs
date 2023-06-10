@@ -21,6 +21,11 @@ public class Spoon : MonoBehaviour
     private bool isOutOfBounds;
     private float outOfBoundsTimer;
 
+
+    //Sounds for pick up
+    [SerializeField] AudioClip pickUpSound;
+    AudioSource aS;
+
     public void ResetSpoon()
     {
         sugarFilled = false;
@@ -31,6 +36,7 @@ public class Spoon : MonoBehaviour
 
     private void Start()
     {
+        aS = GetComponent<AudioSource>();
         startPosition = transform.position;
         startRotation = transform.rotation;
         player = GameObject.FindGameObjectWithTag("Player");
@@ -72,12 +78,16 @@ public class Spoon : MonoBehaviour
 
     public void FillSpoon()
     {
+        //ljud för pick up
+        aS.clip = pickUpSound;
+        aS.Play();
         filling.SetActive(true);
         isFull = true;
     }
 
     public void EmptySpoon()
     {
+        
         filling.SetActive(false);
         isFull = false;
         if (milkInSpoon == true) milkInSpoon = false;

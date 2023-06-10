@@ -7,6 +7,8 @@ public class PickUpSlev : MonoBehaviour
     private GameObject heldItem; // The item currently being held by the bird
     private Rigidbody itemRb; // The rigidbody component of the held item
     //Vector3 holdRotation; // New variable for the rotation of the hold point
+    [SerializeField]DisplayM2 slevPickUpTutorial;
+
     void Start()
     {
         //holdPoint.rotation = holdRotation;
@@ -50,6 +52,8 @@ public class PickUpSlev : MonoBehaviour
                 heldItem.transform.SetParent(holdPoint);
                 heldItem.transform.localPosition = Vector3.zero;
                 heldItem.transform.rotation = holdPoint.rotation;
+                slevPickUpTutorial.show = false;
+                slevPickUpTutorial.DeactivateM2();
             }
         }
 

@@ -18,11 +18,15 @@ public class LoadingCatapult : MonoBehaviour
     private Vector3 sizeToScale;
 
 
+    //Sounds for empty mått
+    [SerializeField] AudioClip emptySound;
+    AudioSource aS;
     private void Start()
     {
         startScale = Vector3.one;
         sizeToScale = startScale / ingredientsNeeded;
         scaleableObject.transform.localScale = Vector3.zero;
+        aS = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -62,7 +66,9 @@ public class LoadingCatapult : MonoBehaviour
 
             //spoon.isFull = false;
             spoon.EmptySpoon();
-
+            //ljud för att tömma spoon
+            aS.clip = emptySound;
+            aS.Play();
             if (isFlourFilled && isSugarFilled && isMilkFilled)
             {
                 canShoot = true;

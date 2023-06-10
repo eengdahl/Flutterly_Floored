@@ -11,7 +11,7 @@ public class TestFly : MonoBehaviour
     
     private PlayerControls input = null;
     private Rigidbody rb;
-    private float speed;
+    public float speed;
 
 
     bool flyMovementActive;
@@ -39,7 +39,7 @@ public class TestFly : MonoBehaviour
 
 
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
 
         if (!flyMovementActive) return;
@@ -59,7 +59,7 @@ public class TestFly : MonoBehaviour
         //transform.Rotate(rotation);
 
         // Calculate acceleration based on input
-        float accelerationInput = 1;//input.WindZoneMovement.Glide.ReadValue<float>() - input.WindZoneMovement.Dive.ReadValue<float>();
+        float accelerationInput = 1f;//input.WindZoneMovement.Glide.ReadValue<float>() - input.WindZoneMovement.Dive.ReadValue<float>();
         speed = Mathf.Clamp(speed + accelerationInput * acceleration, 0f, maxSpeed);
 
         // Set glider velocity to match speed and angle
