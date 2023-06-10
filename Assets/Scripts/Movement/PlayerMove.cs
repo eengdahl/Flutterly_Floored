@@ -212,11 +212,12 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
+        UpdateTargetDirection();
 
         //stepClimb();
         virtualCamera.m_Lens.FieldOfView = fovFloat;
 
-        if (inputsXZ == Vector3.zero && !jump.hasCanceledGlide && !jump.gliding && !jump.canCrash && !climb.isClimbing)
+        if (inputsXZ == Vector3.zero && !jump.hasCanceledGlide && !jump.gliding && !jump.canCrash && !climb.isClimbing && jump.isGrounded)
         {
             stringToPlay = Idle;
             fovFloat = Mathf.MoveTowards(fovFloat, 60, 10 * Time.deltaTime);
@@ -259,14 +260,14 @@ public class PlayerMove : MonoBehaviour
         //in air
         if (!jump.isGrounded)
         {
-            if (!jump.gliding && rb.velocity.y < -5)
-            {
-                stringToPlay = glideFail;
-            }
-            if (jump.hasCanceledGlide && rb.velocity.y < -5)
-            {
-                stringToPlay = glideFail;
-            }
+            //if (!jump.gliding && rb.velocity.y < -5)
+            //{
+            //    //stringToPlay = glideFail;
+            //}
+            //if (jump.hasCanceledGlide && rb.velocity.y < -5)
+            //{
+            //    //stringToPlay = glideFail;
+            //}
 
             if (!playerWindScrips.inWindZone)
             {
@@ -284,7 +285,6 @@ public class PlayerMove : MonoBehaviour
         //+(Camera.main.transform.right.normalized * moveInput.x)
 
 
-        UpdateTargetDirection();
 
         if (inputsXZ != Vector3.zero && targetDirection.magnitude > 0.1f)
         {
