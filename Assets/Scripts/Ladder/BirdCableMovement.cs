@@ -81,6 +81,8 @@ public class BirdCableMovement : MonoBehaviour
     private bool shouldSetBirdPosition;
     private Coroutine birdPositionCoroutine;
 
+    M2tutorial m2Tutorial; 
+
     private void OnEnable()
     {
         input.Enable();
@@ -93,7 +95,7 @@ public class BirdCableMovement : MonoBehaviour
     private void Awake()
     {
         input = new PlayerControls();
-
+        m2Tutorial = FindObjectOfType<M2tutorial>();
 
         downSpeedMin = downSpeed;
         playerMoveScript = GetComponent<PlayerMove>();
@@ -308,6 +310,8 @@ public class BirdCableMovement : MonoBehaviour
 
     public void EnableClimbing()
     {
+        m2Tutorial.hasDoneClimbing = true;
+        
         SetDampeningHigh();
         shouldSetBirdPosition = true;
         // Disable regular movement controls
