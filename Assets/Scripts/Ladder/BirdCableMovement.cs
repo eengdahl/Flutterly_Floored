@@ -17,6 +17,8 @@ public class BirdCableMovement : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera cAmera;
     PlayerMove playerMoveScript;
 
+    [SerializeField]LayerMask groundLayer;
+
     [Header("Variables")]
     public float forcePower = 20f;
     public float speed = 5f;
@@ -156,11 +158,11 @@ public class BirdCableMovement : MonoBehaviour
         }
         //Raycast for up&down
         RaycastHit hitUp;
-        if (Physics.Raycast(raycastUp.transform.position, raycastUp.transform.forward, out hitUp, 0.4f))
+        if (Physics.Raycast(raycastUp.transform.position, raycastUp.transform.forward, out hitUp, 0.4f,groundLayer))
             canGoUp = false;
         else canGoUp = true;
         RaycastHit hitDown;
-        if (Physics.Raycast(raycastDown.transform.position, raycastDown.transform.forward, out hitDown, 0.4f))
+        if (Physics.Raycast(raycastDown.transform.position, raycastDown.transform.forward, out hitDown, 0.4f,groundLayer)) 
             canGoDown = false;
         else canGoDown = true;
         Debug.Log(canGoDown);
@@ -169,34 +171,34 @@ public class BirdCableMovement : MonoBehaviour
         Debug.DrawRay(raycastDown.transform.position, raycastDown.transform.forward, Color.red);
 
         //Raycast for rotation
-        RaycastHit hitOne;
+        //RaycastHit hitOne;
 
-        if (Physics.Raycast(raycastStartOne.transform.position, raycastStartOne.transform.forward, out hitOne, 0.2f))
-        {
-            canTurnLeft = false;
-        }
-        else
-        {
-            canTurnLeft = true;
-        }
-        RaycastHit hitTwo;
-        if (Physics.Raycast(raycastStartTwo.transform.position, raycastStartTwo.transform.forward, out hitTwo, 0.2f))
-        {
-            canTurnRight = false;
-        }
-        else
-        {
-            canTurnRight = true;
-        }
+        //if (Physics.Raycast(raycastStartOne.transform.position, raycastStartOne.transform.forward, out hitOne, 0.1f))
+        //{
+        //    canTurnLeft = false;
+        //}
+        //else
+        //{
+        //    canTurnLeft = true;
+        //}
+        //RaycastHit hitTwo;
+        //if (Physics.Raycast(raycastStartTwo.transform.position, raycastStartTwo.transform.forward, out hitTwo, 0.1f))
+        //{
+        //    canTurnRight = false;
+        //}
+        //else
+        //{
+        //    canTurnRight = true;
+        //}
 
-        if (!canTurnLeft || !canTurnRight)
-        {
-            inWall = true;
-        }
-        else
-        {
-            inWall = false;
-        }
+        //if (!canTurnLeft || !canTurnRight)
+        //{
+        //    inWall = true;
+        //}
+        //else
+        //{
+        //    inWall = false;
+        //}
         Debug.DrawRay(raycastStartOne.transform.position, raycastStartOne.transform.forward, Color.red);
         Debug.DrawRay(raycastStartTwo.transform.position, raycastStartTwo.transform.forward, Color.red);
 
@@ -326,6 +328,7 @@ public class BirdCableMovement : MonoBehaviour
 
     public void DisableClimbing()
     {
+        transform.position += new Vector3(0, 0.2f, 0);
         SetDampeningZero();
         //reachedTargetPosition = false;
         playerMoveScript.groundMovement = true;
@@ -359,7 +362,7 @@ public class BirdCableMovement : MonoBehaviour
             StopCoroutine(birdPositionCoroutine);
             birdPositionCoroutine = null;
         }
-
+        
 
         StartCoroutine(RotateBird(0,birdBody.transform));
         Invoke("SetReadyToClimb", 0.6f);

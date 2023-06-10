@@ -29,7 +29,7 @@ public class PushPlayerUp : MonoBehaviour
         bool frontRaycast = Physics.Raycast(lowerRayOrigin.position, lowerRayOrigin.forward, out frontHit, raycastDistance, groundLayer);
 
         RaycastHit higherHit;
-        bool higherRaycast = Physics.Raycast(higherRayOrigin.position, higherRayOrigin.forward, out higherHit, raycastDistance, groundLayer);
+        bool higherRaycast = Physics.Raycast(higherRayOrigin.position, higherRayOrigin.forward, out higherHit, raycastDistance + 0.1f, groundLayer);
 
         // Check the results of the raycasts
         if (frontRaycast)

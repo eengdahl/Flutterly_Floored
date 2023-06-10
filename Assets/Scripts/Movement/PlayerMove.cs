@@ -24,6 +24,7 @@ public class PlayerMove : MonoBehaviour
     private float lerpDuration = 3;
     private Rigidbody rb;
     private PlayerControls playerControls;
+    private bool interact;
     private Vector2 moveInput;
     private Vector2 mouseDelta;
     private Vector3 inputsXZ;
@@ -110,6 +111,14 @@ public class PlayerMove : MonoBehaviour
         mouseDelta = context.ReadValue<Vector2>();
         MovementCommunicator.instance.NotifyLookListeners(mouseDelta.x);
     }
+
+    public void Interact(InputAction.CallbackContext context)
+    {
+        if (jump.isGrounded)
+        {
+            animator.CrossFade("Peck", 0, 0);
+        }
+    }
     private void Update()
     {
 
@@ -151,10 +160,14 @@ public class PlayerMove : MonoBehaviour
             stringToPlay = Impact;
         }
 
+        if (jump.coyoteTimeCounter < 0 && activeString != Jump && !jump.gliding)
+        {
+            stringToPlay = Fall;
+        }
+
         if (!jump.isGrounded && !jump.gliding && rb.velocity.y > 0)
         {
             stringToPlay = Jump;
-
         }
 
         if (climb.isClimbing)
@@ -171,6 +184,10 @@ public class PlayerMove : MonoBehaviour
             }
             else if (climb.isMoving == 0)
             {
+                if (stringToPlay != ClimbLeft && stringToPlay != ClimbRight && stringToPlay != leftIdle && stringToPlay != rightIdle)
+                {
+                    stringToPlay = rightIdle;
+                }
                 animator.speed = 1;
                 if (stringToPlay == ClimbLeft)
                 {
@@ -182,6 +199,8 @@ public class PlayerMove : MonoBehaviour
                 }
             }
         }
+
+
         if (activeString != stringToPlay)
         {
             aS.Stop();
