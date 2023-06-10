@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ActivateButtonsMap : MonoBehaviour
@@ -25,4 +26,7 @@ public class ActivateButtonsMap : MonoBehaviour
     {
         onOrOff[onOffIndex] = true;
     }
+
 }
+
+
