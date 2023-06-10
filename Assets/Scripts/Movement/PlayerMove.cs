@@ -24,6 +24,7 @@ public class PlayerMove : MonoBehaviour
     private float lerpDuration = 3;
     private Rigidbody rb;
     private PlayerControls playerControls;
+    private bool interact;
     private Vector2 moveInput;
     private Vector2 mouseDelta;
     private Vector3 inputsXZ;
@@ -110,6 +111,12 @@ public class PlayerMove : MonoBehaviour
         mouseDelta = context.ReadValue<Vector2>();
         MovementCommunicator.instance.NotifyLookListeners(mouseDelta.x);
     }
+
+    public void Interact(InputAction.CallbackContext context)
+    {
+        //stringToPlay = peck;
+        animator.CrossFade("Peck", 0, 0);
+    }
     private void Update()
     {
 
@@ -182,6 +189,8 @@ public class PlayerMove : MonoBehaviour
                 }
             }
         }
+
+
         if (activeString != stringToPlay)
         {
             aS.Stop();
