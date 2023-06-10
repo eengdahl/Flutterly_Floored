@@ -2669,7 +2669,7 @@ GameObject:
   - component: {fileID: 65454934}
   - component: {fileID: 65454933}
   m_Layer: 0
-  m_Name: m2Cube (1)
+  m_Name: "m2Cube M\xE5tt"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2688,6 +2688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m2Canvas: {fileID: 878191069}
+  show: 1
 --- !u!65 &65454934
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33485,6 +33486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m2Canvas: {fileID: 878191069}
+  show: 1
 --- !u!65 &941620392
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38998,6 +39000,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 265787621, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
+      propertyPath: slevPickUpTutorial
+      value: 
+      objectReference: {fileID: 65454933}
     - target: {fileID: 753855069, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
       propertyPath: cAmera
       value: 
@@ -39021,6 +39027,14 @@ PrefabInstance:
     - target: {fileID: 753855069, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
       propertyPath: movementDuration
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1018667374, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
+      propertyPath: maxSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1018667374, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
+      propertyPath: acceleration
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1884566470, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
       propertyPath: m_Enabled
@@ -65004,6 +65018,10 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 126
       objectReference: {fileID: 0}
+    - target: {fileID: 5979764780831557060, guid: 6b0f5bde0e3b0804ba5a06d60968b4be, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7737388426003640400, guid: 6b0f5bde0e3b0804ba5a06d60968b4be, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -65048,7 +65066,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -139.214
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1316063394890021449, guid: 6b0f5bde0e3b0804ba5a06d60968b4be, type: 3}
+    - {fileID: 1647170616309270010, guid: 6b0f5bde0e3b0804ba5a06d60968b4be, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6b0f5bde0e3b0804ba5a06d60968b4be, type: 3}
 --- !u!4 &1741806066 stripped
 Transform:
