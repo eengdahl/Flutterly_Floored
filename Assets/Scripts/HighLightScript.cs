@@ -6,14 +6,15 @@ public class HighLightScript : MonoBehaviour
 
     public Transform closestObjectTransform;
     public Material highlightMaterial;
-    [SerializeField]BirdCableMovement birdCableMovement;
+    public Material higlightMaterialTools;
+    [SerializeField] BirdCableMovement birdCableMovement;
     private List<GameObject> objectsInTrigger = new List<GameObject>();
     private GameObject closestObject;
     private Dictionary<GameObject, Material> originalMaterials = new Dictionary<GameObject, Material>();
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Rope") || other.gameObject.CompareTag("Handle")|| other.gameObject.CompareTag("HighLightMe") && !birdCableMovement.isClimbing)
+        if (other.gameObject.CompareTag("Rope") || other.gameObject.CompareTag("Handle") || other.gameObject.CompareTag("HighLightMe") || other.gameObject.CompareTag("HighLightMeTools") && !birdCableMovement.isClimbing)
         {
             objectsInTrigger.Add(other.gameObject);
 
@@ -22,11 +23,13 @@ public class HighLightScript : MonoBehaviour
                 originalMaterials.Add(other.gameObject, other.gameObject.GetComponent<Renderer>().material);
             }
         }
+
     }
+
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Rope")|| other.gameObject.CompareTag("Handle") || other.gameObject.CompareTag("HighLightMe"))
+        if (other.gameObject.CompareTag("Rope") || other.gameObject.CompareTag("Handle") || other.gameObject.CompareTag("HighLightMe") || other.gameObject.CompareTag("HighLightMeTools"))
         {
             objectsInTrigger.Remove(other.gameObject);
 
@@ -55,7 +58,10 @@ public class HighLightScript : MonoBehaviour
                 newClosestObject = obj;
             }
         }
-
+        if (birdCableMovement.isClimbing &&  closestObject != null)
+        {
+            RestoreOriginalMaterial(closestObject);
+        }
         // If there is a closest object, change its material to highlightMaterial
         // and change the previous closest object's material back to its original material
         if (newClosestObject != null && newClosestObject != closestObject)
@@ -66,7 +72,18 @@ public class HighLightScript : MonoBehaviour
             }
 
             closestObject = newClosestObject;
-            closestObject.GetComponent<Renderer>().material = highlightMaterial;
+            if (closestObject.tag != null)
+            {
+                if (closestObject.CompareTag("HighLightMeTools"))
+                {
+                    closestObject.GetComponent<Renderer>().material = higlightMaterialTools;
+                }
+                else
+                {
+
+                    closestObject.GetComponent<Renderer>().material = highlightMaterial;
+                }
+            }
         }
         // If there is no closest object, change the previous closest object's material back to its original material
         else if (newClosestObject == null && closestObject != null)

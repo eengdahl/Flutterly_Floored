@@ -5023,7 +5023,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 208d1b3c98cc87d43878b48765f809ec, type: 3}
       propertyPath: m_TagString
-      value: HighLightMe
+      value: HighLightMeTools
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 208d1b3c98cc87d43878b48765f809ec, type: 3}
@@ -11512,6 +11512,10 @@ PrefabInstance:
     - target: {fileID: 1880424183472332589, guid: 569785f95f282324393a2b2762aff75f, type: 3}
       propertyPath: m_TagString
       value: ClimbingPart
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321610444814477449, guid: 569785f95f282324393a2b2762aff75f, type: 3}
+      propertyPath: m_TagString
+      value: HighLightMe
       objectReference: {fileID: 0}
     - target: {fileID: 2556803722410792675, guid: 569785f95f282324393a2b2762aff75f, type: 3}
       propertyPath: m_TagString
@@ -33065,7 +33069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b72d4b7d7af9c954d931b04a7fba7609, type: 3}
       propertyPath: m_TagString
-      value: HighLightMe
+      value: HighLightMeTools
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b72d4b7d7af9c954d931b04a7fba7609, type: 3}
@@ -38950,6 +38954,10 @@ PrefabInstance:
     - target: {fileID: 265787620, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
       propertyPath: highlightMaterial
       value: 
+      objectReference: {fileID: 2100000, guid: ff13767d687286144ab1c422f7ebcad4, type: 2}
+    - target: {fileID: 265787620, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
+      propertyPath: higlightMaterialTools
+      value: 
       objectReference: {fileID: 2100000, guid: dec29c0ac5f968847afa44239802f7e7, type: 2}
     - target: {fileID: 265787621, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
       propertyPath: slevPickUpTutorial
@@ -39969,6 +39977,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1069529185}
   m_Mesh: {fileID: -7095231422606553871, guid: 297e351ec4e028f4d8ac43163ab482ad, type: 3}
+--- !u!1 &1070145976 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2321610444814477449, guid: 569785f95f282324393a2b2762aff75f, type: 3}
+  m_PrefabInstance: {fileID: 2807308759218284211}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1070145980
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070145976}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3752336042197663580, guid: 4ba9cd66ff2316544a2fa8b3a9c7c8b3, type: 3}
 --- !u!1001 &1072318210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54008,7 +54035,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: be029e0916926d5498ef6efd2b3d61f9, type: 3}
       propertyPath: m_TagString
-      value: HighLightMe
+      value: HighLightMeTools
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be029e0916926d5498ef6efd2b3d61f9, type: 3}
@@ -70363,7 +70390,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: cf4f00b89f83a9e45936249c83186c89, type: 2}
     - target: {fileID: 7503526307140469533, guid: b47caa566353bbe4682779d078174b38, type: 3}
       propertyPath: m_TagString
-      value: HighLightMe
+      value: HighLightMeTools
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b47caa566353bbe4682779d078174b38, type: 3}
@@ -79661,6 +79688,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: ClimbingPart
       objectReference: {fileID: 0}
+    - target: {fileID: 2321610444814477449, guid: 569785f95f282324393a2b2762aff75f, type: 3}
+      propertyPath: m_TagString
+      value: HighLightMe
+      objectReference: {fileID: 0}
     - target: {fileID: 2556803722410792675, guid: 569785f95f282324393a2b2762aff75f, type: 3}
       propertyPath: m_TagString
       value: ClimbingPart
@@ -85066,6 +85097,10 @@ PrefabInstance:
     - target: {fileID: 1880424183472332589, guid: 569785f95f282324393a2b2762aff75f, type: 3}
       propertyPath: m_TagString
       value: ClimbingPart
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321610444814477449, guid: 569785f95f282324393a2b2762aff75f, type: 3}
+      propertyPath: m_TagString
+      value: HighLightMe
       objectReference: {fileID: 0}
     - target: {fileID: 2687910002834212493, guid: 569785f95f282324393a2b2762aff75f, type: 3}
       propertyPath: m_TagString
