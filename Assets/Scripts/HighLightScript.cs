@@ -6,14 +6,14 @@ public class HighLightScript : MonoBehaviour
 
     public Transform closestObjectTransform;
     public Material highlightMaterial;
-
+    [SerializeField]BirdCableMovement birdCableMovement;
     private List<GameObject> objectsInTrigger = new List<GameObject>();
     private GameObject closestObject;
     private Dictionary<GameObject, Material> originalMaterials = new Dictionary<GameObject, Material>();
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Rope") || other.gameObject.CompareTag("Handle")|| other.gameObject.CompareTag("HighLightMe"))
+        if (other.gameObject.CompareTag("Rope") || other.gameObject.CompareTag("Handle")|| other.gameObject.CompareTag("HighLightMe") && !birdCableMovement.isClimbing)
         {
             objectsInTrigger.Add(other.gameObject);
 
