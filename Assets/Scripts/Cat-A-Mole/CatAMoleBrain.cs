@@ -1,6 +1,7 @@
 using HoudiniEngineUnity;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum MoleStates
@@ -17,10 +18,16 @@ public class CatAMoleBrain : MonoBehaviour
    
 
     public MoleStates moleState;
-    private float catTimerDone;
+    public float catTimerDone;
     public bool hitting = false;
 
     void Awake()
+    {
+        catTimerDone = 3.0f;
+        NextState();
+    }
+
+    void OnEnable()
     {
         catTimerDone = 3.0f;
         NextState();

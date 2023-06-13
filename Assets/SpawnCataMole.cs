@@ -10,14 +10,19 @@ public class SpawnCataMole : MonoBehaviour
     [SerializeField] GameObject hitSpots;
     [SerializeField] GameObject idleCat;
     [SerializeField] GameObject player;
+    [SerializeField] GameObject floor;
 
     [SerializeField] float distanceToCat;
+    [SerializeField] float heightToCat;
+    [SerializeField] float despawnDistance;
+    [SerializeField] float despawnHeight;
     [SerializeField] float visableDistance;
 
 
     //[SerializeField] GameObject legs;
     bool hasBeenActivated;
     bool hasSpawned;
+
     private void Start()
     {
         hasBeenActivated = false;
@@ -27,19 +32,22 @@ public class SpawnCataMole : MonoBehaviour
 
     private void Update()
     {
-
+        CalculateDistance();
         if (hasBeenActivated)
         {
-            CalculateDistance();
-            if (distanceToCat > visableDistance && hasSpawned)
+
+            if (distanceToCat > despawnDistance && heightToCat < despawnHeight && hasSpawned)
             {
+                //Debug.Log("running Despawn");
                 DespawnCat();
                 idleCat.SetActive(false);
                 hasSpawned = false;
                 hitSpots.GetComponent<HitZones>().attackAnimator.SetBool("Idling", false);
+                hitSpots.GetComponent<HitZones>().catIsActive = false;
             }
-            else if (distanceToCat < visableDistance && !hasSpawned)
+            else if (distanceToCat < despawnDistance && heightToCat > despawnHeight && !hasSpawned)
             {
+                //Debug.Log("Running Spawn");
                 SpawnCat();
                 idleCat.SetActive(true);
                 hasSpawned = true;
@@ -66,7 +74,7 @@ public class SpawnCataMole : MonoBehaviour
     {
         hitSpots.SetActive(true);
         cat.SetActive(true);
-        Debug.Log("Spawned Cat");
+        //Debug.Log("Spawned Cat");
     }
 
     void DespawnCat()
@@ -78,7 +86,10 @@ public class SpawnCataMole : MonoBehaviour
     private void CalculateDistance()
     {
         distanceToCat = (player.transform.position - cat.transform.position).magnitude;
-        visableDistance = (transform.position - cat.transform .position).magnitude;
+        heightToCat = player.transform.position.y - cat.transform.position.y;
+        despawnDistance = (transform.position - cat.transform .position).magnitude;
+        despawnDistance += 5; //little longer than spawn detect area
+        despawnHeight = (floor.transform.position.y - cat.transform.position.y) / 2;
     }
     
 }
