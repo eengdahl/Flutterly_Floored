@@ -332,7 +332,7 @@ public class BirdCableMovement : MonoBehaviour
 
     public void DisableClimbing()
     {
-        transform.position += new Vector3(0, 0.2f, 0);
+       // transform.position += new Vector3(0, 0.2f, 0);
         SetDampeningZero();
         //reachedTargetPosition = false;
         playerMoveScript.groundMovement = true;

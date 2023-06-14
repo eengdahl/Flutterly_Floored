@@ -5,6 +5,11 @@ public class HighLightScript : MonoBehaviour
 {
 
     public Transform closestObjectTransform;
+
+
+
+    //Materials
+    public Material highlightMaterialPlantSmall;
     public Material highlightMaterial;
     public Material higlightMaterialTools;
     [SerializeField] BirdCableMovement birdCableMovement;
@@ -14,7 +19,7 @@ public class HighLightScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Rope") || other.gameObject.CompareTag("Handle") || other.gameObject.CompareTag("HighLightMe") || other.gameObject.CompareTag("HighLightMeTools") && !birdCableMovement.isClimbing)
+        if (other.gameObject.CompareTag("Rope") || other.gameObject.CompareTag("Handle") || other.gameObject.CompareTag("HighLightMe") || other.gameObject.CompareTag("HighLightMeTools")|| other.gameObject.CompareTag("HighLightPlantSmall") && !birdCableMovement.isClimbing)
         {
             objectsInTrigger.Add(other.gameObject);
 
@@ -29,7 +34,7 @@ public class HighLightScript : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Rope") || other.gameObject.CompareTag("Handle") || other.gameObject.CompareTag("HighLightMe") || other.gameObject.CompareTag("HighLightMeTools"))
+        if (other.gameObject.CompareTag("Rope") || other.gameObject.CompareTag("Handle") || other.gameObject.CompareTag("HighLightMe") || other.gameObject.CompareTag("HighLightMeTools")|| other.gameObject.CompareTag("HighLightPlantSmall"))
         {
             objectsInTrigger.Remove(other.gameObject);
 
@@ -78,9 +83,13 @@ public class HighLightScript : MonoBehaviour
                 {
                     closestObject.GetComponent<Renderer>().material = higlightMaterialTools;
                 }
+                else if (closestObject.CompareTag("HighLightPlantSmall"))
+                {
+                    closestObject.GetComponent<Renderer>().material = highlightMaterialPlantSmall;
+
+                }
                 else
                 {
-
                     closestObject.GetComponent<Renderer>().material = highlightMaterial;
                 }
             }
