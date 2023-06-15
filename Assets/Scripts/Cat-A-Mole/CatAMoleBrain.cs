@@ -21,11 +21,11 @@ public class CatAMoleBrain : MonoBehaviour
     public float catTimerDone;
     public bool hitting = false;
 
-    void Awake()
-    {
-        catTimerDone = 3.0f;
-        NextState();
-    }
+    //void Awake()
+    //{
+    //    catTimerDone = 3.0f;
+    //    NextState();
+    //}
 
     void OnEnable()
     {
