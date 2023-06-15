@@ -8,6 +8,7 @@ public class FanPowerButton : MonoBehaviour
     public bool buttonPushed;
     bool canBePushed;
     Animator animator;
+    AudioSource aS;
     [SerializeField]Fan fanScript;
 
     [SerializeField] bool isSpeedButton;
@@ -15,7 +16,8 @@ public class FanPowerButton : MonoBehaviour
     [SerializeField] bool isPowerButton;
     
     private void Start()
-    {       
+    {   
+        aS = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         canBePushed = true;
     }
@@ -28,7 +30,7 @@ public class FanPowerButton : MonoBehaviour
             if (canBePushed)
             {
                 animator.SetBool("ButtonPushed", true);
-
+                aS.Play();
                 ButtonPushed();
                 canBePushed = false;
             }

@@ -42,6 +42,6 @@ public class FlameFlimmer : MonoBehaviour
         }
 
         // Use the current value for whatever you need
-        Debug.Log(currentValue);
+      //  Debug.Log(currentValue);
     }
 }

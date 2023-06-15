@@ -126,6 +126,8 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift) && jump.isGrounded)
         {
             maxSpeed = 5;
+
+
         }
         //if not holding sprint on ground, walk
         if (!Input.GetKey(KeyCode.LeftShift) && jump.isGrounded)

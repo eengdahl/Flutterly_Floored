@@ -29,6 +29,12 @@ public class DeathCube : MonoBehaviour
                 Debug.Log("Input CatKillingPlayerSound here");
             }
 
+            if (gameObject.CompareTag("Water"))
+            {
+                clipToPlay = horribleDeathSounds[1];
+                audioSource.PlayOneShot(clipToPlay);
+            }
+
             playerDeath = other.GetComponent<DeathScriptAndCheckPoint>();
             other.GetComponent<Rigidbody>().isKinematic = false;
             playerDeath.Die();

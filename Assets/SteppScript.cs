@@ -6,6 +6,7 @@ public class SteppScript : MonoBehaviour
 {
     AudioSource aS;
     public AudioClip step;
+    public AudioClip sprint;
     private void Start()
     {
         aS = GetComponent<AudioSource>();
@@ -21,5 +22,11 @@ public class SteppScript : MonoBehaviour
     public void StopStepSound()
     {
         aS.Stop();
+    }
+
+    public void PlaySprint()
+    {
+        aS.pitch = Random.Range(2f, 3f);
+        aS.PlayOneShot(sprint);
     }
 }
