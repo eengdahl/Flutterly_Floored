@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,6 @@ public class DeathCube : MonoBehaviour
 
     private AudioSource audioSource;
     private AudioClip clipToPlay;
-
 
     DeathScriptAndCheckPoint playerDeath;
 
@@ -31,13 +31,24 @@ public class DeathCube : MonoBehaviour
 
             if (gameObject.CompareTag("Water"))
             {
-                clipToPlay = horribleDeathSounds[1];
+                Buoyancy[] buoyancyObjects = gameObject.transform.parent.GetComponentsInChildren<Buoyancy>();
                 audioSource.PlayOneShot(clipToPlay);
+
+                foreach(Buoyancy obj in buoyancyObjects)
+                {
+                    StartCoroutine(DelayPlateReset(obj));
+                }
             }
 
             playerDeath = other.GetComponent<DeathScriptAndCheckPoint>();
             other.GetComponent<Rigidbody>().isKinematic = false;
             playerDeath.Die();
+        }
+
+        IEnumerator DelayPlateReset(Buoyancy obj)
+        {
+            yield return new WaitForSeconds(2);
+            obj.ResetPosition();
         }
     }
 }

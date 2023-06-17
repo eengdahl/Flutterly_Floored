@@ -94,6 +94,12 @@ public class Buoyancy : MonoBehaviour
         water.GetComponent<Water>().isDraining = true;
     }
 
+    //public IEnumerator DelayedReset()
+    //{
+    //    yield return new WaitForSeconds(2);
+    //    ResetPosition();
+    //}
+
     public void ResetPosition()
     {
         transform.position = new Vector3(startPosition.x, transform.position.y, startPosition.z);
