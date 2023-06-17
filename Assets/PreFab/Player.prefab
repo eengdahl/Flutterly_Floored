@@ -583,6 +583,7 @@ MonoBehaviour:
   coyoteTime: 0.3
   airTime: 0
   coyoteTimeCounter: 1
+  climScript: {fileID: 0}
   isGrounded: 0
 --- !u!114 &2793752973741495328
 MonoBehaviour:
@@ -677,6 +678,7 @@ MonoBehaviour:
   glideDrag: 0.5
   diveDrag: 0.2
   rotationSpeed: 0.2
+  speed: 0
 --- !u!114 &1323621769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -705,6 +707,10 @@ MonoBehaviour:
   cameraa: {fileID: 0}
   birdBody: {fileID: 8137033104398584152}
   jumpScript: {fileID: 2793752973741495335}
+  cAmera: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
   forcePower: 10000
   speed: 2
   isMoving: 0
@@ -1502,8 +1508,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.4
-      minScalar: 0.2
+      scalar: 0.6
+      minScalar: 0.4
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -13984,6 +13990,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   step: {fileID: 8300000, guid: a52a180b55d583e4489633e639d8ab50, type: 3}
+  sprint: {fileID: 0}
 --- !u!1001 &2793752975321627401
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14104,7 +14111,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closestObjectTransform: {fileID: 1787557484}
+  highlightMaterialPlantSmall: {fileID: 0}
   highlightMaterial: {fileID: 2100000, guid: e9d2b8c512d973745828c9cefcd78104, type: 2}
+  higlightMaterialTools: {fileID: 0}
+  birdCableMovement: {fileID: 0}
 --- !u!114 &265787621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14118,6 +14128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdPoint: {fileID: 1787557484}
+  slevPickUpTutorial: {fileID: 0}
 --- !u!1001 &3974322241234272318
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19347,6 +19358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   step: {fileID: 8300000, guid: a52a180b55d583e4489633e639d8ab50, type: 3}
+  sprint: {fileID: 0}
 --- !u!4 &6691295221713849240 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7781059659593534374, guid: 9b007630f50a6d24484bad4c5b884505, type: 3}
