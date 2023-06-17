@@ -9,11 +9,13 @@ public class WinScript : MonoBehaviour
 
     [SerializeField] GameStats gameStats;
     [SerializeField] Button endButton;
+    bool hasShown = false;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player")&& !hasShown)
         {
             gameStats.ShowStats();
+            hasShown = true;
             //Invoke(nameof(ChangeToMenu), 5);
         }
     }
