@@ -26,6 +26,7 @@ public class SeedPickup : MonoBehaviour
             seedCounter.AddSeed(seedValue);
             seedParent.transform.position = Vector3.zero;
             seedParent.transform.SetParent(backpack, false);
+            aS.pitch = Random.Range(1f, 1.3f);
             aS.Play();
             anim.CrossFade("PickedUp", 0);
             Invoke(nameof(UpdateSeedUI), 2);
