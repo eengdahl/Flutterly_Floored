@@ -13,6 +13,7 @@ public class VolumeSlider : MonoBehaviour
 
     void Start()
     {
+   
         AudioHandler.Instance.ChangeEffectsVolume(_slider.value);
         AudioHandler.Instance.ChangeMusicVolume(_slider.value);
 
