@@ -41,7 +41,7 @@ public class mainMenuHandler : MonoBehaviour
         paperAnimator.CrossFade(startGamepaper, 0, 0);
         birdAnimator.CrossFade(startGame, 0, 0);
         aS.PlayOneShot(clip[Random.Range(0, clip.Count)]);
-        Invoke(nameof(StartGame), 9);
+        Invoke(nameof(StartGame), 5);
         // Invoke(nameof(playPang), 1.3f);
 
     }
