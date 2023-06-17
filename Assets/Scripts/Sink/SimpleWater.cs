@@ -63,7 +63,7 @@ public class SimpleWater : MonoBehaviour
         meshRenderer = GetComponent<MeshRenderer>();
         mesh = GetComponent<MeshFilter>().mesh;
         mesh.RecalculateBounds();
-        Debug.Log(mesh.name);
+        //Debug.Log(mesh.name);
     }
 
     // Update is called once per frame
