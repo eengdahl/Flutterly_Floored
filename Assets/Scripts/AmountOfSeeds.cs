@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AmountOfSeeds : MonoBehaviour
 {
+    [SerializeField] GameStats gameStats;
 
     public int amountOfSeeds;
     private void Start()
@@ -20,5 +21,7 @@ public class AmountOfSeeds : MonoBehaviour
 
         // Print the count to the console (optional)
         Debug.Log("Object Count: " + amountOfSeeds);
+
+       gameStats.maxAmountOfSeeds = amountOfSeeds;
     }
 }

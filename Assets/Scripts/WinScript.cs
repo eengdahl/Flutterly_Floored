@@ -2,23 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class WinScript : MonoBehaviour
 {
 
-    [SerializeField] GameObject YouWinText;
-
+    [SerializeField] GameStats gameStats;
+    [SerializeField] Button endButton;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            YouWinText.SetActive(true);
-            Invoke(nameof(ChangeToMenu), 5);
+            gameStats.ShowStats();
+            //Invoke(nameof(ChangeToMenu), 5);
         }
     }
 
-
-    void ChangeToMenu()
+    
+   public void ChangeToMenu()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
