@@ -5,7 +5,7 @@ using TMPro;
 
 public class SeedCounter : MonoBehaviour
 {
-    private int seedCount = 0;
+    public int seedCount = 0;
     public TextMeshProUGUI seedCountText;
     public GameObject seedCounterPanel;
     public GameObject seed2D;

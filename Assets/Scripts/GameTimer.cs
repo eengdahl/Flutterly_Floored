@@ -6,10 +6,25 @@ public class GameTimer : MonoBehaviour
     private bool timerRunning;
     float elapsedTime;
     string formattedTime;
+    GameStats gameStats;
+
+    //Singleton variables
+    private static GameTimer _instance;
+    public static GameTimer Instance { get { return _instance; } }
+
     void Start()
     {
         // Start the timer when the scene is loaded
         StartTimer();
+        if (_instance == null)
+        {
+            _instance = this;
+
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     void Update()
@@ -17,10 +32,11 @@ public class GameTimer : MonoBehaviour
         // Check if the timer is running and update the elapsed time
         if (timerRunning)
         {
-             elapsedTime = Time.time - startTime;
-             formattedTime = FormatTime(elapsedTime);
-            
+            elapsedTime = Time.time - startTime;
+
+
         }
+        //StopTimerUsage();
 
     }
 
@@ -33,6 +49,7 @@ public class GameTimer : MonoBehaviour
 
     void StopTimer()
     {
+        formattedTime = FormatTime(elapsedTime);
         // Stop the timer
         timerRunning = false;
     }
@@ -46,12 +63,12 @@ public class GameTimer : MonoBehaviour
     }
 
     // Example usage of stopping the timer
-    void ExampleStopTimerUsage()
+    public void StopTimerUsage()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StopTimer();
-            Debug.Log("Elapsed Time: " + formattedTime); // Print elapsed time in seconds and minutes to the console
-        }
+
+        GameStats.Instance.time = elapsedTime;
+        StopTimer();
+        Debug.Log("Elapsed Time: " + formattedTime); // Print elapsed time in seconds and minutes to the console
+
     }
 }
