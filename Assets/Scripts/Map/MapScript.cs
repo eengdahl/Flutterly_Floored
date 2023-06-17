@@ -44,7 +44,17 @@ public class MapScript : MonoBehaviour
             mapButtons.ActiveCheckpoints();
         }
     }
+    private void Update()
+    {
+        buttonPressed(KeyCode.Alpha1, mapButtons.onOrOff[0],0);
+        buttonPressed(KeyCode.Alpha2, mapButtons.onOrOff[1],1);
+        buttonPressed(KeyCode.Alpha3, mapButtons.onOrOff[2],2);
+        buttonPressed(KeyCode.Alpha4, mapButtons.onOrOff[3],3);
+        buttonPressed(KeyCode.Alpha5, mapButtons.onOrOff[4],4);
+        buttonPressed(KeyCode.Alpha6, mapButtons.onOrOff[5],5);
 
+
+    }
     public void RespawnOne()
     {
         deathScript.respawnTransform = CheckPointCubes[0].transform;
@@ -90,5 +100,15 @@ public class MapScript : MonoBehaviour
         if (mapUp) UnityEngine.Cursor.lockState = CursorLockMode.Confined;
         else UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = !Cursor.visible;
+    }
+
+    void buttonPressed(KeyCode key, bool unlocked, int index)
+    {
+        if (Input.GetKeyDown(key)&& unlocked)
+        {
+            deathScript.respawnTransform = CheckPointCubes[index].transform;
+            deathScript.Teleport();
+            ToggleMap();
+        }
     }
 }
