@@ -28,12 +28,14 @@ public class Buoyancy : MonoBehaviour
     private bool isResettingPosition;
     private Vector3 startPosition;
     private Quaternion startRotation;
+    public bool isFloating;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         water = GameObject.FindGameObjectWithTag("Water");
 
+        isFloating = true;
         startPosition = transform.position;
         startRotation = transform.rotation;
     }
@@ -41,30 +43,43 @@ public class Buoyancy : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        pointsUnderwater = 0;
-        foreach (Transform floater in floatingPoints)
+        if (Vector3.Dot(transform.forward, Vector3.down) > 0)
         {
-            CalculateDepth(floater);
+            isFloating = false;
+        }
+        else if(!isFloating)
+        {
+            isFloating = true;
+        }
 
-            if (depth < 0f + surfaceOffset)
+        pointsUnderwater = 0;
+
+        if (isFloating)
+        {
+            foreach (Transform floater in floatingPoints)
             {
-                rb.AddForceAtPosition(Vector3.up * buoyancyFactor * Mathf.Abs(depth + surfaceOffset) - decelerationVector, floater.position, ForceMode.Force);
-                pointsUnderwater++;
-                if (pointsUnderwater != 0)
+                CalculateDepth(floater);
+
+                if (depth < 0f + surfaceOffset)
                 {
-                    isBelowSurface = true;
-                    decelerationVector = rb.velocity * waterDeceleration;
+                    rb.AddForceAtPosition(Vector3.up * buoyancyFactor * Mathf.Abs(depth + surfaceOffset) - decelerationVector, floater.position, ForceMode.Force);
+                    pointsUnderwater++;
+                    if (pointsUnderwater != 0)
+                    {
+                        isBelowSurface = true;
+                        decelerationVector = rb.velocity * waterDeceleration;
+                    }
+                    else if (pointsUnderwater == 0)
+                    {
+                        isBelowSurface = false;
+                        decelerationVector = rb.velocity * airDeceleration;
+                    }
                 }
-                else if (pointsUnderwater == 0)
+                else
                 {
-                    isBelowSurface = false;
-                    decelerationVector = rb.velocity * airDeceleration;
+                    //decelerationVector = rb.velocity * airDeceleration;
+                    //rb.AddForceAtPosition(Vector3.down * Mathf.Abs(depth) - decelerationVector, transform.position, ForceMode.Force);
                 }
-            }
-            else
-            {
-                //decelerationVector = rb.velocity * airDeceleration;
-                //rb.AddForceAtPosition(Vector3.down * Mathf.Abs(depth) - decelerationVector, transform.position, ForceMode.Force);
             }
         }
 
@@ -107,10 +122,10 @@ public class Buoyancy : MonoBehaviour
         Vector2 tmpCurrentVextor = new Vector2(transform.position.x, transform.position.z);
         transform.rotation = startRotation;
 
-        if((tmpStartVector - tmpCurrentVextor).magnitude < 0.1f)
-        {
-            isResettingPosition = false;
-        }
+        //if((tmpStartVector - tmpCurrentVextor).magnitude < 0.1f)
+        //{
+        //    isResettingPosition = false;
+        //}
         //Debug.Log((startVector - transform.position).magnitude);
         //if ((startPosition - transform.position).magnitude > 0.1f)
         //{
