@@ -29,7 +29,7 @@ public class DeathCube : MonoBehaviour
                 Debug.Log("Input CatKillingPlayerSound here");
             }
 
-            if (gameObject.CompareTag("Water"))
+            if (gameObject.CompareTag("WaterDeathCube"))
             {
                 Buoyancy[] buoyancyObjects = gameObject.transform.parent.GetComponentsInChildren<Buoyancy>();
                 audioSource.PlayOneShot(clipToPlay);

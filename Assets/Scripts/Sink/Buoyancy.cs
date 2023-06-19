@@ -55,10 +55,13 @@ public class Buoyancy : MonoBehaviour
         pointsUnderwater = 0;
 
         if (isFloating)
+
         {
             foreach (Transform floater in floatingPoints)
             {
+ 
                 CalculateDepth(floater);
+
 
                 if (depth < 0f + surfaceOffset)
                 {
