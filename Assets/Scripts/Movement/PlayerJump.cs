@@ -227,7 +227,7 @@ public class PlayerJump : MonoBehaviour
     {
         if (!playerWindsScript.inWindZone)
         {
-            anim.SetTrigger("GlideFail");
+            //anim.SetTrigger("GlideFail");
 
             gliding = false;
             glideTime = 0f;
