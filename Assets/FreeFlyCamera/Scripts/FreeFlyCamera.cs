@@ -44,7 +44,7 @@ public class FreeFlyCamera : MonoBehaviour
 
     [SerializeField]
     [Tooltip("Camera movement speed")]
-    private float _movementSpeed = 10f;
+    public float _movementSpeed = 10f;
 
     [SerializeField]
     [Tooltip("Speed of the quick camera movement when holding the 'Left Shift' key")]

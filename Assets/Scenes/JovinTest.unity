@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 4
+  m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -3175,7 +3175,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 849608854, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
   m_PrefabInstance: {fileID: 333609022}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1031703157}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 507353e2202378f4499956856d6feaf5, type: 3}
@@ -10710,6 +10710,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 252018523, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
+      propertyPath: glowMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: bb1f0d0ada9a5d34bac55ed7f77fac4e, type: 2}
+    - target: {fileID: 252018523, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
+      propertyPath: glowingObject
+      value: 
+      objectReference: {fileID: 780747377}
     - target: {fileID: 365332377, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
       propertyPath: spoon
       value: 
@@ -10718,6 +10726,22 @@ PrefabInstance:
       propertyPath: spoonScript
       value: 
       objectReference: {fileID: 791781705}
+    - target: {fileID: 792839242, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
+      propertyPath: glowMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: bb1f0d0ada9a5d34bac55ed7f77fac4e, type: 2}
+    - target: {fileID: 792839242, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
+      propertyPath: glowingObject
+      value: 
+      objectReference: {fileID: 1151708394}
+    - target: {fileID: 849608854, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
+      propertyPath: glowMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: bb1f0d0ada9a5d34bac55ed7f77fac4e, type: 2}
+    - target: {fileID: 849608854, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
+      propertyPath: glowingObject
+      value: 
+      objectReference: {fileID: 1031703157}
     - target: {fileID: 1943446781918176428, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
       propertyPath: player
       value: 
@@ -28389,6 +28413,7 @@ GameObject:
   - component: {fileID: 779618534}
   - component: {fileID: 779618533}
   - component: {fileID: 779618537}
+  - component: {fileID: 779618538}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -28613,6 +28638,19 @@ MonoBehaviour:
   _enableSpeedAcceleration: 1
   _speedAccelerationFactor: 1.5
   _initPositonButton: 114
+--- !u!114 &779618538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779618532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52913d24e63d4d4892e3918017b8e18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flyCamera: {fileID: 779618537}
 --- !u!1 &779672777
 GameObject:
   m_ObjectHideFlags: 0
@@ -28644,6 +28682,11 @@ Transform:
   m_Father: {fileID: 1943718050}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &780747377 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6286474472910959612, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
+  m_PrefabInstance: {fileID: 333609022}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &783249311 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3559863725831732709, guid: 280009b8bfff17f408e4973939f80381, type: 3}
@@ -35841,7 +35884,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 792839242, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
   m_PrefabInstance: {fileID: 333609022}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1151708394}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 507353e2202378f4499956856d6feaf5, type: 3}
@@ -38540,6 +38583,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2919149666088463401, guid: 8df6e1aee55c39340aee9f8b889b1d7b, type: 3}
+--- !u!1 &1031703157 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6422636073826925507, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
+  m_PrefabInstance: {fileID: 333609022}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1033231005
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41391,11 +41439,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2793752973741495337, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.09
+      value: 3.8
       objectReference: {fileID: 0}
     - target: {fileID: 2793752973741495337, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 52.89
+      value: 36.3
       objectReference: {fileID: 0}
     - target: {fileID: 2793752973741495337, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -48613,6 +48661,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.01603032, y: 0.01603032, z: 0.02976236}
   m_Center: {x: -0.00000023841858, y: 0.00000011455272, z: 0.00783833}
+--- !u!1 &1151708394 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6422636074194304799, guid: 05d1e23e8297f3249afb2714a6962dbf, type: 3}
+  m_PrefabInstance: {fileID: 333609022}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1151841542
 PrefabInstance:
   m_ObjectHideFlags: 0
