@@ -36,6 +36,7 @@ public class ResetCatAMole : MonoBehaviour
                 if (adad.isSugar)
                 {
                     adad.hasBeenPickedUp = false;
+                    adad.ReturnGlow();
                 }
             }
             spoonScript.sugarInSpoon = false;
@@ -48,6 +49,7 @@ public class ResetCatAMole : MonoBehaviour
                 if (adad.isMilk)
                 {
                     adad.hasBeenPickedUp = false;
+                    adad.ReturnGlow();
                 }
             }
             spoonScript.milkInSpoon = false;
@@ -60,6 +62,7 @@ public class ResetCatAMole : MonoBehaviour
                 if (adad.isFlour)
                 {
                     adad.hasBeenPickedUp = false;
+                    adad.ReturnGlow();
                 }
             }
             spoonScript.flourInSpoon = false;

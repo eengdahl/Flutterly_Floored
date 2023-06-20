@@ -21,6 +21,9 @@ public class Spoon : MonoBehaviour
     private bool isOutOfBounds;
     private float outOfBoundsTimer;
 
+    [SerializeField] IngredientPickup milk;
+    [SerializeField] IngredientPickup suger;
+    [SerializeField] IngredientPickup flour;
 
     //Sounds for pick up
     [SerializeField] AudioClip pickUpSound;
@@ -31,7 +34,7 @@ public class Spoon : MonoBehaviour
         sugarFilled = false;
         milkFilled = false;
         flourFilled = false;
-        
+
     }
 
     private void Start()
@@ -45,10 +48,10 @@ public class Spoon : MonoBehaviour
 
     private void Update()
     {
-        if(isOutOfBounds)
+        if (isOutOfBounds)
         {
             outOfBoundsTimer += Time.deltaTime;
-            if(outOfBoundsTimer > outOfBoundsThreshold)
+            if (outOfBoundsTimer > outOfBoundsThreshold)
             {
                 player.GetComponentInChildren<PickUpSlev>().OnDrop();
                 transform.position = startPosition;
@@ -64,12 +67,12 @@ public class Spoon : MonoBehaviour
         if (other.gameObject.name == "CatAMoleBounds")
         {
             isOutOfBounds = true;
-        }    
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.name == "CatAMoleBounds")
+        if (other.gameObject.name == "CatAMoleBounds")
         {
             isOutOfBounds = false;
             outOfBoundsTimer = 0;
@@ -87,7 +90,7 @@ public class Spoon : MonoBehaviour
 
     public void EmptySpoon()
     {
-        
+
         filling.SetActive(false);
         isFull = false;
         if (milkInSpoon == true) milkInSpoon = false;
