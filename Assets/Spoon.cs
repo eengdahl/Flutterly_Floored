@@ -26,7 +26,7 @@ public class Spoon : MonoBehaviour
     [SerializeField] IngredientPickup flour;
 
     //Sounds for pick up
-    [SerializeField] AudioClip pickUpSound;
+    [SerializeField] AudioClip[] pickUpSounds;
     AudioSource aS;
 
     public void ResetSpoon()
@@ -82,7 +82,8 @@ public class Spoon : MonoBehaviour
     public void FillSpoon()
     {
         //ljud för pick up
-        aS.clip = pickUpSound;
+        int rndIndex = Random.Range(0,3);
+        aS.clip = pickUpSounds[rndIndex];
         aS.Play();
         filling.SetActive(true);
         isFull = true;
