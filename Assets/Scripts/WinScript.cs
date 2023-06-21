@@ -27,7 +27,7 @@ public class WinScript : MonoBehaviour
             //controlsSwitch.SwitchToNoInput();
             StartCoroutine(FadeToBlack());
             Invoke(nameof(Startcutscene),2);
-            Invoke(nameof(Endcutscene),8.83f);
+            Invoke(nameof(Endcutscene),9.2f);
 
             //End of game stats menu
 
@@ -81,6 +81,6 @@ public class WinScript : MonoBehaviour
 
     public void ChangeToMenu()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene(0);
     }
 }
