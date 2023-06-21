@@ -11,6 +11,7 @@ public class SpawnCataMole : MonoBehaviour
     [SerializeField] GameObject idleCat;
     [SerializeField] GameObject player;
     [SerializeField] GameObject floor;
+    [SerializeField] GameObject camSwapArea;
 
     [SerializeField] float distanceToCat;
     [SerializeField] float heightToCat;
@@ -63,6 +64,7 @@ public class SpawnCataMole : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             SpawnCat();
+            camSwapArea.SetActive(true);
             idleCat.SetActive(false);
             hasBeenActivated = true;
             hasSpawned = true;

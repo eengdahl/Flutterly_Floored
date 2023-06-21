@@ -39,8 +39,8 @@ public class GameStats : MonoBehaviour
     public void ShowStats()
     {
         SetStats();
-        timeText.text = "Time: " + FormatTime(time);
-        seedsCollectedText.text = "Seeds collected: " + seedsCollected + "out of "+maxAmountOfSeeds;
+        timeText.text = "Time spent: " + FormatTime(time);
+        seedsCollectedText.text = "Seeds collected: " + seedsCollected + " out of "+maxAmountOfSeeds;
         endingCanvas.SetActive(true);
         switchControls.SwitchToNoInput();
         switchCursor();

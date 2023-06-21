@@ -81,6 +81,6 @@ public class WinScript : MonoBehaviour
 
     public void ChangeToMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("MainMenu");
     }
 }

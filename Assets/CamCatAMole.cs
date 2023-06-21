@@ -34,4 +34,13 @@ public class CamCatAMole : MonoBehaviour
             mainCam.SetActive(true);
         }
     }
+
+    public void DisableZone()
+    {
+        aS.Stop();
+        audioManager.ResumeMainMusic();
+        catACam.SetActive(false);
+        mainCam.SetActive(true);
+        gameObject.SetActive(false);
+    }
 }
