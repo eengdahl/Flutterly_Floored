@@ -42,11 +42,7 @@ public class GameStats : MonoBehaviour
         timeText.text = "Time spent: " + FormatTime(time);
         seedsCollectedText.text = "Seeds collected: " + seedsCollected + " out of "+maxAmountOfSeeds;
         endingCanvas.SetActive(true);
-        switchControls.SwitchToNoInput();
         switchCursor();
-        
-
-        
     }
     string FormatTime(float time)
     {
@@ -57,10 +53,7 @@ public class GameStats : MonoBehaviour
     }
     void switchCursor()
     {
-       
-        
         UnityEngine.Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = !Cursor.visible;
-
+        Cursor.visible = Cursor.visible = true;
     }
 }

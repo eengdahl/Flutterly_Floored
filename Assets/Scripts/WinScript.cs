@@ -17,14 +17,14 @@ public class WinScript : MonoBehaviour
 
     private void Start()
     {
-        controlsSwitch = GetComponent<SwitchControls>();
+        controlsSwitch = GameObject.Find("Player").GetComponent<SwitchControls>();
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")&& !hasShown)
         {
             //End cutscene
-            //controlsSwitch.SwitchToNoInput();
+            controlsSwitch.SwitchToNoInput();
             StartCoroutine(FadeToBlack());
             Invoke(nameof(Startcutscene),2);
             Invoke(nameof(Endcutscene),9.2f);
