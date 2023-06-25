@@ -6,7 +6,6 @@ Shader "Custom/WaterMask"
  
         Tags {"Queue" = "Geometry+10" }
 
-        //Tags {"Queue" = "Geometry+501" }
  
         // Don't draw in the RGBA channels; just the depth buffer
  
