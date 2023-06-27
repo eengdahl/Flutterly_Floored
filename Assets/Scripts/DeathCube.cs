@@ -31,6 +31,7 @@ public class DeathCube : MonoBehaviour
 
             if (gameObject.CompareTag("WaterDeathCube"))
             {
+                clipToPlay = horribleDeathSounds[1];
                 Buoyancy[] buoyancyObjects = gameObject.transform.parent.GetComponentsInChildren<Buoyancy>();
                 audioSource.PlayOneShot(clipToPlay);
 

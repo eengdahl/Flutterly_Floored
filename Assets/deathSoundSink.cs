@@ -6,7 +6,7 @@ public class deathSoundSink : MonoBehaviour
 {
     AudioSource aS;
     public AudioClip birdDie;
-    bool locker;
+    bool locker = true;
     private void Start()
     {
         aS = GetComponent<AudioSource>();
