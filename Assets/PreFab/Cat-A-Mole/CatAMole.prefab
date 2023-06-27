@@ -95,8 +95,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.99999946, y: 1.8148602, z: 1}
+  m_Center: {x: -0, y: 0.4074299, z: 0}
 --- !u!1 &1313360545
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,6 +1173,8 @@ MonoBehaviour:
   isMilk: 1
   isSugar: 0
   isFlour: 0
+  glowingObject: {fileID: 0}
+  glowMaterial: {fileID: 0}
 --- !u!1 &6286474472910959612
 GameObject:
   m_ObjectHideFlags: 0
@@ -1385,6 +1387,8 @@ MonoBehaviour:
   isMilk: 0
   isSugar: 1
   isFlour: 0
+  glowingObject: {fileID: 0}
+  glowMaterial: {fileID: 0}
 --- !u!1 &6422636074194304799
 GameObject:
   m_ObjectHideFlags: 0
@@ -1499,6 +1503,8 @@ MonoBehaviour:
   isMilk: 0
   isSugar: 0
   isFlour: 1
+  glowingObject: {fileID: 0}
+  glowMaterial: {fileID: 0}
 --- !u!1 &7520307357580189732
 GameObject:
   m_ObjectHideFlags: 0
@@ -1592,6 +1598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spoon: {fileID: 0}
+  spoonScript: {fileID: 0}
   pickUps:
   - {fileID: 792839242}
   - {fileID: 849608854}
