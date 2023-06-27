@@ -9,6 +9,7 @@ public class SwitchCameraScriptForAll : MonoBehaviour
     [SerializeField] GameObject cupboardCamera;
     private AudioSource aS;
     [SerializeField] AudioClip catScream;
+    [SerializeField] Transform tpspot;
 
     private GameObject player;
     private bool locker = false;
@@ -34,9 +35,9 @@ public class SwitchCameraScriptForAll : MonoBehaviour
         if (other.CompareTag("Player"))
         {
 
-
             if (!locker)
             {
+                player = other.gameObject;
                 //Make first cat sound
                 aS.clip = catScream;
                 aS.Play();
@@ -52,7 +53,8 @@ public class SwitchCameraScriptForAll : MonoBehaviour
     }
     public void ResetFadeToBlack()
     {
-        player.transform.position = new Vector3(-137.9307f, 10.667f, 100.5542f);
+        // player.transform.localPosition = new Vector3(-137.9307f, 10.667f, 101.9542f);
+        player.transform.position = tpspot.transform.position;
         StartCoroutine(deathScript.FadeToBlack(false));
         Invoke(nameof(LastResetFromBlack), 1.5f);
     }
