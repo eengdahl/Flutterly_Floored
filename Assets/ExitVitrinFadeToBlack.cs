@@ -38,7 +38,8 @@ public class ExitVitrinFadeToBlack : MonoBehaviour
         player.transform.position = new Vector3(-138.45f, 10.707f, 117.625f);
         StartCoroutine(deathScript.FadeToBlack(false));
 
-       
+        switchControls.SwitchToFloor();
+        Destroy(gameObject);
 
     }
 }
