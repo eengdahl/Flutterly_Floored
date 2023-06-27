@@ -52,7 +52,7 @@ public class SwitchCameraScriptForAll : MonoBehaviour
     }
     public void ResetFadeToBlack()
     {
-        player.transform.position = new Vector3(-137.9307f, 10.667f, 100.2542f);
+        player.transform.position = new Vector3(-137.9307f, 10.667f, 100.5542f);
         StartCoroutine(deathScript.FadeToBlack(false));
         Invoke(nameof(LastResetFromBlack), 1.5f);
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class introSounds : MonoBehaviour
 {
@@ -32,5 +33,7 @@ public class introSounds : MonoBehaviour
     public void PlayFall()
     {
         aS.PlayOneShot(fall);
+       // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
     }
 }
