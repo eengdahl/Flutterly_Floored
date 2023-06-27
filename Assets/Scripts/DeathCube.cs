@@ -6,7 +6,7 @@ using UnityEngine;
 public class DeathCube : MonoBehaviour
 {
     public List<AudioClip> horribleDeathSounds;
-
+    private bool locker = true;
     private AudioSource audioSource;
     private AudioClip clipToPlay;
 
@@ -29,18 +29,18 @@ public class DeathCube : MonoBehaviour
                 Debug.Log("Input CatKillingPlayerSound here");
             }
 
-            if (gameObject.CompareTag("WaterDeathCube"))
+            if (gameObject.CompareTag("WaterDeathCube") && locker == true)
             {
                 clipToPlay = horribleDeathSounds[1];
                 Buoyancy[] buoyancyObjects = gameObject.transform.parent.GetComponentsInChildren<Buoyancy>();
                 audioSource.PlayOneShot(clipToPlay);
-
+                locker = false;
                 foreach(Buoyancy obj in buoyancyObjects)
                 {
                     StartCoroutine(DelayPlateReset(obj));
                 }
             }
-
+            Invoke(nameof(Unlock), 2);
             playerDeath = other.GetComponent<DeathScriptAndCheckPoint>();
             other.GetComponent<Rigidbody>().isKinematic = false;
             playerDeath.Die();
@@ -51,5 +51,10 @@ public class DeathCube : MonoBehaviour
             yield return new WaitForSeconds(2);
             obj.ResetPosition();
         }
+    }
+
+    void Unlock()
+    {
+        locker = true;
     }
 }

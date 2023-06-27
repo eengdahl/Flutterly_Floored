@@ -66,7 +66,6 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
 
     public void Drown()
     {
-        canDie = false;
         aS.volume = 1;
         playerMoveScript.DrownAnim();
         playerMoveScript.enabled = false;
