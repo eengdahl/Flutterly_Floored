@@ -45,7 +45,7 @@ public class mainMenuHandler : MonoBehaviour
         aS.PlayOneShot(clip[Random.Range(0, clip.Count)]);
         StartCoroutine(menuFade.MenuFade(true, 1, 0));
 
-        Invoke(nameof(StartGame), 1);
+        Invoke(nameof(StartGame), 1.5f);
        // Invoke(nameof(StartGame), 3.75f);
         // Invoke(nameof(playPang), 1.3f);
 
