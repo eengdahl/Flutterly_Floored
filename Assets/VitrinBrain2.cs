@@ -17,10 +17,11 @@ public enum VitrinState
 public class VitrinBrain2 : MonoBehaviour
 {
 
-    [SerializeField]MapScript mapScript;
+    [SerializeField] MapScript mapScript;
 
     public VitrinState activeState;
     private GameObject vitrinCat;
+    public GameObject ResetFadeToBlack;
     private Transform wakePoint;
     GazeOfDeath gaze;
 
@@ -185,6 +186,7 @@ public class VitrinBrain2 : MonoBehaviour
             yield return new WaitForSeconds(3.8f);
             mainLight.ReSetLightInRoom();
             audioManager.ResumeMainMusic();
+            ResetFadeToBlack.SetActive(true);
             this.gameObject.SetActive(false);
             yield return 0;
         }
