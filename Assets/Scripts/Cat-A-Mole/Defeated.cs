@@ -20,7 +20,7 @@ public class Defeated : MonoBehaviour
     {
         originalCamera.SetActive(true);
         windowBlock.SetActive(false);
-        camSwap.DisableZone();
+       // camSwap.DisableZone();
         gameObject.SetActive(false);
     }
 
