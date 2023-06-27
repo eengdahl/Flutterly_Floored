@@ -27,6 +27,7 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
     Rigidbody rb;
     private void Start()
     {
+        StartCoroutine(FadeToBlack(false, 1, 1));
         aS = GetComponent<AudioSource>();
         playerMoveScript = gameObject.GetComponent<PlayerMove>();
         playerJumpScript = gameObject.GetComponent<PlayerJump>();
