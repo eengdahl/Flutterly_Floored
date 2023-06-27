@@ -38,8 +38,8 @@ public class PlayerMove : MonoBehaviour
     private float fovFloat;
     //Audio
     public AudioClip sprint;
-   public AudioClip flySound;
-   // public AudioClip sineglFlap;
+    public AudioClip flySound;
+    // public AudioClip sineglFlap;
     private AudioSource aS;
 
     public bool animationLock;
@@ -151,7 +151,7 @@ public class PlayerMove : MonoBehaviour
             if (!flapLock)
             {
                 aS.volume = 2;
-              //  aS.PlayOneShot(flySound);
+                //  aS.PlayOneShot(flySound);
 
                 flapLock = true;
             }
@@ -343,6 +343,12 @@ public class PlayerMove : MonoBehaviour
         // determine the direction the player will face based on input and the referenceTransform's right and forward directions
         targetDirection = inputsXZ.x * right + inputsXZ.z * forward;
     }
+
+    public void DrownAnim()
+    {
+        stringToPlay = Fall;
+    }
+
 
     void stepClimb()
     {

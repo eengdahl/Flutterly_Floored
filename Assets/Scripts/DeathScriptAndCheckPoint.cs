@@ -63,6 +63,19 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
             StartCoroutine(FadeToBlack());
         }
     }
+
+    public void Drown()
+    {
+        canDie = false;
+        aS.volume = 1;
+        playerMoveScript.DrownAnim();
+        playerMoveScript.enabled = false;
+        playerJumpScript.enabled = false;
+        birdCableMovement.DisableClimbing();
+        Invoke("ResetRB", 0.5f);
+        StartCoroutine(FadeToBlack(true, 1, 2));
+        Invoke(nameof(DelayedDeath), 2);
+    }
     public void Teleport()
     {
         birdCableMovement.DisableClimbing();
