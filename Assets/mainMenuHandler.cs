@@ -16,6 +16,7 @@ public class mainMenuHandler : MonoBehaviour
     public List<AudioClip> clip;
 
     SwitchControls switchControls;
+    FadeToBlackMenu menuFade;
 
 
     [SerializeField] private GameObject controlsPanel;
@@ -29,6 +30,7 @@ public class mainMenuHandler : MonoBehaviour
 
     void Start()
     {
+        menuFade = GameObject.Find("FadeToBlackCanvas").GetComponent<FadeToBlackMenu>();
         aS = GetComponent<AudioSource>();
         switchControls = FindAnyObjectByType<SwitchControls>();
         Cursor.lockState = CursorLockMode.Confined;
@@ -41,8 +43,9 @@ public class mainMenuHandler : MonoBehaviour
         paperAnimator.CrossFade(startGamepaper, 0, 0);
         birdAnimator.CrossFade(startGame, 0, 0);
         aS.PlayOneShot(clip[Random.Range(0, clip.Count)]);
+        StartCoroutine(menuFade.MenuFade(true, 1, 0));
 
-        StartGame();
+        Invoke(nameof(StartGame), 1);
        // Invoke(nameof(StartGame), 3.75f);
         // Invoke(nameof(playPang), 1.3f);
 
@@ -114,4 +117,6 @@ public class mainMenuHandler : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+
+
 }

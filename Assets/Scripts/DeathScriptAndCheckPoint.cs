@@ -25,7 +25,6 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
 
     //public Vector3 checkPoint;
     Rigidbody rb;
-
     private void Start()
     {
         aS = GetComponent<AudioSource>();
@@ -99,12 +98,12 @@ public class DeathScriptAndCheckPoint : MonoBehaviour
         StartCoroutine(FadeToBlack(false));
     }
 
-    public IEnumerator FadeToBlack(bool fadeToBlack = true, int fadeSpeed = 1)
+    public IEnumerator FadeToBlack(bool fadeToBlack = true, float fadeSpeed = 1, float delay = 1)
     {
         Color objectColor = fadeToBlackImage.GetComponent<Image>().color;
         float fadeAmount;
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(delay);
         if (fadeToBlack)
         {
             while (fadeToBlackImage.GetComponent<Image>().color.a < 1)
