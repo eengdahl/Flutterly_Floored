@@ -215,6 +215,7 @@ Transform:
   - {fileID: 1609923762440960476}
   - {fileID: 7583691772211261903}
   - {fileID: 8283523225246413797}
+  - {fileID: 5341734872583063730}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1944,6 +1945,37 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
+--- !u!1 &4201676466091699268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5341734872583063730}
+  m_Layer: 2
+  m_Name: tpspot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5341734872583063730
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4201676466091699268}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.719, y: -0.662, z: -7.735}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1684589188480261095}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &430208228795244948
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11222,6 +11254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapScript: {fileID: 0}
   activeState: 5
+  ResetFadeToBlack: {fileID: 0}
   catIsDead: 0
   catSound: {fileID: 8300000, guid: 949ad0d217185b549a3b03bf43850275, type: 3}
 --- !u!1 &948433371975976444 stripped
@@ -11710,6 +11743,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 10.27
       objectReference: {fileID: 0}
+    - target: {fileID: 6205248367467356791, guid: 3a497b8c4f79132479a4b9bb077b84d8, type: 3}
+      propertyPath: tpspot
+      value: 
+      objectReference: {fileID: 5341734872583063730}
     - target: {fileID: 6205248367467356791, guid: 3a497b8c4f79132479a4b9bb077b84d8, type: 3}
       propertyPath: catScream
       value: 
