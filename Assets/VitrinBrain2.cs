@@ -179,6 +179,7 @@ public class VitrinBrain2 : MonoBehaviour
     {
         while (activeState == VitrinState.Exit)
         {
+            catIsDead = true;
             mapScript.inVitrin = false;
             gaze.locker = true;
             aS.PlayOneShot(catSound);
