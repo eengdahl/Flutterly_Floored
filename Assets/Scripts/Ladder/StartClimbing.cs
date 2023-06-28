@@ -11,7 +11,7 @@ public class StartClimbing : MonoBehaviour
     public bool isVertical;
     public int index;
 
-    private void Awake()
+    private void Start()
     {
 
         climbAlongScript = GetComponentInParent<ClimbAlongScript>();

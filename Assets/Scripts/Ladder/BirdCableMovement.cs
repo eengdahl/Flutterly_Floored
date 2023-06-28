@@ -353,10 +353,10 @@ public class BirdCableMovement : MonoBehaviour
             {
                 rb.velocity = cableplant.points[currentCableSegment].gameObject.GetComponentInParent<Rigidbody>().velocity * 2;
                 cableplant = null;
+                currentCableSegment = 0;
             }
         }
         Invoke("ActivateCollider", 0.6f);
-        currentCableSegment = 0;
         transform.localEulerAngles = Vector3.zero;
         birdBody.transform.localPosition = Vector3.zero;
         //Stop setting position
@@ -422,9 +422,9 @@ public class BirdCableMovement : MonoBehaviour
                 {
                     if (!isClimbing)
                     {
+                        currentCableSegment = other.gameObject.GetComponent<StartClimbing>().index;
                         reachedTargetPosition = false;
                         cableplant = other.gameObject.GetComponent<StartClimbing>().climbAlongScript;
-                        currentCableSegment = other.gameObject.GetComponent<StartClimbing>().index;
                         shouldSetBirdPosition = true;
                         birdPositionCoroutine = StartCoroutine(SetBirdPosition(other.transform));
                         //StartCoroutine( SetBirdPosition(other.transform));
