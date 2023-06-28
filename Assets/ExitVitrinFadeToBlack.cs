@@ -30,25 +30,23 @@ public class ExitVitrinFadeToBlack : MonoBehaviour
         if (other.CompareTag("Player") && vitrinBrain.catIsDead && !locker)
         {
             switchControls.SwitchToNoInput();
-            StartCoroutine(deathScript.FadeToBlack(true, 0, 0));
+            StartCoroutine(deathScript.FadeToBlack(true, 1f, 0));
 
 
-            Invoke(nameof(TPPlayer), 3);
+            Invoke(nameof(TPPlayer), 1f);
             locker = true;
         }
     }
 
     private void TPPlayer()
     {
-        StartCoroutine(deathScript.FadeToBlack(false, 1, 0));
+        StartCoroutine(deathScript.FadeToBlack(false, 0.5f, 1));
         player.transform.position = new Vector3(-138.45f, 10.707f, 117.625f);
 
         switchControls.SwitchToFloor();
-        locker = false;
         vcam.SetActive(true);
         vcam.transform.position = new Vector3(-140.1954f, 13.33156f, 119.5955f);
-        Destroy(gameObject);
+
 
     }
-
 }
