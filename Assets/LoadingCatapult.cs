@@ -18,11 +18,18 @@ public class LoadingCatapult : MonoBehaviour
     private Vector3 sizeToScale;
 
 
+
+    //Materials for glow
+    [SerializeField]Renderer rend;
+    private Material originalMaterial;
+    [SerializeField] Material glowMaterial;
+
     //Sounds for empty mått
     [SerializeField] AudioClip emptySound;
     AudioSource aS;
     private void Start()
     {
+        originalMaterial = rend.material;
         startScale = Vector3.one;
         sizeToScale = startScale / ingredientsNeeded;
         scaleableObject.transform.localScale = Vector3.zero;
@@ -79,6 +86,7 @@ public class LoadingCatapult : MonoBehaviour
     private void ScaleUpMoshyThing()
     {
         scaleableObject.transform.localScale += sizeToScale;
+        LightOnMoshyThing();
     }
 
     public void ResetIngredients()
@@ -98,6 +106,15 @@ public class LoadingCatapult : MonoBehaviour
        // yield return new WaitForSeconds(1.5f);
         cat.SetActive(false);
         hitspots.SetActive(false);
+    }
+    private void LightOnMoshyThing()
+    {
+        rend.material = glowMaterial;
+        Invoke(nameof(ReturnNormalOnMoshyThing), 2f);
+    }
+    private void ReturnNormalOnMoshyThing()
+    {
+        rend.material = originalMaterial;
     }
 
 }

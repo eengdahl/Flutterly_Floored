@@ -2911,6 +2911,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 066e4a8830a9f3c4fa7581ec37a56d10, type: 3}
   m_PrefabInstance: {fileID: 67090825}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &68258586 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 93222498552959469, guid: e88c69e7475a33440bf99662f6172538, type: 3}
+  m_PrefabInstance: {fileID: 1887100191}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &76525410
 GameObject:
   m_ObjectHideFlags: 0
@@ -50214,15 +50219,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2793752973741495337, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -156.63
+      value: -90.30377
       objectReference: {fileID: 0}
     - target: {fileID: 2793752973741495337, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.09
+      value: 10.03
       objectReference: {fileID: 0}
     - target: {fileID: 2793752973741495337, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 52.89
+      value: 67.568
       objectReference: {fileID: 0}
     - target: {fileID: 2793752973741495337, guid: e43270cff49f7c54f99fd35e2a597bbc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -67976,7 +67981,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1442956642}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -156.63, y: 14.996, z: 49.72}
+  m_LocalPosition: {x: -90.30377, y: 10.936, z: 64.398}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -77081,7 +77086,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 44c8af742430a7448ae093af70d6aeda, type: 3}
     - target: {fileID: 404817304383815699, guid: eef74e8bde2007f49bb493a52739e88b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 843805604399164193, guid: eef74e8bde2007f49bb493a52739e88b, type: 3}
       propertyPath: m_RootOrder
@@ -83541,7 +83546,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1800927610}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -156.63, y: 14.996, z: 49.72}
+  m_LocalPosition: {x: -90.30377, y: 10.936, z: 64.398}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -86613,6 +86618,10 @@ PrefabInstance:
       propertyPath: ingredients.Array.data[2]
       value: 
       objectReference: {fileID: 86652676}
+    - target: {fileID: 1894833666945173563, guid: e88c69e7475a33440bf99662f6172538, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4261018209780476520, guid: e88c69e7475a33440bf99662f6172538, type: 3}
       propertyPath: m_Name
       value: NewCatapult
@@ -86666,9 +86675,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 273817827}
     - target: {fileID: 4261018209822824064, guid: e88c69e7475a33440bf99662f6172538, type: 3}
+      propertyPath: rend
+      value: 
+      objectReference: {fileID: 68258586}
+    - target: {fileID: 4261018209822824064, guid: e88c69e7475a33440bf99662f6172538, type: 3}
       propertyPath: hitspots
       value: 
       objectReference: {fileID: 1543179048}
+    - target: {fileID: 4261018209822824064, guid: e88c69e7475a33440bf99662f6172538, type: 3}
+      propertyPath: glowMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: bb1f0d0ada9a5d34bac55ed7f77fac4e, type: 2}
     - target: {fileID: 4261018209822824095, guid: e88c69e7475a33440bf99662f6172538, type: 3}
       propertyPath: catamoleCamSwap
       value: 
