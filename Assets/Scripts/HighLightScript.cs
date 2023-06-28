@@ -53,6 +53,7 @@ public class HighLightScript : MonoBehaviour
         GameObject newClosestObject = null;
 
         if (objectsInTrigger.Count == 0) return;
+        
         foreach (GameObject obj in objectsInTrigger)
         {
             float distance = Vector3.Distance(closestObjectTransform.position, obj.transform.position);
@@ -66,6 +67,10 @@ public class HighLightScript : MonoBehaviour
         if (birdCableMovement.isClimbing &&  closestObject != null)
         {
             RestoreOriginalMaterial(closestObject);
+        }
+        else if (birdCableMovement.isClimbing && closestObject == null)
+        {
+            return;
         }
         // If there is a closest object, change its material to highlightMaterial
         // and change the previous closest object's material back to its original material
