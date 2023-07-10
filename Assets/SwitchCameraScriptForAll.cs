@@ -21,7 +21,7 @@ public class SwitchCameraScriptForAll : MonoBehaviour
 
     private void Start()
     {
-        aS = gameObject.AddComponent<AudioSource>();
+        aS = gameObject.GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player");
         switchControls = FindAnyObjectByType<SwitchControls>();
         mainLight = FindAnyObjectByType<LightSway>();

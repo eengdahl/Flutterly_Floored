@@ -27,7 +27,7 @@ public class YarnBall : MonoBehaviour
         ballDirection = ballRB.velocity.magnitude;
         //psRotation = new Vector3(0, ballDirection, 0);
         distanceTraveled = ballRB.velocity.magnitude * Time.deltaTime;
-        ballTransform.localScale -= new Vector3(distanceTraveled, distanceTraveled,distanceTraveled) * Time.deltaTime;
+        ballTransform.localScale -= new Vector3(distanceTraveled, distanceTraveled,distanceTraveled) * Time.deltaTime * (1 / ballTransform.localScale.x);
         offset = new Vector3(0, -ballTransform.localScale.y / 2 + 0.05f, 0);
         if (ball.activeSelf == true)
         {
