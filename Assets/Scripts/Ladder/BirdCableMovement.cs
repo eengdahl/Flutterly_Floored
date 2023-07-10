@@ -167,10 +167,9 @@ public class BirdCableMovement : MonoBehaviour
         if (Physics.Raycast(raycastDown.transform.position, raycastDown.transform.forward, out hitDown, 0.4f,groundLayer)) 
             canGoDown = false;
         else canGoDown = true;
-        Debug.Log(canGoDown);
 
-        Debug.DrawRay(raycastUp.transform.position, raycastUp.transform.forward, Color.red);
-        Debug.DrawRay(raycastDown.transform.position, raycastDown.transform.forward, Color.red);
+        //Debug.DrawRay(raycastUp.transform.position, raycastUp.transform.forward, Color.red);
+        //Debug.DrawRay(raycastDown.transform.position, raycastDown.transform.forward, Color.red);
 
         //Raycast for rotation
         //RaycastHit hitOne;
