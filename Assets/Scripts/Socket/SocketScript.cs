@@ -75,7 +75,7 @@ public class SocketScript : MonoBehaviour
                 //Turn on fan
                 if(fan != null)
                 {
-                    Debug.Log("Fan connected");
+                    //Debug.Log("Fan connected");
                     fan.TurnOn();
                 }
 

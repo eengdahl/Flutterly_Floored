@@ -27,50 +27,50 @@ public class DevShortcuts : MonoBehaviour
         }
     }
 
-    //// Update is called once per frame
-    //void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.P))
-    //    {
-    //        SceneManager.LoadScene(0);
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.Keypad0))
-    //    {
-    //        deathScript.NewCheckpoint(respawnPoints[0]);
-    //        deathScript.Die();
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.Keypad1))
-    //    {
-    //        deathScript.NewCheckpoint(respawnPoints[1]);
-    //        deathScript.Die();
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            SceneManager.LoadScene(0);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad0))
+        {
+            deathScript.NewCheckpoint(respawnPoints[0]);
+            deathScript.Die();
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            deathScript.NewCheckpoint(respawnPoints[1]);
+            deathScript.Die();
 
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.Keypad2))
-    //    {
-    //        deathScript.NewCheckpoint(respawnPoints[2]);
-    //        deathScript.Die();
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            deathScript.NewCheckpoint(respawnPoints[2]);
+            deathScript.Die();
 
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.Keypad3))
-    //    {
-    //        deathScript.NewCheckpoint(respawnPoints[3]);
-    //        deathScript.Die();
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            deathScript.NewCheckpoint(respawnPoints[3]);
+            deathScript.Die();
 
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.Keypad4))
-    //    {
-    //        deathScript.NewCheckpoint(respawnPoints[4]);
-    //        deathScript.Die();
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            deathScript.NewCheckpoint(respawnPoints[4]);
+            deathScript.Die();
 
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.Keypad5))
-    //    {
-    //        deathScript.NewCheckpoint(respawnPoints[5]);
-    //        deathScript.Die();
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad5))
+        {
+            deathScript.NewCheckpoint(respawnPoints[5]);
+            deathScript.Die();
 
-    //    }
+        }
 
 
 
-    //}
+    }
 }

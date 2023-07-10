@@ -68,7 +68,7 @@ public class GameTimer : MonoBehaviour
 
         GameStats.Instance.time = elapsedTime;
         StopTimer();
-        Debug.Log("Elapsed Time: " + formattedTime); // Print elapsed time in seconds and minutes to the console
+        //Debug.Log("Elapsed Time: " + formattedTime); // Print elapsed time in seconds and minutes to the console
 
     }
 }

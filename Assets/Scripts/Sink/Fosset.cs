@@ -23,7 +23,7 @@ public class Fosset : MonoBehaviour
     {
         if (gameObject.name == "OnButton" && other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("WaterRise");
+            //Debug.Log("WaterRise");
             water.GetComponent<Water>().isFilling = true;
         }
 

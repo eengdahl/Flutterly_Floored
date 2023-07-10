@@ -36,7 +36,7 @@ public class LightSway : MonoBehaviour
             {
                 spotLight.SetActive(true);
                 resetLight = false;
-                Debug.Log("Ping");  
+                //Debug.Log("Ping");  
             }
         }
 
@@ -72,7 +72,7 @@ public class LightSway : MonoBehaviour
     }
     public void SetRoomDark()
     {
-        Debug.Log("Dark");
+        //Debug.Log("Dark");
         // Light.intensity = 0;
         //  Light.intensity = Mathf.Lerp(Light.intensity, 0, 10f*Time.deltaTime);
         vitrinLight = false;

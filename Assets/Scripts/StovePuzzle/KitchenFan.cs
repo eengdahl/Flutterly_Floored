@@ -14,21 +14,12 @@ public class KitchenFan : MonoBehaviour
     {
         aS = GetComponent<AudioSource>();
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             inGawkArea = true;
-            foreach (KitchenFanButton btn in buttonList)
-            {
-                if (btn.buttonDown == true)
-                {
-                    glideMultiplier = btn.fanMultiplier;
-                    aS.pitch = btn.fanMultiplier;
-                }
-            }
-            if (!aS.isPlaying) aS.Play();
-
         }
     }
 
@@ -37,7 +28,18 @@ public class KitchenFan : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             inGawkArea = false;
-            aS.Stop();
+        }
+    }
+
+    public void changeFanSpeed()
+    {
+        foreach (KitchenFanButton btn in buttonList)
+        {
+            if (btn.buttonDown == true)
+            {
+                glideMultiplier = btn.fanMultiplier;
+                aS.pitch = btn.fanMultiplier - 1;
+            }
         }
     }
 }

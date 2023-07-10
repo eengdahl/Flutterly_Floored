@@ -26,7 +26,7 @@ public class CatAMoleShake : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         
         cameraPerlinNoise = catAMoleCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-        Debug.Log(cameraPerlinNoise);
+        //Debug.Log(cameraPerlinNoise);
     }
 
     public void ShakeCam()

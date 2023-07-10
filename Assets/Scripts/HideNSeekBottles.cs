@@ -48,7 +48,7 @@ public class HideNSeekBottles : MonoBehaviour
                 onceLock = true;
             }
             // vitrinBrain = FindAnyObjectByType<VitrinBrain2>();
-            Debug.Log("sprutsprut");
+            //Debug.Log("sprutsprut");
             anim.CrossFade("ParfumePuffDeflate", 0, 0);
             ButtonPush();
             Invoke(nameof(ButtonReset), 2);
@@ -90,7 +90,7 @@ public class HideNSeekBottles : MonoBehaviour
         // vitrinBrain.grace = true;
         catLives--;
         sprayPS.SetActive(true);
-        Debug.Log("CatIsDiededGGEZ");
+        //Debug.Log("CatIsDiededGGEZ");
         Invoke(nameof(DestroyBlocker), 1);
         buttonReady = false;
 

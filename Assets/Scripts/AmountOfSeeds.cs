@@ -20,7 +20,7 @@ public class AmountOfSeeds : MonoBehaviour
         amountOfSeeds = objectsWithTag1.Length + objectsWithTag2.Length;
 
         // Print the count to the console (optional)
-        Debug.Log("Object Count: " + amountOfSeeds);
+        //Debug.Log("Object Count: " + amountOfSeeds);
 
        gameStats.maxAmountOfSeeds = amountOfSeeds;
     }

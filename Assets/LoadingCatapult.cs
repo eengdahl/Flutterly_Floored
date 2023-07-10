@@ -40,7 +40,7 @@ public class LoadingCatapult : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Spoon") && other.GetComponentInParent<Spoon>().isFull)
         {
-            Debug.Log(other.gameObject.name);
+            //Debug.Log(other.gameObject.name);
             Spoon spoon = other.GetComponentInParent<Spoon>();
 
             switch (spoon.currentIngredient)

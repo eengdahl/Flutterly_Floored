@@ -11,12 +11,13 @@ public class KitchenFanButton : MonoBehaviour
     public float fanMultiplier;
 
 
-
+    KitchenFan kitchenFanScript;
     public GameObject kitchenFan;
 
     // Start is called before the first frame update
     void Start()
     {
+        kitchenFanScript = GameObject.Find("KitchenFan").GetComponent<KitchenFan>();
         anim = gameObject.GetComponent<Animator>();
         if (offButton)
         {
@@ -41,14 +42,16 @@ public class KitchenFanButton : MonoBehaviour
         if (offButton)
         {
             anim.CrossFade("KitchenFanDown", 0, 0);
-            kitchenFan.GetComponent<BoxCollider>().enabled = false;
+            //kitchenFan.GetComponent<BoxCollider>().enabled = false;
             buttonDown = true;
+            kitchenFanScript.changeFanSpeed();
         }
         else
         {
             anim.CrossFade("KitchenFanDown", 0, 0);
             kitchenFan.GetComponent<BoxCollider>().enabled = true;
             buttonDown = true;
+            kitchenFanScript.changeFanSpeed();
         }
     }
 

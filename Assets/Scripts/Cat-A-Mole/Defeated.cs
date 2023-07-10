@@ -8,6 +8,7 @@ public class Defeated : MonoBehaviour
     [SerializeField] GameObject originalCamera;
     [SerializeField] GameObject catAMoleCam;
     [SerializeField] GameObject windowBlock;
+    [SerializeField] GameObject spawnCatamoleArea;
     CamCatAMole camSwap;
 
     private void Start()
@@ -20,6 +21,7 @@ public class Defeated : MonoBehaviour
     {
         originalCamera.SetActive(true);
         windowBlock.SetActive(false);
+        spawnCatamoleArea.SetActive(false);
        // camSwap.DisableZone();
         gameObject.SetActive(false);
     }

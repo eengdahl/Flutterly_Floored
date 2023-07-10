@@ -41,7 +41,7 @@ public class PushPlayerUp : MonoBehaviour
                 newPosition.y = higherRayOrigin.transform.position.y + 0.4f;
                 transform.position = newPosition;
                 isGrounded = true;
-                Debug.Log("Should be higher up now");
+                //Debug.Log("Should be higher up now");
             }
             else
             {

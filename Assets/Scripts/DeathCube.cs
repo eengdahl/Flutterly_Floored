@@ -25,8 +25,6 @@ public class DeathCube : MonoBehaviour
             {
                 clipToPlay = horribleDeathSounds[0];
                 audioSource.PlayOneShot(clipToPlay);
-
-                Debug.Log("Input CatKillingPlayerSound here");
             }
 
             if (gameObject.CompareTag("WaterDeathCube") && locker == true)

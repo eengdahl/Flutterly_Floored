@@ -74,7 +74,7 @@ public class HitZones : MonoBehaviour
         //Make cat attack
         if (isAttacking && !isAnimTriggered && withinStrikeDistance)
         {
-            Debug.Log("Runs attack code");
+            //Debug.Log("Runs attack code");
             isCharging = false;
             isAnimTriggered = true;
             attackAnimator.SetBool("Idling", false);
