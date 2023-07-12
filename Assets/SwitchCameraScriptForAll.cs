@@ -70,6 +70,7 @@ public class SwitchCameraScriptForAll : MonoBehaviour
         {
             originalCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Lens.Orthographic = false;
             Invoke("SwitchCamOff", 0.1f);
+            gameObject.SetActive(false);
             // Invoke("SwitchCamera", 0.1f);
         }
     }

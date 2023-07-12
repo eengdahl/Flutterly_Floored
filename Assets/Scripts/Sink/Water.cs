@@ -18,6 +18,7 @@ public class Water : MonoBehaviour
 
     public bool isFilling;
     public bool isDraining;
+    public bool hasPlayed = false;
 
     public GameObject waterTapPS;
     public GameObject maxWaterPoint;
@@ -46,10 +47,16 @@ public class Water : MonoBehaviour
             isDraining = false;
             waterTapPS.SetActive(true);
         }
-        else
+        else if (waterLevel >= maxWaterLevel)
         {
             isFilling = false;
-            waterTapPS.SetActive(false);
+            var ps = waterTapPS.GetComponent<ParticleSystem>(); 
+            var em = ps.emission; 
+            em.enabled = false;
+            if (!isFilling && !ps.IsAlive())
+            {
+                waterTapPS.SetActive(false);
+            }
         }
 
         if (isDraining && waterLevel > minWaterLevel)
@@ -86,12 +93,13 @@ public class Water : MonoBehaviour
 
     public void PlayFillSound()
     {
-        if (!isFilling || aS.isPlaying)
+        if (!isFilling || aS.isPlaying || hasPlayed)
         {
             return;
 
         }
         aS.PlayOneShot(fillWater);
+        hasPlayed = true;
     }
 
     public void PlayDrainSound()
