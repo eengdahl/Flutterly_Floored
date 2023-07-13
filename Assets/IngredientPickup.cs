@@ -13,6 +13,7 @@ public class IngredientPickup : MonoBehaviour
     [SerializeField] Material glowMaterial;
     Material originalMaterial;
     Renderer glowingRenderer;
+    [SerializeField] GameObject arrow;
 
 
     private void Start()
@@ -71,9 +72,21 @@ public class IngredientPickup : MonoBehaviour
     void RemoveGlow()
     {
         glowingRenderer.material = originalMaterial;
+        //Also show/remove arrow
+        DisableArrow();
     }
     public void ReturnGlow()
     {
         glowingRenderer.material = glowMaterial;
+        ActivateArrow();
     }
+    public void DisableArrow()
+    {
+        arrow.SetActive(false);
+    }
+    public void ActivateArrow()
+    {
+        arrow.SetActive(true);
+    }
+
 }

@@ -27,6 +27,9 @@ public class LoadingCatapult : MonoBehaviour
     //Sounds for empty mått
     [SerializeField] AudioClip emptySound;
     AudioSource aS;
+
+    [SerializeField] GameObject arrowForJumpSpot;
+
     private void Start()
     {
         originalMaterial = rend.material;
@@ -79,6 +82,7 @@ public class LoadingCatapult : MonoBehaviour
             if (isFlourFilled && isSugarFilled && isMilkFilled)
             {
                 canShoot = true;
+                EnableArrow();
             }
         }
     }
@@ -115,6 +119,14 @@ public class LoadingCatapult : MonoBehaviour
     private void ReturnNormalOnMoshyThing()
     {
         rend.material = originalMaterial;
+    }
+    private void EnableArrow()
+    {
+        arrowForJumpSpot.SetActive(true);
+    }
+    public void DisableArrow()
+    {
+        arrowForJumpSpot.SetActive(false);
     }
 
 }

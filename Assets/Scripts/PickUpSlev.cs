@@ -7,7 +7,10 @@ public class PickUpSlev : MonoBehaviour
     private GameObject heldItem; // The item currently being held by the bird
     private Rigidbody itemRb; // The rigidbody component of the held item
     //Vector3 holdRotation; // New variable for the rotation of the hold point
-    [SerializeField]DisplayM2Spoon slevPickUpTutorial;
+    [SerializeField] DisplayM2Spoon slevPickUpTutorial;
+    [SerializeField] IngredientPickup[] ingredientPickups;
+    [SerializeField] GameObject pickupArrow;
+    [SerializeField] LoadingCatapult loading;
 
     void Start()
     {
@@ -18,10 +21,10 @@ public class PickUpSlev : MonoBehaviour
     {
         if (other.CompareTag("Slev"))
         {
-            if(heldItem == null)
+            if (heldItem == null)
             {
 
-            heldItem = other.gameObject;
+                heldItem = other.gameObject;
             }
         }
     }
@@ -47,13 +50,14 @@ public class PickUpSlev : MonoBehaviour
                 {
                     itemRb.isKinematic = true; // Disable physics on held item
                 }
-
+                ActivateArrows();
                 // Set the position and rotation of the held item to the hold point position and rotation
                 heldItem.transform.SetParent(holdPoint);
                 heldItem.transform.localPosition = Vector3.zero;
                 heldItem.transform.rotation = holdPoint.rotation;
                 slevPickUpTutorial.show = false;
                 slevPickUpTutorial.DeactivateM2();
+                pickupArrow.SetActive(false);
             }
         }
 
@@ -74,8 +78,35 @@ public class PickUpSlev : MonoBehaviour
             {
                 itemRb.isKinematic = false; // Enable physics on the dropped item
             }
+            DeactivateArrows();
+            if (!loading.canShoot)
+            {
+                pickupArrow.SetActive(true);
+
+            }
             heldItem = null;
         }
 
+    }
+
+
+    public void ActivateArrows()
+    {
+        foreach (IngredientPickup ingredient in ingredientPickups)
+        {
+            if (!ingredient.hasBeenPickedUp)
+            {
+                ingredient.ActivateArrow();
+            }
+        }
+    }
+    public void DeactivateArrows()
+    {
+        foreach (IngredientPickup ingredient in ingredientPickups)
+        {
+
+            ingredient.DisableArrow();
+
+        }
     }
 }

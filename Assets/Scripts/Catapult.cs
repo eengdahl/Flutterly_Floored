@@ -27,6 +27,7 @@ public class Catapult : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && loading.canShoot)
         {
+            loading.DisableArrow();
             loading.canShoot = false;
             loading.ResetIngredients();
             spoon.ResetSpoon();

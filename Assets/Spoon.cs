@@ -29,6 +29,10 @@ public class Spoon : MonoBehaviour
     [SerializeField] AudioClip[] pickUpSounds;
     AudioSource aS;
 
+    //Arrow on catapult
+    [SerializeField] GameObject arrowDropOffPoint;
+    [SerializeField] PickUpSlev pickUpSlev;
+
     public void ResetSpoon()
     {
         sugarFilled = false;
@@ -82,21 +86,25 @@ public class Spoon : MonoBehaviour
     public void FillSpoon()
     {
         //ljud för pick up
+        pickUpSlev.DeactivateArrows();
         int rndIndex = Random.Range(0,3);
         aS.clip = pickUpSounds[rndIndex];
         aS.Play();
         filling.SetActive(true);
         isFull = true;
+        arrowDropOffPoint.SetActive(true);
     }
 
     public void EmptySpoon()
     {
-
+        pickUpSlev.ActivateArrows();
+        arrowDropOffPoint.SetActive(false);
         filling.SetActive(false);
         isFull = false;
         if (milkInSpoon == true) milkInSpoon = false;
         else if (sugarInSpoon == true) sugarInSpoon = false;
         else if (flourInSpoon == true) flourInSpoon = false;
     }
+ 
 
 }
