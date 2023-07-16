@@ -99,6 +99,7 @@ public class Fan : MonoBehaviour
     }
     public void SwitchWindStr()
     {
+        if (!gotElectricity) return;
         if (on)
         {
             windAreaRef.SetActive(false);
