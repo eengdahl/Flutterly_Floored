@@ -30,7 +30,7 @@ public class CheckPointScript : MonoBehaviour
                 if (!haveShownM)
                 {
                     mapTutorial.SetActive(true);
-                    Invoke(nameof(DisableMap), 3);
+                    Invoke(nameof(DisableMap), 4);
                     aS.Play();
                     haveShownM = true;
 
