@@ -5,7 +5,7 @@ using UnityEngine;
 public class DisplayM2Spoon : MonoBehaviour
 {
 
-    [SerializeField] GameObject m2Canvas;
+    [SerializeField] GameObject m1Canvas;
     bool hasShown = false;
 
     public bool show = true;
@@ -15,7 +15,7 @@ public class DisplayM2Spoon : MonoBehaviour
         if (other.CompareTag("Player") && show)
         {
 
-            m2Canvas.SetActive(true);
+            m1Canvas.SetActive(true);
             hasShown = true;
             Invoke(nameof(DeactivateM2), 5f);
 
@@ -24,7 +24,7 @@ public class DisplayM2Spoon : MonoBehaviour
 
     public void DeactivateM2()
     {
-        m2Canvas.SetActive(false);
+        m1Canvas.SetActive(false);
 
     }
 }

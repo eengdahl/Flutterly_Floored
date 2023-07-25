@@ -11,6 +11,8 @@ public class PickUpScriptTest : MonoBehaviour
     private Material normalMaterial;
 
 
+
+    M1Tutorial m1Tutorial;
     [SerializeField]GameObject targetTransform;
 
     List<GameObject> items;
@@ -21,6 +23,7 @@ public class PickUpScriptTest : MonoBehaviour
 
     private void Start()
     {
+        m1Tutorial = FindAnyObjectByType<M1Tutorial>();
         items = new List<GameObject>();
     }
     private void OnTriggerEnter(Collider other)
@@ -141,6 +144,7 @@ public class PickUpScriptTest : MonoBehaviour
             {
                 CalculateDistances();
                 FindShortestDistance();
+                m1Tutorial.hasPicked = true;
             }
         }
         if (Drag.canceled)
