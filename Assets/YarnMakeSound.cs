@@ -24,7 +24,6 @@ public class YarnMakeSound : MonoBehaviour
         if (currentSpeed > speedThreshold && !soundPlaying)
         {
             aS.Play();
-            Debug.Log("Should make sounds now");
             soundPlaying = true;
         }
         else if(currentSpeed < speedThreshold && soundPlaying)
