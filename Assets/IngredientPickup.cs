@@ -22,7 +22,7 @@ public class IngredientPickup : MonoBehaviour
         //Get original material and set glow
         glowingRenderer = glowingObject.GetComponent<Renderer>();
         originalMaterial = glowingRenderer.material;
-        glowingRenderer.material = glowMaterial;
+        //glowingRenderer.material = glowMaterial;
     }
 
     private void OnTriggerEnter(Collider other)

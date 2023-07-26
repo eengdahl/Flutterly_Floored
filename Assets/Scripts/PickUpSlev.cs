@@ -55,8 +55,12 @@ public class PickUpSlev : MonoBehaviour
                 heldItem.transform.SetParent(holdPoint);
                 heldItem.transform.localPosition = Vector3.zero;
                 heldItem.transform.rotation = holdPoint.rotation;
-                slevPickUpTutorial.show = false;
-                slevPickUpTutorial.DeactivateM2();
+                if (slevPickUpTutorial.show == true)
+                {
+                    ActivateGlow();
+                    slevPickUpTutorial.show = false;
+                    slevPickUpTutorial.DeactivateM2();
+                }
                 pickupArrow.SetActive(false);
             }
         }
@@ -89,7 +93,13 @@ public class PickUpSlev : MonoBehaviour
 
     }
 
-
+    private void ActivateGlow()
+    {
+        foreach (IngredientPickup ingredient in ingredientPickups)
+        {
+            ingredient.ReturnGlow();
+        }
+    }
     public void ActivateArrows()
     {
         foreach (IngredientPickup ingredient in ingredientPickups)
