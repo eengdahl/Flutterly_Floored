@@ -75,7 +75,7 @@ public class LoadingCatapult : MonoBehaviour
             }
 
             //spoon.isFull = false;
-            spoon.EmptySpoon();
+            spoon.EmptySpoon(false);
             //ljud för att tömma spoon
             aS.clip = emptySound;
             aS.Play();

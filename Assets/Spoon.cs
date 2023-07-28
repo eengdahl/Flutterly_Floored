@@ -95,9 +95,13 @@ public class Spoon : MonoBehaviour
         arrowDropOffPoint.SetActive(true);
     }
 
-    public void EmptySpoon()
+    public void EmptySpoon(bool hasDied)
     {
+        if(hasDied == false)
+        {
+
         pickUpSlev.ActivateArrows();
+        }
         arrowDropOffPoint.SetActive(false);
         filling.SetActive(false);
         isFull = false;

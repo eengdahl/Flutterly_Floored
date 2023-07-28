@@ -22,8 +22,7 @@ public class ResetCatAMole : MonoBehaviour
         spoon.transform.rotation = spoonRotation;
         spoonScript.isFull = false;
         EmptySpoon();
-        spoonScript.EmptySpoon();
-
+        spoonScript.EmptySpoon(true);
     }
 
     private void EmptySpoon()
