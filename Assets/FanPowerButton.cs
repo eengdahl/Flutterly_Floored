@@ -25,7 +25,7 @@ public class FanPowerButton : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player")||other.CompareTag("Beak"))
         {
             if (canBePushed)
             {
@@ -46,7 +46,7 @@ public class FanPowerButton : MonoBehaviour
     public void resetBool()
     {
         CanBePushed();
-        animator.SetBool("ButtonPushed", false);
+        animator.SetBool(nameof(ButtonPushed), false);
     }
     
     public void ButtonPushed()
