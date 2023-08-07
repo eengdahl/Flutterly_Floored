@@ -21,7 +21,7 @@ public class MovingLeaves : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && canPlayiAnimation)
+        if (other.gameObject.CompareTag("Player") && canPlayiAnimation|| other.gameObject.CompareTag("Ground") && canPlayiAnimation)
         {
             if (canPlayiAnimation)
             {
@@ -38,7 +38,7 @@ public class MovingLeaves : MonoBehaviour
     
     private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.CompareTag("Player") && canPlayiAnimation)
+        if(other.gameObject.CompareTag("Player") && canPlayiAnimation||other.gameObject.CompareTag("Ground") && canPlayiAnimation)
         {
             anim.SetTrigger("Flutter");
             canPlayiAnimation = false;

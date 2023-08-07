@@ -14,7 +14,7 @@ public class FanPowerButton : MonoBehaviour
     [SerializeField] bool isSpeedButton;
     [SerializeField] bool isRotationButton;
     [SerializeField] bool isPowerButton;
-    
+    [SerializeField] M1Tutorial m1Tutorial;
     private void Start()
     {   
         aS = GetComponent<AudioSource>();
@@ -25,7 +25,7 @@ public class FanPowerButton : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")||other.CompareTag("Beak"))
+        if (other.CompareTag("Beak")) //other.CompareTag("Player")|
         {
             if (canBePushed)
             {
@@ -33,6 +33,7 @@ public class FanPowerButton : MonoBehaviour
                 aS.Play();
                 ButtonPushed();
                 canBePushed = false;
+                m1Tutorial.hasPicked = true;
             }
         }
     }

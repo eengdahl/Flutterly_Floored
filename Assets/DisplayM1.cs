@@ -7,16 +7,13 @@ public class DisplayM1 : MonoBehaviour
 
     [SerializeField]GameObject m1Canvas;
     bool hasShown = false;
-    M1Tutorial m1Tutorial;
+    [SerializeField]M1Tutorial m1Tutorial;
     
     public bool show = true;
 
 
 
-    private void Awake()
-    {
-        m1Tutorial = FindObjectOfType<M1Tutorial>();
-    }
+  
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")&& !m1Tutorial.hasPicked)

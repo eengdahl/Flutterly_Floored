@@ -37,7 +37,7 @@ public class HideNSeekBottles : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && buttonReady)
+        if (other.tag == "Player" && buttonReady||other.tag == "Beak" && buttonReady)
         {
 
             aS.PlayOneShot(spray);
