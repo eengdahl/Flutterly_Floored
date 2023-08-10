@@ -53,6 +53,9 @@ public class VitrinBrain2 : MonoBehaviour
     private string idleAni = "rig_001_Vitrinskåp mid idle";
 
 
+    //BookBlock
+    [SerializeField] Bookblock bookBlock;
+
 
     void Awake()
     {
@@ -189,6 +192,7 @@ public class VitrinBrain2 : MonoBehaviour
             audioManager.ResumeMainMusic();
             ResetFadeToBlack.SetActive(true);
             this.gameObject.SetActive(false);
+            bookBlock.BookBlockRemove();
             yield return 0;
         }
         NextState();

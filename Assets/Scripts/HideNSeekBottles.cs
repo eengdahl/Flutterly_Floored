@@ -19,6 +19,9 @@ public class HideNSeekBottles : MonoBehaviour
     public AudioClip cat;
     public AudioClip spray;
     public GameObject sprayPS;
+    [SerializeField] AudioSource catScream;
+    [SerializeField] GameObject spotlight1;
+    [SerializeField] GameObject spotlight2;
 
     private void Start()
     {
@@ -98,6 +101,9 @@ public class HideNSeekBottles : MonoBehaviour
         {
             vitrinBrain.activeState = VitrinState.Exit;
             vitrinBrain.catIsDead = true;
+            catScream.Play();
+            spotlight1.SetActive(false);
+            spotlight2.SetActive(false);
         }
 
         //button push

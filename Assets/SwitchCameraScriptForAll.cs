@@ -17,7 +17,7 @@ public class SwitchCameraScriptForAll : MonoBehaviour
     DeathScriptAndCheckPoint deathScript;
     TriggerCupboardEvent triggerVitrin;
     private SwitchControls switchControls;
-
+    [SerializeField] Bookblock bookfall;
 
     private void Start()
     {
@@ -44,6 +44,7 @@ public class SwitchCameraScriptForAll : MonoBehaviour
                 switchControls.SwitchToNoInput();
                 StartCoroutine(deathScript.FadeToBlack());
                 Invoke(nameof(ResetFadeToBlack), 3);
+                bookfall.MoveAndRotate();
                 locker = true;
             }
             Invoke("SwitchCamOn", 2f);
