@@ -12,15 +12,18 @@ public class PickUpScriptTest : MonoBehaviour
 
 
 
+    M1Tutorial m1Tutorial;
+    [SerializeField]GameObject targetTransform;
 
     List<GameObject> items;
     [SerializeField] GameObject thingToPull;
     private Dictionary<GameObject, float> distances = new Dictionary<GameObject, float>();
 
-    float force = 10;
+    float force = 500;
 
     private void Start()
     {
+        m1Tutorial = FindAnyObjectByType<M1Tutorial>();
         items = new List<GameObject>();
     }
     private void OnTriggerEnter(Collider other)
@@ -48,23 +51,32 @@ public class PickUpScriptTest : MonoBehaviour
 
         if (thingToPull != null)
         {
-            Vector3 Distance = transform.position - thingToPull.transform.position; // line from pickup to player
+            Vector3 Distance = targetTransform.transform.position - thingToPull.transform.position; // line from pickup to player
             float dist = Distance.magnitude;
             Vector3 pullDir = Distance.normalized; // short blue arrow from crate to player
-            if (dist > 100)
+            if (dist > 2f)
             {
                 //RemoveTarget if to far away
 
                 RemoveTarget();
             }
-            else if (dist > 1f) //If to close
+            else if (dist > 0f) //If to close
             {
                 float pullF = force; //10 test gravity
                 //make pullforce depending on distance
                 float pullForDist = (dist - 0.5f) / 2.0f;
-                if (pullForDist > 20) pullForDist = 20;
+                if (pullForDist > 20)
+                {
+                    pullForDist = 20;
+                }
+
                 pullF += pullForDist;
                 thingToPull.GetComponent<Rigidbody>().velocity += pullDir * (pullF * Time.deltaTime);
+                // Check if the game object has reached the target transform point
+                if (dist < 0.1f) 
+                {
+                    thingToPull.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                }
             }
 
         }
@@ -73,7 +85,7 @@ public class PickUpScriptTest : MonoBehaviour
     {
         foreach (GameObject item in items)
         {
-            float distance = Vector3.Distance(item.transform.position, transform.position);
+            float distance = Vector3.Distance(item.transform.position, targetTransform.transform.position);
             distances[item] = distance;
         }
     }
@@ -92,13 +104,13 @@ public class PickUpScriptTest : MonoBehaviour
         }
         //Set thing to pull to closest  item and change colour
         thingToPull = closestItem;
-        SetMaterialTarget();
+        //SetMaterialTarget();
 
         //If rope change force
-        if (thingToPull.tag == "Rope")
-        {
-            force = 1000;
-        }
+        //if (thingToPull.tag == "Rope")
+        //{
+        //    force = 1000;
+        //}
     }
 
     void SetMaterialTarget()
@@ -116,10 +128,10 @@ public class PickUpScriptTest : MonoBehaviour
     }
     public void RemoveTarget()
     {
-        if(thingToPull != null)
+        if (thingToPull != null)
         {
-        ReturnMaterial();
-        thingToPull = null;
+            //ReturnMaterial();
+            thingToPull = null;
 
         }
     }
@@ -132,6 +144,7 @@ public class PickUpScriptTest : MonoBehaviour
             {
                 CalculateDistances();
                 FindShortestDistance();
+                m1Tutorial.hasPicked = true;
             }
         }
         if (Drag.canceled)
